@@ -104,11 +104,18 @@ of the appointment.**
 > A crown stays with the patient → box 8 (`Prostheses`).
 > The glove the dentist wore while fitting it → box 9 (`MS`).
 
-### 10. `Hotel` — Looking After Patients Like a Hotel Would
-Patient meals and nutrition, bedsheets, gowns, TV.
+### 10. `Hotel` — Feeding and Transporting Patients
+**For our clinic this box means: patient nutrition — juice, food and refreshments — and
+the car transport we provide for patients.**
 
-This exists because hospitals keep patients overnight. **We don't have beds**, so for us
-this box should be very small or empty.
+DOH's own wording for this box mentions patient meals, bedsheets, gowns and TV, because
+the rule was written with hospitals in mind. We have no beds, so the bedding half of that
+description does not apply to us. The **food and patient-transport half does**, and that
+is what we post here.
+
+> **Why this matters:** a DOH reviewer looking at a clinic with no beds will ask why
+> there is a `Hotel` figure at all. The answer above is our written explanation — keep it
+> with the audit file so we are not improvising the answer later.
 
 ---
 
@@ -169,7 +176,7 @@ Government-funded insurance adjustments.
 | 7 | `Pharmacy` | Medicines | A drug |
 | 8 | `Prostheses` | Fitted items | Patient keeps it in their mouth |
 | 9 | `MS` | Clinical consumables | Single-use, then binned |
-| 10 | `Hotel` | Patient hotel services | Bed, meal, linen — near zero for us |
+| 10 | `Hotel` | Patient food & transport | Feeding a patient, or driving them |
 | 11 | `GS` | Goods & services | Office / admin running costs |
 | 12 | `Depreciation` | Wear and tear | Equipment losing value, not cash out |
 | 13 | `OHF` | Facility overheads | Paid even with zero patients |
@@ -200,8 +207,11 @@ about the same vehicle.
 
 - This list is **15 boxes**. The DOH Standard's Appendix 1 defines 14; `NABMs` is the
   15th and is not applicable to us.
-- Two boxes here — `Pharmacy` (7) and `Hotel` (10) — did not appear in the percentage
-  split provided separately. To be confirmed when the final figures arrive.
+- `Pharmacy` (7) did not appear in the percentage split provided separately. To be
+  confirmed when the final figures arrive.
+- `Hotel` (10) is **not** near zero for us, despite what the hospital-oriented wording
+  suggests — see the box above. It carries real patient food and transport cost, and it
+  appears on surgical and implant treatment codes.
 - Nothing on this page is a calculation. It is a filing guide only.
 
 ---

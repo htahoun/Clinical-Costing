@@ -36,9 +36,11 @@
         <Type>Principal</Type>
         <Code>K05.329</Code>
       </Diagnosis>
+      <!-- Production guide: report Procedure ONLY when TheatreAttendanceFlag=1.
+           Ours is 0, so Type/Code stay empty. -->
       <Procedure>
-        <Type>Principal</Type>
-        <Code>02601</Code>
+        <Type></Type>
+        <Code></Code>
         <Duration>0</Duration>
       </Procedure>
       <EDTriageLevel>0</EDTriageLevel>
@@ -58,7 +60,10 @@
         <Physician>0.000</Physician>
         <OP>5.058</OP>
         <OR>0.000</OR>
-        <Other>0.000</Other>
+        <!-- NOTE: the NEW XSD removed the Supplies bucket (replaced by Dental/Home).
+             Our Supplies cost (5.104) is parked in Other pending DOH clarification
+             on where dental clinics report Supplies and whether to use Dental. -->
+        <Other>5.104</Other>
         <Pharmacy>0.000</Pharmacy>
         <Prosthesis>0.000</Prosthesis>
         <SPS>0.000</SPS>

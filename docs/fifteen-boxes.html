@@ -1,0 +1,563 @@
+<title>The Fifteen Boxes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F5F7F7;
+  --card:#FFFFFF;
+  --ink:#14232A;
+  --ink-2:#405058;
+  --ink-3:#6B7C84;
+  --rule:#DCE4E4;
+  --rule-2:#EBF0F0;
+  --teal:#0D6B6B;
+  --teal-soft:#E4EFEE;
+  --ochre:#8A6410;
+  --ochre-soft:#F5EEDC;
+  --slate:#3D5A6C;
+  --slate-soft:#E6EDF1;
+  --dim:#77878E;
+  --dim-soft:#EDF0F0;
+  --flag:#8C3A22;
+  --flag-soft:#F7E9E4;
+  --shadow:0 1px 2px rgba(20,35,42,.05), 0 8px 24px -12px rgba(20,35,42,.16);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1719;
+    --card:#152225;
+    --ink:#E8EFEF;
+    --ink-2:#B0C0C3;
+    --ink-3:#89999E;
+    --rule:#25373B;
+    --rule-2:#1D2C30;
+    --teal:#5FC4BC;
+    --teal-soft:#14312F;
+    --ochre:#D7AE5C;
+    --ochre-soft:#2E2716;
+    --slate:#9DBACB;
+    --slate-soft:#1B2A33;
+    --dim:#8FA0A6;
+    --dim-soft:#1C2729;
+    --flag:#E09477;
+    --flag-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1719;
+  --card:#152225;
+  --ink:#E8EFEF;
+  --ink-2:#B0C0C3;
+  --ink-3:#89999E;
+  --rule:#25373B;
+  --rule-2:#1D2C30;
+  --teal:#5FC4BC;
+  --teal-soft:#14312F;
+  --ochre:#D7AE5C;
+  --ochre-soft:#2E2716;
+  --slate:#9DBACB;
+  --slate-soft:#1B2A33;
+  --dim:#8FA0A6;
+  --dim-soft:#1C2729;
+  --flag:#E09477;
+  --flag-soft:#33201A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:56px 24px 96px;}
+
+/* ---------- masthead ---------- */
+.mast{display:flex;flex-direction:column;gap:18px;padding-bottom:32px;border-bottom:2px solid var(--ink);}
+.eyebrow{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:11.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--teal);
+}
+.mast h1{
+  font-family:"Archivo", system-ui, sans-serif;
+  font-weight:700;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.022em;
+  text-wrap:balance;margin:0;color:var(--ink);
+}
+.standfirst{font-size:19px;line-height:1.55;color:var(--ink-2);max-width:60ch;margin:0;}
+.mast-meta{
+  display:flex;flex-wrap:wrap;gap:8px 22px;
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);
+}
+
+/* ---------- opening rule ---------- */
+.opening{
+  margin-top:34px;display:grid;gap:14px;
+  padding:24px 26px;border-left:3px solid var(--teal);background:var(--teal-soft);
+  border-radius:0 6px 6px 0;
+}
+.opening p{margin:0;color:var(--ink);}
+.opening .lede{font-weight:600;}
+
+/* ---------- section ---------- */
+.section{margin-top:56px;}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+.section-head h2{
+  font-family:"Archivo", system-ui, sans-serif;
+  font-weight:600;font-size:25px;letter-spacing:-.012em;margin:0;color:var(--ink);
+}
+.section-range{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.05em;white-space:nowrap;
+}
+.section-sub{margin:0 0 22px;color:var(--ink-2);font-size:16.5px;max-width:62ch;}
+.section-rule{height:1px;background:var(--rule);margin-bottom:22px;}
+
+/* ---------- box card ---------- */
+.boxes{display:grid;gap:14px;}
+.box{
+  background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  box-shadow:var(--shadow);
+  display:grid;grid-template-columns:76px 1fr;
+}
+.box-num{
+  border-right:1px solid var(--rule-2);
+  display:flex;align-items:flex-start;justify-content:center;padding:22px 0 0;
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:22px;font-weight:600;color:var(--dim);
+  font-variant-numeric:tabular-nums;
+}
+.box-body{padding:20px 24px 22px;display:grid;gap:11px;}
+.box-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.code{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:14px;font-weight:600;letter-spacing:.01em;
+  padding:4px 10px;border-radius:4px;
+  background:var(--tint-soft);color:var(--tint);
+  border:1px solid var(--rule);
+  border-color:color-mix(in srgb, var(--tint) 26%, transparent);
+}
+.box-name{
+  font-family:"Archivo", system-ui, sans-serif;
+  font-weight:600;font-size:19px;letter-spacing:-.008em;color:var(--ink);
+}
+.test{margin:0;font-style:italic;color:var(--ink-2);font-size:17px;}
+.test strong{font-style:normal;font-weight:600;color:var(--ink);}
+.tags-label{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin:2px 0 -4px;
+}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0;}
+.tags li{
+  font-family:"Archivo", system-ui, sans-serif;
+  font-size:12.5px;line-height:1.35;color:var(--ink-2);
+  background:var(--rule-2);border-radius:4px;padding:4px 9px;
+}
+.note{
+  margin:4px 0 0;padding:11px 14px;border-radius:5px;
+  background:var(--flag-soft);color:var(--ink);
+  font-size:15.5px;line-height:1.5;
+  border-left:2px solid var(--flag);
+}
+.note b{font-weight:600;}
+
+.t-teal{--tint:var(--teal);--tint-soft:var(--teal-soft);}
+.t-slate{--tint:var(--slate);--tint-soft:var(--slate-soft);}
+.t-ochre{--tint:var(--ochre);--tint-soft:var(--ochre-soft);}
+.t-dim{--tint:var(--dim);--tint-soft:var(--dim-soft);}
+.box.is-na{opacity:.72;}
+
+/* ---------- confusion pairs ---------- */
+.pairs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.pair{
+  background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  padding:20px 22px;display:grid;gap:9px;box-shadow:var(--shadow);
+}
+.pair h3{
+  font-family:"Archivo", system-ui, sans-serif;
+  font-weight:600;font-size:16px;margin:0;color:var(--ink);letter-spacing:-.005em;
+}
+.pair p{margin:0;font-size:16px;color:var(--ink-2);}
+.pair .verdict{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:12.5px;color:var(--teal);font-weight:600;letter-spacing:.02em;
+}
+
+/* ---------- table ---------- */
+.table-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--card);}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:15.5px;}
+thead th{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:14px 18px;border-bottom:1px solid var(--rule);
+  background:var(--rule-2);white-space:nowrap;
+}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--rule-2);color:var(--ink-2);vertical-align:top;}
+tbody tr:last-child td{border-bottom:none;}
+td.n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--ink-3);width:1%;}
+td.c{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:600;color:var(--ink);white-space:nowrap;}
+td.nm{color:var(--ink);font-weight:600;}
+
+footer{
+  margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);
+  font-size:14.5px;color:var(--ink-3);display:grid;gap:6px;max-width:70ch;
+}
+footer b{color:var(--ink-2);font-weight:600;}
+
+@media (max-width:560px){
+  .wrap{padding:36px 16px 72px;}
+  .box{grid-template-columns:1fr;}
+  .box-num{border-right:none;border-bottom:1px solid var(--rule-2);
+    justify-content:flex-start;padding:14px 20px 10px;font-size:17px;}
+  .box-body{padding:16px 20px 20px;}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Department of Health · Abu Dhabi Clinical Cost Data Collection</div>
+    <h1>The Fifteen Boxes</h1>
+    <p class="standfirst">Every dirham the clinic spends has to land in one of fifteen boxes. This is what each box means, in plain words, with the things we actually buy.</p>
+    <div class="mast-meta">
+      <span>Vision Dental Clinic L.L.C</span>
+      <span>Licence MF4159</span>
+      <span>DOH Cost Type list</span>
+    </div>
+  </header>
+
+  <div class="opening">
+    <p class="lede">One expense goes in one box. Never two.</p>
+    <p>If you can put an invoice in two boxes, it belongs in the one that describes <em>what you bought</em>, not who used it. When you genuinely cannot decide, ask Finance rather than guessing — a wrong box is harder to find later than an unanswered question.</p>
+  </div>
+
+  <!-- ============ PEOPLE ============ -->
+  <section class="section">
+    <div class="section-head">
+      <h2>The people we pay</h2>
+      <span class="section-range">Boxes 1–4</span>
+    </div>
+    <p class="section-sub">Every salary in the clinic sits in one of these four. The only question is what kind of job the person does — not which department pays them.</p>
+    <div class="section-rule"></div>
+
+    <div class="boxes">
+
+      <article class="box t-teal">
+        <div class="box-num">01</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">SWNurs</span><span class="box-name">Nurse salaries</span></div>
+          <p class="test">Is this person a <strong>registered nurse</strong>?</p>
+          <div class="tags-label">Who goes here</div>
+          <ul class="tags"><li>Registered nurses</li></ul>
+          <p class="note"><b>Watch out:</b> only people who actually hold a nursing licence. Someone we call a "nurse" in day-to-day speech but who is really a chair-side helper belongs in box 3 or box 4.</p>
+        </div>
+      </article>
+
+      <article class="box t-teal">
+        <div class="box-num">02</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">SWDoc</span><span class="box-name">Dentists' salaries</span></div>
+          <p class="test">Is this person a <strong>dentist</strong>?</p>
+          <div class="tags-label">Who goes here</div>
+          <ul class="tags">
+            <li>Full-time dentists</li><li>Part-time dentists</li><li>Commissions paid to dentists</li>
+          </ul>
+          <p class="note"><b>Don't forget commission.</b> If a dentist earns a share of what they bill, that share belongs here too — not in Goods &amp; Services. DOH calls this "Department #1", which for us simply means Dental; a hospital would have many.</p>
+        </div>
+      </article>
+
+      <article class="box t-teal">
+        <div class="box-num">03</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">SWAllied</span><span class="box-name">Clinical support salaries</span></div>
+          <p class="test">Do they do <strong>clinical work</strong>, but they're not a dentist and not a nurse?</p>
+          <div class="tags-label">Who goes here</div>
+          <ul class="tags">
+            <li>Dental assistants</li><li>Dental technicians</li><li>Radiology assistants</li><li>CSSD technician</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">CSSD is the sterilisation department — the person who cleans and sterilises our instruments.</p>
+        </div>
+      </article>
+
+      <article class="box t-teal">
+        <div class="box-num">04</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">SWNonClin</span><span class="box-name">Admin &amp; support salaries</span></div>
+          <p class="test">Does this person <strong>never treat a patient</strong>?</p>
+          <div class="tags-label">Who goes here</div>
+          <ul class="tags">
+            <li>Reception</li><li>Cashier</li><li>Insurance coordinator</li><li>Clinic manager</li><li>PRO</li>
+            <li>IT administrator</li><li>Finance manager</li><li>Marketing executive</li><li>Cleaner</li>
+            <li>Housekeeping</li><li>Driver</li>
+          </ul>
+          <p class="note"><b>Easy way to remember:</b> if the clinic were a shop instead of a clinic, these jobs would still exist.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ PATIENTS ============ -->
+  <section class="section">
+    <div class="section-head">
+      <h2>What we use on patients</h2>
+      <span class="section-range">Boxes 5–10</span>
+    </div>
+    <p class="section-sub">Everything that reaches the patient — made for them, taken of them, given to them, or fitted into them.</p>
+    <div class="section-rule"></div>
+
+    <div class="boxes">
+
+      <article class="box t-slate">
+        <div class="box-num">05</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">Laboratory</span><span class="box-name">Lab work</span></div>
+          <p class="test">Was it <strong>made or tested in a lab</strong>?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Dental lab</li><li>Haematology lab</li><li>Biochemistry lab</li><li>Microbiology lab</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">For us this is overwhelmingly <em>dental lab</em> — crowns, bridges, dentures, aligners — whether made in-house or sent out. The medical labs are on the DOH list because hospitals use them.</p>
+        </div>
+      </article>
+
+      <article class="box t-slate">
+        <div class="box-num">06</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">Imaging</span><span class="box-name">X-rays &amp; scans</span></div>
+          <p class="test">Is it a <strong>picture of the inside of the patient</strong>?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>X-rays</li><li>OPG</li><li>CBCT</li><li>CT scan</li><li>Ultrasound</li><li>MRI</li><li>Mammography</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">Includes servicing and maintaining the imaging machines.</p>
+        </div>
+      </article>
+
+      <article class="box t-slate">
+        <div class="box-num">07</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">Pharmacy</span><span class="box-name">Medicines</span></div>
+          <p class="test">Is it a <strong>drug</strong>?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags"><li>Medicine cost</li><li>Pharmacy supplies</li></ul>
+        </div>
+      </article>
+
+      <article class="box t-slate">
+        <div class="box-num">08</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">Prostheses</span><span class="box-name">Things fitted into the patient</span></div>
+          <p class="test">Does the patient <strong>walk out with it in their mouth</strong>?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Dental implant screws</li><li>Abutments</li><li>Crown caps</li><li>Braces</li><li>Retainers</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="box t-slate">
+        <div class="box-num">09</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">MS</span><span class="box-name">Clinical consumables</span></div>
+          <p class="test">Is it <strong>single-use, clinical, and binned</strong> at the end of the appointment?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Gloves</li><li>Masks</li><li>Gowns</li><li>Caps</li><li>Shoe covers</li><li>Syringes</li><li>Needles</li>
+            <li>Drapes</li><li>Gauze</li><li>Cotton</li><li>Tapes</li><li>Blades</li><li>Sutures</li><li>Stitches</li>
+            <li>Antiseptics</li><li>IV sets</li><li>Oxygen masks</li><li>Test strips</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">"MS" stands for Medical &amp; Surgical Supplies.</p>
+        </div>
+      </article>
+
+      <article class="box t-slate">
+        <div class="box-num">10</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">Hotel</span><span class="box-name">Feeding &amp; transporting patients</span></div>
+          <p class="test">Did we <strong>feed the patient, or drive them</strong>?</p>
+          <div class="tags-label">What goes here for us</div>
+          <ul class="tags">
+            <li>Patient nutrition</li><li>Juice &amp; refreshments</li><li>Food</li><li>Patient car transport</li>
+          </ul>
+          <p class="note"><b>The name is misleading.</b> DOH wrote this box for hospitals, so their wording says bedsheets, gowns and TV. We have no beds, so that half doesn't apply — but the <em>food and patient-transport</em> half very much does. Keep this explanation with the audit file: a reviewer will ask why a clinic with no beds has a "Hotel" figure.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ BUSINESS ============ -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Running the clinic</h2>
+      <span class="section-range">Boxes 11–14</span>
+    </div>
+    <p class="section-sub">The cost of keeping the doors open, whether or not a single patient walks in.</p>
+    <div class="section-rule"></div>
+
+    <div class="boxes">
+
+      <article class="box t-ochre">
+        <div class="box-num">11</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">GS</span><span class="box-name">Goods &amp; services</span></div>
+          <p class="test">Is it an <strong>office or admin running cost</strong> — not clinical, not a salary?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Paper</li><li>Printer</li><li>Stationery</li><li>Uniforms</li><li>Furniture</li><li>IT hardware</li>
+            <li>Maintenance &amp; repairs</li><li>Pest control</li><li>Tasneef audits</li><li>Consulting</li>
+            <li>Software subscriptions</li><li>Newspaper</li><li>Courier</li><li>Petrol</li>
+            <li>Vehicle renewal</li><li>Vehicle insurance</li><li>Vehicle maintenance</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="box t-ochre">
+        <div class="box-num">12</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">Depreciation</span><span class="box-name">Wear and tear</span></div>
+          <p class="test">Is this an asset <strong>losing value</strong> rather than money leaving the bank?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Medical equipment</li><li>IT equipment</li><li>Furniture</li><li>Vehicles</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">We bought the dental chair once, but it wears out a little every year. That yearly slice is what goes here — no cash actually moves this month.</p>
+        </div>
+      </article>
+
+      <article class="box t-ochre">
+        <div class="box-num">13</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">OHF</span><span class="box-name">Facility overheads</span></div>
+          <p class="test">Would we <strong>still pay it on a day with zero patients</strong>?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Electricity</li><li>Water</li><li>Internet</li><li>Building rent</li>
+            <li>Employee insurance renewal</li><li>Malpractice insurance renewal</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">OHF = Overhead Cost, Healthcare Facility. The cost of having a building at all.</p>
+        </div>
+      </article>
+
+      <article class="box t-ochre">
+        <div class="box-num">14</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">OHC</span><span class="box-name">Head office &amp; marketing</span></div>
+          <p class="test">Is it <strong>promoting or supporting the business</strong> from above clinic level?</p>
+          <div class="tags-label">What goes here</div>
+          <ul class="tags">
+            <li>Marketing campaigns</li><li>Website</li><li>Advertising</li><li>Training</li>
+          </ul>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">OHC = Overhead Cost, Corporate Office.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ N/A ============ -->
+  <section class="section">
+    <div class="section-head">
+      <h2>The one that doesn't apply to us</h2>
+      <span class="section-range">Box 15</span>
+    </div>
+    <div class="section-rule"></div>
+
+    <div class="boxes">
+      <article class="box t-dim is-na">
+        <div class="box-num">15</div>
+        <div class="box-body">
+          <div class="box-top"><span class="code">NABMs</span><span class="box-name">Government mandate adjustment</span></div>
+          <p class="test">Government-funded insurance adjustments. <strong>Not applicable to us — leave at zero.</strong></p>
+          <p class="test" style="font-style:normal;font-size:15.5px;color:var(--ink-3);">The full name is Negative Adjustment for Budgeted Mandate Services. It exists for facilities that receive government funding outside normal activity billing. We don't, so this box stays empty every month.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PAIRS ============ -->
+  <section class="section">
+    <div class="section-head">
+      <h2>The four that get confused</h2>
+    </div>
+    <p class="section-sub">These are the mix-ups that actually happen. Learn these four and the rest look after themselves.</p>
+    <div class="section-rule"></div>
+
+    <div class="pairs">
+
+      <div class="pair">
+        <h3>Prostheses or MS?</h3>
+        <p>A crown stays in the patient's mouth. The glove worn while fitting it goes in the bin.</p>
+        <p class="verdict">Crown → Prostheses · Glove → MS</p>
+      </div>
+
+      <div class="pair">
+        <h3>GS or Depreciation?</h3>
+        <p>Furniture and IT hardware appear on both DOH lists. Our house rule: if we expense it in the year we buy it, it's GS. If we capitalise it and write it down over several years, only the yearly slice goes to Depreciation.</p>
+        <p class="verdict">Never both — that double-counts the money</p>
+      </div>
+
+      <div class="pair">
+        <h3>The clinic van, twice?</h3>
+        <p>Yes, and that's correct. Petrol, insurance and servicing are <em>running</em> costs. The van losing value is <em>wear and tear</em>. Two different facts about the same vehicle.</p>
+        <p class="verdict">Running → GS · Losing value → Depreciation</p>
+      </div>
+
+      <div class="pair">
+        <h3>OHF or OHC?</h3>
+        <p>OHF is the building — rent, electricity, water, insurance. OHC is everything that promotes or supports the business from above the clinic.</p>
+        <p class="verdict">Building → OHF · Brand → OHC</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ TABLE ============ -->
+  <section class="section">
+    <div class="section-head">
+      <h2>All fifteen, at a glance</h2>
+    </div>
+    <p class="section-sub">Print this part and keep it by the desk.</p>
+    <div class="section-rule"></div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>#</th><th>DOH code</th><th>Plain name</th><th>The one-line test</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">1</td><td class="c">SWNurs</td><td class="nm">Nurse salaries</td><td>Are they a registered nurse?</td></tr>
+          <tr><td class="n">2</td><td class="c">SWDoc</td><td class="nm">Dentist salaries</td><td>Are they a dentist? Include commission.</td></tr>
+          <tr><td class="n">3</td><td class="c">SWAllied</td><td class="nm">Clinical support salaries</td><td>Clinical, but not a dentist or a nurse.</td></tr>
+          <tr><td class="n">4</td><td class="c">SWNonClin</td><td class="nm">Admin &amp; support salaries</td><td>Never treats a patient.</td></tr>
+          <tr><td class="n">5</td><td class="c">Laboratory</td><td class="nm">Lab work</td><td>Made or tested in a lab. Mostly dental lab.</td></tr>
+          <tr><td class="n">6</td><td class="c">Imaging</td><td class="nm">X-rays &amp; scans</td><td>A picture of the inside of the patient.</td></tr>
+          <tr><td class="n">7</td><td class="c">Pharmacy</td><td class="nm">Medicines</td><td>Is it a drug?</td></tr>
+          <tr><td class="n">8</td><td class="c">Prostheses</td><td class="nm">Fitted items</td><td>Patient keeps it in their mouth.</td></tr>
+          <tr><td class="n">9</td><td class="c">MS</td><td class="nm">Clinical consumables</td><td>Single-use, then binned.</td></tr>
+          <tr><td class="n">10</td><td class="c">Hotel</td><td class="nm">Patient food &amp; transport</td><td>Feeding a patient, or driving them.</td></tr>
+          <tr><td class="n">11</td><td class="c">GS</td><td class="nm">Goods &amp; services</td><td>Office and admin running costs.</td></tr>
+          <tr><td class="n">12</td><td class="c">Depreciation</td><td class="nm">Wear and tear</td><td>Equipment losing value, not cash out.</td></tr>
+          <tr><td class="n">13</td><td class="c">OHF</td><td class="nm">Facility overheads</td><td>Paid even with zero patients.</td></tr>
+          <tr><td class="n">14</td><td class="c">OHC</td><td class="nm">Head office &amp; marketing</td><td>Promoting or supporting the business.</td></tr>
+          <tr><td class="n">15</td><td class="c">NABMs</td><td class="nm">Government mandate adjustment</td><td>Not applicable — leave at zero.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Source.</b> DOH Cost Type list (Jan 2024 template), with clinic-specific examples supplied by the Finance Director. Read alongside the Abu Dhabi Clinical Costing Standard, reference DOH/ST/HPS/CC/V1/2024, Appendix 1.</p>
+    <p><b>Note.</b> DOH's Appendix 1 defines fourteen cost types. NABMs is the fifteenth and does not apply to us.</p>
+    <p><b>This is a filing guide only.</b> It tells you where an expense belongs. It does not calculate anything.</p>
+  </footer>
+
+</div>

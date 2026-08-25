@@ -1,0 +1,110 @@
+<Cost.Submission>
+  <!-- ============================================================
+       SAMPLE / TEMPLATE for Vision Dental Clinic L.L.C (MF4159)
+       Built to DOH CostSubmission.xsd (schema v2.0, dictionary PTE)
+       Cost Data Collection Technical Document v1.12, July 2025
+       - One <Claim> block per Claim.ID; repeat Claim for each claim
+       - Dates: dd/mm/yyyy HH:MM, GMT+4    - Amounts: AED, max 3dp
+       - File must stay under 5 MB; split by month/quarter if larger
+       - PTE first (DispositionFlag PTE_SUBMIT), then PRODUCTION
+       ============================================================ -->
+  <Header>
+    <SenderID>MF4159</SenderID>
+    <ReceiverID>HAAD</ReceiverID>
+    <TransactionDate>25/08/2026 12:00</TransactionDate>
+    <RecordCount>1</RecordCount>
+    <DispositionFlag>PTE_SUBMIT</DispositionFlag>
+  </Header>
+  <Claim>
+    <ID>1747MF4159-5a058f</ID>
+    <ProviderID>MF4159</ProviderID>
+    <Encounter>
+      <FacilityID>MF4159</FacilityID>
+      <ID>1747MF4159-5a058f</ID>
+      <ActivityClinicianID>GD22503</ActivityClinicianID>
+      <PatientID>38069</PatientID>
+      <Type>1</Type>
+      <Start>01/01/2025 11:13</Start>
+      <End>01/01/2025 12:11</End>
+      <StartType>1</StartType>
+      <Specialty>General Dentist</Specialty>
+      <SubSpecialty></SubSpecialty>
+      <DRGCode></DRGCode>
+      <ServiceCode></ServiceCode>
+      <EndType>1</EndType>
+      <Diagnosis>
+        <Type>Principal</Type>
+        <Code>K05.329</Code>
+      </Diagnosis>
+      <Procedure>
+        <Type>Principal</Type>
+        <Code>02601</Code>
+        <Duration>0</Duration>
+      </Procedure>
+      <EDTriageLevel>0</EDTriageLevel>
+      <OPAttendanceType>Followup Attendance</OPAttendanceType>
+      <TheatreAttendanceFlag>0</TheatreAttendanceFlag>
+      <CriticalCareTime>0</CriticalCareTime>
+      <VentilationTime>0</VentilationTime>
+      <CostBucketDirect>
+        <Allied>0.000</Allied>
+        <Anaesthesia>0.000</Anaesthesia>
+        <Dental>0.000</Dental>
+        <ED>0.000</ED>
+        <Home>0.000</Home>
+        <ICU>0.000</ICU>
+        <Imaging>35.103</Imaging>
+        <Laboratory>0.000</Laboratory>
+        <Physician>0.000</Physician>
+        <OP>5.058</OP>
+        <OR>0.000</OR>
+        <Other>0.000</Other>
+        <Pharmacy>0.000</Pharmacy>
+        <Prosthesis>0.000</Prosthesis>
+        <SPS>0.000</SPS>
+        <Ward>0.000</Ward>
+      </CostBucketDirect>
+      <CostBucketOverheads>
+        <Allied>0.000</Allied>
+        <Anaesthesia>0.000</Anaesthesia>
+        <Dental>0.000</Dental>
+        <ED>0.000</ED>
+        <Home>0.000</Home>
+        <ICU>0.000</ICU>
+        <Imaging>0.000</Imaging>
+        <Laboratory>0.000</Laboratory>
+        <Physician>0.000</Physician>
+        <OP>0.000</OP>
+        <OR>0.000</OR>
+        <Other>0.000</Other>
+        <Pharmacy>0.000</Pharmacy>
+        <Prosthesis>0.000</Prosthesis>
+        <SPS>0.000</SPS>
+        <Ward>0.000</Ward>
+      </CostBucketOverheads>
+      <CostTypeDetails>
+        <SWNurs>5.190</SWNurs>
+        <SWDoc>15.421</SWDoc>
+        <SWAllied>10.757</SWAllied>
+        <SWNonClin>5.103</SWNonClin>
+        <Laboratory>0.000</Laboratory>
+        <Imaging>0.000</Imaging>
+        <Pharmacy>0.000</Pharmacy>
+        <Prostheses>0.000</Prostheses>
+        <MS>0.000</MS>
+        <Hotel>0.000</Hotel>
+        <GS>0.000</GS>
+        <Depreciation>19.078</Depreciation>
+        <OHF>4.523</OHF>
+        <OHDepreciation>0.000</OHDepreciation>
+        <OHC>2.924</OHC>
+        <NABMs>0.000</NABMs>
+      </CostTypeDetails>
+    </Encounter>
+    <!-- <Resubmission> only on DOH-requested corrections:
+    <Resubmission>
+      <Type>correction</Type>
+      <Comment>Reason for the correction</Comment>
+    </Resubmission> -->
+  </Claim>
+</Cost.Submission>

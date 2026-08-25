@@ -1,0 +1,152 @@
+<xs:schema elementFormDefault="qualified" version="2.0" id="CostSubmission"
+    xmlns:tns="http://www.haad.ae/DataDictionary/CommonTypes"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import schemaLocation="CommonTypes.xsd" namespace="http://www.haad.ae/DataDictionary/CommonTypes"/>
+    <xs:element name="Cost.Submission">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SenderID" type="tns:HeaderSenderID"/>
+                            <xs:element name="ReceiverID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="HAAD"/>
+                                        <xs:minLength value="1"/>
+                                        <xs:whiteSpace value="collapse"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="TransactionDate" type="tns:HeaderTransactionDate"/>
+                            <xs:element name="RecordCount" type="tns:HeaderRecordCount"/>
+                            <xs:element name="DispositionFlag" type="tns:HeaderDispositionFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Claim" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ID" type="tns:ClaimID"/>
+                            <xs:element name="ProviderID" type="tns:ClaimProviderID"/>
+                            <xs:element name="Encounter">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="FacilityID" type="xs:string"/>
+                                        <xs:element name="ID" type="xs:string"/>
+                                        <xs:element name="ActivityClinicianID" type="tns:ActivityClinician"/>
+                                        <xs:element name="PatientID" type="xs:string"/>
+                                        <xs:element name="Type" type="xs:int"/>
+                                        <xs:element name="Start" type="tns:HeaderTransactionDate"/>
+                                        <xs:element name="End" type="tns:HeaderTransactionDate"/>
+                                        <xs:element name="StartType" type="xs:int"/>
+                                        <xs:element name="Specialty" type="xs:string"/>
+                                        <xs:element name="SubSpecialty" type="xs:string"/>
+                                        <xs:element name="DRGCode" type="xs:string"/>
+                                        <xs:element name="ServiceCode" type="xs:string"/>
+                                        <xs:element name="EndType" type="xs:int"/>
+                                        <xs:element name="Diagnosis">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Type" type="xs:string"/>
+                                                    <xs:element name="Code" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Procedure">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Type" type="xs:string"/>
+                                                    <xs:element name="Code" type="xs:string"/>
+                                                    <xs:element name="Duration" type="xs:int"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="EDTriageLevel" type="xs:int"/>
+                                        <xs:element name="OPAttendanceType" type="xs:string"/>
+                                        <xs:element name="TheatreAttendanceFlag" type="xs:int"/>
+                                        <xs:element name="CriticalCareTime" type="xs:int"/>
+                                        <xs:element name="VentilationTime" type="xs:int"/>
+                                        <xs:element name="CostBucketDirect">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Allied" type="xs:decimal"/>
+                                                    <xs:element name="Anaesthesia" type="xs:decimal"/>
+                                                    <xs:element name="Dental" type="xs:decimal"/>
+                                                    <xs:element name="ED" type="xs:decimal"/>
+                                                    <xs:element name="Home" type="xs:decimal"/>
+                                                    <xs:element name="ICU" type="xs:decimal"/>
+                                                    <xs:element name="Imaging" type="xs:decimal"/>
+                                                    <xs:element name="Laboratory" type="xs:decimal"/>
+                                                    <xs:element name="Physician" type="xs:decimal"/>
+                                                    <xs:element name="OP" type="xs:decimal"/>
+                                                    <xs:element name="OR" type="xs:decimal"/>
+                                                    <xs:element name="Other" type="xs:decimal"/>
+                                                    <xs:element name="Pharmacy" type="xs:decimal"/>
+                                                    <xs:element name="Prosthesis" type="xs:decimal"/>
+                                                    <xs:element name="SPS" type="xs:decimal"/>
+                                                    <xs:element name="Ward" type="xs:decimal"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CostBucketOverheads">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Allied" type="xs:decimal"/>
+                                                    <xs:element name="Anaesthesia" type="xs:decimal"/>
+                                                    <xs:element name="Dental" type="xs:decimal"/>
+                                                    <xs:element name="ED" type="xs:decimal"/>
+                                                    <xs:element name="Home" type="xs:decimal"/>
+                                                    <xs:element name="ICU" type="xs:decimal"/>
+                                                    <xs:element name="Imaging" type="xs:decimal"/>
+                                                    <xs:element name="Laboratory" type="xs:decimal"/>
+                                                    <xs:element name="Physician" type="xs:decimal"/>
+                                                    <xs:element name="OP" type="xs:decimal"/>
+                                                    <xs:element name="OR" type="xs:decimal"/>
+                                                    <xs:element name="Other" type="xs:decimal"/>
+                                                    <xs:element name="Pharmacy" type="xs:decimal"/>
+                                                    <xs:element name="Prosthesis" type="xs:decimal"/>
+                                                    <xs:element name="SPS" type="xs:decimal"/>
+                                                    <xs:element name="Ward" type="xs:decimal"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CostTypeDetails">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="SWNurs" type="xs:decimal"/>
+                                                    <xs:element name="SWDoc" type="xs:decimal"/>
+                                                    <xs:element name="SWAllied" type="xs:decimal"/>
+                                                    <xs:element name="SWNonClin" type="xs:decimal"/>
+                                                    <xs:element name="Laboratory" type="xs:decimal"/>
+                                                    <xs:element name="Imaging" type="xs:decimal"/>
+                                                    <xs:element name="Pharmacy" type="xs:decimal"/>
+                                                    <xs:element name="Prostheses" type="xs:decimal"/>
+                                                    <xs:element name="MS" type="xs:decimal"/>
+                                                    <xs:element name="Hotel" type="xs:decimal"/>
+                                                    <xs:element name="GS" type="xs:decimal"/>
+                                                    <xs:element name="Depreciation" type="xs:decimal"/>
+                                                    <xs:element name="OHF" type="xs:decimal"/>
+                                                    <xs:element name="OHDepreciation" type="xs:decimal"/>
+                                                    <xs:element name="OHC" type="xs:decimal"/>
+                                                    <xs:element name="NABMs" type="xs:decimal"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Resubmission" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Type" type="tns:ResubmissionType"/>
+                                        <xs:element name="Comment" type="tns:ResubmissionComment"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element></xs:schema>

@@ -1,0 +1,5 @@
+Claims excluded from the Cost.Submission XML because their total cost is 0.000
+(DOH portal blocks zero-total encounters; each consists only of code 99555,
+ "+E Additional Expense of Materials", priced at 0.00 in the CPT table).
+
+M03  1680MF4159-6d63f3

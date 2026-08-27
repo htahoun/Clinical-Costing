@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1500">
+<title>MySmyle Clinical Costing — Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+body { margin:0; font-family:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif; color:#16233A; }
+    a { color:#1E63C4; text-decoration:none; } a:hover { color:#174E9B; }
+    .num { font-variant-numeric: tabular-nums; }
+body { margin:0; font-family:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif; color:#16233A; }
+    a { color:#1E63C4; text-decoration:none; } a:hover { color:#174E9B; }
+    .num { font-variant-numeric: tabular-nums; }
+    .lbl { font-size:11px; font-weight:700; letter-spacing:0.1em; color:#51617A; }
+    .card { background:#FFFFFF; border:1px solid #E3E9F1; border-radius:12px; box-shadow:0 1px 2px rgba(22,35,58,0.04); }
+html { background:#DDE4EC; }
+.board-label { font-family:'Public Sans',system-ui,sans-serif; font-size:13px; font-weight:700; color:#51617A; letter-spacing:0.06em; text-transform:uppercase; margin:36px auto 10px; width:1440px; }
+.board { width:1440px; margin:0 auto; box-shadow:0 8px 40px rgba(22,35,58,0.14); border-radius:4px; overflow:hidden; }
+.page-foot { font-family:'Public Sans',system-ui,sans-serif; font-size:12px; color:#51617A; width:1440px; margin:28px auto 48px; }
+</style>
+</head>
+<body style="margin:0;">
+<div class="board-label">Artboard 1 — Overview, redesigned</div>
+<div class="board">
+<div style="width:1440px; min-height:980px; background:#F1F4F8; display:flex; flex-direction:column;">
+
+  <!-- global bar -->
+  <div style="background:#FFFFFF; border-bottom:1px solid #E3E9F1; display:flex; align-items:center; gap:16px; padding:0 28px; height:56px;">
+    <div style="display:flex; align-items:center; gap:9px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="8" r="3.4" fill="#5BA843"/><circle cx="15" cy="5.6" r="2.5" fill="#2AA5A0"/><circle cx="17.5" cy="13.5" r="3.2" fill="#1E63C4"/><circle cx="9" cy="17.5" r="2.6" fill="#8CC63F"/></svg>
+      <span style="font-size:17px; font-weight:800; letter-spacing:-0.01em;">MySmyle</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#51617A;">
+      <span>Financial Management</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5 8 6l-3.5 3.5" stroke="#94A3B8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="color:#16233A; font-weight:600;">Clinical Costing</span>
+    </div>
+    <div style="flex:1;"></div>
+    <div style="display:flex; align-items:stretch;">
+      <div style="background:#1E63C4; color:#FFFFFF; font-size:12.5px; font-weight:700; padding:6px 12px; border-radius:7px 0 0 7px; display:flex; align-items:center;">Year:</div>
+      <div style="background:#FFFFFF; border:1px solid #D5E2FB; border-left:none; border-radius:0 7px 7px 0; padding:6px 12px; display:flex; align-items:center; gap:8px;">
+        <span style="font-size:12.5px; font-weight:700; color:#16233A;">FY2025 · Draft</span>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.6 5 6.6l3-3" stroke="#51617A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div style="width:30px; height:30px; border-radius:999px; background:#E3E9F1; display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:700; color:#51617A;">HT</div>
+      <span style="font-size:13px; font-weight:600;">Dr. Hussein Tahoun</span>
+    </div>
+  </div>
+
+  <!-- module tabs -->
+  <div style="background:#FFFFFF; border-bottom:1px solid #E3E9F1; display:flex; align-items:center; padding:0 28px; gap:4px;">
+    <div style="padding:13px 14px 11px; border-bottom:2px solid #1E63C4; font-size:13.5px; font-weight:700; color:#1E63C4;">Overview</div>
+    <div style="padding:13px 14px 11px; border-bottom:2px solid transparent; font-size:13.5px; font-weight:500; color:#51617A;">CPT Cost Allocation</div>
+    <div style="padding:13px 14px 11px; border-bottom:2px solid transparent; font-size:13.5px; font-weight:500; color:#51617A;">Cost Ledger</div>
+    <div style="padding:13px 14px 11px; border-bottom:2px solid transparent; font-size:13.5px; font-weight:500; color:#51617A;">Claims &amp; Allocation</div>
+    <div style="padding:13px 14px 11px; border-bottom:2px solid transparent; font-size:13.5px; font-weight:500; color:#51617A;">Submission</div>
+    <div style="flex:1;"></div>
+    <div style="padding:13px 6px 11px; font-size:13.5px; font-weight:500; color:#51617A;">Settings</div>
+  </div>
+
+  <!-- page body -->
+  <div style="padding:28px 28px 32px; display:flex; flex-direction:column; gap:20px;">
+
+    <!-- page header -->
+    <div style="display:flex; align-items:flex-end; gap:16px;">
+      <div style="display:flex; flex-direction:column; gap:5px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <h1 style="margin:0; font-size:26px; font-weight:800; letter-spacing:-0.015em; color:#1E63C4; border-bottom:3px solid #1E63C4; padding-bottom:3px;">Clinical Costing</h1>
+          <span style="font-size:12px; font-weight:800; letter-spacing:0.12em; color:#7FB432;">CLC</span>
+        </div>
+        <p style="margin:0; font-size:14px; color:#51617A;">Patient-level cost data for the Department of Health, Abu Dhabi — FY2025 submission.</p>
+      </div>
+      <div style="flex:1;"></div>
+      <div style="display:flex; align-items:center; gap:8px; background:#FDF1CE; border:1px solid #F0B429; border-radius:8px; padding:8px 14px;">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6" stroke="#B45309" stroke-width="1.4"/><path d="M7.5 4.2v3.6l2.3 1.4" stroke="#B45309" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span style="font-size:13px; color:#7A5410;"><strong style="font-weight:700;">Window closes 30 Sep</strong> · PTE test first, then production</span>
+      </div>
+    </div>
+
+    <!-- stepper -->
+    <div style="background:#FFFFFF; border:1px solid #E3E9F1; border-radius:12px; padding:22px 26px 20px; box-shadow:0 1px 2px rgba(22,35,58,0.04); display:flex; flex-direction:column; gap:18px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:#51617A;">THE SIX STAGES — DOH CLINICAL COSTING STANDARD</span>
+        <div style="flex:1;"></div>
+        <span style="font-size:12.5px; color:#51617A;">3 of 6 complete</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:12px;">
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:26px; height:26px; border-radius:999px; background:#FDF3E3; border:2px solid #D97706; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 3v3.4M6 8.8h.01" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <div style="flex:1; height:2px; background:#E3E9F1;"></div>
+          </div>
+          <div style="font-size:13px; font-weight:700;">1 · Expenses</div>
+          <div style="font-size:12px; color:#B45309; font-weight:600;">Audited total missing</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:26px; height:26px; border-radius:999px; background:#F1F4F8; border:2px solid #CBD5E1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#94A3B8;">2</div>
+            <div style="flex:1; height:2px; background:#E3E9F1;"></div>
+          </div>
+          <div style="font-size:13px; font-weight:700; color:#51617A;">2 · Cost ledger</div>
+          <div style="font-size:12px; color:#94A3B8;">Waiting on stage 1</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:26px; height:26px; border-radius:999px; background:#5BA843; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7l4.5-5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="flex:1; height:2px; background:#BFDCB2;"></div>
+          </div>
+          <div style="font-size:13px; font-weight:700;">3 · Overheads</div>
+          <div style="font-size:12px; color:#51617A;">Dual allocation model</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:26px; height:26px; border-radius:999px; background:#5BA843; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7l4.5-5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="flex:1; height:2px; background:#BFDCB2;"></div>
+          </div>
+          <div style="font-size:13px; font-weight:700;">4 · Code pricing</div>
+          <div style="font-size:12px; color:#51617A;">310 CPT codes priced</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:26px; height:26px; border-radius:999px; background:#5BA843; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7l4.5-5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="flex:1; height:2px; background:#E3E9F1;"></div>
+          </div>
+          <div style="font-size:13px; font-weight:700;">5 · Claims costed</div>
+          <div style="font-size:12px; color:#51617A;">9,781 of 9,781</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:26px; height:26px; border-radius:999px; background:#FBE9E7; border:2px solid #D92D20; display:flex; align-items:center; justify-content:center;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#D92D20" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          </div>
+          <div style="font-size:13px; font-weight:700;">6 · Review &amp; submit</div>
+          <div style="font-size:12px; color:#D92D20; font-weight:600;">47 blocking errors</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- main grid -->
+    <div style="display:grid; grid-template-columns:minmax(0,1.9fr) minmax(0,1fr); gap:20px; align-items:start;">
+
+      <!-- needs you now -->
+      <div style="background:#FFFFFF; border:1px solid #E3E9F1; border-radius:12px; box-shadow:0 1px 2px rgba(22,35,58,0.04); display:flex; flex-direction:column;">
+        <div style="padding:18px 22px 14px; border-bottom:1px solid #EEF2F7; display:flex; align-items:center; gap:10px;">
+          <h2 style="margin:0; font-size:16px; font-weight:800; color:#1F4E79;">What needs you now</h2>
+          <div style="flex:1;"></div>
+          <span style="font-size:12.5px; color:#51617A;">2 actions before this file can be sent</span>
+        </div>
+
+        <div style="padding:16px 22px; display:flex; align-items:flex-start; gap:14px; border-bottom:1px solid #EEF2F7;">
+          <div style="width:34px; height:34px; border-radius:9px; background:#FDF3E3; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><path d="M2.5 13.8h12M4 13.8V8.2m3 5.6V5.4m3 8.4V9.6m3 4.2V3.6" stroke="#B45309" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div style="display:flex; flex-direction:column; gap:3px; flex:1;">
+            <div style="font-size:14px; font-weight:700;">Enter the audited expense total for FY2025</div>
+            <div style="font-size:13px; color:#51617A; line-height:1.5;">The whole submission is scaled to this one figure and DOH reconciles it to your signed financial statements (Standard 3.6.2.1.1). The imported workbook suggests <span class="num" style="font-weight:600; color:#16233A;">AED 6,204,961.87</span> — use it only if it matches the statements.</div>
+          </div>
+          <div style="background:#1E63C4; color:#FFFFFF; font-size:13px; font-weight:700; border-radius:8px; padding:9px 16px; align-self:center; white-space:nowrap;">Enter figure</div>
+        </div>
+
+        <div style="padding:16px 22px; display:flex; align-items:flex-start; gap:14px; border-bottom:1px solid #EEF2F7;">
+          <div style="width:34px; height:34px; border-radius:9px; background:#FBE9E7; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><path d="M8.5 2 15.6 14.2H1.4L8.5 2Z" stroke="#D92D20" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 7v3M8.5 12.2h.01" stroke="#D92D20" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div style="display:flex; flex-direction:column; gap:3px; flex:1;">
+            <div style="font-size:14px; font-weight:700;">Clear 47 blocking errors</div>
+            <div style="font-size:13px; color:#51617A; line-height:1.5;">Shafafiya validates before it accepts — the file is rejected until every blocking error is cleared. Most are zero-total encounters and missing fields, grouped so you can fix a whole type at once.</div>
+          </div>
+          <div style="border:1.5px solid #D92D20; color:#D92D20; font-size:13px; font-weight:700; border-radius:8px; padding:8px 16px; align-self:center; white-space:nowrap;">Open error list</div>
+        </div>
+
+        <div style="padding:16px 22px; display:flex; align-items:flex-start; gap:14px; opacity:0.55;">
+          <div style="width:34px; height:34px; border-radius:9px; background:#F1F4F8; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="6.5" rx="1.5" stroke="#51617A" stroke-width="1.5"/><path d="M5.2 7V5a2.8 2.8 0 0 1 5.6 0v2" stroke="#51617A" stroke-width="1.5"/></svg></div>
+          <div style="display:flex; flex-direction:column; gap:3px; flex:1;">
+            <div style="font-size:14px; font-weight:700;">Sign off and send to PTE</div>
+            <div style="font-size:13px; color:#51617A; line-height:1.5;">Unlocks when the ledger is entered and the error list is empty. Builds the Cost.Submission files, split under 5 MB, and sends to the public test environment first.</div>
+          </div>
+          <div style="border:1.5px solid #CBD5E1; color:#94A3B8; font-size:13px; font-weight:700; border-radius:8px; padding:8px 16px; align-self:center; white-space:nowrap;">Locked</div>
+        </div>
+      </div>
+
+      <!-- year so far -->
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:#FFFFFF; border:1px solid #E3E9F1; border-radius:12px; box-shadow:0 1px 2px rgba(22,35,58,0.04); padding:18px 22px; display:flex; flex-direction:column; gap:14px;">
+          <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:#51617A;">THIS YEAR SO FAR</span>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <span class="num" style="font-size:27px; font-weight:800; letter-spacing:-0.01em;">9,781</span>
+            <span style="font-size:12.5px; color:#51617A;">encounters costed — every claim in FY2025</span>
+          </div>
+          <div style="height:1px; background:#EEF2F7;"></div>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <span class="num" style="font-size:27px; font-weight:800; letter-spacing:-0.01em;">AED 9,094,287</span>
+            <span style="font-size:12.5px; color:#51617A;">costed total, before scaling to the ledger</span>
+          </div>
+          <div style="height:1px; background:#EEF2F7;"></div>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <span style="font-size:27px; font-weight:800; color:#B45309;">—</span>
+            <span style="font-size:12.5px; color:#51617A;">variance to ledger — appears once the figure is entered</span>
+          </div>
+        </div>
+        <div style="background:#FFFFFF; border:1px solid #E3E9F1; border-radius:12px; box-shadow:0 1px 2px rgba(22,35,58,0.04); padding:16px 22px; display:flex; flex-direction:column; gap:10px;">
+          <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:#51617A;">FOR REFERENCE</span>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span style="color:#51617A;">Billed revenue FY2025</span><span class="num" style="font-weight:600;">AED 8,061,197</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span style="color:#51617A;">Last allocation run</span><span style="font-weight:600;">Run 7 · 26 Aug, 17:31</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span style="color:#51617A;">Codes billed / priced</span><span class="num" style="font-weight:600;">262 / 310</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- quiet meta strip -->
+    <div style="display:flex; align-items:center; gap:22px; padding:2px 4px; font-size:12.5px; color:#51617A;">
+      <span>Facility <strong style="color:#16233A; font-weight:600;">MF4159</strong></span>
+      <span style="width:3px; height:3px; border-radius:999px; background:#CBD5E1;"></span>
+      <span>Schema <strong style="color:#16233A; font-weight:600;">v2.0</strong> — Dental + Home, no Supplies bucket</span>
+      <span style="width:3px; height:3px; border-radius:999px; background:#CBD5E1;"></span>
+      <span>Allocation <strong style="color:#16233A; font-weight:600;">dual</strong> — buckets tie to cost types</span>
+      <span style="width:3px; height:3px; border-radius:999px; background:#CBD5E1;"></span>
+      <span>Environment <strong style="color:#16233A; font-weight:600;">PTE</strong> — nothing sent yet</span>
+    </div>
+
+  </div>
+</div>
+</div>
+<div class="board-label">Artboard 2 — Component style guide</div>
+<div class="board">
+<div style="width:1440px; min-height:1300px; background:#F1F4F8; padding:32px 28px 40px; box-sizing:border-box; display:flex; flex-direction:column; gap:22px;">
+
+  <div style="display:flex; align-items:baseline; gap:14px;">
+    <h1 style="margin:0; font-size:24px; font-weight:800; color:#1E63C4; border-bottom:3px solid #1E63C4; padding-bottom:3px;">Component Style Guide</h1>
+    <span style="font-size:13px; color:#51617A;">Clinical Costing module · lifted from live MySmyle screens, then tidied</span>
+  </div>
+
+  <!-- PALETTE -->
+  <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; gap:14px;">
+    <span class="lbl">1 · COLOR — ONE JOB PER COLOR</span>
+    <div style="display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:12px;">
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:44px; border-radius:8px; background:#1E63C4;"></div><div style="font-size:12.5px; font-weight:700;">MySmyle Blue</div><div class="num" style="font-size:11.5px; color:#51617A;">#1E63C4 — primary action, active tab, page title</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:44px; border-radius:8px; background:#1F4E79;"></div><div style="font-size:12.5px; font-weight:700;">Deep Navy</div><div class="num" style="font-size:11.5px; color:#51617A;">#1F4E79 — card headings, dark pills</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:44px; border-radius:8px; background:#7FB432;"></div><div style="font-size:12.5px; font-weight:700;">Module Green</div><div class="num" style="font-size:11.5px; color:#51617A;">#7FB432 — acronym tags (CLC), brand moments</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:44px; border-radius:8px; background:#5BA843;"></div><div style="font-size:12.5px; font-weight:700;">Success Green</div><div class="num" style="font-size:11.5px; color:#51617A;">#5BA843 — done states only, never decoration</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:44px; border-radius:8px; background:#F0B429;"></div><div style="font-size:12.5px; font-weight:700;">Attention Amber</div><div class="num" style="font-size:11.5px; color:#51617A;">#F0B429 — needs a decision; always dark text</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:44px; border-radius:8px; background:#D92D20;"></div><div style="font-size:12.5px; font-weight:700;">Blocking Red</div><div class="num" style="font-size:11.5px; color:#51617A;">#D92D20 — Shafafiya rejects; nothing else is red</div></div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:12px;">
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:32px; border-radius:8px; background:#21B6C4;"></div><div class="num" style="font-size:11.5px; color:#51617A;">#21B6C4 — secondary tools (dashboards)</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:32px; border-radius:8px; background:#16233A;"></div><div class="num" style="font-size:11.5px; color:#51617A;">#16233A — ink / table headers</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:32px; border-radius:8px; background:#51617A;"></div><div class="num" style="font-size:11.5px; color:#51617A;">#51617A — secondary text</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:32px; border-radius:8px; background:#E3E9F1;"></div><div class="num" style="font-size:11.5px; color:#51617A;">#E3E9F1 — rules, borders</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:32px; border-radius:8px; background:#F1F4F8; border:1px solid #E3E9F1;"></div><div class="num" style="font-size:11.5px; color:#51617A;">#F1F4F8 — canvas</div></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="height:32px; border-radius:8px; background:#FFFFFF; border:1px solid #E3E9F1;"></div><div class="num" style="font-size:11.5px; color:#51617A;">#FFFFFF — cards</div></div>
+    </div>
+  </div>
+
+  <!-- TYPE + BUTTONS row -->
+  <div style="display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:20px; align-items:stretch;">
+    <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; gap:12px;">
+      <span class="lbl">2 · TYPE — PUBLIC SANS, ONE FAMILY</span>
+      <div style="font-size:26px; font-weight:800; color:#1E63C4; border-bottom:3px solid #1E63C4; padding-bottom:2px; align-self:flex-start;">Page title 26 / 800</div>
+      <div style="font-size:16px; font-weight:800; color:#1F4E79;">Card heading 16 / 800 · deep navy</div>
+      <div class="lbl">SECTION LABEL 11 / 700 · CAPS +0.1em</div>
+      <div style="font-size:14px; line-height:1.55; max-width:56ch;">Body 14 / 400 — sentences that say what a number is and what happens next, written for someone who does this once a year.</div>
+      <div style="font-size:12.5px; color:#51617A;">Caption 12.5 — sources, timestamps, quiet metadata.</div>
+      <div style="display:flex; align-items:baseline; gap:14px;">
+        <span class="num" style="font-size:27px; font-weight:800;">9,094,287</span>
+        <span style="font-size:12.5px; color:#51617A;">Key figures 27 / 800 · tabular numerals, always with a plain-words line beneath</span>
+      </div>
+    </div>
+    <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; gap:14px;">
+      <span class="lbl">3 · BUTTONS — ONE PRIMARY PER VIEW</span>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+        <div style="background:#1E63C4; color:#FFFFFF; font-size:13px; font-weight:700; border-radius:8px; padding:9px 16px;">Primary action</div>
+        <div style="border:1.5px solid #1E63C4; color:#1E63C4; font-size:13px; font-weight:700; border-radius:8px; padding:8px 16px;">Secondary</div>
+        <div style="border:1.5px solid #D92D20; color:#D92D20; font-size:13px; font-weight:700; border-radius:8px; padding:8px 16px;">Open error list</div>
+        <div style="background:#F0B429; color:#3D2E00; font-size:13px; font-weight:700; border-radius:8px; padding:9px 16px;">Needs decision</div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+        <div style="background:#1F4E79; color:#FFFFFF; font-size:13px; font-weight:700; border-radius:999px; padding:8px 18px;">Navy pill · dashboards</div>
+        <div style="background:#21B6C4; color:#FFFFFF; font-size:13px; font-weight:700; border-radius:8px; padding:9px 16px;">Cyan · tools</div>
+        <div style="border:1.5px solid #CBD5E1; color:#94A3B8; font-size:13px; font-weight:700; border-radius:8px; padding:8px 16px;">Locked</div>
+      </div>
+      <div style="font-size:12.5px; color:#51617A; line-height:1.5;">Rule kept from live MySmyle: colored pills mean tool families. Tidied: only one solid blue primary per view; red is reserved for the error path.</div>
+    </div>
+  </div>
+
+  <!-- STATUS + STEPPER row -->
+  <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:20px; align-items:stretch;">
+    <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; gap:14px;">
+      <span class="lbl">4 · STATUS LANGUAGE</span>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <span style="background:#EAF4E4; color:#3E7A2B; font-size:12px; font-weight:700; border-radius:999px; padding:4px 12px;">Done</span>
+        <span style="background:#EFF4FF; color:#1E63C4; font-size:12px; font-weight:700; border-radius:999px; padding:4px 12px;">In progress</span>
+        <span style="background:#FDF1CE; color:#7A5410; font-size:12px; font-weight:700; border-radius:999px; padding:4px 12px;">Attention</span>
+        <span style="background:#FBE9E7; color:#D92D20; font-size:12px; font-weight:700; border-radius:999px; padding:4px 12px;">Blocked</span>
+        <span style="background:#F1F4F8; color:#94A3B8; font-size:12px; font-weight:700; border-radius:999px; padding:4px 12px;">Locked</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; border:1px solid #E3E9F1; border-left:4px solid #D92D20; border-radius:8px; padding:12px 16px;">
+        <div style="display:flex; flex-direction:column; gap:2px; flex:1;">
+          <span style="font-size:13px; font-weight:700;">Left-edge bar — kept from Communication Portal</span>
+          <span style="font-size:12px; color:#51617A;">Edge color = state of the item, exactly one bar per card.</span>
+        </div>
+        <div style="display:flex; gap:5px;">
+          <span style="width:10px; height:10px; border-radius:999px; background:#1E63C4;"></span>
+          <span style="width:10px; height:10px; border-radius:999px; background:#5BA843;"></span>
+          <span style="width:10px; height:10px; border-radius:999px; background:#E3E9F1;"></span>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; gap:16px;">
+      <span class="lbl">5 · STEPPER NODES — THE MODULE SPINE</span>
+      <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px;">
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="width:26px; height:26px; border-radius:999px; background:#5BA843; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7l4.5-5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div style="font-size:12.5px; font-weight:700;">Done</div>
+          <div style="font-size:11.5px; color:#51617A;">solid green + check</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="width:26px; height:26px; border-radius:999px; background:#FDF3E3; border:2px solid #D97706; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 3v3.4M6 8.8h.01" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div style="font-size:12.5px; font-weight:700;">Attention</div>
+          <div style="font-size:11.5px; color:#51617A;">amber ring + reason</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="width:26px; height:26px; border-radius:999px; background:#FBE9E7; border:2px solid #D92D20; display:flex; align-items:center; justify-content:center;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#D92D20" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <div style="font-size:12.5px; font-weight:700;">Blocked</div>
+          <div style="font-size:11.5px; color:#51617A;">red ring + count</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="width:26px; height:26px; border-radius:999px; background:#F1F4F8; border:2px solid #CBD5E1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#94A3B8;">4</div>
+          <div style="font-size:12.5px; font-weight:700; color:#51617A;">Waiting</div>
+          <div style="font-size:11.5px; color:#51617A;">number, grey ring</div>
+        </div>
+      </div>
+      <div style="font-size:12.5px; color:#51617A;">Every node carries a one-line status in words. A step is never just a circle.</div>
+    </div>
+  </div>
+
+  <!-- TABLE RULES -->
+  <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; gap:14px;">
+    <span class="lbl">6 · TABLES — BLACK HEADER KEPT, ZEROS DIMMED</span>
+    <div style="border:1px solid #E3E9F1; border-radius:8px; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:90px minmax(0,1fr) repeat(4, 100px) 70px 100px; background:#16233A; color:#FFFFFF;">
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em;">CPT</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em;">DESCRIPTION</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-align:right;">IMAGING</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-align:right;">OP</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-align:right;">SWDOC</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-align:right;">OHF</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-align:right;">+12 &#8230;</div>
+        <div style="padding:10px 14px; font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-align:right;">TOTAL</div>
+      </div>
+      <div style="display:grid; grid-template-columns:90px minmax(0,1fr) repeat(4, 100px) 70px 100px; background:#FFFFFF; border-bottom:1px solid #EEF2F7;">
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:700; color:#1E63C4;">02601</div>
+        <div style="padding:10px 14px; font-size:13px; color:#51617A;">Radiographs, panoramic — single film</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">35.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">5.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">15.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">4.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; text-align:right; color:#C3CDD9;">41.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:800; text-align:right;">100.0</div>
+      </div>
+      <div style="display:grid; grid-template-columns:90px minmax(0,1fr) repeat(4, 100px) 70px 100px; background:#F8FAFC;">
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:700; color:#1E63C4;">01204</div>
+        <div style="padding:10px 14px; font-size:13px; color:#51617A;">Examination and diagnosis, specific</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; text-align:right; color:#C3CDD9;">0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">10.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">40.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:600; text-align:right;">4.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; text-align:right; color:#C3CDD9;">46.0</div>
+        <div class="num" style="padding:10px 14px; font-size:13px; font-weight:800; text-align:right;">100.0</div>
+      </div>
+    </div>
+    <div style="font-size:12.5px; color:#51617A;">Numbers right-aligned, tabular. The &#8220;+12 &#8230;&#8221; column stands for the remaining cost columns, so each row honestly sums to 100. Zeros render at 30% ink so the real figures carry the row — a dental clinic's grid is mostly zeros, and they must not shout.</div>
+  </div>
+
+  <!-- VOICE -->
+  <div class="card" style="padding:18px 24px; display:flex; align-items:center; gap:18px;">
+    <span class="lbl" style="white-space:nowrap;">7 · VOICE</span>
+    <div style="font-size:13.5px; color:#16233A; line-height:1.55;">Every number states <strong>what it is</strong> and <strong>what happens next</strong>. Errors name the fix, not the fault: <em>"47 blocking errors — Shafafiya rejects the file until every one is cleared → Open error list"</em>, never a bare red banner.</div>
+  </div>
+
+</div>
+</div>
+<div class="page-foot">MySmyle Clinical Costing module redesign · Vision Dental Clinic · static mockup, values from the FY2025 draft · font: Public Sans (Google Fonts, falls back to system UI offline)</div>
+</body>
+</html>

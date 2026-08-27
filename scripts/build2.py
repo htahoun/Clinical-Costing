@@ -14,6 +14,18 @@ TMAP={'Anaesthesia':'CostBucketDirectAnaesthesia','Imaging':'CostBucketDirectIma
 T,fixes=B.load_alloc()
 months,hdr0=B.load_activity()
 
+# Speciality fallback: 55 source rows have an empty cell — use the clinician's
+# modal speciality across the year (GD11525 is an Oral Surgeon; the rest General Dentist)
+from collections import Counter
+_spec=dict()
+_cnt=dict()
+for mi,(rows,idx) in months.items():
+    for r in rows:
+        d=str(r[idx['Doctor No']]).strip(); s_=r[idx['Speciality']]
+        if s_ not in (None,''):
+            _cnt.setdefault(d,Counter())[str(s_).strip()]+=1
+SPEC_FALLBACK={d:c.most_common(1)[0][0] for d,c in _cnt.items()}
+
 # pass 1: factors
 FACT={}; MODEL={}
 for mi,(rows,idx) in months.items():
@@ -60,6 +72,8 @@ for mi in range(1,13):
         for h,i in pos.items():
             src=idx.get(h)
             if src is not None and src<len(r): o[i]=r[src]
+        if o[pos['Speciality']] in (None,''):
+            o[pos['Speciality']]=SPEC_FALLBACK.get(str(r[idx['Doctor No']]).strip(),'General Dentist')
         for h in costcols: o[pos[h]]=0.0
         tot=0.0
         for j,c in enumerate(B.COLS):

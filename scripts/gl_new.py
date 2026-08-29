@@ -1,0 +1,7 @@
+# UPDATED monthly expenditure ledger (FY2025).
+# PLACEHOLDER: currently the PREVIOUS ledger figures, used only for the pipeline dry run.
+# REPLACE with the figures from the accounting team's updated upload before the real build.
+PLACEHOLDER=True
+GL_NEW={1:480185.61748333334, 2:424195.7997333334, 3:614078.4143333333, 4:560747.5943333333,
+        5:498821.60129696963, 6:722691.5700000001, 7:540556.6923522727, 8:592151.5070477272,
+        9:492461.1900568182, 10:537587.8430719697, 11:540251.8011386364, 12:725123.7600483283}

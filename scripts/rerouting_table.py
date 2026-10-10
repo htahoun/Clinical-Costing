@@ -128,14 +128,22 @@ def head_totals():
                 cash[(str(r[hx["Category"]])[:3], str(r[hx["Sub-Category"]])[:3])] += float(r[hx["Remarks"]])
             except (TypeError, ValueError):
                 pass
-    return out, sal, cash
+    cons = {}
+    ws = wb["Consumption "]
+    for r in ws.iter_rows(values_only=True):
+        if r and isinstance(r[0], str):
+            if r[0].startswith("Internal LAB"):
+                cons["Internal LAB"] = -float(r[13] or 0)
+            elif r[0].startswith("External LAB"):
+                cons["External LAB"] = -float(r[13] or 0)
+    return out, sal, cash, cons
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", default="output/Rerouting_Internal_to_DOH.xlsx")
     args = ap.parse_args(argv)
-    heads, sal, cash = head_totals()
+    heads, sal, cash, cons = head_totals()
     bold = Font(bold=True)
     fill = PatternFill("solid", fgColor="D9E1F2")
     wb = openpyxl.Workbook()
@@ -162,13 +170,35 @@ def main(argv=None):
         ind = ""
         if head == "Salaries & Wages" and sub in sal_map:
             ind = sum(sal.get(k, 0.0) for k in sal_map[sub])
+        elif head == "Cost of Goods Sold":
+            cogs_ind = {"06- Laboratory": cons.get("Internal LAB", 0.0), "External LAB": cons.get("External LAB", 0.0),
+                        "04- Dental Materials (restorative": None, "03- Prevention": None}
+            for k, v in cogs_ind.items():
+                if sub.startswith(k) and v:
+                    ind = v
+            if sub.startswith(("04- Dental Materials (restorative", "03- Prevention", "02- Drugs / 03", "01- Medical", "05- Implants", "02- Drugs / 01", "04- Dental Materials / 02")):
+                ind = "see monthly stock movement (Jan: " + {
+                    "05- Implants": "52,796", "02- Drugs / 01": "682", "04- Dental Materials / 02": "570", "02- Drugs / 03": "2,338",
+                    "01- Medical": "5,583", "03- Prevention": "6,169", "04- Dental Materials (restorative": "17,572"}[next(k for k in (
+                    "05- Implants", "02- Drugs / 01", "04- Dental Materials / 02", "02- Drugs / 03", "01- Medical", "03- Prevention", "04- Dental Materials (restorative") if sub.startswith(k))] + ")"
+        elif head == "Depreciation Expense":
+            ind = 126679.42 if "Machinery" in sub else 30297.55
         else:
-            for (c3, s3), v in cash.items():
-                tag = sub[:3]
-                if tag.isdigit() or tag[:2].isdigit():
-                    if s3 == tag and ((head.startswith("Cost") and c3 == "01-") or (head.startswith(("Legal", "Third", "Staff", "Marketing", "Finance")) and c3 in ("04-", "03-"))
-                                      or (head in ("Repair & Maintenance Expenses", "Office Supplies", "Pantry", "Utilities Expenses", "Travelling & Transportation", "Other Expenses", "Clinic Rent") and c3 == "02-")):
-                        ind = (ind or 0.0) + v
+            # cash sub-categories named in the line, matched by their numeric prefix within the right cash category
+            cat_for_head = {"Third Party & Professional Services": "04-", "Legal & Professional Expenses": "04-", "Staff Qualification And Education": "03-",
+                            "Repair & Maintenance Expenses": "02-", "Office Supplies": "02-", "Pantry": "02-", "Utilities Expenses": "02-",
+                            "Travelling & Transportation": "02-", "Other Expenses": "02-", "Marketing": "04-", "Equipment Maintenanace": "01-",
+                            "External Lab": "01-", "Clinic Rent": "02-", "Finance Charges": "04-"}
+            c3 = cat_for_head.get(head)
+            import re
+            tags = re.findall(r"(\d{2}-)", sub)
+            if c3 and tags:
+                tot = sum(v for (cc, s3), v in cash.items() if cc == c3 and s3 in tags)
+                if head == "Staff Qualification And Education" and "08-" in tags:
+                    tot = sum(v for (cc, s3), v in cash.items() if cc == "04-" and s3 == "08-")
+                if head == "Legal & Professional Expenses" and "02-" in tags:
+                    tot = sum(v for (cc, s3), v in cash.items() if cc == "04-" and s3 == "02-")
+                ind = tot if tot else ""
         ws.append([head, heads.get(head, ""), sub, meaning, ct, cls, bucket, basis, conf, ind if ind != "" else ""])
     for r in ws.iter_rows(min_row=2):
         for c in r:

@@ -20,7 +20,7 @@ rejects a file — triage and resubmit it.
 ```bash
 pip install -r requirements.txt
 bash tests/run_pipeline.sh            # synthetic end-to-end proof
-# real run (inputs in input/, outputs in output/ — both git-ignored):
+# real run (inputs in input/, outputs in output/):
 python3 scripts/build4_final.py --activity input/activity.xlsx --alloc input/allocation.xlsx \
     --out output/Clinical_Costing_2025_MF4159_FINAL.xlsx
 python3 scripts/make_xml_final.py --workbook output/Clinical_Costing_2025_MF4159_FINAL.xlsx \
@@ -29,4 +29,4 @@ python3 scripts/validate_xml.py output/xml_final/*.xml --expect-disposition PROD
 python3 scripts/triage_rejection.py input/rejection/* --xml output/xml_final
 ```
 
-Patient-level data never goes to GitHub: `input/`, `output/`, spreadsheets and zips are ignored.
+The repository is private: inputs, outputs, submitted XMLs and rejection files are committed so every comparison is reproducible from GitHub.

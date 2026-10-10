@@ -8,5 +8,5 @@ XML generation, validation, audit, rejection triage and transport.
 - Rejection procedure: `docs/REJECTION_PLAYBOOK.md`.
 - Skill: `.claude/skills/clinical-costing/SKILL.md`. Agent: `.claude/agents/clinical-costing.md`.
 - Engines: `scripts/` (see the repository map in the master reference). Proof run: `bash tests/run_pipeline.sh`.
-- `input/` and `output/` are git-ignored: patient-level data and generated submissions never go to GitHub.
+- The repository is private: `input/` (uploads) and `output/` (builds, XMLs, rejection files) are committed so comparisons can be done in GitHub.
 - Python 3.11+, `pip install -r requirements.txt`.

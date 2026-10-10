@@ -11,8 +11,8 @@ standard and history. Maintained from the FY2025 submission project
 > from this reference on 10 Oct 2026: every engine in §8 is implemented and
 > proven end to end on synthetic data (`tests/run_pipeline.sh`), but the
 > FY2025 inputs, the FINAL workbook, the twelve submitted XMLs and the official
-> XSD are **not** in the repository (patient-level data stays out of GitHub;
-> see §12 for what to upload).
+> XSD are **not yet** in the repository (see §12 for what to upload). The
+> repository is private, so they are committed once uploaded.
 
 ---
 
@@ -205,9 +205,10 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `docs/activity-template-columns.md` | Accepted column headings for the activity master and allocation table |
 | `docs/shafafiya/` | Official XSDs (+ repaired copy), technical PDFs, validated sample XML — **to be re-uploaded** |
 | `docs/cost-types-plain-english.md`, `docs/The_Fifteen_Boxes.docx` | Layman's cost-type guides (previous project; not yet in this repo) |
-| `output/Clinical_Costing_2025_MF4159_FINAL.xlsx` | Final costed workbook (git-ignored) |
-| `output/xml_final/`, `output/CostSubmission_MF4159_2025_XML_*.zip` | The twelve validated XMLs (git-ignored) |
-| `output/Claims_Audit_2025_Three_Sources.xlsx` | Forensic audit evidence workbook (git-ignored) |
+| `output/Clinical_Costing_2025_MF4159_FINAL.xlsx` | Final costed workbook |
+| `output/xml_final/`, `output/CostSubmission_MF4159_2025_XML_*.zip` | The twelve validated XMLs |
+| `output/Claims_Audit_2025_Three_Sources.xlsx` | Forensic audit evidence workbook |
+| `input/rejection/`, `input/source/` | DOH rejection files as received; source uploads (activity master, allocation table, sent XMLs) |
 
 `scripts/build3_best_of_three.py` (the historical v3 merge) is not reproduced;
 its result is the accepted master of §6 item 5.
@@ -235,8 +236,9 @@ building; ask at most 4 on-screen MCQs and only when genuinely ambiguous;
 wait for the explicit "go". Plain language (he is often on a phone; the coder
 team is non-technical). Locked decisions are final — flag new contrary
 evidence once, then accept the ruling. Every delivery: files + verification
-table + commit/push. Patient-level data never goes to GitHub (`input/`,
-`output/`, spreadsheets and zips are git-ignored).
+table + commit/push. The repository is private (ruling 10 Oct 2026): inputs,
+outputs, submitted XMLs and rejection files are committed so comparisons are
+reproducible from GitHub.
 
 ## 11. Rejection handling (standard procedure)
 
@@ -272,7 +274,7 @@ encounter IDs across the twelve files.
 
 ## 12. What this repository still needs from the previous project
 
-Upload (they are git-ignored, so they live in `input/` and `output/` locally):
+Upload (they are committed to `input/` and `output/`):
 the accepted activity master (24,074 lines / 9,738 claims), Cherie's
 allocation table, the FINAL workbook, the twelve submitted XMLs (zip), the
 official XSD + technical PDFs for `docs/shafafiya/`, and the rejection files.

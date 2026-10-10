@@ -59,9 +59,9 @@ Official schema and technical documents belong in `docs/shafafiya/`.
    balance outranks everything else.
 7. **Deliver and preserve.** Ship workbook + zipped XMLs + verification table,
    commit and push to the designated branch, and record any new ruling in
-   `docs/CLINICAL_COSTING.md` so the next session inherits it. Patient-level
-   data (`input/`, `output/`, spreadsheets, zips) is git-ignored and never
-   committed.
+   `docs/CLINICAL_COSTING.md` so the next session inherits it. The repository
+   is private: inputs, outputs, submitted XMLs and rejection files are
+   committed so comparisons are reproducible.
 
 ## Standing open items
 

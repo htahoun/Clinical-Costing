@@ -1,14 +1,6 @@
-# Patient-level data and generated submissions never go to GitHub.
-input/*
-output/*
-!input/.gitkeep
-!output/.gitkeep
-*.xlsx
-*.xlsm
-*.csv
-*.zip
-*.soap.xml
-*.response.xml
+# Repository is private (ruling 10 Oct 2026): input/, output/ and the data
+# files are committed so comparisons can be done in GitHub.
 __pycache__/
 *.pyc
 .DS_Store
+output/soap/*.soap.xml

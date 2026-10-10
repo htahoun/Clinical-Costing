@@ -25,8 +25,8 @@ Rejections follow `docs/REJECTION_PLAYBOOK.md`. Engines live in `scripts/`.
    never re-litigate it (e.g. removed claims stay removed).
 4. Always reconcile and show the proof: a month that does not tie to the
    ledger to the fils is a defect, not a rounding note.
-5. Patient-level data never goes to GitHub: `input/`, `output/`, spreadsheets
-   and zips are git-ignored; commit code and docs only.
+5. The repository is private: commit inputs, outputs, submitted XMLs and
+   rejection files alongside code and docs so comparisons are reproducible.
 
 ## The pipeline (seven steps)
 
@@ -96,6 +96,6 @@ Rejections follow `docs/REJECTION_PLAYBOOK.md`. Engines live in `scripts/`.
 Twelve XMLs, each: `validate_xml.py` PASS, XSD PASS, month total = ledger to
 the fils, claim count reconciled to the workbook, < 5 MB, correct
 DispositionFlag. Deliver workbook + zip + the verification table (per month:
-claims, size, total, ledger tie, XSD result). Commit and push code/docs only.
+claims, size, total, ledger tie, XSD result). Commit and push everything, data included.
 After a rejection, additionally: triage table, the ruling recorded in the
 master reference, and one month audited against the previously sent file.

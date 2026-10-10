@@ -196,7 +196,7 @@ def main(argv=None):
                 tot = sum(v for (cc, s3), v in cash.items() if cc == c3 and s3 in tags)
                 if head == "Staff Qualification And Education" and "08-" in tags:
                     tot = sum(v for (cc, s3), v in cash.items() if cc == "04-" and s3 == "08-")
-                if head == "Legal & Professional Expenses" and "02-" in tags:
+                if head in ("Legal & Professional Expenses", "Staff Qualification And Education") and "02-" in tags:
                     tot = sum(v for (cc, s3), v in cash.items() if cc == "04-" and s3 == "02-")
                 ind = tot if tot else ""
         ws.append([head, heads.get(head, ""), sub, meaning, ct, cls, bucket, basis, conf, ind if ind != "" else ""])

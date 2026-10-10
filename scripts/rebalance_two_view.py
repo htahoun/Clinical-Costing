@@ -55,12 +55,13 @@ SEED = {
     "Dental": {"SWDoc": 4, "SWNurs": 2, "SWAllied": 1, "SWNonClin": 1, "MS": 2, "Hotel": 0.2, "GS": 0.5,
                "Depreciation": 1, "Pharmacy": 0.2, "Laboratory": 0.1, "Imaging": 0.1, "Prostheses": 0.1,
                "OHF": 1, "OHDepreciation": 0.5, "OHC": 0.5},
+    # Ruling 10 Oct 2026: overhead cost types sit in the Dental bucket only (CostBucketOverheads/Dental).
     # Pass-through purchases: mainly their own cost type, with a small weight on supplies/technician time
     # so the fit can absorb a ledger figure that differs from the costed bucket.
     "Laboratory": {"Laboratory": 1, "MS": 0.05, "SWAllied": 0.05},
     "Prosthesis": {"Prostheses": 1, "MS": 0.05},
-    "Imaging": {"Imaging": 2, "SWAllied": 0.5, "Depreciation": 0.5, "MS": 0.1, "OHF": 0.1, "OHDepreciation": 0.1},
-    "Anaesthesia": {"Pharmacy": 2, "SWDoc": 0.5, "MS": 0.3, "OHF": 0.1},
+    "Imaging": {"Imaging": 2, "SWAllied": 0.5, "Depreciation": 0.5, "MS": 0.2},
+    "Anaesthesia": {"Pharmacy": 2, "SWDoc": 0.5, "MS": 0.3},
     "OP": {"SWNonClin": 1, "GS": 0.2, "MS": 0.1},
     "Physician": {"SWDoc": 1, "MS": 0.05},
     "Pharmacy": {"Pharmacy": 1, "MS": 0.05},

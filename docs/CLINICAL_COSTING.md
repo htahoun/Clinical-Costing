@@ -210,7 +210,10 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/rebalance_two_view.py` | **SY02 corrective engine**: ledger-calibrated two-margin fit; writes the resubmission XMLs |
 | `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
 | `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
-| `scripts/propose_ledger_map.py` | Fills the template with the proposed common-sense map (Assumptions sheet) pending Arjun |
+| `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping + Questions sheets) — the governing map |
+| `input/Ledger_by_Cost_Type_FY2025.xlsx` | The filled, evidence-based ledger-by-cost-type map (pending confirmation of its Questions sheet) |
+| `input/source/Financial_2025_Arjun_Updated_2.xlsx` | Arjun's FY2025 financial workbook (TB, P&L, Monthly, Salary, Consumption, cash ledger by cost centre) |
+| `scripts/propose_ledger_map.py` | Earlier common-sense proposal (superseded) |
 | `output/xml_resubmission_PROPOSED/` | Twelve two-view files from the proposed map (proposal, not yet the resubmission) |
 | `input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx` | The template to be filled and returned as `input/Ledger_by_Cost_Type_FY2025.xlsx` |
 | `input/source/mysmyle_zip/` | The twelve files DOH evaluated (MySmyle, PRODUCTION, 29 Aug 2026) |
@@ -324,7 +327,20 @@ classified direct/overhead (Stage 2).
 6. Upload the twelve files (PRODUCTION) via Shafafiya; record the outcome in
    `docs/REJECTION_PLAYBOOK.md` §5.
 
-**Proposed ledger map (10 Oct 2026, pending Arjun).** Built by
+**Evidence-based ledger map (10 Oct 2026, from Arjun's FY2025 financial
+workbook `input/source/Financial_2025_Arjun_Updated_2.xlsx`).** Built by
+`scripts/fill_ledger_map_from_financials.py` → `input/Ledger_by_Cost_Type_FY2025.xlsx`
+(sheets: Cost types by month, Mapping, Questions). Sources: the Monthly
+P&L (its Total row is the locked ledger), the Salary sheet by role, the
+Consumption sheet, the TB depreciation movement. Result: SWDoc 28.2 %,
+MS 12.2 %, OHC 5.7 % (MySmyle EMR/management/IT recharge), OHF 39.0 %,
+overhead ratio 45.2 % for the year (monthly 31–58 %). Five points await the
+Finance Director's confirmation (Questions sheet), chiefly whether
+"Staff Qualification And Education" (889,431.99) is HR/IT overhead or staff
+on-costs. January demo run: 831/831 claims match, both views 511,302.300.
+Supersedes the proposal below once confirmed.
+
+**Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:
 `input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).
 Overheads 24.0 % of expenditure (OHF 21.5, OHDepreciation 1.3, OHC 1.2) as a

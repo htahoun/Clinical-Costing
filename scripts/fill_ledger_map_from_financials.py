@@ -1,0 +1,270 @@
+#!/usr/bin/env python3
+"""
+Fill the ledger-by-cost-type workbook from Arjun's FY2025 financial workbook
+(input/source/Financial_2025_Arjun_Updated_2.xlsx) — evidence, not estimates.
+
+  python3 scripts/fill_ledger_map_from_financials.py \
+      --financials input/source/Financial_2025_Arjun_Updated_2.xlsx \
+      --template input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx \
+      --out input/Ledger_by_Cost_Type_FY2025.xlsx
+
+Sources inside the financial workbook:
+  * "Monthly"      — the accrual P&L by expense head and month; its Total row IS the locked ledger.
+  * "Salary"       — payroll by employee and month with a Dir/Ind role label.
+  * "Consumption " — cost of goods sold by month split into clinic consumables, CSSD, internal lab, external lab.
+  * "TB"           — 2025 depreciation charge by asset class (accumulated depreciation movement).
+Every head is mapped to one DOH cost type (Standard v2.1 Appendix 1) with the
+cost-centre class (Stage 2) recorded in the Mapping sheet. Each month reconciles
+to the ledger to the fils.
+"""
+from __future__ import annotations
+
+import argparse
+import sys
+from collections import defaultdict
+from decimal import Decimal, ROUND_HALF_UP
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import openpyxl  # noqa: E402
+from openpyxl.styles import Font, PatternFill  # noqa: E402
+
+from costsub_schema import COST_TYPES, OVERHEAD_COST_TYPES  # noqa: E402
+from gl_new import GL_2025  # noqa: E402
+
+D2 = Decimal("0.01")
+
+
+def dec(v) -> Decimal:
+    if v in (None, "", "--") or not isinstance(v, (int, float, Decimal, str)):
+        return Decimal(0)
+    try:
+        return Decimal(str(v).replace(",", "")).quantize(D2, rounding=ROUND_HALF_UP)
+    except Exception:  # noqa: BLE001 — header text in a numeric column
+        return Decimal(0)
+
+
+# Expense heads of the Monthly sheet -> (cost type, cost-centre class, basis). Heads split from other
+# sheets (Cost of Goods Sold, Salaries & Wages, Depreciation Expense) are handled explicitly below.
+HEAD_MAP = {
+    "Third Party & Professional Services": ("OHC", "Overhead — shared services",
+        "MySmyle Company EMR subscription, management consultancy and IT services (25,000/month) + Calibrate/Platform Technologies: services charged by a sister company = corporate/shared-services overhead"),
+    "Legal & Professional Expenses": ("OHF", "Overhead — administration",
+        "DOH facility/clinician licences, immigration and visas, trade licence, civil defence, ADHICS/Tasneef, typing/PRO fees"),
+    "Repair & Maintenance Expenses": ("OHF", "Overhead — facility", "general premises maintenance supplies and works"),
+    "Insurance": ("OHF", "Overhead — administration", "prepaid insurance amortised (staff medical insurance, Daman)"),
+    "Staff Qualification And Education": ("OHF", "Overhead — HR / IT",
+        "HR administration: visas, work permits, staff benefits, final settlements, training, licences, information-management (IT) charges"),
+    "Office Supplies": ("OHF", "Overhead — administration", "stationery, printer ink, newspapers"),
+    "Pantry": ("OHF", "Overhead — back office", "pantry, water, cleaning products (staff and patient refreshments)"),
+    "Utilities Expenses": ("OHF", "Overhead — facility", "ADDC electricity/water, Etisalat telephone and internet"),
+    "Travelling & Transportation": ("OHF", "Overhead — administration", "taxis, parking, petrol, car wash"),
+    "Other Expenses": ("OHF", "Overhead — administration", "courier, flags/badges, miscellaneous"),
+    "Marketing": ("OHF", "Overhead — administration", "Meta/WhatsApp API, Adobe, promotions"),
+    "Dues & Subscriptions": ("OHF", "Overhead — IT / administration", "software subscriptions, memberships"),
+    "Equipment Maintenanace": ("GS", "Direct — dental surgeries", "maintenance of dental chairs and clinical equipment"),
+    "External Lab": ("Laboratory", "Direct — laboratory", "outsourced dental laboratory invoices (expense head)"),
+    "Clinic Rent": ("OHF", "Overhead — facility", "lease of the clinic premises (unit 1302, 85,000/year), allocated to the Dental bucket by floor space"),
+    "Fines": ("OHF", "Overhead — administration", "regulatory and traffic fines (kept: Standard 3.1.1 takes all GL expenses except balance-sheet items)"),
+    "Claim Rejection": ("OHF", "Overhead — patient administration", "written-off rejected claims"),
+    "Finance Charges": ("OHF", "Overhead — administration", "bank and card charges"),
+}
+SALARY_MAP = {   # Dir/Ind label in the Salary sheet -> cost type
+    "Direct Dr": ("SWDoc", "Direct — dental surgeries", "dentists, oral surgeon, orthodontist (Salary sheet 'Direct Dr')"),
+    "Nurse/licensed": ("SWNurs", "Direct — dental surgeries", "licensed dental nurses"),
+    "Nurse/No License": ("SWNurs", "Direct — dental surgeries", "dental assistants (unlicensed nurses)"),
+    "Cssd": ("SWAllied", "Direct — CSSD (cost centre 07)", "sterilisation technicians"),
+    "Indirect/LAB": ("SWAllied", "Direct — laboratory (cost centre 09)", "in-house dental laboratory technicians"),
+    "Indirect/RAP": ("OHF", "Overhead — reception / patient administration", "reception and patient-administration staff"),
+    "Indirect /INS": ("OHF", "Overhead — patient administration", "insurance claims staff"),
+    "Indirect /Management": ("OHF", "Overhead — management", "clinic management"),
+    "Indirect /Purchase": ("OHF", "Overhead — administration", "purchasing"),
+    "Indirect/Accounts": ("OHF", "Overhead — administration", "accounts"),
+    "Indirect it": ("OHF", "Overhead — IT", "IT"),
+    "Indirect/ Hr": ("OHF", "Overhead — HR", "HR"),
+    "External": ("OHF", "Overhead — administration", "external accountant, drivers, cleaners and other outsourced support staff"),
+}
+CONSUMPTION_MAP = [   # row-label prefix in the Consumption sheet -> cost type
+    ("Consumables -( Dr", "MS", "Direct — dental surgeries", "clinical consumables issued to the dental surgeries"),
+    ("Consumables -  ( CSSD", "MS", "Direct — CSSD", "sterilisation and vital-signs consumables"),
+    ("Internal LAB", "Laboratory", "Direct — laboratory", "in-house dental laboratory materials"),
+    ("External LAB", "Laboratory", "Direct — laboratory", "outsourced laboratory invoices booked in cost of goods sold"),
+]
+DEP_DIRECT = {"Acc. Dep - Machinery & Equipment"}   # dental chairs, imaging units, autoclaves
+DEP_OVERHEAD = {"Acc. Dep - Furniture & Fittings", "Acc. Dep - Office Equipment", "Acc. Dep - Computer Accessories", "Acc. Dep - Software"}
+
+QUESTIONS = [
+    "Q1. Third Party & Professional Services (370,348.18) is mapped to OHC because it is MySmyle Company's EMR/management/IT recharge plus Calibrate and Platform Technologies. If you prefer OHF (no 'corporate office'), say so: one-line change, overhead ratio unchanged.",
+    "Q2. Staff Qualification And Education (889,431.99) is mapped to OHF (HR administration and IT). If part of it is staff on-costs of the dentists and nurses (visas, licences, benefits), that part belongs with SWDoc/SWNurs and the overhead ratio falls (to roughly 34% if all of it were on-costs).",
+    "Q3. Prostheses, Pharmacy and Imaging cost types are 0: implants, anaesthetics and imaging sensors are bought inside 'Consumables' (MS). If the purchase ledger can separate them, they should move to those cost types.",
+    "Q4. Fines (17,013.03), Claim Rejection (3,402.20) and Finance Charges (63,005.85) are kept in OHF because the locked ledger includes them. The Standard takes all GL expenses except balance-sheet items; confirm you want them in.",
+    "Q5. Cost-centre classes follow the cash-ledger coding (clinics 01-06, CSSD 07, OPG 08, LAB 09 = direct; reception 10-11, back office 12, server room 13 = overhead).",
+]
+
+
+def read_monthly(ws) -> dict[str, list[Decimal]]:
+    out = {}
+    for r in ws.iter_rows(values_only=True):
+        if r and isinstance(r[1], str) and r[1].strip():
+            out[r[1].strip()] = [dec(v) for v in r[2:14]]
+    return out
+
+
+def read_salary(ws) -> dict[str, list[Decimal]]:
+    rows = list(ws.iter_rows(values_only=True))
+    hdr_i = next(i for i, r in enumerate(rows) if r[0] == "Name")
+    mon_col = {12 - k: 2 + k for k in range(12)}          # Dec2025 .. Jan 2025 in columns 2..13
+    out: dict[str, list[Decimal]] = defaultdict(lambda: [Decimal(0)] * 12)
+    for r in rows[hdr_i + 1:]:
+        if not r[0] or r[1] in (None, ""):
+            continue
+        cat = str(r[1]).strip()
+        for m, ci in mon_col.items():
+            out[cat][m - 1] += dec(r[ci])
+    return out
+
+
+def read_consumption(ws) -> dict[str, list[Decimal]]:
+    out = {}
+    for r in ws.iter_rows(values_only=True):
+        if r and isinstance(r[0], str):
+            for prefix, *_ in CONSUMPTION_MAP:
+                if r[0].startswith(prefix):
+                    out[prefix] = [-dec(v) for v in r[1:13]]
+    return out
+
+
+def read_depreciation(ws) -> tuple[Decimal, Decimal]:
+    direct = overhead = Decimal(0)
+    for r in ws.iter_rows(values_only=True):
+        if r and r[0] in DEP_DIRECT:
+            direct += dec(r[7])
+        elif r and r[0] in DEP_OVERHEAD:
+            overhead += dec(r[7])
+    return direct, overhead
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--financials", default="input/source/Financial_2025_Arjun_Updated_2.xlsx")
+    ap.add_argument("--template", default="input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx")
+    ap.add_argument("--out", default="input/Ledger_by_Cost_Type_FY2025.xlsx")
+    args = ap.parse_args(argv)
+
+    fin = openpyxl.load_workbook(args.financials, data_only=True, read_only=True)
+    monthly = read_monthly(fin["Monthly"])
+    salary = read_salary(fin["Salary"])
+    cons = read_consumption(fin["Consumption "])
+    dep_direct, dep_oh = read_depreciation(fin["TB"])
+
+    # --- build the mapping lines: (source, head, cost type, class, basis, 12 months) ---
+    lines: list[tuple] = []
+    for prefix, ct, cls, basis in CONSUMPTION_MAP:
+        lines.append(("Consumption sheet", f"Cost of Goods Sold: {prefix.strip(' -(')}", ct, cls, basis, cons[prefix]))
+    for cat, vals in salary.items():
+        ct, cls, basis = SALARY_MAP[cat]
+        lines.append(("Salary sheet", f"Salaries & Wages: {cat}", ct, cls, basis, vals))
+    dep_m = monthly["Depreciation Expense"]
+    tot_dep = dep_direct + dep_oh
+    lines.append(("TB depreciation", "Depreciation: Machinery & Equipment", "Depreciation", "Direct — dental surgeries / imaging",
+                  "dental chairs, imaging units, autoclaves (2025 charge 126,679.42)", [(v * dep_direct / tot_dep).quantize(D2) for v in dep_m]))
+    lines.append(("TB depreciation", "Depreciation: furniture, office equipment, computers, software", "OHDepreciation", "Overhead — facility / IT",
+                  "fit-out, office equipment, computers, software (2025 charge 30,297.55)", [(v * dep_oh / tot_dep).quantize(D2) for v in dep_m]))
+    for head, (ct, cls, basis) in HEAD_MAP.items():
+        if head not in monthly:
+            raise SystemExit(f"head {head!r} not found in the Monthly sheet")
+        lines.append(("Monthly sheet", head, ct, cls, basis, monthly[head]))
+
+    # --- check the split heads reproduce the Monthly sheet, and every month the ledger ---
+    checks = []
+    for head, src_lines in (("Cost of Goods Sold", [l for l in lines if l[0] == "Consumption sheet"]),
+                            ("Salaries & Wages", [l for l in lines if l[0] == "Salary sheet"]),
+                            ("Depreciation Expense", [l for l in lines if l[0] == "TB depreciation"])):
+        for m in range(12):
+            s = sum(l[5][m] for l in src_lines)
+            if s != monthly[head][m]:
+                checks.append(f"{head} month {m+1}: split {s} != Monthly {monthly[head][m]}")
+    totals = [sum(l[5][m] for l in lines) for m in range(12)]
+    for m in range(12):
+        gl = GL_2025[m + 1]
+        if totals[m] != gl:
+            checks.append(f"month {m+1}: mapped total {totals[m]} != ledger {gl} ({totals[m]-gl:+})")
+    if checks:
+        print("RECONCILIATION DIFFERENCES:\n  " + "\n  ".join(checks))
+
+    # --- aggregate to cost types ---
+    ct_month: dict[str, list[Decimal]] = {t: [Decimal(0)] * 12 for t in COST_TYPES}
+    for _, _, ct, _, _, vals in lines:
+        for m in range(12):
+            ct_month[ct][m] += vals[m]
+    # the Monthly sheet is 5.70 short of the P&L in total (a blank sub-category); tie each month to the locked ledger on OHF
+    for m in range(12):
+        diff = GL_2025[m + 1] - sum(ct_month[t][m] for t in COST_TYPES)
+        if diff:
+            ct_month["OHF"][m] += diff
+            checks.append(f"month {m+1}: {diff:+} added to OHF to tie to the locked ledger")
+
+    # --- write the workbook ---
+    wb = openpyxl.load_workbook(args.template)
+    ws = wb["Cost types by month"]
+    for r in ws.iter_rows(min_row=2):
+        if r[0].value in COST_TYPES:
+            for m in range(12):
+                r[2 + m].value = float(ct_month[r[0].value][m])   # columns C..N
+    bold = Font(bold=True)
+    head_fill = PatternFill("solid", fgColor="D9E1F2")
+    mp = wb.create_sheet("Mapping", 1)
+    mp.append(["Source", "Ledger head / split", "DOH cost type", "Cost-centre class (Stage 2)", "Basis",
+               "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "FY2025"])
+    for c in mp[1]:
+        c.font = bold
+        c.fill = head_fill
+    for src, head, ct, cls, basis, vals in sorted(lines, key=lambda l: (COST_TYPES.index(l[2]), -sum(l[5]))):
+        mp.append([src, head, ct, cls, basis, *[float(v) for v in vals], float(sum(vals))])
+    mp.append([])
+    mp.append(["", "TOTAL mapped", "", "", "", *[float(t) for t in totals], float(sum(totals))])
+    mp.append(["", "Ledger (locked)", "", "", "", *[float(GL_2025[m]) for m in range(1, 13)], float(sum(GL_2025.values()))])
+    for c in mp[mp.max_row - 1] + mp[mp.max_row]:
+        c.font = bold
+    for col, w in zip("ABCDE", (16, 48, 14, 36, 90)):
+        mp.column_dimensions[col].width = w
+    for r in mp.iter_rows(min_row=2):
+        for c in r[5:]:
+            c.number_format = "#,##0.00"
+
+    q = wb.create_sheet("Questions", 2)
+    q.append(["Mapping built from Arjun's FY2025 financial workbook (Monthly P&L, Salary, Consumption, TB). Points to confirm:"])
+    q["A1"].font = bold
+    for line in QUESTIONS:
+        q.append([line])
+    q.append([])
+    oh = [sum(ct_month[t][m] for t in OVERHEAD_COST_TYPES) for m in range(12)]
+    q.append([f"Overhead ratio by month: " + ", ".join(f"{m+1:02d} {float(oh[m] / GL_2025[m+1] * 100):.1f}%" for m in range(12))
+              + f"; FY2025 {float(sum(oh) / sum(GL_2025.values()) * 100):.1f}% (DOH band 20% to under 50%)"])
+    if checks:
+        q.append([])
+        q.append(["Reconciliation notes:"])
+        for c in checks:
+            q.append([c])
+    q.column_dimensions["A"].width = 160
+    if "Assumptions" in wb.sheetnames:
+        del wb["Assumptions"]
+    wb.save(args.out)
+
+    print(f"wrote {args.out}")
+    print(f"{'Cost type':<16}" + "".join(f"{m:>12}" for m in ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) + f"{'FY2025':>14}{'share':>8}")
+    grand = sum(GL_2025.values())
+    for t in COST_TYPES:
+        v = ct_month[t]
+        if any(v):
+            print(f"{t:<16}" + "".join(f"{float(x):>12,.0f}" for x in v) + f"{float(sum(v)):>14,.2f}{float(sum(v) / grand * 100):>7.1f}%")
+    print(f"{'TOTAL':<16}" + "".join(f"{float(x):>12,.0f}" for x in totals) + f"{float(sum(totals)):>14,.2f}")
+    print(f"{'Ledger':<16}" + "".join(f"{float(GL_2025[m]):>12,.0f}" for m in range(1, 13)) + f"{float(grand):>14,.2f}")
+    print(f"overhead ratio FY2025: {float(sum(oh) / grand * 100):.1f}%  (monthly min {min(float(oh[m]/GL_2025[m+1]*100) for m in range(12)):.1f}%, max {max(float(oh[m]/GL_2025[m+1]*100) for m in range(12)):.1f}%)")
+    for c in checks:
+        print("note:", c)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

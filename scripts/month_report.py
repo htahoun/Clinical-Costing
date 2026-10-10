@@ -159,15 +159,6 @@ def main(argv=None):
             c.number_format = "#,##0.000"
     bk.column_dimensions["A"].width = 14
 
-    pf = wb.create_sheet("Bucket profiles")
-    header(pf, ["Bucket", "Cost-type profile fitted for the month (share of the bucket)"])
-    for ln in log_lines:
-        if "profile" in ln:
-            b = ln.split("bucket ")[1].split(" profile")[0]
-            pf.append([b, ln.split("profile ")[1]])
-    pf.column_dimensions["A"].width = 14
-    pf.column_dimensions["B"].width = 150
-
     mx = wb.create_sheet("Type x Bucket", 3)
     import csv
     matrix = defaultdict(lambda: defaultdict(float))
@@ -176,6 +167,40 @@ def main(argv=None):
         for r in csv.DictReader(open(mpath)):
             matrix[r["cost_type"].split(" (")[0]][r["bucket"]] += float(r["aed"])
         used_b = [b for b in BUCKETS if any(matrix[t].get(b) for t in matrix)]
+        # Sheet A: WHERE does each cost type go (row = cost type, % of that cost type)
+        wa = wb.create_sheet("Where each cost type goes", 3)
+        header(wa, ["Cost type", "Month total AED", *[f"{b} AED" for b in used_b], *[f"{b} %" for b in used_b]])
+        for t in COST_TYPES:
+            if t in matrix:
+                tot = sum(matrix[t].values())
+                wa.append([t, tot, *[matrix[t].get(b, 0.0) for b in used_b], *[(matrix[t].get(b, 0.0) / tot) if tot else 0 for b in used_b]])
+        for r in wa.iter_rows(min_row=2):
+            for c in r[1:2 + len(used_b)]:
+                c.number_format = "#,##0.00"
+            for c in r[2 + len(used_b):]:
+                c.number_format = "0.0%"
+        wa.append([])
+        wa.append(["Read a row: e.g. SWDoc = the dentists' pay for the month and the share of it sitting in each bucket (98% Dental, 2% Anaesthesia by ruling)."])
+        wa.column_dimensions["A"].width = 16
+        for i in range(1, 2 + 2 * len(used_b)):
+            wa.column_dimensions[openpyxl.utils.get_column_letter(i + 1)].width = 15
+        # Sheet B: WHAT is each bucket made of (row = bucket, % of that bucket)
+        wbk = wb.create_sheet("What each bucket is made of", 4)
+        types_used = [t for t in COST_TYPES if t in matrix]
+        header(wbk, ["Bucket", "Bucket total AED", *[f"{t} AED" for t in types_used], *[f"{t} %" for t in types_used]])
+        for b in used_b:
+            tot = sum(matrix[t].get(b, 0.0) for t in types_used)
+            wbk.append([b, tot, *[matrix[t].get(b, 0.0) for t in types_used], *[(matrix[t].get(b, 0.0) / tot) if tot else 0 for t in types_used]])
+        for r in wbk.iter_rows(min_row=2):
+            for c in r[1:2 + len(types_used)]:
+                c.number_format = "#,##0.00"
+            for c in r[2 + len(types_used):]:
+                c.number_format = "0.0%"
+        wbk.append([])
+        wbk.append(["Read a row: e.g. Anaesthesia = a small bucket (drugs + 2% of dentists + 1% of nurses); its % columns describe that bucket only, not the salaries."])
+        wbk.column_dimensions["A"].width = 16
+        for i in range(1, 2 + 2 * len(types_used)):
+            wbk.column_dimensions[openpyxl.utils.get_column_letter(i + 1)].width = 15
         header(mx, ["Cost type (WHAT)", *used_b, "TOTAL", "Ledger", "Share in Dental"])
         for t in COST_TYPES:
             if t in matrix:

@@ -168,6 +168,33 @@ def main(argv=None):
     pf.column_dimensions["A"].width = 14
     pf.column_dimensions["B"].width = 150
 
+    mx = wb.create_sheet("Type x Bucket", 3)
+    import csv
+    matrix = defaultdict(lambda: defaultdict(float))
+    mpath = Path(args.corrected).parent / f"matrix_M{args.month:02d}.csv"
+    if mpath.exists():
+        for r in csv.DictReader(open(mpath)):
+            matrix[r["cost_type"].split(" (")[0]][r["bucket"]] += float(r["aed"])
+        used_b = [b for b in BUCKETS if any(matrix[t].get(b) for t in matrix)]
+        header(mx, ["Cost type (WHAT)", *used_b, "TOTAL", "Ledger", "Share in Dental"])
+        for t in COST_TYPES:
+            if t in matrix:
+                row = [matrix[t].get(b, 0.0) for b in used_b]
+                mx.append([t, *row, sum(row), ledger.get(t, 0) / 1000, (matrix[t].get("Dental", 0.0) / sum(row)) if sum(row) else 0])
+        mx.append(["TOTAL (WHERE)", *[sum(matrix[t].get(b, 0.0) for t in matrix) for b in used_b],
+                   sum(sum(r.values()) for r in matrix.values()), sum(ledger.values()) / 1000, ""])
+        for c in mx[mx.max_row]:
+            c.font = BOLD
+        for r in mx.iter_rows(min_row=2):
+            for c in r[1:-1]:
+                c.number_format = "#,##0.00"
+            r[-1].number_format = "0.0%"
+        mx.append([])
+        mx.append(["Read across a row: where that cost type sits (buckets). Read down a column: what that bucket is made of (cost types). Both add to the month ledger."])
+        mx.column_dimensions["A"].width = 18
+        for i in range(len(used_b) + 3):
+            mx.column_dimensions[openpyxl.utils.get_column_letter(i + 2)].width = 14
+
     ic = wb.create_sheet("Implant claims")
     header(ic, ["Claim", "Implant codes billed", "Fixture units", "Abutment units", "Bone-graft units", "Claim cost",
                 "Prostheses (corrected)", "Prosthesis bucket (corrected)", "Dental bucket sent", "Dental bucket corrected", "Note"])

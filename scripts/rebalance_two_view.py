@@ -133,24 +133,27 @@ DIRECT_TYPES = [t for t in COST_TYPES if t not in OVERHEAD_COST_TYPES]
 # Nature seed: which cost types each bucket may contain, with prior weights.
 # Zero (absent) means "never". The RAS fit rescales these to both margins.
 SEED = {
-    # Dental is the clinic's one direct cost centre: it may hold every cost type (small prior weights for
-    # the types that belong mainly to another bucket), so the fit always has a flexible absorber.
+    # Bucket = WHERE the cost was incurred (Standard v2.1 Appendix 2). Each bucket may hold only the cost
+    # types that the Standard's description of that bucket covers. The fit scales these priors to the margins.
+    # Dental Services: "qualified dentists, dental hygienist, dental assistant and admin" -> the dentists' and
+    # nurses' pay, their supplies, chair depreciation and the allocated overheads (overheads sit here only).
     "Dental": {"SWDoc": 4, "SWNurs": 2, "SWAllied": 1, "SWNonClin": 1, "MS": 2, "Hotel": 0.2, "GS": 0.5,
                "Depreciation": 1, "Pharmacy": 0.2, "Laboratory": 0.1, "Imaging": 0.1, "Prostheses": 0.1,
                "OHF": 1, "OHDepreciation": 0.5, "OHC": 0.5},
-    # Ruling 10 Oct 2026: overhead cost types sit in the Dental bucket only (CostBucketOverheads/Dental).
-    # Pass-through purchases: mainly their own cost type, with a small weight on supplies/technician time
-    # so the fit can absorb a ledger figure that differs from the costed bucket.
-    # Laboratory bucket = crown/denture lab work: lab materials and outsourced invoices, technician time, supplies,
-    # and the dentist's chairside share of prosthodontic codes.
-    "Laboratory": {"Laboratory": 1, "MS": 0.1, "SWAllied": 0.1, "SWDoc": 0.1},
-    # Prosthesis bucket (non-implant lines of the allocation table: crowns, dentures): once the implant stock has
-    # been pre-assigned to implant claims, what remains is lab work, supplies and dentist time.
-    "Prosthesis": {"Prostheses": 1, "Laboratory": 0.3, "MS": 0.2, "SWDoc": 0.2},
-    "Imaging": {"Imaging": 2, "SWAllied": 0.5, "Depreciation": 0.5, "MS": 0.2, "SWNurs": 0.2},
-    "Anaesthesia": {"Pharmacy": 2, "SWDoc": 0.5, "MS": 0.3},
+    # Laboratory services: lab materials and outsourced invoices, "the cost of laboratory staff" (technicians),
+    # supplies and lab equipment depreciation. No dentist pay, no overheads.
+    "Laboratory": {"Laboratory": 1, "SWAllied": 0.3, "MS": 0.2, "Depreciation": 0.1},
+    # Patient implants: implant stock is pre-assigned to implant claims; what remains of the allocation table's
+    # Prosthesis column is crown/denture work = lab work and materials. No dentist pay.
+    "Prosthesis": {"Prostheses": 1, "Laboratory": 0.5, "MS": 0.5},
+    # Imaging services: "includes the cost of imaging staff" (the nurse/radiographer taking the OPG), imaging
+    # supplies, OPG/sensor depreciation.
+    "Imaging": {"Imaging": 2, "SWAllied": 0.5, "SWNurs": 0.5, "Depreciation": 0.5, "MS": 0.2},
+    # Anaesthesia services: the anaesthetic drugs and gases plus the clinician's time administering them.
+    "Anaesthesia": {"Pharmacy": 2, "SWDoc": 0.5, "SWNurs": 0.2, "MS": 0.3},
+    # Outpatient clinics (tiny): consumables and other goods.
     "OP": {"SWNonClin": 1, "GS": 0.2, "MS": 0.1},
-    "Physician": {"SWDoc": 1, "MS": 0.05},
+    "Physician": {"SWDoc": 1, "MS": 0.05},        # medical physicians only (Appendix 2 list) - unused by a dental clinic
     "Pharmacy": {"Pharmacy": 1, "MS": 0.05},
     "Allied": {"SWAllied": 1, "MS": 0.05},
     "Other": {"GS": 1, "MS": 0.5},
@@ -321,6 +324,7 @@ def process_month(encs: list[dict], ledger_m: dict[str, int], log: list, fname: 
             nd[b] -= oh_delta
         assert sum(nd.values()) + sum(no.values()) == sum(nt.values())
         log.append(f"{fname}: fils residuals {{{', '.join(f'{t}:{v:+d}' for t, v in resid.items() if v)}}} absorbed by claim {encs[i]['cid']}")
+    process_month.last_rows = dict(rows)
     return results, profiles
 
 
@@ -372,8 +376,24 @@ def main(argv=None):
             log.append(f"{f.name}: implant pools from stock " + ", ".join(f"{k} {float(v):,.2f}" for k, v in pools.items())
                        + f"; coded claims in activity: {len(units)}")
         results, profiles = process_month(encs, ledger[month], log, f.name, units, pools)
+        rows_fit = process_month.last_rows
         for b, prof in profiles.items():
             log.append(f"{f.name}: bucket {b} profile " + ", ".join(f"{t} {float(s)*100:.1f}%" for t, s in prof.items() if s))
+        # bucket x cost-type matrix in AED, from the corrected cells themselves (pre-assigned implants included)
+        import csv
+        mat: dict = {}
+        for (nd, no, nt) in results:
+            pass
+        with open(outdir / f"matrix_M{month:02d}.csv", "w", newline="") as fh:
+            w = csv.writer(fh)
+            w.writerow(["bucket", "cost_type", "aed"])
+            for b, prof in profiles.items():
+                for t, share in prof.items():
+                    if share:
+                        w.writerow([b, t, f"{float(Decimal(rows_fit[b]) * share) / 1000:.3f}"])
+            pre_total = sum(e.get("pre_prostheses", 0) for e in encs)
+            if pre_total:
+                w.writerow(["Prosthesis", "Prostheses (implant stock pre-assigned)", f"{pre_total / 1000:.3f}"])
         B = T = OH = 0
         for enc, (nd, no, nt) in zip(nodes, results):
             for name, vals in (("CostBucketDirect", nd), ("CostBucketOverheads", no), ("CostTypeDetails", nt)):

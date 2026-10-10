@@ -3,7 +3,7 @@
 Generation-2 Shafafiya Cost.Submission XML generator + inline validation.
 
   python3 scripts/make_xml_final.py --workbook output/Clinical_Costing_2025_MF4159_FINAL.xlsx \
-      --outdir output/xml_final --disposition PTE_SUBMIT --supplies-bucket Other \
+      --outdir output/xml_final --disposition PTE_SUBMIT --supplies-bucket Dental \
       [--xsd docs/shafafiya/CostSubmission_repaired.xsd] [--zip]
 
 One <Claim> per claim ID per month, costs summed across the claim's lines in
@@ -27,8 +27,8 @@ from lxml import etree  # noqa: E402
 from build2_lib import to_fils  # noqa: E402
 from costsub_reader import xsd_validate  # noqa: E402
 from costsub_schema import (DATE_FMT, DIAGNOSIS_ORDER, DISPOSITIONS, ENCOUNTER_ORDER, FACILITY_ID,  # noqa: E402
-                            HEADER_ORDER, MAX_FILE_BYTES, MONEY_ELEMENTS, PRINCIPAL, PROCEDURE_ORDER,
-                            RECEIVER_ID, ROOT, TZ_OFFSET_HOURS, bucket_map, fmt_money_fils)
+                            HEADER_ORDER, MAX_FILE_BYTES, MONEY_ELEMENTS, MONEY_GROUPS, PRINCIPAL,
+                            PROCEDURE_ORDER, RECEIVER_ID, ROOT, TZ_OFFSET_HOURS, bucket_map, fmt_money_fils)
 from gl_new import gl_fils  # noqa: E402
 
 GST = timezone(timedelta(hours=TZ_OFFSET_HOURS))
@@ -83,7 +83,7 @@ def build_claims(lines: list[dict], bmap: dict, log: list[str]) -> OrderedDict:
         c["lines"] += 1
     for cid, c in list(claims.items()):
         total = sum(c["money"].values())
-        c["money"]["TotalCost"] = total
+        c["total"] = total
         if total == 0:
             log.append(f"claim {cid}: zero total — EXCLUDED (DOH blocks zero-total encounters)")
             del claims[cid]
@@ -96,14 +96,13 @@ def claim_element(c: dict) -> etree._Element:
     cl = etree.Element("Claim")
     etree.SubElement(cl, "ID").text = c["ID"]
     etree.SubElement(cl, "ProviderID").text = FACILITY_ID
-    etree.SubElement(cl, "PatientID").text = c["PatientID"]
     enc = etree.SubElement(cl, "Encounter")
     simple = {
-        "FacilityID": FACILITY_ID, "ID": c["EncounterID"], "Type": c["Type"], "StartDateTime": c["Start"],
-        "EndDateTime": c["End"], "StartType": "1", "EndType": "1", "ActivityClinicianID": c["Clinician"],
-        "ServiceCode": "", "Specialty": c["Specialty"], "SubSpecialty": "", "DRGCode": "",
-        "OPAttendanceType": "", "TheatreAttendanceFlag": c["Theatre"], "TriageCategory": "0",
-        "CriticalCareHours": "0", "VentilationHours": "0",
+        "FacilityID": FACILITY_ID, "ID": c["EncounterID"], "ActivityClinicianID": c["Clinician"],
+        "PatientID": c["PatientID"], "Type": c["Type"], "Start": c["Start"], "End": c["End"],
+        "StartType": "1", "Specialty": c["Specialty"], "SubSpecialty": "", "DRGCode": "",
+        "ServiceCode": "", "EndType": "1", "EDTriageLevel": "0", "OPAttendanceType": "",
+        "TheatreAttendanceFlag": c["Theatre"], "CriticalCareTime": "0", "VentilationTime": "0",
     }
     for name in ENCOUNTER_ORDER:
         if name == "Diagnosis":
@@ -113,12 +112,14 @@ def claim_element(c: dict) -> etree._Element:
                 etree.SubElement(d, k).text = vals[k]
         elif name == "Procedure":
             p = etree.SubElement(enc, "Procedure")
-            vals = {"Code": c["Procedure"] if c["Theatre"] == "1" else "",
+            vals = {"Type": "", "Code": c["Procedure"] if c["Theatre"] == "1" else "",
                     "Duration": c["Duration"] if c["Theatre"] == "1" else "0"}
             for k in PROCEDURE_ORDER:
                 etree.SubElement(p, k).text = vals[k]
-        elif name in c["money"]:
-            etree.SubElement(enc, name).text = fmt_money_fils(c["money"][name])
+        elif name in MONEY_GROUPS:
+            g = etree.SubElement(enc, name)
+            for child in MONEY_GROUPS[name]:
+                etree.SubElement(g, child).text = fmt_money_fils(c["money"].get(name + child, 0))
         else:
             etree.SubElement(enc, name).text = simple[name]
     return cl
@@ -143,7 +144,7 @@ def main(argv=None):
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--year", type=int, default=2025)
     ap.add_argument("--disposition", default="PTE_SUBMIT", choices=DISPOSITIONS)
-    ap.add_argument("--supplies-bucket", default="Other", help="Other (current) or Dental (if DOH rules so)")
+    ap.add_argument("--supplies-bucket", default="Dental", help="Dental (accepted by DOH in SY02) or another Gen2 bucket")
     ap.add_argument("--xsd", default=str(Path(__file__).resolve().parents[1] / "docs/shafafiya/CostSubmission_repaired.xsd"))
     ap.add_argument("--months", nargs="*", type=int, help="subset of months to generate")
     ap.add_argument("--zip", action="store_true", help="also write a zip of the twelve files")
@@ -165,7 +166,7 @@ def main(argv=None):
         out = outdir / f"CostSubmission_{FACILITY_ID}_{args.year}{m:02d}.xml"
         write_month(claims, args.disposition, out, now)
         size = out.stat().st_size
-        total = sum(c["money"]["TotalCost"] for c in claims.values())
+        total = sum(c["total"] for c in claims.values())
         gl = gl_fils(args.year, m)
         tie = "OK" if total == gl else f"{(total - gl) / 1000:+.3f}"
         xsd, msgs = xsd_validate(out, args.xsd)

@@ -19,10 +19,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from costsub_reader import claim_total, file_total, read_submission, xsd_validate  # noqa: E402
 
-META_FIELDS = ["FacilityID", "ID", "Type", "StartDateTime", "EndDateTime", "StartType", "EndType",
-               "ActivityClinicianID", "ServiceCode", "Specialty", "SubSpecialty", "DRGCode",
-               "OPAttendanceType", "TheatreAttendanceFlag", "TriageCategory", "CriticalCareHours",
-               "VentilationHours"]
+META_FIELDS = ["FacilityID", "ID", "ActivityClinicianID", "PatientID", "Type", "Start", "End", "StartType",
+               "Specialty", "SubSpecialty", "DRGCode", "ServiceCode", "EndType", "EDTriageLevel",
+               "OPAttendanceType", "TheatreAttendanceFlag", "CriticalCareTime", "VentilationTime"]
 
 
 def flat_money(claim: dict) -> dict:
@@ -67,7 +66,7 @@ def main(argv=None):
     meta_examples = {}
     for cid in both:
         ca, cb = A["claims"][cid], B["claims"][cid]
-        for k in ("ProviderID", "PatientID"):
+        for k in ("ProviderID",):
             if ca.get(k) != cb.get(k):
                 meta_diffs[k] += 1
                 meta_examples.setdefault(k, (cid, ca.get(k), cb.get(k)))

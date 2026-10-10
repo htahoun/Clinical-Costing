@@ -1,0 +1,126 @@
+[ABU DHABI COST DATA
+COLLECTION]
+
+[Feedback to Provider – SY02 – 2025
+Cost Data Submission]
+Dear Healthcare Provider,
+
+Greetings from the Clinical Costing Team at the Department of Health (DOH), Abu Dhabi.
+
+We are writing to provide you with official feedback regarding your cost data submission for Submission Year 02 (SY02 – 2025). Please
+find below a comprehensive evaluation of your submission.
+
+We kindly ask that you pay close attention to the ‘Tolerance’ column, as this indicates the status of your submission in terms of
+acceptance or rejection, and whether resubmission of the cost data, the reconciliation report, or both, is required.
+
+
+ Submission Year                                  SY-02-2025
+
+ Facility                                         MF4159 - VISION DENTAL CLINIC L.L.C
+
+
+                                                                                                                             Not assigned
+
+                                                Final Quality Score:
+
+
+
+ Matrix                                         Reason                   Criteria                               Score         Tolerance
+
+
+
+ Reconciliation Report Sign Off                 Compliance               Yes                                            10    Acceptable
+
+ Negative / Zero Cost                           Data Quality             No                                             10    Acceptable
+
+ Cost Bucket / Cost Type Match                  Data Quality             No                                             -5    Reject
+
+ Accounting Method                              Compliance               Accrual Accounting                             10    Acceptable
+
+ Overhead Method                                Best Practice            Step-Down Method                               5     Acceptable
+
+ Costing Method                                 Compliance               Bottom-up (Activity-Based Costing)             10    Acceptable
+
+ Auditing Status                                Validation               External Audit Completed                       10    Acceptable
+
+ Costing Software                               Best Practice            Yes                                            10    Acceptable
+
+ Cost Data Submission                           Compliance               In time                                        10    Acceptable
+
+ Reconciliation Report Submission               Compliance               In time                                        10    Acceptable
+
+ Overhead Cost Ratio                            Validation               Below 20%                                      0     Warning
+
+
+Please note: no Final Quality Score has been assigned to this submission because the submission is rejected against Cost Bucket /
+Cost Type Match (No). The matter(s) above must be corrected and the submission resubmitted before a score can be issued. The
+matrix below is provided for your information.
+
+
+Please see appendix on next page for interpreting the feedback and taking further action accordingly.
+
+Please do not reply directly to this email, as responses will not be monitored. For any enquiries or to request a meeting regarding this
+topic, kindly use the established channels, such as the Costing Questionnaires.
+
+Kind Regards
+DOH Clinical Costing Team
+
+
+
+
+                                                                                                                                            2
+Appendix – 01
+
+ Matrix               Criteria          Tolerance   Details of Tolerance
+ Sign off             Yes               Accept      Accepted by DOH for this Matrix
+ Sign off             No                Reject      The reconciliation reported is rejected if not signed off by competent authority
+ Negative / Zero
+ Cost                 No                Accept      Acceptable by DOH for this Matrix
+ Negative / Zero                                    The reconciliation report and cost data submission will be subject to rejection if costing claims are reported with zero
+ Cost                 Yes               Reject      or negative value
+
+ Cost Bucket / Cost                                 The reconciliation report and cost data submission will be subject to rejection if cost buckets total has mismatch with
+ Type Match           No                Reject      cost type total for each costing claim and overall
+ Cost Bucket / Cost
+ Type Match           Yes               Accept      Acceptable by DOH for this Matrix
+ Accounting           Accrual
+ Method               Accounting        Accept      Accepted by DOH for this Matrix
+ Accounting           Cash
+ Method               Accounting        Warning     Accepted with Warning. The Provider must fix this prior to next Submission Year
+ Overhead             Step-Down
+ Allocation Method    Method            Accept      Accepted by DOH for this Matrix
+ Overhead             Reciprocal
+ Allocation Method    Method            Accept      Accepted by DOH for this Matrix
+                      Bottom-up
+ Clinical Costing     (Activity-Based
+ Methodology          Costing)          Accept      Accepted by DOH for this Matrix
+ Clinical Costing
+ Methodology          Top-Down          Warning     Accepted with Warning. The Provider must fix this prior to next Submission Year
+                      Hybrid Costing
+ Clinical Costing     (ABC and Top-
+ Methodology          Down)             Warning     Accepted with Warning. The Provider must fix this prior to next Submission Year
+ Annual Financial     External Audit
+ Audit                Completed         Accept      Accepted by DOH for this Matrix
+ Annual Financial     No Audit
+ Audit                Conducted         Warning     Accepted with Warning. It is recommended to do an annual financial audit
+ Costing Software     Yes               Accept      Accepted by DOH for this Matrix
+
+ Costing Software     No                Warning     Accepted with Warning. From a stability perspective, it is recommended to procure good clinical costing software
+ Costing Submission   In time           Accept      Accepted by DOH for this Matrix
+ Costing Submission   Delay             Warning     Accepted with Warning and may lead to non-compliance proceedings
+ Reconciliation
+ Submission           In time           Accept      Accepted by DOH for this Matrix
+ Reconciliation
+ Submission           Delay             Warning     Accepted with Warning and may lead to non-compliance proceedings
+ Overhead Cost        20% to under
+ Ratio                50%               Accept      Accepted by DOH for this Matrix
+ Overhead Cost                                      Accepted with Warning. Overhead represents half or more of total cost, which is unusually high. The Provider must
+ Ratio                50% or above      Warning     review its overhead allocation and correct this prior to the next Submission Year
+ Overhead Cost                                      Accepted with Warning. Overhead represents less than a fifth of total cost, which is unusually low. The Provider must
+ Ratio                Below 20%         Warning     confirm that all overhead has been captured and allocated, and correct this prior to the next Submission Year
+
+
+
+
+                                                                                                                                                                    3
+

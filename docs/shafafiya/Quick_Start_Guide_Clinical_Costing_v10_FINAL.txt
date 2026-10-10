@@ -1,0 +1,297 @@
+ABU DHABI CLINICAL
+COSTING
+Quick Start Guide
+
+Document Version 1.0
+
+
+
+
+         Refer to the primary document:
+      Abu Dhabi Clinical Costing Standard v2;
+      Abu Dhabi Clinical Costing Guideline v2
+            Submission Year 2 (SY02)
+DOCUMENT NAME                    VERSION         DATE OF ISSUE           DEPARTMENT
+Quick Start Guide                v1.0            14th May, 2026          Department of Health - Abu Dhabi
+
+
+
+
+Important Notice
+
+Abu Dhabi Department of Health (AD DOH) reserves the right to make changes to the Abu Dhabi Clinical
+Costing - Quick Start Guide as it sees fit, to ensure this Clinical Costing Submission is fit-for-purpose for the
+Abu Dhabi healthcare market.
+
+AD DOH looks forward to notifying you of any changes or any updates to version(s) of the Abu Dhabi Clinical
+Costing Quick Start Guide process and providing further training in its implementation.
+Contents
+
+Important Notice ............................................................................................................................ 2
+About This Document ..................................................................................................................... 3
+Do I need to undertake Clinical Costing? ........................................................................................ 4
+What Is Clinical Costing? ................................................................................................................. 4
+3 Things You Need Before You Start ............................................................................................... 4
+The 6 Steps to Calculate Your Costs................................................................................................ 6
+How to Submit Your Data ............................................................................................................... 7
+Important Notice ............................................................................................................................ 7
+Your 3 Key Reference Documents .................................................................................................. 8
+Am I Ready? - Quick Checklist ......................................................................................................... 9
+Need Help?.................................................................................................................................... 10
+Contact the Clinical Costing Team ................................................................................................ 10
+
+
+
+Abbreviations
+
+
+ ABBREVIATION                                DESCRIPTION
+ AD DOH                                      Abu Dhabi Department of Health
+ CFO                                         Chief Financial Officer
+ DOF                                         Director of Finance
+ DOH                                         Department of Health
+ EMR                                         Electronic Medical Record
+ FTE                                         Full-Time Equivalent
+ HIS                                         Hospital Information System
+ XML                                         extensible Markup Language
+
+
+
+About This Document
+This document is a Quick Guide to clinical costing in Abu Dhabi, providing clear and practical support for
+healthcare providers. It summarises key requirements, core concepts, and submission steps to help
+ensure accurate submission data, improve data quality, and support successful clinical costing
+submissions to the Department of Health (DOH).
+Do I need to undertake Clinical Costing?
+If your facility is licensed by DOH Abu Dhabi and provides direct patient care, the answer is YES.
+
+                  ✓ YOU MUST COMPLY                                ✗ YOU ARE EXCLUDED
+                                                          Stand-alone pharmacies (no direct
+ Hospitals
+                                                         patient care)
+                                                          Stand-alone diagnostic/lab centers
+ Medical centers and polyclinics
+                                                         (serving other facilities only)
+                                                          Orthotics/prosthetic supply centers
+ Outpatient and specialist clinics
+                                                         (no direct care)
+ Dental clinics
+ Day surgery and day case centers
+ Homecare and long-term care providers
+
+
+Non-Compliance Consequences
+Failure to comply may result in financial penalties, rejection of your data submission, and increased DOH
+audit scrutiny.
+
+
+
+What Is Clinical Costing?
+Clinical costing measures the actual cost of delivering care to each individual patient. It is different from
+what you charge - it is what each test, consultation, surgery and medication truly costs your facility to
+deliver.
+
+Why is DOH doing this?
+Clinical costing provides benefits across the healthcare sector.
+
+For healthcare providers, this helps identify opportunities to improve efficiency, optimise resource use,
+and better understand the cost of delivering care across teams, services and facilities.
+
+For the DOH Clinical Costing, this data supports the development of fair and transparent healthcare
+pricing while helping build a sustainable healthcare funding model for Abu Dhabi.
+
+3 Things You Need Before You Start
+
+             Appoint a Clinical Costing Contact Person
+     1       Nominate one person from your facility to be the single point of contact with the AD DOH
+             Clinical Costing Team. Register your Key Contact Form with DOH.
+           Build Your Internal Team
+           You will need for your clinical costing process - input from:
+              - Finance,
+    2         - IT/HIS,
+              - Clinical Operations & Medical Records.
+
+           As well as this, your CFO must be involved – as they will need to sign off on your clinical
+           costing submission.
+
+           Check Your Systems
+           Make sure you can:
+              a) Extract expenses from your general ledger by cost center,
+    3         b) pull patient-level encounter data from your eMR/HIS,
+              c) access the Shafafiya portal, and
+              d) generate clinical costing output data in XML format.
+
+
+
+
+                                Not sure where you stand?
+
+That’s okay. Contact our team using the following forms and we will help you assess your readiness
+The 6 Steps to Calculate Your Costs
+
+The AD DOH Standard requires you to follow six stages. Here is what each one means - in plain terms:
+
+           Gather Your Expenses
+    1      Pull all relevant expenses from your general ledger: salaries, supplies, equipment costs, outsourced
+           services. Read the AD DoH Costing Standards to find out what costs need to be excluded. .
+
+
+           Organise your costs Into Cost Centers
+    2      Sort your expenses into cost centers. Label each one as either Direct (departments that treat
+           patients, like wards and clinics) or Overhead (support functions like admin, IT and facilities)
+
+
+           Allocate Overhead Costs
+    3      Distribute your overhead costs to the direct departments using a logical method - for example,
+           allocating IT costs based on number of devices, or cleaning costs based on floor space.
+
+
+           Define Your Products
+
+    4      List all the clinical services and products your facility delivers. Separate patient-related services (e.g.
+           surgeries, imaging, pharmacy) from non-patient activities (e.g., teaching, research)
+
+
+           Assign Costs to Each Patient
+    5      Link costs to individual patient visits using cost drivers: time spent (e.g., hours in surgery, days on a
+           ward), items consumed (e.g., drugs, tests) or actual cost where known.
+
+
+           Check Everything Adds Up
+    6      Reconcile your costing output against your financial statements. Every dirham must be accounted
+           for. Complete the DOH Reconciliation Report and get your CFO to sign off on the Costing
+           reconciliation process
+How to Submit Your Data
+
+    #           Action                                         What to Know
+                                 Convert your costing data into the DOH XML format. Refer to the Cost Data
+    1      Format your data
+                                           Collection Technical Document for the exact schema.
+                Validate           Check for duplicates, missing fields, zero totals and mismatched codes
+    2
+               internally                               before you upload anything.
+               Upload to         Submit your XML files through the Shafafiya Post Office. Set the Disposition
+    3
+               Shafafiya             Flag to PRODUCTION. Split large files into batches of 5MB or less.
+
+                                 Shafafiya will validate your data automatically. You will receive error flags:
+    4        Review results
+                                        Critical errors must be fixed; Warnings should be reviewed.
+
+                                 Correct any flagged records and resubmit only the affected claims - you do
+    5       Fix and resubmit
+                                                  not need to resubmit the entire dataset!
+             CFO/DOF signs       Your Chief Financial Officer / Director of Finance must formally confirm the
+    6
+                 off                         accuracy and completeness of the submitted data
+
+
+                                        Do not leave it to the last day
+
+Clinical Costing Submission 2 (SY2) should be submitted between 1 - 30 August 2026 - see link to the AD
+DoH SY2 Circular: Clinical Costing SY2 Circular - USO/70/2026.
+
+
+
+
+ Important Notice
+
+ All healthcare service providers must comply with submitting full cost data. Failure to comply will result
+ in the application of administrative procedures in accordance with the provisions of the Disciplinary
+ Regulations for the healthcare sector.
+Your 3 Key Reference Documents
+Everything you need is built on three official DOH documents. Download them Here from our web home
+page.
+           Document                                             What It Tells You
+                                      The rules: what you must do, the six-stage methodology and the costing
+   Clinical Costing Standard
+                                                                    principles.
+   Clinical Costing Guidelines          The how-to: step-by-step practical guidance on applying each stage
+       Cost Data Collection          The tech specs: XML format, data fields, validation rules and the Shafafiya
+       Technical Document                                     submission process
+
+
+Top Mistakes to Avoid
+   #                    Mistake                                                Fix
+                                                Refer to the Abu Dhabi Clinical Costing Guidelines V2 for items
+                   Missing expenses
+   1                                                                        to exclude.
+                                                   Use a logical basis such as (floor space, headcount, device
+            Splitting overhead costs equally     count) - refer to the Abu Dhabi Clinical Costing Guidelines V2
+   2                                                                    for further insight.
+                                                  All patient encounters must be included, including self-paid
+              Forgetting self-pay patients
+   3                                                                      and uninsured.
+              Duplicate records across file        When splitting files into 5MB batches, make sure no claim
+   4                    batches                                appears in more than one batch.
+                                                   Involve your CFO from the start. They must sign off on the
+           No CFO involvement until the end
+   5                                                                      final data.
+                                                     Submit early. If Shafafiya flags errors, you need time to
+              Submitting on the last day
+   6                                                                   correct and resubmit.
+Am I Ready? - Quick Checklist
+
+Tick off each item before you submit:
+
+
+People
+   ☐ Costing contact person registered with DOH
+   ☐ Internal team assembled (Finance, IT, Clinical Operations, Medical Records)
+   ☐ CFO engaged and aware of sign-off requirement
+
+
+Data
+   ☐ General ledger expenses extracted and classified
+   ☐ Cost centers defined (direct vs. overhead)
+   ☐ Patient encounter data extracted from EMR/HIS
+   ☐ Shafafiya portal access confirmed
+
+
+Costing Model
+   ☐ Six-stage methodology completed
+   ☐ Overhead costs allocated using logical statistics
+   ☐ Costs assigned to individual patient encounters
+   ☐ Reconciliation completed
+
+
+Submission
+   ☐ Data formatted in DOH XML schema
+   ☐ Internal validation checks passed
+   ☐ Files batched at 5MB or less
+   ☐ Uploaded to Shafafiya (PRODUCTION flag)
+   ☐ Errors corrected and resubmitted
+   ☐ CFO sign-off obtained
+Need Help?
+The DOH Clinical Costing Team is here to support you every step of the way. However, we encourage all
+providers to first review the available documentation, standards, guidelines, and training materials
+before reaching out for clarification.
+
+To support providers, we offer online:
+
+    -   Training materials and webinars,
+    -   workshops,
+    -   one-on-one support sessions,
+    -   This quick start guide and a a Frequently Asked Questions (FAQs) document that should answer
+        your questions
+
+This previously created documentation is designed to assist you throughout the submission process.
+
+While providers remain responsible for developing and submitting their own clinical costing models
+and data, our team is available to help clarify requirements, guidance and processes where needed.
+
+Don’t hesitate to reach out - we are here to help you succeed!
+
+
+
+
+__________
+
+
+
+
+Contact the Clinical Costing Team
+
+Email: DoHClinicalCosting@doh.gov.ae
+Website: https://www.doh.gov.ae/en/Shafafiya/Clinical-Costing
+

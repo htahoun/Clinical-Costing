@@ -86,8 +86,8 @@ def _read_encounter(el) -> dict:
 
 
 def encounter_total(enc: dict) -> int:
-    """Sum of all money cells excluding TotalCost (what the claim really carries)."""
-    return sum(v for k, v in enc["money"].items() if k != "TotalCost")
+    """Sum of all money cells (buckets + cost types)."""
+    return sum(enc["money"].values())
 
 
 def claim_total(claim: dict) -> int:

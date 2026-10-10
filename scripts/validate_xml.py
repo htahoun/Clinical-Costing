@@ -4,15 +4,15 @@ Pre-flight validator: every hard portal/schema rule from docs/CLINICAL_COSTING.m
 checked on any Cost.Submission XML (ours or a platform's) before it goes to Shafafiya.
 
   python3 scripts/validate_xml.py output/xml_final/*.xml [--xsd path] [--year 2025]
-      [--expect-disposition PRODUCTION] [--strict-totals]
+      [--expect-disposition PRODUCTION]
 
 Checks: XSD (if present); ReceiverID HAAD; Sender/Provider/Facility = MF4159;
 DispositionFlag; RecordCount = claims; date format dd/mm/yyyy HH:MM; all dates in
 one month and in the file's month; money text exactly 3 dp; no negatives; no
 zero-total claims; one <Claim> per ID; principal diagnosis only; Procedure empty
-unless TheatreAttendanceFlag=1; CostBucketOverheads all zero; TotalCost = sum of
-cells; bucket-vs-type cross-foot report; file ≤ 5 MB; month total vs ledger.
-Exit 1 on any FAIL.
+unless TheatreAttendanceFlag=1; **DOH Cost Bucket / Cost Type Match** (direct +
+overhead buckets = cost types, per claim); overhead cost ratio band (20% to
+under 50%); file ≤ 5 MB; month total vs ledger. Exit 1 on any FAIL.
 """
 from __future__ import annotations
 
@@ -27,11 +27,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from costsub_reader import (DATE_RE, MONEY_RE, claim_total, encounter_total, file_total,  # noqa: E402
                             read_submission, xsd_validate)
 from costsub_schema import (COST_TYPE_ELEMENTS, DIRECT_ELEMENTS, DISPOSITIONS, FACILITY_ID,  # noqa: E402
-                            MAX_FILE_BYTES, OVERHEAD_ELEMENTS, RECEIVER_ID)
+                            MAX_FILE_BYTES, OVERHEAD_COST_TYPES, OVERHEAD_ELEMENTS, RECEIVER_ID)
 from gl_new import GL  # noqa: E402
 
 
-def validate(path: str, xsd: str | None, year: int, expect_disp: str | None, strict_totals: bool) -> list[tuple[str, str]]:
+def validate(path: str, xsd: str | None, year: int, expect_disp: str | None) -> list[tuple[str, str]]:
     """Return list of (level, message); level in FAIL / WARN / INFO."""
     out: list[tuple[str, str]] = []
     F = lambda m: out.append(("FAIL", m))
@@ -66,12 +66,11 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None, str
     months = Counter()
     enc_ids = Counter()
     zero, neg = [], []
-    bucket_eq_type = type_eq_total = bucket_eq_total = 0
+    bucket_eq_type = oh_eq = oh_total = 0
+    crossfoot_bad: list = []
     for cid, c in sub["claims"].items():
         if c.get("ProviderID") != FACILITY_ID:
             F(f"{cid}: ProviderID {c.get('ProviderID')!r}")
-        if not c.get("PatientID"):
-            F(f"{cid}: blank PatientID")
         if claim_total(c) == 0:
             zero.append(cid)
         for e in c["encounters"]:
@@ -83,7 +82,9 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None, str
             enc_ids[f.get("ID")] += 1
             if not f.get("ActivityClinicianID"):
                 F(f"{cid}: blank ActivityClinicianID")
-            for k in ("StartDateTime", "EndDateTime"):
+            if not f.get("PatientID"):
+                F(f"{cid}: blank PatientID")
+            for k in ("Start", "End"):
                 v = f.get(k, "")
                 if not DATE_RE.match(v):
                     F(f"{cid}: {k} {v!r} not dd/mm/yyyy HH:MM")
@@ -92,10 +93,10 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None, str
                     months[(d.year, d.month)] += 1
                     if d.year != year:
                         F(f"{cid}: {k} {v} outside FY{year}")
-            if f.get("StartDateTime", "") and f.get("EndDateTime", "") and \
-               DATE_RE.match(f["StartDateTime"]) and DATE_RE.match(f["EndDateTime"]) and \
-               datetime.strptime(f["EndDateTime"], "%d/%m/%Y %H:%M") < datetime.strptime(f["StartDateTime"], "%d/%m/%Y %H:%M"):
-                F(f"{cid}: EndDateTime before StartDateTime")
+            if f.get("Start", "") and f.get("End", "") and \
+               DATE_RE.match(f["Start"]) and DATE_RE.match(f["End"]) and \
+               datetime.strptime(f["End"], "%d/%m/%Y %H:%M") < datetime.strptime(f["Start"], "%d/%m/%Y %H:%M"):
+                F(f"{cid}: End before Start")
             types = [t for t, _ in e["diagnoses"]]
             if not e["diagnoses"] or types[0] != "Principal":
                 F(f"{cid}: first diagnosis is not Principal ({types})")
@@ -114,16 +115,15 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None, str
                     F(f"{cid}: {k} = {txt!r} is not 3 dp")
             if any(v < 0 for v in e["money"].values()):
                 neg.append(cid)
-            if any(e["money"].get(k, 0) for k in OVERHEAD_ELEMENTS):
-                F(f"{cid}: CostBucketOverheads not all zero (overheads live in CostTypeDetails)")
-            tot = e["money"].get("TotalCost")
-            if tot is not None and tot != encounter_total(e):
-                F(f"{cid}: TotalCost {tot/1000:.3f} != sum of cells {encounter_total(e)/1000:.3f}")
             b = sum(e["money"].get(k, 0) for k in DIRECT_ELEMENTS + OVERHEAD_ELEMENTS)
             t = sum(e["money"].get(k, 0) for k in COST_TYPE_ELEMENTS)
             bucket_eq_type += (b == t)
-            type_eq_total += (t == (tot if tot is not None else encounter_total(e)))
-            bucket_eq_total += (b == (tot if tot is not None else encounter_total(e)))
+            if b != t:
+                crossfoot_bad.append((cid, b, t))
+            ohb = sum(e["money"].get(k, 0) for k in OVERHEAD_ELEMENTS)
+            oht = sum(e["money"].get(f"CostTypeDetails{k}", 0) for k in OVERHEAD_COST_TYPES)
+            oh_eq += (ohb == oht)
+            oh_total += oht
     for cid in zero:
         F(f"{cid}: zero-total claim (DOH blocks these; exclude)")
     for cid in neg:
@@ -134,17 +134,25 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None, str
     if len(months) > 1:
         W(f"file spans months {sorted(months)} — expected one month per file")
     n = len(sub["claims"])
-    I(f"cross-foot: buckets==types in {bucket_eq_type}/{n}; types==total in {type_eq_total}/{n}; "
-      f"buckets==total in {bucket_eq_total}/{n}  (our method: buckets + types = total)")
-    if strict_totals and (bucket_eq_type != n or type_eq_total != n):
-        F("strict cross-foot requested: buckets, cost types and TotalCost do not each sum to the total")
+    for cid, b, t in crossfoot_bad[:3]:
+        F(f"{cid}: buckets {b/1000:.3f} != cost types {t/1000:.3f} (DOH Cost Bucket / Cost Type Match)")
+    if len(crossfoot_bad) > 3:
+        F(f"... {len(crossfoot_bad) - 3} more claims fail the Cost Bucket / Cost Type Match")
+    I(f"cross-foot: buckets==types in {bucket_eq_type}/{n} claims; CostBucketOverheads==overhead cost types in {oh_eq}/{n}")
     total = file_total(sub)
+    if total:
+        ratio = oh_total / (total / 2) * 100 if bucket_eq_type == n else oh_total / total * 100
+        (I if 20 <= ratio < 50 else W)(f"overhead cost ratio {ratio:.1f}% (DOH accepts 20% to under 50%; outside that is a Warning)")
     if len(months) == 1:
         (y, m), _ = next(iter(months.items()))
         gl = GL.get(y, {}).get(m)
         if gl is not None:
-            diff = total - int(gl * 1000)
-            (I if diff == 0 else F)(f"month total {total/1000:,.3f} vs ledger {gl:,.3f}: {'ties to the fils' if diff == 0 else f'{diff/1000:+.3f}'}")
+            types_total = sum(e["money"].get(k, 0) for c in sub["claims"].values() for e in c["encounters"] for k in COST_TYPE_ELEMENTS)
+            buckets_total = total - types_total
+            view = types_total if bucket_eq_type == n else total
+            diff = view - int(gl * 1000)
+            (I if diff == 0 else F)(f"month total {view/1000:,.3f} ({'cost-type view' if bucket_eq_type == n else 'buckets + types'}) vs ledger {gl:,.3f}: "
+                                    f"{'ties to the fils' if diff == 0 else f'{diff/1000:+.3f}'}; buckets {buckets_total/1000:,.3f}, types {types_total/1000:,.3f}")
     I(f"{n} claims, {sub['size']:,} bytes, total {total/1000:,.3f}, disposition {h.get('DispositionFlag')}")
     return out
 
@@ -155,12 +163,10 @@ def main(argv=None):
     ap.add_argument("--xsd", default=str(Path(__file__).resolve().parents[1] / "docs/shafafiya/CostSubmission_repaired.xsd"))
     ap.add_argument("--year", type=int, default=2025)
     ap.add_argument("--expect-disposition", choices=DISPOSITIONS)
-    ap.add_argument("--strict-totals", action="store_true",
-                    help="also FAIL unless buckets, types and TotalCost each equal the total (DOH cross-foot hypothesis)")
     args = ap.parse_args(argv)
     rc = 0
     for f in args.files:
-        res = validate(f, args.xsd, args.year, args.expect_disposition, args.strict_totals)
+        res = validate(f, args.xsd, args.year, args.expect_disposition)
         fails = [m for lvl, m in res if lvl == "FAIL"]
         warns = [m for lvl, m in res if lvl == "WARN"]
         print(f"\n== {Path(f).name}: {'FAIL' if fails else 'PASS'} ({len(fails)} fail, {len(warns)} warn)")

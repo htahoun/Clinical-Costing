@@ -1,0 +1,14 @@
+# Patient-level data and generated submissions never go to GitHub.
+input/*
+output/*
+!input/.gitkeep
+!output/.gitkeep
+*.xlsx
+*.xlsm
+*.csv
+*.zip
+*.soap.xml
+*.response.xml
+__pycache__/
+*.pyc
+.DS_Store

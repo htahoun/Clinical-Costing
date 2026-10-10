@@ -210,7 +210,9 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/rebalance_two_view.py` | **SY02 corrective engine**: ledger-calibrated two-margin fit; writes the resubmission XMLs |
 | `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
 | `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
-| `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping + Questions sheets) — the governing map |
+| `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping, Questions, Consumables detail sheets) — the governing map |
+| `scripts/cogs_from_movement.py` | Splits a month's consumables into cost types from the stock-movement sheet of the monthly Financial Report |
+| `input/source/Financial_Report_Jan_2025_1.xlsx` | January 2025 monthly financial report (stock movement by item category) |
 | `input/Ledger_by_Cost_Type_FY2025.xlsx` | The filled, evidence-based ledger-by-cost-type map (pending confirmation of its Questions sheet) |
 | `input/source/Financial_2025_Arjun_Updated_2.xlsx` | Arjun's FY2025 financial workbook (TB, P&L, Monthly, Salary, Consumption, cash ledger by cost centre) |
 | `scripts/propose_ledger_map.py` | Earlier common-sense proposal (superseded) |
@@ -339,6 +341,21 @@ Finance Director's confirmation (Questions sheet), chiefly whether
 "Staff Qualification And Education" (889,431.99) is HR/IT overhead or staff
 on-costs. January demo run: 831/831 claims match, both views 511,302.300.
 Supersedes the proposal below once confirmed.
+**Consumables from stock movement (10 Oct 2026).** The annual ledger books all
+consumables as one line. The monthly Financial Report's "Movement" sheet splits
+it by item category; `scripts/cogs_from_movement.py` maps usage (net of
+internal returns, exchanges cancel, external lab from the P&L) to cost types:
+implants, screws, abutments, bone graft and implant accessories → Prostheses;
+local anaesthetics and sedation gases → Pharmacy; lab blocks/blanks/inks/stone →
+Laboratory; the rest → MS; pantry/stationery → OHF. Rulings: CSSD stays direct
+(SWAllied / MS); implants incl. bone graft → Prostheses; anaesthetics →
+Pharmacy. January verified to the fils (102,127.49): Prostheses 52,796.00,
+MS 31,662.77, Laboratory 15,408.95, Pharmacy 1,252.00, OHF 1,007.80. Pass
+`--movement <m>=<file>` to `fill_ledger_map_from_financials.py` for each
+month whose report is uploaded; other months keep the Consumption-sheet split.
+Known limit: the fit spreads a cost type across every claim of a bucket, so
+implant cost lands on all Dental-bucket claims; attributing it to implant
+procedures only needs the activity master (CPT codes are not in the XML).
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

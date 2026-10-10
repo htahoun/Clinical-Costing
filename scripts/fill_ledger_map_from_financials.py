@@ -149,7 +149,14 @@ def main(argv=None):
     ap.add_argument("--financials", default="input/source/Financial_2025_Arjun_Updated_2.xlsx")
     ap.add_argument("--template", default="input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx")
     ap.add_argument("--out", default="input/Ledger_by_Cost_Type_FY2025.xlsx")
+    ap.add_argument("--movement", action="append", default=[], metavar="M=PATH",
+                    help="month number = monthly Financial Report with a 'Movement' sheet; its stock usage replaces "
+                         "the Consumption-sheet split of Cost of Goods Sold for that month (e.g. 1=input/source/Financial_Report_Jan_2025_1.xlsx)")
     args = ap.parse_args(argv)
+    movement = {}
+    for spec in args.movement:
+        m, path = spec.split("=", 1)
+        movement[int(m)] = path
 
     fin = openpyxl.load_workbook(args.financials, data_only=True, read_only=True)
     monthly = read_monthly(fin["Monthly"])
@@ -159,8 +166,34 @@ def main(argv=None):
 
     # --- build the mapping lines: (source, head, cost type, class, basis, 12 months) ---
     lines: list[tuple] = []
+    from cogs_from_movement import cogs_split
+    mv_split: dict[int, dict] = {}
+    mv_log: list[str] = []
+    for m, path in movement.items():
+        ext = cons["External LAB"][m - 1]            # external lab invoices are not stock
+        split, log = cogs_split(path, ext)
+        mv_split[m] = split
+        mv_log += log
+        tot = sum(split.values())
+        diff = monthly["Cost of Goods Sold"][m - 1] - tot
+        if abs(diff) > Decimal("0.10"):
+            raise SystemExit(f"movement file for month {m}: usage {tot} != Cost of Goods Sold {monthly['Cost of Goods Sold'][m - 1]}")
+        if diff:
+            split["MS"] = split.get("MS", Decimal(0)) + diff
+            log.append(f"month {m}: {diff:+} fils rounding between stock lines and the P&L absorbed on MS")
     for prefix, ct, cls, basis in CONSUMPTION_MAP:
-        lines.append(("Consumption sheet", f"Cost of Goods Sold: {prefix.strip(' -(')}", ct, cls, basis, cons[prefix]))
+        vals = [Decimal(0) if (m + 1) in mv_split else cons[prefix][m] for m in range(12)]
+        lines.append(("Consumption sheet", f"Cost of Goods Sold: {prefix.strip(' -(')}", ct, cls, basis, vals))
+    mv_types = sorted({ct for sp in mv_split.values() for ct in sp})
+    for ct in mv_types:
+        vals = [mv_split.get(m + 1, {}).get(ct, Decimal(0)) for m in range(12)]
+        cls = {"Prostheses": "Direct — implants", "Pharmacy": "Direct — dental surgeries", "Laboratory": "Direct — laboratory",
+               "MS": "Direct — dental surgeries / CSSD", "OHF": "Overhead — back office"}.get(ct, "Direct")
+        basis = {"Prostheses": "implant fixtures (net of internal returns), healing/cover screws, abutments, implant impression tools, bone-graft materials",
+                 "Pharmacy": "local anaesthetic cartridges, nitrous oxide and oxygen", "Laboratory": "in-house lab materials (blocks, blanks, 3D inks, stone, milling tools) + external lab invoices",
+                 "MS": "restorative, endodontic, burs, impression, bleaching, surgical, infection-control supplies, needles/syringes, hand instruments",
+                 "OHF": "pantry and stationery issued from stock"}.get(ct, "")
+        lines.append(("Stock movement", f"Cost of Goods Sold ({', '.join(f'M{m:02d}' for m in sorted(mv_split))}): {ct}", ct, cls, basis, vals))
     for cat, vals in salary.items():
         ct, cls, basis = SALARY_MAP[cat]
         lines.append(("Salary sheet", f"Salaries & Wages: {cat}", ct, cls, basis, vals))
@@ -177,7 +210,7 @@ def main(argv=None):
 
     # --- check the split heads reproduce the Monthly sheet, and every month the ledger ---
     checks = []
-    for head, src_lines in (("Cost of Goods Sold", [l for l in lines if l[0] == "Consumption sheet"]),
+    for head, src_lines in (("Cost of Goods Sold", [l for l in lines if l[0] in ("Consumption sheet", "Stock movement")]),
                             ("Salaries & Wages", [l for l in lines if l[0] == "Salary sheet"]),
                             ("Depreciation Expense", [l for l in lines if l[0] == "TB depreciation"])):
         for m in range(12):
@@ -247,6 +280,13 @@ def main(argv=None):
         for c in checks:
             q.append([c])
     q.column_dimensions["A"].width = 160
+    if mv_log:
+        cd = wb.create_sheet("Consumables detail", 3)
+        cd.append(["Stock movement -> cost type (usage net of internal returns; exchanges cancel; external lab from the P&L)"])
+        cd["A1"].font = bold
+        for line in mv_log:
+            cd.append([line])
+        cd.column_dimensions["A"].width = 150
     if "Assumptions" in wb.sheetnames:
         del wb["Assumptions"]
     wb.save(args.out)

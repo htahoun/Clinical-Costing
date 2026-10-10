@@ -210,6 +210,8 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/rebalance_two_view.py` | **SY02 corrective engine**: ledger-calibrated two-margin fit; writes the resubmission XMLs |
 | `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
 | `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
+| `scripts/propose_ledger_map.py` | Fills the template with the proposed common-sense map (Assumptions sheet) pending Arjun |
+| `output/xml_resubmission_PROPOSED/` | Twelve two-view files from the proposed map (proposal, not yet the resubmission) |
 | `input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx` | The template to be filled and returned as `input/Ledger_by_Cost_Type_FY2025.xlsx` |
 | `input/source/mysmyle_zip/` | The twelve files DOH evaluated (MySmyle, PRODUCTION, 29 Aug 2026) |
 | `input/rejection/` | DOH SY02 feedback letter (PDF + text) |
@@ -322,8 +324,17 @@ classified direct/overhead (Stage 2).
 6. Upload the twelve files (PRODUCTION) via Shafafiya; record the outcome in
    `docs/REJECTION_PLAYBOOK.md` §5.
 
-Proven on 10 Oct 2026 with a stand-in ledger map: 9,738/9,738 claims match,
-all twelve months tie in both views, overhead bucket = overhead types.
+**Proposed ledger map (10 Oct 2026, pending Arjun).** Built by
+`scripts/propose_ledger_map.py` without the expense lines:
+`input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).
+Overheads 24.0 % of expenditure (OHF 21.5, OHDepreciation 1.3, OHC 1.2) as a
+fixed monthly amount; direct block 76.0 % in the clinic's own proportions;
+Laboratory, Prostheses and Imaging cost types equal to the costed buckets.
+Run through the engine → `output/xml_resubmission_PROPOSED/` (+ zip):
+9,738/9,738 claims match, all twelve months tie in both views to the fils,
+overhead bucket = overhead types, monthly overhead ratio 20.7–26.9 %. These
+files are a **proposal**: they become the resubmission only after Arjun
+confirms or replaces the map from the ledger and the engine is re-run.
 
 ### 11.2 Standard procedure
 

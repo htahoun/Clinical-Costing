@@ -1,0 +1,96 @@
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket anchor +0.068 AED vs ledger absorbed by claim 1740MF4159-d7a251 (Dental)
+CostSubmission_MF4159_2025_M01_PROD.xml: fils residuals {SWNurs:+14, SWDoc:+52, SWAllied:+64, SWNonClin:-59, Laboratory:-85, Imaging:-51, Pharmacy:-32, Prostheses:+55, MS:-32, Hotel:-82, GS:+73, Depreciation:+11, OHF:-8, OHDepreciation:-4, OHC:+84} absorbed by claim 1740MF4159-d7a251
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Anaesthesia profile SWDoc 19.3%, Pharmacy 52.9%, MS 14.1%, OHF 13.8%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Dental profile SWNurs 11.0%, SWDoc 29.9%, SWAllied 3.2%, SWNonClin 1.2%, Laboratory 0.3%, Imaging 0.8%, Pharmacy 1.0%, Prostheses 0.3%, MS 18.2%, Hotel 1.0%, GS 1.2%, Depreciation 1.9%, OHF 26.8%, OHDepreciation 1.6%, OHC 1.6%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Imaging profile SWAllied 7.4%, Imaging 70.4%, MS 4.1%, Depreciation 4.4%, OHF 12.2%, OHDepreciation 1.5%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Laboratory profile SWAllied 4.1%, Laboratory 84.2%, MS 11.6%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket OP profile SWNonClin 46.2%, MS 35.1%, GS 18.7%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Prosthesis profile Prostheses 86.3%, MS 13.7%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket anchor -0.015 AED vs ledger absorbed by claim 760MF4159-03a04e (Dental)
+CostSubmission_MF4159_2025_M02_PROD.xml: fils residuals {SWNurs:+5, SWDoc:+7, SWAllied:+2, SWNonClin:-14, Laboratory:+16, Imaging:-67, Pharmacy:+36, Prostheses:+4, MS:+9, Hotel:-78, Depreciation:+75, OHF:-65, OHDepreciation:+30, OHC:+40} absorbed by claim 760MF4159-03a04e
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Anaesthesia profile SWDoc 17.2%, Pharmacy 58.0%, MS 13.2%, OHF 11.6%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Dental profile SWNurs 10.8%, SWDoc 29.7%, SWAllied 3.5%, SWNonClin 1.2%, Laboratory 0.9%, Imaging 0.9%, Pharmacy 1.3%, Prostheses 0.5%, MS 19.1%, Hotel 1.0%, GS 1.2%, Depreciation 1.9%, OHF 25.2%, OHDepreciation 1.5%, OHC 1.5%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Imaging profile SWAllied 7.2%, Imaging 73.2%, MS 3.9%, Depreciation 4.0%, OHF 10.5%, OHDepreciation 1.3%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Laboratory profile SWAllied 1.8%, Laboratory 93.1%, MS 5.0%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket OP profile SWNonClin 45.2%, MS 36.5%, GS 18.3%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Prosthesis profile Prostheses 90.7%, MS 9.3%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket anchor -0.047 AED vs ledger absorbed by claim 1776MF4159-ea919c (Dental)
+CostSubmission_MF4159_2025_M03_PROD.xml: fils residuals {SWNurs:-37, SWDoc:+46, SWAllied:+6, SWNonClin:-64, Laboratory:-37, Imaging:+63, Pharmacy:+91, Prostheses:-28, MS:-40, Hotel:+33, GS:-17, Depreciation:+20, OHF:-38, OHDepreciation:-14, OHC:+16} absorbed by claim 1776MF4159-ea919c
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Anaesthesia profile SWDoc 17.1%, Pharmacy 59.9%, MS 13.2%, OHF 9.8%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Dental profile SWNurs 11.2%, SWDoc 31.0%, SWAllied 3.7%, SWNonClin 1.2%, Laboratory 1.2%, Imaging 1.0%, Pharmacy 1.4%, Prostheses 0.4%, MS 19.8%, Hotel 1.0%, GS 1.2%, Depreciation 2.0%, OHF 22.2%, OHDepreciation 1.4%, OHC 1.3%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Imaging profile SWAllied 6.7%, Imaging 76.8%, MS 3.6%, Depreciation 3.7%, OHF 8.1%, OHDepreciation 1.0%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Laboratory profile SWAllied 1.5%, Laboratory 94.5%, MS 4.0%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket OP profile SWNonClin 45.4%, MS 36.4%, GS 18.2%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Prosthesis profile Prostheses 87.9%, MS 12.1%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket anchor -0.004 AED vs ledger absorbed by claim 1689MF4159-a7a492 (Dental)
+CostSubmission_MF4159_2025_M04_PROD.xml: fils residuals {SWNurs:+4, SWDoc:+13, SWAllied:+4, SWNonClin:+4, Laboratory:-3, Imaging:-38, Pharmacy:-4, Prostheses:+30, MS:-12, Hotel:-36, GS:-1, Depreciation:-3, OHF:+16, OHDepreciation:+6, OHC:+20} absorbed by claim 1689MF4159-a7a492
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Anaesthesia profile SWDoc 19.8%, Pharmacy 51.2%, MS 15.1%, OHF 13.9%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Dental profile SWNurs 10.8%, SWDoc 29.5%, SWAllied 3.4%, SWNonClin 1.2%, Laboratory 0.7%, Imaging 0.8%, Pharmacy 1.0%, Prostheses 0.6%, MS 18.8%, Hotel 1.0%, GS 1.2%, Depreciation 1.9%, OHF 26.0%, OHDepreciation 1.6%, OHC 1.5%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Imaging profile SWAllied 7.4%, Imaging 71.6%, MS 4.1%, Depreciation 4.2%, OHF 11.3%, OHDepreciation 1.4%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Laboratory profile SWAllied 2.3%, Laboratory 91.3%, MS 6.4%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket OP profile SWNonClin 45.7%, MS 35.9%, GS 18.3%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Prosthesis profile Prostheses 92.2%, MS 7.8%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket anchor -0.037 AED vs ledger absorbed by claim 1351MF4159-60207a (Dental)
+CostSubmission_MF4159_2025_M05_PROD.xml: fils residuals {SWNurs:+17, SWDoc:+16, SWAllied:-41, SWNonClin:-68, Laboratory:+144, Imaging:+32, Pharmacy:+13, Prostheses:-20, MS:+34, Hotel:-29, GS:-93, Depreciation:+16, OHF:+5, OHDepreciation:+19, OHC:-45} absorbed by claim 1351MF4159-60207a
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Anaesthesia profile SWDoc 17.5%, Pharmacy 55.5%, MS 13.7%, OHF 13.3%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Dental profile SWNurs 10.3%, SWDoc 28.5%, SWAllied 3.3%, SWNonClin 1.1%, Laboratory 1.5%, Imaging 0.7%, Pharmacy 1.1%, Prostheses 0.7%, MS 18.5%, Hotel 0.9%, GS 1.1%, Depreciation 1.8%, OHF 27.1%, OHDepreciation 1.6%, OHC 1.6%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Imaging profile SWAllied 8.1%, Imaging 68.4%, MS 4.5%, Depreciation 4.4%, OHF 13.1%, OHDepreciation 1.6%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Laboratory profile SWAllied 1.1%, Laboratory 95.9%, MS 3.0%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket OP profile SWNonClin 45.1%, MS 36.8%, GS 18.2%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Prosthesis profile Prostheses 93.9%, MS 6.1%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket anchor +0.022 AED vs ledger absorbed by claim 165MF4159-98360e (Dental)
+CostSubmission_MF4159_2025_M06_PROD.xml: fils residuals {SWNurs:-52, SWDoc:+49, SWAllied:+29, SWNonClin:-22, Laboratory:+50, Imaging:-69, Pharmacy:-60, Prostheses:+70, MS:-27, Hotel:-63, GS:+32, Depreciation:-33, OHF:+46, OHDepreciation:+6, OHC:+44} absorbed by claim 165MF4159-98360e
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Anaesthesia profile SWDoc 17.9%, Pharmacy 57.8%, MS 14.2%, OHF 10.1%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Dental profile SWNurs 11.0%, SWDoc 30.3%, SWAllied 3.6%, SWNonClin 1.2%, Laboratory 2.4%, Imaging 0.8%, Pharmacy 1.2%, Prostheses 1.4%, MS 20.0%, Hotel 1.0%, GS 1.2%, Depreciation 1.9%, OHF 21.3%, OHDepreciation 1.3%, OHC 1.2%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Imaging profile SWAllied 7.9%, Imaging 73.1%, MS 4.4%, Depreciation 4.2%, OHF 9.3%, OHDepreciation 1.1%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Laboratory profile SWAllied 0.7%, Laboratory 97.3%, MS 2.0%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket OP profile SWNonClin 44.9%, MS 37.0%, GS 18.1%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Prosthesis profile Prostheses 96.5%, MS 3.5%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket anchor -0.020 AED vs ledger absorbed by claim 2066MF4159-ff09af (Dental)
+CostSubmission_MF4159_2025_M07_PROD.xml: fils residuals {SWNurs:+41, SWDoc:+3, SWAllied:+14, SWNonClin:+51, Laboratory:+19, Imaging:-4, Pharmacy:-17, Prostheses:-32, MS:+38, Hotel:-13, GS:+43, Depreciation:+10, OHF:-24, OHDepreciation:-68, OHC:-61} absorbed by claim 2066MF4159-ff09af
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Anaesthesia profile SWDoc 18.5%, Pharmacy 53.4%, MS 13.7%, OHF 14.4%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Dental profile SWNurs 10.6%, SWDoc 29.0%, SWAllied 3.2%, SWNonClin 1.2%, Laboratory 0.4%, Imaging 0.8%, Pharmacy 1.0%, Prostheses 0.3%, MS 17.9%, Hotel 0.9%, GS 1.2%, Depreciation 1.9%, OHF 28.3%, OHDepreciation 1.7%, OHC 1.6%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Imaging profile SWAllied 7.2%, Imaging 70.4%, MS 4.0%, Depreciation 4.2%, OHF 12.7%, OHDepreciation 1.5%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Laboratory profile SWAllied 3.3%, Laboratory 87.4%, MS 9.3%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket OP profile SWNonClin 46.0%, MS 35.4%, GS 18.6%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Prosthesis profile Prostheses 85.3%, MS 14.7%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket anchor -0.040 AED vs ledger absorbed by claim 1749MF4159-288273 (Dental)
+CostSubmission_MF4159_2025_M08_PROD.xml: fils residuals {SWNurs:-1, SWDoc:-11, SWAllied:+90, SWNonClin:-2, Laboratory:-58, Imaging:-21, Pharmacy:+9, Prostheses:+51, MS:-21, Hotel:+15, GS:+13, Depreciation:-47, OHF:+19, OHDepreciation:-32, OHC:-4} absorbed by claim 1749MF4159-288273
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Anaesthesia profile SWDoc 17.1%, Pharmacy 58.9%, MS 12.1%, OHF 11.8%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Dental profile SWNurs 11.0%, SWDoc 30.4%, SWAllied 3.3%, SWNonClin 1.2%, Laboratory 0.3%, Imaging 1.0%, Pharmacy 1.3%, Prostheses 0.2%, MS 17.9%, Hotel 1.0%, GS 1.2%, Depreciation 2.0%, OHF 26.2%, OHDepreciation 1.6%, OHC 1.5%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Imaging profile SWAllied 6.4%, Imaging 74.7%, MS 3.5%, Depreciation 3.9%, OHF 10.3%, OHDepreciation 1.3%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Laboratory profile SWAllied 4.4%, Laboratory 83.5%, MS 12.1%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket OP profile SWNonClin 46.7%, MS 34.5%, GS 18.8%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Prosthesis profile Prostheses 77.1%, MS 22.9%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket anchor -0.038 AED vs ledger absorbed by claim 1478MF4159-4ccb54 (Dental)
+CostSubmission_MF4159_2025_M09_PROD.xml: fils residuals {SWNurs:-8, SWDoc:-21, SWAllied:-6, SWNonClin:-104, Laboratory:+12, Imaging:+100, Pharmacy:-9, Prostheses:+6, MS:+26, Hotel:-26, GS:-9, Depreciation:-20, OHF:+18, OHDepreciation:+69, OHC:-28} absorbed by claim 1478MF4159-4ccb54
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Anaesthesia profile SWDoc 17.9%, Pharmacy 55.3%, MS 13.9%, OHF 12.9%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Dental profile SWNurs 10.6%, SWDoc 29.1%, SWAllied 3.4%, SWNonClin 1.2%, Laboratory 1.0%, Imaging 0.9%, Pharmacy 1.1%, Prostheses 0.7%, MS 18.8%, Hotel 0.9%, GS 1.2%, Depreciation 1.9%, OHF 26.2%, OHDepreciation 1.6%, OHC 1.5%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Imaging profile SWAllied 7.2%, Imaging 72.5%, MS 4.0%, Depreciation 4.0%, OHF 11.0%, OHDepreciation 1.3%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Laboratory profile SWAllied 1.6%, Laboratory 93.9%, MS 4.5%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket OP profile SWNonClin 45.1%, MS 36.7%, GS 18.2%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Prosthesis profile Prostheses 93.8%, MS 6.2%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket anchor -0.084 AED vs ledger absorbed by claim 2140MF4159-5323ad (Dental)
+CostSubmission_MF4159_2025_M10_PROD.xml: fils residuals {SWNurs:-46, SWDoc:+66, SWAllied:-51, SWNonClin:-25, Laboratory:+12, Imaging:+37, Pharmacy:+11, Prostheses:-34, MS:+21, Hotel:+28, GS:-7, Depreciation:+53, OHF:-29, OHDepreciation:-7, OHC:-29} absorbed by claim 2140MF4159-5323ad
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Anaesthesia profile SWDoc 17.9%, Pharmacy 56.6%, MS 13.8%, OHF 11.7%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Dental profile SWNurs 10.9%, SWDoc 30.1%, SWAllied 3.5%, SWNonClin 1.2%, Laboratory 0.8%, Imaging 0.8%, Pharmacy 1.2%, Prostheses 0.6%, MS 19.3%, Hotel 1.0%, GS 1.2%, Depreciation 1.9%, OHF 24.6%, OHDepreciation 1.5%, OHC 1.4%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Imaging profile SWAllied 7.6%, Imaging 71.7%, MS 4.2%, Depreciation 4.2%, OHF 10.8%, OHDepreciation 1.3%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Laboratory profile SWAllied 2.0%, Laboratory 92.5%, MS 5.5%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket OP profile SWNonClin 45.2%, MS 36.6%, GS 18.3%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Prosthesis profile Prostheses 92.9%, MS 7.1%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket anchor -0.041 AED vs ledger absorbed by claim 1738MF4159-0b278e (Dental)
+CostSubmission_MF4159_2025_M11_PROD.xml: fils residuals {SWNurs:-24, SWDoc:+8, SWAllied:-19, SWNonClin:-64, Laboratory:+62, Imaging:-1, Pharmacy:+33, Prostheses:+64, MS:+13, Hotel:+23, GS:-31, Depreciation:-41, OHF:-23, OHDepreciation:+8, OHC:-8} absorbed by claim 1738MF4159-0b278e
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Anaesthesia profile SWDoc 16.9%, Pharmacy 57.6%, MS 12.8%, OHF 12.6%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Dental profile SWNurs 10.6%, SWDoc 29.2%, SWAllied 3.2%, SWNonClin 1.2%, Laboratory 0.5%, Imaging 0.6%, Pharmacy 1.2%, Prostheses 0.6%, MS 18.5%, Hotel 0.9%, GS 1.2%, Depreciation 1.8%, OHF 27.2%, OHDepreciation 1.6%, OHC 1.6%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Imaging profile SWAllied 8.4%, Imaging 65.8%, MS 4.9%, Depreciation 4.8%, OHF 14.4%, OHDepreciation 1.7%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Laboratory profile SWAllied 2.7%, Laboratory 89.5%, MS 7.8%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket OP profile SWNonClin 45.6%, MS 36.1%, GS 18.3%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Prosthesis profile Prostheses 92.4%, MS 7.6%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket anchor +0.061 AED vs ledger absorbed by claim 2043MF4159-174974 (Dental)
+CostSubmission_MF4159_2025_M12_PROD.xml: fils residuals {SWNurs:-17, SWDoc:+62, SWAllied:+67, SWNonClin:+3, Laboratory:-14, Imaging:-12, Pharmacy:+39, Prostheses:+54, MS:-46, Hotel:-57, GS:-12, Depreciation:+36, OHF:-14, OHDepreciation:-32, OHC:-57} absorbed by claim 2043MF4159-174974
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Anaesthesia profile SWDoc 17.3%, Pharmacy 60.7%, MS 12.4%, OHF 9.6%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Dental profile SWNurs 11.6%, SWDoc 32.0%, SWAllied 3.5%, SWNonClin 1.3%, Laboratory 0.4%, Imaging 1.1%, Pharmacy 1.4%, Prostheses 0.2%, MS 19.3%, Hotel 1.0%, GS 1.3%, Depreciation 2.1%, OHF 22.2%, OHDepreciation 1.4%, OHC 1.3%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Imaging profile SWAllied 6.3%, Imaging 77.5%, MS 3.5%, Depreciation 3.8%, OHF 8.0%, OHDepreciation 1.0%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Laboratory profile SWAllied 4.1%, Laboratory 84.8%, MS 11.1%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket OP profile SWNonClin 46.4%, MS 35.0%, GS 18.7%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Prosthesis profile Prostheses 80.3%, MS 19.7%

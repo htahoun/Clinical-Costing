@@ -9,11 +9,14 @@ over the claims that contain its codes, in proportion to units.
 
 # Stock sub-category group -> CPT codes that consume it.
 IMPLANT_POOLS = {
-    # Implant fixtures, healing & cover screws, abutments, implant impression tools
-    "hardware": {
+    # Implant fixtures and healing / cover screws: consumed when the implant is placed or re-entered.
+    "fixtures": {
         "79933",  # surgical implant installation, 1 tooth (fixture + transmucosal element)
         "79935",  # surgical re-entry, healing screw removal and placement of abutment
         "79936",  # surgical re-entry, healing screw removal and placement of abutment (additional)
+    },
+    # Abutments and implant impression tools: consumed at the abutment / crown / framework stage.
+    "abutments": {
         "26101",  # mesostructure implant abutment
         "27155",  # implant crown impression (acrylic / composite / pre-fabricated metal base)
         "27205",  # implant-supported crown, 1 tooth
@@ -21,6 +24,8 @@ IMPLANT_POOLS = {
         "67155",  # provisional implant-supported bridge retainer with metal base
         "69821",  # upper fixed prosthodontic framework, osseo-integrated
         "69822",  # lower fixed prosthodontic framework, osseo-integrated
+        "79935",  # re-entry with abutment placement also consumes an abutment
+        "79936",
     },
     # Bone grafting materials (xenograft, synthetic, membranes)
     "bone_graft": {
@@ -39,9 +44,9 @@ IMPLANT_CODES = set().union(*IMPLANT_POOLS.values()) | IMPLANT_NO_STOCK
 
 # Stock movement sub-categories (cogs_from_movement.py) -> pool
 SUBCATEGORY_POOL = {
-    "01- Implant Fixtures": "hardware",
-    "02- Healing & Cover Screw": "hardware",
-    "03- Abutments": "hardware",
-    "04- Implant Impression Tools & Supplies": "hardware",
+    "01- Implant Fixtures": "fixtures",
+    "02- Healing & Cover Screw": "fixtures",
+    "03- Abutments": "abutments",
+    "04- Implant Impression Tools & Supplies": "abutments",
     "05- Bone Grafting Materials, Synthetic": "bone_graft",
 }

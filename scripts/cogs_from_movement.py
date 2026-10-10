@@ -82,6 +82,25 @@ def cogs_split(report_path: str | Path, external_lab: Decimal = Decimal(0)) -> t
     return dict(out), log
 
 
+def implant_pools(report_path: str | Path) -> dict[str, Decimal]:
+    """{pool: AED consumed} for the implant sub-categories (usage net of internal returns)."""
+    from implant_codes import SUBCATEGORY_POOL
+    wb = openpyxl.load_workbook(report_path, data_only=True, read_only=True)
+    ws = next(s for s in wb.worksheets if s.title.lower().startswith("movement"))
+    rows = ws.iter_rows(values_only=True)
+    hdr = [str(h).strip() if h is not None else "" for h in next(rows)]
+    hi = {h: i for i, h in enumerate(hdr)}
+    pools: dict[str, Decimal] = defaultdict(Decimal)
+    for r in rows:
+        if not r or r[hi["Transaction Type"]] not in CONSUMING:
+            continue
+        sub = str(r[hi["Sub-Category"]]).strip()
+        for prefix, pool in SUBCATEGORY_POOL.items():
+            if sub.startswith(prefix) and str(r[hi["Category"]]).startswith("05- Implants"):
+                pools[pool] += -dec(r[hi["Transaction Value"]])
+    return {k: v.quantize(D2, rounding=ROUND_HALF_UP) for k, v in pools.items()}
+
+
 if __name__ == "__main__":
     p = sys.argv[1]
     ext = Decimal(sys.argv[2]) if len(sys.argv) > 2 else Decimal(0)

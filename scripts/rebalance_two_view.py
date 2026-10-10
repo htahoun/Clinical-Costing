@@ -43,6 +43,89 @@ from costsub_reader import fils  # noqa: E402
 from costsub_schema import (BUCKETS, COST_TYPES, DATE_FMT, OVERHEAD_COST_TYPES,  # noqa: E402
                             TZ_OFFSET_HOURS, fmt_money_fils)
 from gl_new import GL  # noqa: E402
+from implant_codes import IMPLANT_POOLS  # noqa: E402
+
+MONTH_SHEETS = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July",
+                8: "August", 9: "September", 10: "October", 11: "November", 12: "December"}
+
+
+def read_activity_units(workbook: str, month: int) -> dict[str, dict[str, int]]:
+    """{claim id: {pool: billed units of that pool's codes}} from the activity master's monthly sheet."""
+    wb = openpyxl.load_workbook(workbook, data_only=True, read_only=True)
+    ws = wb[MONTH_SHEETS[month]]
+    rows = ws.iter_rows(values_only=True)
+    hdr = [str(h) for h in next(rows)]
+    hi = {h: i for i, h in enumerate(hdr)}
+    out: dict[str, dict[str, int]] = {}
+    empty = 0
+    for r in rows:
+        if r is None or r[hi["ID"]] in (None, ""):
+            empty += 1
+            if empty > 50:
+                break
+            continue
+        empty = 0
+        code = str(r[hi["ProcedureCode"]]).strip().removesuffix(".0")
+        qty = int(float(r[hi["Qty"]] or 1))
+        for pool, codes in IMPLANT_POOLS.items():
+            if code in codes:
+                out.setdefault(str(r[hi["ID"]]).strip(), {})
+                out[str(r[hi["ID"]]).strip()][pool] = out[str(r[hi["ID"]]).strip()].get(pool, 0) + qty
+    return out
+
+
+def preassign_prostheses(encs: list, bucket_amt: list, units: dict, pools: dict, log: list, fname: str) -> dict[int, int]:
+    """
+    Spread each implant stock pool over the claims billing its codes, by units (fils).
+    Returns {encounter index: Prostheses fils}. Caps at the claim's Dental bucket amount and
+    redistributes any excess over the other claims of the pool with headroom.
+    """
+    pre: dict[int, int] = {}
+    idx = {e["cid"]: i for i, e in enumerate(encs)}
+    for pool, amount in pools.items():
+        amount = int((Decimal(amount) * 1000).quantize(Decimal(1), rounding=ROUND_HALF_UP))
+        members = [(idx[cid], u[pool]) for cid, u in units.items() if pool in u and cid in idx]
+        missing = [cid for cid, u in units.items() if pool in u and cid not in idx]
+        if missing:
+            log.append(f"{fname}: {pool}: {len(missing)} coded claims not in the XML, ignored: {missing[:5]}")
+        if not members or amount == 0:
+            log.append(f"{fname}: {pool} pool {amount/1000:,.3f} AED but no claims bill its codes — left to the general fit")
+            continue
+        total_units = sum(u for _, u in members)
+        exact = {i: Decimal(amount) * u / total_units for i, u in members}
+        alloc = {i: int(v.to_integral_value(rounding="ROUND_FLOOR")) for i, v in exact.items()}
+        for i in sorted(exact, key=lambda i: exact[i] - alloc[i], reverse=True)[: amount - sum(alloc.values())]:
+            alloc[i] += 1
+        # cap at the Dental bucket amount available on the claim (less anything already pre-assigned)
+        excess = 0
+        for i in list(alloc):
+            room = bucket_amt[i][HOME_BUCKET] - pre.get(i, 0)
+            if alloc[i] > room:
+                excess += alloc[i] - room
+                log.append(f"{fname}: {pool}: claim {encs[i]['cid']} share {alloc[i]/1000:,.3f} capped at its Dental amount {room/1000:,.3f}")
+                alloc[i] = room
+        while excess > 0:
+            cands = [i for i in alloc if bucket_amt[i][HOME_BUCKET] - pre.get(i, 0) - alloc[i] > 0]
+            if not cands:
+                log.append(f"{fname}: {pool}: {excess/1000:,.3f} AED could not be placed on implant claims — left to the general fit")
+                break
+            room = {i: bucket_amt[i][HOME_BUCKET] - pre.get(i, 0) - alloc[i] for i in cands}
+            share = min(excess, sum(room.values()))
+            give = {i: int(Decimal(share) * room[i] / sum(room.values())) for i in cands}
+            give[max(cands, key=lambda i: room[i])] += share - sum(give.values())
+            for i, g in give.items():
+                alloc[i] += g
+            excess -= share
+        for i, v in alloc.items():
+            if v:
+                pre[i] = pre.get(i, 0) + v
+        log.append(f"{fname}: {pool} pool {amount/1000:,.3f} AED placed on {len([i for i in alloc if alloc[i]])} claims by units "
+                   f"({total_units} units; {amount/total_units/1000:,.3f} AED per unit)")
+    for i, v in pre.items():
+        bucket_amt[i]["Prosthesis"] += v
+        bucket_amt[i][HOME_BUCKET] -= v
+        encs[i]["pre_prostheses"] = v
+    return pre
 
 HOME_BUCKET = "Dental"
 DIRECT_TYPES = [t for t in COST_TYPES if t not in OVERHEAD_COST_TYPES]
@@ -58,9 +141,13 @@ SEED = {
     # Ruling 10 Oct 2026: overhead cost types sit in the Dental bucket only (CostBucketOverheads/Dental).
     # Pass-through purchases: mainly their own cost type, with a small weight on supplies/technician time
     # so the fit can absorb a ledger figure that differs from the costed bucket.
-    "Laboratory": {"Laboratory": 1, "MS": 0.05, "SWAllied": 0.05},
-    "Prosthesis": {"Prostheses": 1, "MS": 0.05},
-    "Imaging": {"Imaging": 2, "SWAllied": 0.5, "Depreciation": 0.5, "MS": 0.2},
+    # Laboratory bucket = crown/denture lab work: lab materials and outsourced invoices, technician time, supplies,
+    # and the dentist's chairside share of prosthodontic codes.
+    "Laboratory": {"Laboratory": 1, "MS": 0.1, "SWAllied": 0.1, "SWDoc": 0.1},
+    # Prosthesis bucket (non-implant lines of the allocation table: crowns, dentures): once the implant stock has
+    # been pre-assigned to implant claims, what remains is lab work, supplies and dentist time.
+    "Prosthesis": {"Prostheses": 1, "Laboratory": 0.3, "MS": 0.2, "SWDoc": 0.2},
+    "Imaging": {"Imaging": 2, "SWAllied": 0.5, "Depreciation": 0.5, "MS": 0.2, "SWNurs": 0.2},
     "Anaesthesia": {"Pharmacy": 2, "SWDoc": 0.5, "MS": 0.3},
     "OP": {"SWNonClin": 1, "GS": 0.2, "MS": 0.1},
     "Physician": {"SWDoc": 1, "MS": 0.05},
@@ -126,7 +213,9 @@ def ras(rows: dict[str, int], cols: dict[str, int], seed: dict, max_iter=20000) 
         worst = max(max(abs(sum(M[b].values()) - R[b]) / R[b] for b in R),
                     max(abs(sum(M[b][t] for b in R) - C[t]) / C[t] for t in C))
         if worst > Decimal("0.000001"):
-            raise SystemExit(f"RAS did not converge (worst relative error {worst}); the seed is incompatible with the two margins")
+            diag = "rows: " + ", ".join(f"{b} {float(v)/1000:,.0f}" for b, v in R.items()) + \
+                   " | cols: " + ", ".join(f"{t} {float(v)/1000:,.0f}" for t, v in C.items())
+            raise SystemExit(f"RAS did not converge (worst relative error {worst}); the seed is incompatible with the two margins\n{diag}")
     return M
 
 
@@ -143,7 +232,8 @@ def round_to_total(exact: dict[str, Decimal], total: int) -> dict[str, int]:
     return base
 
 
-def process_month(encs: list[dict], ledger_m: dict[str, int], log: list, fname: str):
+def process_month(encs: list[dict], ledger_m: dict[str, int], log: list, fname: str,
+                  units: dict | None = None, pools: dict | None = None):
     """encs: [{'cid','d','o','t'}] raw cells. Returns new (d, o, t) per encounter."""
     # bucket anchor per claim: sent bucket columns + cost-type columns into Dental
     bucket_amt = []
@@ -162,20 +252,38 @@ def process_month(encs: list[dict], ledger_m: dict[str, int], log: list, fname: 
         rows[HOME_BUCKET] += resid
         log.append(f"{fname}: bucket anchor {resid/1000:+.3f} AED vs ledger absorbed by claim {encs[i]['cid']} ({HOME_BUCKET})")
     assert sum(rows.values()) == sum(ledger_m.values()), f"{fname}: bucket anchor != ledger"
-    M = ras(rows, ledger_m, SEED)
+    # implant stock -> Prostheses on the claims that bill implant codes only (moves Dental -> Prosthesis bucket)
+    pre: dict[int, int] = {}
+    if units and pools:
+        pre = preassign_prostheses(encs, bucket_amt, units, pools, log, fname)
+        pre_total = sum(pre.values())
+        rows[HOME_BUCKET] -= pre_total                      # rows for the fit exclude the pre-assigned money
+        ledger_fit = dict(ledger_m)
+        if ledger_fit.get("Prostheses", 0) < pre_total:
+            raise SystemExit(f"{fname}: implant pools {pre_total/1000:,.3f} exceed the Prostheses cost type {ledger_fit.get('Prostheses', 0)/1000:,.3f}")
+        ledger_fit["Prostheses"] -= pre_total
+    else:
+        ledger_fit = ledger_m
+    M = ras(rows, ledger_fit, SEED)
     profiles = {b: {t: M[b][t] / Decimal(rows[b]) for t in M[b]} for b in M}   # share of bucket b in type t
     results = []
     col_sum = {t: 0 for t in COST_TYPES}
-    for e, ba in zip(encs, bucket_amt):
+    for i, (e, ba) in enumerate(zip(encs, bucket_amt)):
         total = sum(ba.values())
         exact_t = {t: Decimal(0) for t in COST_TYPES}
         exact_bt = {}   # (bucket, type) -> Decimal, for the overhead split per bucket
+        p = pre.get(i, 0)
+        if p:
+            exact_t["Prostheses"] += Decimal(p)
+            exact_bt[("Prosthesis", "Prostheses")] = Decimal(p)
         for b, v in ba.items():
+            if b == "Prosthesis":
+                v -= p                                      # the pre-assigned part is already placed
             if v and b in profiles:
                 for t, share in profiles[b].items():
                     amt = Decimal(v) * share
                     exact_t[t] += amt
-                    exact_bt[(b, t)] = amt
+                    exact_bt[(b, t)] = exact_bt.get((b, t), Decimal(0)) + amt
         nt = round_to_total(exact_t, total)
         # overhead component per bucket = its overhead-type share (rounded, capped by the bucket amount)
         no = {b: 0 for b in BUCKETS}
@@ -190,7 +298,7 @@ def process_month(encs: list[dict], ledger_m: dict[str, int], log: list, fname: 
         oh_types = sum(nt[t] for t in OVERHEAD_COST_TYPES)
         delta = oh_types - sum(no.values())
         if delta:
-            b = max((b for b in BUCKETS if ba[b]), key=lambda b: ba[b])
+            b = HOME_BUCKET if ba[HOME_BUCKET] else max((b for b in BUCKETS if ba[b]), key=lambda b: ba[b])
             no[b] += delta
             nd[b] -= delta
         assert sum(nd.values()) + sum(no.values()) == sum(nt.values()) == total
@@ -208,7 +316,7 @@ def process_month(encs: list[dict], ledger_m: dict[str, int], log: list, fname: 
             nt[t] += resid[t]
         oh_delta = sum(resid[t] for t in OVERHEAD_COST_TYPES)
         if oh_delta:
-            b = max((b for b in BUCKETS if no[b] + nd[b]), key=lambda b: no[b] + nd[b])
+            b = HOME_BUCKET if (no[HOME_BUCKET] + nd[HOME_BUCKET]) else max((b for b in BUCKETS if no[b] + nd[b]), key=lambda b: no[b] + nd[b])
             no[b] += oh_delta
             nd[b] -= oh_delta
         assert sum(nd.values()) + sum(no.values()) == sum(nt.values())
@@ -223,7 +331,15 @@ def main(argv=None):
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--year", type=int, default=2025)
     ap.add_argument("--zip", action="store_true")
+    ap.add_argument("--activity", help="activity master with treatment codes (monthly sheets); enables implant pre-assignment")
+    ap.add_argument("--movement", action="append", default=[], metavar="M=PATH",
+                    help="month = monthly Financial Report with the stock Movement sheet (implant pools)")
     args = ap.parse_args(argv)
+    movement = {}
+    for spec in args.movement:
+        m, path = spec.split("=", 1)
+        movement[int(m)] = path
+    from cogs_from_movement import implant_pools
 
     ledger = read_ledger(Path(args.ledger))
     files = sorted(Path(args.indir).glob("*.xml"))
@@ -249,7 +365,13 @@ def main(argv=None):
                 t = {c: fils(enc.find("CostTypeDetails").findtext(c)) for c in COST_TYPES}
                 encs.append({"cid": cid, "d": d, "o": o, "t": t})
                 nodes.append(enc)
-        results, profiles = process_month(encs, ledger[month], log, f.name)
+        units = pools = None
+        if args.activity and month in movement:
+            units = read_activity_units(args.activity, month)
+            pools = implant_pools(movement[month])
+            log.append(f"{f.name}: implant pools from stock " + ", ".join(f"{k} {float(v):,.2f}" for k, v in pools.items())
+                       + f"; coded claims in activity: {len(units)}")
+        results, profiles = process_month(encs, ledger[month], log, f.name, units, pools)
         for b, prof in profiles.items():
             log.append(f"{f.name}: bucket {b} profile " + ", ".join(f"{t} {float(s)*100:.1f}%" for t, s in prof.items() if s))
         B = T = OH = 0

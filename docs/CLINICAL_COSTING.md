@@ -211,7 +211,11 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
 | `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
 | `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping, Questions, Consumables detail sheets) — the governing map |
-| `scripts/cogs_from_movement.py` | Splits a month's consumables into cost types from the stock-movement sheet of the monthly Financial Report |
+| `scripts/cogs_from_movement.py` | Splits a month's consumables into cost types from the stock-movement sheet; implant pools by sub-category |
+| `scripts/implant_codes.py` | Implant procedure codes by stock pool (fixtures, abutments, bone graft) |
+| `scripts/month_report.py` | One-month model report workbook (summary, cost types, buckets, profiles, implant claims, claim examples, log) |
+| `input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx` | Accepted activity master with treatment codes, twelve monthly sheets |
+| `output/xml_JAN_MODEL/`, `output/January_Model_Report.xlsx` | The January model and its report |
 | `input/source/Financial_Report_Jan_2025_1.xlsx` | January 2025 monthly financial report (stock movement by item category) |
 | `input/Ledger_by_Cost_Type_FY2025.xlsx` | The filled, evidence-based ledger-by-cost-type map (pending confirmation of its Questions sheet) |
 | `input/source/Financial_2025_Arjun_Updated_2.xlsx` | Arjun's FY2025 financial workbook (TB, P&L, Monthly, Salary, Consumption, cash ledger by cost centre) |
@@ -353,9 +357,23 @@ Pharmacy. January verified to the fils (102,127.49): Prostheses 52,796.00,
 MS 31,662.77, Laboratory 15,408.95, Pharmacy 1,252.00, OHF 1,007.80. Pass
 `--movement <m>=<file>` to `fill_ledger_map_from_financials.py` for each
 month whose report is uploaded; other months keep the Consumption-sheet split.
-Known limit: the fit spreads a cost type across every claim of a bucket, so
-implant cost lands on all Dental-bucket claims; attributing it to implant
-procedures only needs the activity master (CPT codes are not in the XML).
+**Implants on implant claims only (10 Oct 2026, rulings: units weighting;
+code-less claims are non-implant).** With the activity master
+(`input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx`, codes per
+claim) and the implant code list (`scripts/implant_codes.py`), the engine
+pre-assigns the three implant stock pools — fixtures + healing screws (codes
+79933/79935/79936), abutments + impression tools (26101, 27155, 27205, 67115,
+67155, 69821, 69822, 79935, 79936), bone graft (42631, 42702, 72431, 72439,
+79511) — to the claims billing those codes, by billed units, moving the amount
+from the Dental to the Prosthesis bucket inside each claim (claim total
+unchanged; capped at the claim's Dental amount, excess redistributed and
+logged). The fit then runs on the remainder. January model
+(`output/xml_JAN_MODEL/`, report `output/January_Model_Report.xlsx`): 831/831
+claims match, both views 511,302.300, Prostheses 52,796.00 on 19 implant
+claims and on no other claim, overhead ratio 36.3 %, claim set and identity
+fields unchanged. Seven abutment-stage claims were capped (their costed
+Dental amount is below the abutment share), a sign that Cherie's table prices
+implant codes below the stock they consume — an SY03 table item.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

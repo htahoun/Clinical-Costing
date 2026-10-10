@@ -1,19 +1,18 @@
+CostSubmission_MF4159_2025_M01_PROD.xml: claim totals +0.068 AED vs ledger absorbed by claim 1740MF4159-d7a251
 CostSubmission_MF4159_2025_M01_PROD.xml: implant pools from stock bone_graft 13,985.00, fixtures 31,199.00, abutments 7,612.00; coded claims in activity: 19
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket anchor +0.068 AED vs ledger absorbed by claim 1740MF4159-d7a251 (Dental)
 CostSubmission_MF4159_2025_M01_PROD.xml: bone_graft pool 13,985.000 AED placed on 8 claims by units (26 units; 537.885 AED per unit)
 CostSubmission_MF4159_2025_M01_PROD.xml: fixtures pool 31,199.000 AED placed on 7 claims by units (13 units; 2,399.923 AED per unit)
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2209MF4159-fa59f1 share 422.889 capped at its Dental amount 206.842
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2180MF4159-2f6011 share 422.889 capped at its Dental amount 206.842
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2224MF4159-3c483f share 422.889 capped at its Dental amount 206.842
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2156MF4159-53564a share 422.889 capped at its Dental amount 206.842
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2210MF4159-e60915 share 422.889 capped at its Dental amount 206.842
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2243MF4159-37c990 share 845.777 capped at its Dental amount 413.686
-CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2252MF4159-582382 share 422.889 capped at its Dental amount 206.842
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2209MF4159-fa59f1 share 422.889 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2180MF4159-2f6011 share 422.889 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2224MF4159-3c483f share 422.889 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2156MF4159-53564a share 422.889 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2210MF4159-e60915 share 422.889 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2243MF4159-37c990 share 845.777 capped at its Dental amount 530.367
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2252MF4159-582382 share 422.889 capped at its Dental amount 265.183
 CostSubmission_MF4159_2025_M01_PROD.xml: abutments pool 7,612.000 AED placed on 11 claims by units (18 units; 422.889 AED per unit)
-CostSubmission_MF4159_2025_M01_PROD.xml: fils residuals {SWNurs:+43, SWDoc:-12, SWAllied:+26, Laboratory:-53, Pharmacy:-50, MS:-29, GS:+17, Depreciation:-42, OHF:+15, OHDepreciation:+50, OHC:+35} absorbed by claim 1740MF4159-d7a251
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket Anaesthesia profile SWNurs 6.6%, SWDoc 85.8%, Pharmacy 4.9%, MS 2.7%
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket Dental profile SWNurs 4.1%, SWDoc 42.1%, SWAllied 0.4%, Laboratory 0.0%, Pharmacy 0.0%, MS 1.1%, GS 0.2%, Depreciation 0.6%, OHF 48.5%, OHDepreciation 0.7%, OHC 2.3%
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket Imaging profile SWNurs 63.6%, SWAllied 11.5%, MS 6.9%, Depreciation 18.1%
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket Laboratory profile SWAllied 26.7%, Laboratory 32.4%, MS 26.7%, Depreciation 14.1%
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket OP profile MS 35.7%, GS 64.3%
-CostSubmission_MF4159_2025_M01_PROD.xml: bucket Prosthesis profile Laboratory 19.5%, MS 80.5%
+CostSubmission_MF4159_2025_M01_PROD.xml: fils residuals {SWDoc:-46, SWAllied:-1, Laboratory:-50, Pharmacy:-7, MS:-9, GS:+44, Depreciation:-15, OHF:+44, OHDepreciation:+42, OHC:-2} absorbed by claim index 307
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Anaesthesia profile SWNurs 5.1%, SWDoc 69.6%, Pharmacy 25.3%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Imaging profile SWNurs 70.4%, Depreciation 29.6%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Dental profile SWNurs 5.6%, SWDoc 39.4%, SWAllied 1.6%, MS 7.4%, GS 0.2%, Depreciation 2.4%, OHF 40.9%, OHDepreciation 0.6%, OHC 1.9%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Laboratory profile SWAllied 29.3%, Laboratory 70.7%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Prosthesis profile Prostheses 100.0%

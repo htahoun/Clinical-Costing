@@ -207,7 +207,9 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/validate_xml.py` | Pre-flight: every portal rule in §5 + ledger tie + cross-foot report (`--strict-totals`) |
 | `scripts/audit_mysmyle_xml.py` | Two-file XML audit (the standard, §7) |
 | `scripts/triage_rejection.py` | **Rejection triage**: digests DOH response files into message → count → claims → cause → fix |
-| `scripts/rebalance_two_view.py` | **SY02 corrective engine**: ledger-calibrated two-margin fit; writes the resubmission XMLs |
+| `scripts/rebuild_two_view.py` | **SY02 corrective engine**: ledger-driven two-view rebuild (claim x cost-type fit, buckets by rule); writes the resubmission XMLs |
+| `scripts/bucket_rules.py` | Cost type → bucket shares (the 10 Oct 2026 rulings) |
+| `scripts/rebalance_two_view.py` | Earlier bucket-anchored fit; now supplies the ledger reader, activity reader and implant pre-assignment helpers |
 | `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
 | `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
 | `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping, Questions, Consumables detail sheets) — the governing map |
@@ -357,6 +359,24 @@ Pharmacy. January verified to the fils (102,127.49): Prostheses 52,796.00,
 MS 31,662.77, Laboratory 15,408.95, Pharmacy 1,252.00, OHF 1,007.80. Pass
 `--movement <m>=<file>` to `fill_ledger_map_from_financials.py` for each
 month whose report is uploaded; other months keep the Consumption-sheet split.
+**Ledger-driven buckets (ruling 10 Oct 2026, replaces the bucket-anchored
+fit).** The allocation table's seven bucket columns are no longer used: an
+Anaesthesia bucket of 23,370 against 1,252 of anaesthetic drugs was not
+rational. Buckets are derived from the cost types by fixed shares
+(`scripts/bucket_rules.py`): Pharmacy → Anaesthesia; SWDoc 2 % Anaesthesia /
+98 % Dental; SWNurs 1 % Anaesthesia / 4 % Imaging / 95 % Dental; equipment
+Depreciation 4 % Imaging / 96 % Dental; Imaging supplies → Imaging;
+Laboratory and the laboratory technicians' share of SWAllied → Laboratory;
+Prostheses → Prosthesis; MS/GS/Hotel/SWNonClin → Dental; OHF/OHDepreciation/
+OHC → Dental overhead component; Physician stays 0 (Appendix 2: medical
+physicians; dentists are Dental Services). Per claim the cost types are
+fitted to the claim total (locked) and the ledger columns, seeded by the
+allocation table's own cells for that claim; implant stock is pre-assigned
+first. Engine: `scripts/rebuild_two_view.py` (replaces
+`rebalance_two_view.py`, kept for its helpers). January: Anaesthesia 4,940,
+Imaging 1,426, Laboratory 24,428, Prosthesis 52,796, Dental 427,709; 831/831
+match; both views 511,302.300.
+
 **Implants on implant claims only (10 Oct 2026, rulings: units weighting;
 code-less claims are non-implant).** With the activity master
 (`input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx`, codes per

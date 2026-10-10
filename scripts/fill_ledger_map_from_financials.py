@@ -287,6 +287,24 @@ def main(argv=None):
         for line in mv_log:
             cd.append([line])
         cd.column_dimensions["A"].width = 150
+    bs = wb.create_sheet("Bucket shares")
+    bs.append(["Rule", *[f"M{m:02d}" for m in range(1, 13)], "Basis"])
+    for c in bs[1]:
+        c.font = bold
+        c.fill = head_fill
+    lab = salary.get("Indirect/LAB", [Decimal(0)] * 12)
+    cssd = salary.get("Cssd", [Decimal(0)] * 12)
+    bs.append(["SWAllied lab share", *[float((lab[m] / (lab[m] + cssd[m])) if (lab[m] + cssd[m]) else 0) for m in range(12)],
+               "laboratory technicians / (laboratory technicians + CSSD technicians), Salary sheet; drives the Laboratory bucket"])
+    bs.append(["SWDoc to Anaesthesia", *[0.02] * 12, "ruling 10 Oct 2026"])
+    bs.append(["SWNurs to Anaesthesia", *[0.01] * 12, "ruling 10 Oct 2026"])
+    bs.append(["SWNurs to Imaging", *[0.04] * 12, "ruling 10 Oct 2026"])
+    bs.append(["Depreciation to Imaging", *[0.04] * 12, "ruling 10 Oct 2026 (equipment depreciation; OPG / X-ray units)"])
+    for r in bs.iter_rows(min_row=2):
+        for c in r[1:13]:
+            c.number_format = "0.0%"
+    bs.column_dimensions["A"].width = 26
+    bs.column_dimensions["N"].width = 100
     if "Assumptions" in wb.sheetnames:
         del wb["Assumptions"]
     wb.save(args.out)

@@ -26,6 +26,9 @@ D2 = Decimal("0.01")
 
 # (category prefix, sub-category prefix or None) -> DOH cost type. First match wins; order matters.
 CATEGORY_MAP = [
+    ("Imaging", None, "Imaging"),                                  # any imaging / X-ray / radiograph category
+    ("X-Ray", None, "Imaging"),
+    ("Radiograph", None, "Imaging"),
     ("02- Drugs", "01- Local Anaesthetics", "Pharmacy"),          # local anaesthetic cartridges
     ("04- Dental Materials", "02- Nitrous & Oxygen", "Pharmacy"),  # sedation gases
     ("02- Drugs", None, "MS"),                                     # needles, syringes, vital-signs and emergency supplies
@@ -51,7 +54,8 @@ def dec(v) -> Decimal:
 
 def cost_type_for(category: str, sub: str) -> str:
     for cat_prefix, sub_prefix, ct in CATEGORY_MAP:
-        if category.startswith(cat_prefix) and (sub_prefix is None or sub.startswith(sub_prefix)):
+        hit = category.startswith(cat_prefix) or (sub_prefix is None and cat_prefix.lower() in (category + " " + sub).lower())
+        if hit and (sub_prefix is None or sub.startswith(sub_prefix)):
             return ct
     raise KeyError(f"no mapping for category {category!r} / {sub!r}")
 

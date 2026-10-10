@@ -25,7 +25,7 @@ exact-fils rounding), `gl_new.py` (ledger), `build4_final.py` (scale-only
 costing), `make_xml_final.py` (Gen2 XML + XSD validation + verification table),
 `costsub_reader.py` (reads any Cost.Submission XML), `validate_xml.py`
 (every portal rule, ledger tie, cross-foot), `audit_mysmyle_xml.py` (two-file
-audit), `triage_rejection.py` (rejection digest with cause catalogue),
+audit), `triage_rejection.py` (rejection digest with cause catalogue), `rebalance_two_view.py` (SY02 corrective engine: ledger-calibrated two-view fit), `fix_crossfoot.py` (nature re-expression), `make_ledger_template.py` (Arjun's cost-type template),
 `submit_shafafiya.py` (SOAP transport, dry-run by default).
 `bash tests/run_pipeline.sh` proves the chain on synthetic data.
 Official schema and technical documents belong in `docs/shafafiya/`.
@@ -65,10 +65,8 @@ Official schema and technical documents belong in `docs/shafafiya/`.
 
 ## Standing open items
 
-- FY2025 submission rejected by DOH — triage in progress (master §11).
-- DOH question pending (dohclinicalcosting@doh.gov.ae): should dental clinics
-  report Supplies under `Dental` instead of `Other` in Generation 2? If
-  "Dental": `--supplies-bucket Dental`, regenerate all twelve files.
+- SY02 (FY2025) rejected 9 Oct 2026 on Cost Bucket / Cost Type Match; corrective engine ready, waiting on Arjun's ledger-by-cost-type (master §11).
+- Supplies is reported in `Dental` (ruling 10 Oct 2026; DOH evaluated it without objection).
 - Live files carry `PRODUCTION`; the transport script refuses a mismatch.
 - The official XSD and technical PDFs must be restored to `docs/shafafiya/`;
   then confirm `scripts/costsub_schema.py` against them.

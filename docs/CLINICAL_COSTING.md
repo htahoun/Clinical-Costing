@@ -5,14 +5,14 @@ The single source of truth for the Abu Dhabi DOH Clinical Cost Data Collection
 standard and history. Maintained from the FY2025 submission project
 (completed 2026). Owner: the Finance Director (Dr. Hussein Tahoun).
 
-> **Status (10 Oct 2026).** The FY2025 XML set was submitted and **rejected by
-> DOH**. The rejection files and DOH comments are being worked through with the
-> procedure in §11 and `docs/REJECTION_PLAYBOOK.md`. This repository was rebuilt
-> from this reference on 10 Oct 2026: every engine in §8 is implemented and
-> proven end to end on synthetic data (`tests/run_pipeline.sh`), but the
-> FY2025 inputs, the FINAL workbook, the twelve submitted XMLs and the official
-> XSD are **not yet** in the repository (see §12 for what to upload). The
-> repository is private, so they are committed once uploaded.
+> **Status (10 Oct 2026).** The FY2025 (SY02) set was submitted on 29 Aug 2026
+> and **rejected by DOH on 9 Oct 2026** on one matrix: *Cost Bucket / Cost Type
+> Match: No* (score −5). One warning: *Overhead Cost Ratio below 20%*. Root
+> cause, rulings and corrective action: §11. The twelve files DOH evaluated are
+> in `input/source/mysmyle_zip/`, the letter in `input/rejection/`, the DOH
+> Standard v2.1 (Jan 2026) and Quick Start Guide in `docs/shafafiya/`.
+> Waiting on: Arjun's ledger mapped to the sixteen cost types
+> (`input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx`).
 
 ---
 
@@ -60,12 +60,13 @@ Excel ↔ engine column map (TMAP): `Anaesthesia→CostBucketDirectAnaesthesia`,
 and `SWNurs…OHC→CostTypeDetails*`. All other cost columns are written 0.0;
 `total cost` = row sum. TMAP lives in `scripts/costsub_schema.py`.
 
-**Consequence to keep in mind (see §11, hypothesis H1):** because the 17 columns
-together sum to 100 %, in our files *direct buckets + cost types = TotalCost*.
-The DOH model treats buckets and cost types as two views of the same money,
-each summing to the total on its own. MySmyle's files carry the same shape as
-ours, so this was accepted as the platform convention; it is nonetheless the
-first thing to test against the rejection message.
+**Why this was rejected (SY02, §11).** The 17 columns sum to 100 % *together*,
+so each dirham was placed once, in either a bucket or a cost type. The DOH
+Standard treats cost buckets (aggregated final direct cost centres: *where*)
+and cost types (aggregated ledger accounts: *what*) as two complete views of
+the same money; each must equal the full claim cost. From 10 Oct 2026 the
+17-column split still decides the **bucket mix** and the claim total, and the
+cost-type view is produced separately (§11 corrective action).
 
 ## 3. Allocation-table fixes (locked)
 
@@ -114,10 +115,9 @@ Excel template.
 - Cost types (16, in order): SWNurs, SWDoc, SWAllied, SWNonClin, Laboratory,
   Imaging, Pharmacy, Prostheses, MS, Hotel, GS, Depreciation, OHF,
   **OHDepreciation**, OHC, NABMs.
-- **Supplies is parked in `Other`** (clearly flagged). OPEN QUESTION with DOH:
-  should dental clinics use `Dental`? MySmyle's platform uses `Dental`; the
-  amounts mirror-match ours in `Other`. If DOH says Dental: regenerate with
-  `--supplies-bucket Dental` (`scripts/make_xml_final.py`); nothing else changes.
+- **Supplies is reported in `Dental`** (ruling 10 Oct 2026: that is what DOH
+  evaluated without objection in the SY02 files). `--supplies-bucket` remains
+  available if DOH ever rules otherwise.
 
 **Hard portal/schema rules:** ReceiverID `HAAD` only; dates `dd/mm/yyyy HH:MM`
 GMT+4; AED 3 dp; ≤ 5 MB per file (split by month); one `<Claim>` per claim ID;
@@ -135,9 +135,15 @@ checks every rule in this paragraph on any file, ours or a platform's.
 
 **Where the schema lives in code.** Every element name, the element order,
 the bucket and cost-type lists and the enumerations are in one file,
-`scripts/costsub_schema.py`. The element order there was rebuilt from this
-reference on 10 Oct 2026 and **must be confirmed against the official XSD**
-once it is back in `docs/shafafiya/`; aligning it is a one-file change.
+`scripts/costsub_schema.py`, **confirmed on 10 Oct 2026 against the twelve
+files Shafafiya accepted**: money groups are nested
+(`<CostBucketDirect><Dental>…`), the encounter uses `Start`/`End`, carries
+`PatientID`, `EDTriageLevel`, `CriticalCareTime`, `VentilationTime`, and
+`Procedure` has a `Type`; there is no `TotalCost` element. Overheads: the
+Standard places allocated overhead in the bucket's overhead component, so
+`CostBucketOverheads` carries the OHF / OHDepreciation / OHC share of each
+bucket and equals the overhead cost types (ruling 10 Oct 2026; replaces the
+earlier "all 0.000" convention).
 
 ## 6. The FY2025 build history (what governs)
 
@@ -166,10 +172,12 @@ once it is back in `docs/shafafiya/`; aligning it is a one-file change.
 7. **FINAL build**: `output/Clinical_Costing_2025_MF4159_FINAL.xlsx` +
    `output/xml_final/` (twelve XMLs, all XSD PASS, every month ties to the
    fils, no zero-cost claims remained) + zip.
-8. **Submission to DOH → REJECTED** (2026). Rejection files and comments to be
-   digested per §11. The FINAL build stays the accepted master until the
-   rejection shows a data defect; a schema or packaging defect is fixed in the
-   generator and the same master is regenerated.
+8. **Submission to DOH (MySmyle production files, 29 Aug 2026) → REJECTED
+   9 Oct 2026** on Cost Bucket / Cost Type Match; warning on overhead ratio.
+   The claim set (9,738 claims, every month = ledger within fils) is
+   untouched; only the presentation of each claim's cost changes (§11).
+9. **SY02 resubmission (in preparation)**: the twelve sent files re-expressed
+   by `scripts/rebalance_two_view.py` once Arjun's ledger-by-cost-type is in.
 
 ## 7. The standard audit (run it the same way every time)
 
@@ -199,11 +207,18 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/validate_xml.py` | Pre-flight: every portal rule in §5 + ledger tie + cross-foot report (`--strict-totals`) |
 | `scripts/audit_mysmyle_xml.py` | Two-file XML audit (the standard, §7) |
 | `scripts/triage_rejection.py` | **Rejection triage**: digests DOH response files into message → count → claims → cause → fix |
+| `scripts/rebalance_two_view.py` | **SY02 corrective engine**: ledger-calibrated two-margin fit; writes the resubmission XMLs |
+| `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
+| `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
+| `input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx` | The template to be filled and returned as `input/Ledger_by_Cost_Type_FY2025.xlsx` |
+| `input/source/mysmyle_zip/` | The twelve files DOH evaluated (MySmyle, PRODUCTION, 29 Aug 2026) |
+| `input/rejection/` | DOH SY02 feedback letter (PDF + text) |
+| `docs/shafafiya/Abu_Dhabi_Clinical_Costing_Standard_v2_1_2026-01-27.pdf` | The governing Standard (and `.txt`); Quick Start Guide alongside |
 | `scripts/submit_shafafiya.py` | SOAP `UploadTransaction` client, dry-run by default, refuses PTE/PRODUCTION mismatches |
 | `tests/make_synthetic.py`, `tests/run_pipeline.sh` | Synthetic data and the end-to-end proof |
 | `docs/REJECTION_PLAYBOOK.md` | The rejection procedure and hypothesis list |
 | `docs/activity-template-columns.md` | Accepted column headings for the activity master and allocation table |
-| `docs/shafafiya/` | Official XSDs (+ repaired copy), technical PDFs, validated sample XML — **to be re-uploaded** |
+| `docs/shafafiya/` | Standard v2.1, Quick Start Guide (in); official XSD — **to be re-uploaded** |
 | `docs/cost-types-plain-english.md`, `docs/The_Fifteen_Boxes.docx` | Layman's cost-type guides (previous project; not yet in this repo) |
 | `output/Clinical_Costing_2025_MF4159_FINAL.xlsx` | Final costed workbook |
 | `output/xml_final/`, `output/CostSubmission_MF4159_2025_XML_*.zip` | The twelve validated XMLs |
@@ -215,19 +230,27 @@ its result is the accepted master of §6 item 5.
 
 ## 9. Open items
 
-1. **DOH rejection of the FY2025 set — in progress** (§11).
-2. **DOH ruling pending:** Supplies under `Dental` vs `Other` (email sent to
-   dohclinicalcosting@doh.gov.ae). If "Dental": `--supplies-bucket Dental`,
-   regenerate 12 files.
-3. Live files must carry `PRODUCTION`; `scripts/submit_shafafiya.py` refuses a
-   test-flagged file on the live endpoint and vice versa.
+1. **SY02 resubmission** — waiting on Arjun's ledger mapped to the sixteen cost
+   types by month (`input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx`); then run
+   the engine, validate, audit, update the reconciliation report, resubmit
+   with `PRODUCTION` (§11).
+2. **Overhead ratio 4.2 %** (DOH warning, accepted for SY02). The Finance
+   Director ruled on 10 Oct 2026 not to re-engineer the allocation now. Arjun's
+   ledger mapping will show the true ratio; if it lands in 20–50 % the
+   warning clears itself in the resubmission, otherwise it is an SY03 item.
+3. The reconciliation report submitted with SY02 must be re-issued with the
+   two-view totals (not yet uploaded to this repository).
 4. DOH Annexure reconciliation report can be filled from the FINAL build on
    request.
 5. Platform/ops follow-ups from the forensic audit: restore the 25 missing
    claims in MySmyle, fix Calibrate's 15 understated claims, payer-mapping
    reconciliation, work the 107 never-resubmitted rejections (29,736.14).
-6. Official XSD and technical PDFs to be placed back in `docs/shafafiya/`;
-   then confirm `scripts/costsub_schema.py` against them.
+6. Official XSD to be placed in `docs/shafafiya/` (validation currently reports
+   `NO XSD`; the structure itself is confirmed by the accepted files).
+7. 18 encounter serials are shared by two claims each in the sent files
+   (hygiene only; DOH did not object).
+8. MySmyle: ask whether their generator can adopt the two-view layout for
+   SY03, or keep generating from this repository.
 
 ## 10. Working etiquette with the Finance Director
 
@@ -240,42 +263,80 @@ table + commit/push. The repository is private (ruling 10 Oct 2026): inputs,
 outputs, submitted XMLs and rejection files are committed so comparisons are
 reproducible from GitHub.
 
-## 11. Rejection handling (standard procedure)
+## 11. Rejection handling — SY02 case file and standard procedure
 
-Full procedure: `docs/REJECTION_PLAYBOOK.md`. In short:
+### 11.1 SY02 rejection (letter dated 9 Oct 2026)
 
-1. **Collect**: the DOH/Shafafiya response files (portal response XML, email,
-   Excel/CSV error list, screenshots transcribed), the exact files that were
-   sent (the zip), which environment and account sent them, and the date.
-2. **Digest** with `scripts/triage_rejection.py <files> --xml <sent xmls>`:
-   one table of distinct messages, counts, claims affected, month, suspected
-   cause, fix. Report it to the Finance Director in plain words before
-   touching anything.
-3. **Classify** each message as *packaging* (disposition, environment,
-   credentials, file size), *schema* (XSD element/order/format), *reference
-   data* (clinician licence, specialty list, diagnosis codes, patient ID
-   type), or *money* (cross-foot, zero/negative, ledger tie). Only a *money*
-   or *reference-data* defect touches the accepted master; the rest is fixed
-   in the generator and regenerated from the same master.
-4. **Fix once, in the engine**, so the same cause cannot recur; re-run
-   `scripts/validate_xml.py` on all twelve files; audit one month against the
-   previously sent file with `scripts/audit_mysmyle_xml.py` to show exactly
-   what changed and that money was neither created nor lost.
-5. **Resubmit** the full set (or the months DOH named) with `PRODUCTION`;
-   record the ruling here and in `docs/REJECTION_PLAYBOOK.md`.
+| Matrix | Criteria | Score | Tolerance |
+|---|---|---|---|
+| Cost Bucket / Cost Type Match | No | −5 | **Reject** |
+| Overhead Cost Ratio | Below 20 % | 0 | Warning |
+| All nine other matrices | compliant | 10 / 5 | Acceptable |
 
-**Hypotheses to test first against the FY2025 rejection** (ordered by
-likelihood; see the playbook for the test and the fix of each):
-H1 cross-foot (buckets ≠ types ≠ total); H2 `PTE_SUBMIT` sent to production;
-H3 Supplies in `Other` vs `Dental`; H4 element order/names vs the XSD;
-H5 `ServiceCode` empty but required; H6 `ActivityClinicianID` not a DOH
-licence; H7 Specialty text not in the DOH code list; H8 duplicate claim or
-encounter IDs across the twelve files.
+**Root cause (verified against Standard v2.1).** Cost types are aggregations of
+ledger expense accounts (*what*, Appendix 1); cost buckets are aggregations of
+final direct cost centres (*where*, Appendix 2). Every dirham carries both
+labels, so on every claim Σ buckets = Σ cost types = claim cost. Our
+17-column allocation split placed each dirham once, in a bucket *or* a cost
+type: over FY2025 the bucket view held 2,290,172.29 (35.5 %) and the cost-type
+view 4,163,229.87 (64.5 %); the two together equal the ledger 6,453,401.98.
+Only 11 of 9,738 claims matched, by coincidence. A presentation defect, not a
+costing defect: claim set, totals, ledger tie and identity fields are all
+sound.
+
+**Warning root cause.** OHF + OHC in the files = 272,572.57 = 4.2 % of total;
+DOH expects 20 % to under 50 %. The allocation table gives small overhead
+percentages and books non-clinical staff and depreciation as direct types.
+The true ratio is whatever Arjun's ledger says once cost centres are
+classified direct/overhead (Stage 2).
+
+**Rulings (Finance Director, 10 Oct 2026).**
+1. The 17 columns are one list (7 buckets + 10 cost types) — confirmed.
+2. Nature of the bucket columns in the cost-type view: Supplies→MS,
+   Laboratory→Laboratory, Prosthesis→Prostheses, Imaging→Imaging,
+   Anaesthesia→Pharmacy, OP→SWNonClin, Physician→SWDoc.
+3. Home of the cost-type columns in the bucket view: `Dental` (the clinic's one
+   direct cost centre); overhead types in `CostBucketOverheads/Dental`.
+4. Method: **ledger-calibrated two-margin fit** — Arjun maps the FY2025 ledger
+   to the sixteen cost types by month (cost-type anchor); the costed claims
+   give the bucket anchor; a bucket × cost-type matrix is balanced to both
+   (RAS) from a nature seed; each claim's cost types = its bucket amounts ×
+   the fitted bucket profiles. Engine: `scripts/rebalance_two_view.py`.
+   Fallback without the ledger map: `scripts/fix_crossfoot.py` (nature
+   re-expression only).
+5. Overhead ratio is not re-engineered for SY02.
+
+**Corrective action sequence.**
+1. Arjun fills `input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx` (each month
+   must reconcile to the locked ledger; returned as
+   `input/Ledger_by_Cost_Type_FY2025.xlsx`).
+2. `python3 scripts/rebalance_two_view.py --indir input/source/mysmyle_zip
+   --ledger input/Ledger_by_Cost_Type_FY2025.xlsx --outdir
+   output/xml_resubmission --zip`.
+3. `python3 scripts/validate_xml.py output/xml_resubmission/*.xml
+   --expect-disposition PRODUCTION` — every claim must show buckets = types,
+   every month tie to the ledger.
+4. `python3 scripts/audit_mysmyle_xml.py <new month> <sent month>` — identical
+   claim sets, zero identity differences, money moved between cells only.
+5. Re-issue the reconciliation report with the two-view totals; CFO sign-off.
+6. Upload the twelve files (PRODUCTION) via Shafafiya; record the outcome in
+   `docs/REJECTION_PLAYBOOK.md` §5.
+
+Proven on 10 Oct 2026 with a stand-in ledger map: 9,738/9,738 claims match,
+all twelve months tie in both views, overhead bucket = overhead types.
+
+### 11.2 Standard procedure
+
+Full procedure: `docs/REJECTION_PLAYBOOK.md`. In short: collect → digest
+(`scripts/triage_rejection.py`) → classify (packaging / schema / reference
+data / money) → fix once in the engine → regenerate all twelve → validate →
+audit one month against the sent file → resubmit with `PRODUCTION` → record
+the ruling here.
 
 ## 12. What this repository still needs from the previous project
 
-Upload (they are committed to `input/` and `output/`):
-the accepted activity master (24,074 lines / 9,738 claims), Cherie's
-allocation table, the FINAL workbook, the twelve submitted XMLs (zip), the
-official XSD + technical PDFs for `docs/shafafiya/`, and the rejection files.
-With those in place the whole chain in §8 runs unchanged.
+Still to upload: the accepted activity master (24,074 lines / 9,738 claims),
+Cherie's allocation table, the FINAL workbook, the official XSD, and the
+reconciliation report submitted with SY02. The sent XMLs, the DOH letter, the
+Standard v2.1 and the Quick Start Guide are in. With Arjun's ledger map the
+SY02 resubmission runs from the sent files alone.

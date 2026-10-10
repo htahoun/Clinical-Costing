@@ -102,9 +102,22 @@ def main(argv=None):
                 largest.append((abs(d), cid, k, ma.get(k, 0), mb.get(k, 0)))
         tot_a += claim_total(A["claims"][cid])
         tot_b += claim_total(B["claims"][cid])
-    print(f"\nMoney on common claims: A {tot_a / 1000:,.3f}  B {tot_b / 1000:,.3f}  net {(tot_a - tot_b) / 1000:+,.3f}")
-    print(f"Whole file totals:      A {file_total(A) / 1000:,.3f}  B {file_total(B) / 1000:,.3f}  "
-          f"net {(file_total(A) - file_total(B)) / 1000:+,.3f}")
+    def views(sub):
+        b = t = 0
+        for c in sub["claims"].values():
+            for e in c["encounters"]:
+                for k, v in e["money"].items():
+                    if k.startswith("CostTypeDetails"):
+                        t += v
+                    else:
+                        b += v
+        return b, t
+    (ba, ta), (bb, tb) = views(A), views(B)
+    print(f"\nBucket view totals:    A {ba / 1000:,.3f}  B {bb / 1000:,.3f}  net {(ba - bb) / 1000:+,.3f}")
+    print(f"Cost-type view totals: A {ta / 1000:,.3f}  B {tb / 1000:,.3f}  net {(ta - tb) / 1000:+,.3f}")
+    print(f"Two-view match (buckets == types): A {'YES' if ba == ta else 'NO'}  B {'YES' if bb == tb else 'NO'}")
+    print(f"All cells summed:      A {file_total(A) / 1000:,.3f}  B {file_total(B) / 1000:,.3f}  "
+          f"(a file with two complete views sums to twice its cost)")
     print(f"Cells differing by > {args.tol} AED: {sum(cell_counts.values())}")
     for k, n in cell_counts.most_common():
         print(f"  {k:<34}{n:>7}   net {cell_nets[k] / 1000:+,.3f}")
@@ -120,8 +133,9 @@ def main(argv=None):
         print(f"{lab}: zero-total claims {len(z)}; negative claims {len(n)}" + (f"  e.g. {z[:3]}" if z else ""))
 
     print("\nVERDICT")
-    net = file_total(A) - file_total(B)
-    print(f"  Money: files {'balance to the fils' if net == 0 else f'differ by {net / 1000:+,.3f} AED'} overall; "
+    net = ta - tb
+    print(f"  Money (cost-type view): files {'balance to the fils' if net == 0 else f'differ by {net / 1000:+,.3f} AED'}; "
+          f"bucket view {'balances' if ba == bb else f'differs by {(ba - bb) / 1000:+,.3f}'}; "
           f"{'claim sets identical' if not only_a and not only_b else f'{len(only_a)} claims only in A, {len(only_b)} only in B'}; "
           f"{sum(meta_diffs.values())} identity differences; {sum(cell_counts.values())} cells differ beyond tolerance.")
     mirror = [(k, cell_nets[k]) for k in cell_counts]

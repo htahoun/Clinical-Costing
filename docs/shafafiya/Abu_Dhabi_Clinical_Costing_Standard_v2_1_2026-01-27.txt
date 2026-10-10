@@ -1,0 +1,1241 @@
+  ABU DHABI CLINICAL COSTING
+  STANDARD
+
+
+
+
+TEMPLATE 5:
+Standard
+Document Title:         Abu Dhabi Clinical Costing Standard
+
+
+
+Document Ref. Number:   DoH/ST/FPS/ADCC/V2/2025                Version:         V2
+
+
+
+New / Revised:          New
+
+
+
+Publication Date:       January, 2026
+
+
+
+
+Effective Date:         February, 2026
+
+
+
+
+Document Control:       DoH Strategy Sector
+
+
+
+                          -   DoH licensed Healthcare Providers
+                          -   DoH licensed Healthcare Providers of dental services.
+Applies To:
+                          -   DoH authorized Health Payers.
+                          -   All Health Insurance products and schemes, as applicable.
+
+
+
+Owner:                  Healthcare Payers & Finance Affairs
+
+
+
+
+Revision Date:          Nov 2026
+
+
+
+Revision Period:        One year
+
+
+
+Contact:                dohclinicalcosting@doh.gov.ae
+
+
+
+
+                                                                                          1
+      1.Standard Scope
+
+      1.1. This standard applies to all the healthcare providers, providing direct patient care and operating in
+           the Emirate of Abu Dhabi, under the license provided by the DoH such as:
+          1.1.1. Hospitals
+          1.1.2. Specialist Day Case and Day Surgery Centers
+          1.1.3. Long Term Care and Rehabilitation (LTC and Home Care)
+          1.1.4. Stand-alone Specialist Services (e.g., Dialysis, IVF, Dental etc.)
+          1.1.5. Primary Care Centers
+          1.1.6. Clinics Alternative Medicine Centers and Others
+
+   1.2. This standard does not apply to :
+       1.2.1. Stand-alone Outpatient Pharmacies
+       1.2.2. Stand-alone Diagnostic Centers (e.g. laboratory and imaging)
+       1.2.3. Stand-alone Orthotics and Prosthetics Supplies Center
+       1.2.4. School Clinics
+       1.2.5. Offshore Clinic
+
+
+2. Definitions and Abbreviations
+
+No.        Term / Abbreviation                    Definition
+
+                                                  An account code is a unique line level record for each type
+2.1        Account Code
+                                                  of asset, liability, equity, revenue, and expense.
+
+                                                  Abu Dhabi Clinical Cost Data Collection: The ADCCDC is a
+2.2        ADCCDC                                 critical component of Abu Dhabi’s value-based funding
+                                                  framework.
+                                                  The process of measuring the cost and mix of resources
+                                                  used to deliver patient care. Costing plays a vital role in the
+2.3        Clinical Costing                       development of activity-based funding policies, can inform
+                                                  the development of patient classification systems, and
+                                                  provides valuable information for pricing purposes.
+                                                  From a reporting perspective, it would be impractical to
+                                                  report cost data by every final direct cost center as there
+                                                  may be over 100 such cost centers for any health service.
+                                                  For reporting cost data, it is therefore useful to aggregate
+                                                  final direct cost centers to a higher level, called ‘cost
+2.4        Cost Buckets
+                                                  buckets’ (also referred to as ‘cost pools’). For example, a
+                                                  health service may have many final direct ward related cost
+                                                  centers (e.g., medical / surgical / pediatric / obstetric), but
+                                                  for the purpose of reporting, these final direct cost centers
+                                                  may be aggregated to a ‘ward’ cost bucket.
+                                                  The cost center is group of financial transactions that reflect
+2.5        Cost Center                            management responsibilities, point of cost control and
+                                                  accounts that reflect categories of expense.
+
+
+
+
+                                                                                                                    2
+                                  The Cost Types are aggregations of expense accounts for
+                                  cost reporting purposes. From a reporting perspective, it
+                                  would be impractical to report general ledger expenses
+2.6    Cost Types
+                                  (also known as line items) as there could be hundreds of
+                                  expenses (line items). In costing process, these expenses are
+                                  aggregated to higher level, called “cost types”.
+
+2.7    CSSD                       Central Sterile Services Department
+
+                                  Expenses incurred directly in the delivery of a patient care
+                                  product and/or service allocated to a patient using evidence
+2.8    Direct Cost
+                                  of resource utilization e.g. Operating Room, Physician,
+                                  Nursing costs etc.
+2.9    ECG                        Electrocardiogram
+2.10   ED                         Emergency Department
+2.11   EEG                        Electroencephalogram
+                                  Final direct cost centers in healthcare facilities are expenses
+                                  that result from patient care interventions and are
+2.12   Final Direct Cost Center   connected to the provision of services to patients. Final
+                                  direct cost centers may also be associated with non-patient
+                                  activities including teaching, training, and research.
+                                  The general ledger is a set of financial accounts that
+2.13   General ledger             summarizes all financial transactions occurring within an
+                                  organization and is used to create its financial statement.
+2.14   GS                         Goods and Services
+2.15   HCPCS                      Healthcare Common Procedure Coding System
+2.16   ICU                        Intensive Care Unit
+2.17   IVF                        In Vitro Fertilization
+2.18   MRI                        Magnetic Resonance Imaging
+2.19   MS                         Medical Supplies
+2.20   OBD                        Occupied Bed Days
+2.21   OP                         Outpatient Clinics
+2.22   OPAT                       Outpatient Parenteral Antibiotic Therapy
+2.23   OR                         Operating Room
+                                  Overhead cost refers to expenses within the hospital that
+                                  generally relate to administrative and support functions.
+2.24   Overhead Cost              They do not relate to patient care and include finance,
+                                  human resources, general maintenance, and information
+                                  technology etc.
+2.25   PACU                       Post Anaesthesia Care Unit
+                                  Health services provided to the patients for assessing,
+2.26   Patient Products           recording, maintaining, or improving health, or
+                                  diagnosing/treating conditions.
+2.27   PET                        Positron Emission Tomography
+2.28   SPS                        Special Procedure Suites
+
+
+
+
+                                                                                                    3
+      3.Standard Requirements and Specifications
+
+This document outlines the six main process stages of clinical costing, and the accompanying guidelines.
+Healthcare facilities are mandated to adhere to this standard in the submission of cost data to the ADCCDC.
+The Abu Dhabi Clinical Costing Standard and appendices should be read in conjunction with the Abu Dhabi
+Clinical Costing Guidelines as they are integral to their application.
+
+3.1        Stage 1: IDENTIFY EXPENSES FOR COSTING
+
+3.1.1    The costing process shall draw on all expense information from the general ledger applicable to the
+         reporting period except for balance sheet expense items.
+3.1.2    In addition to the expenses obtained from the general ledger, the organisation shall include all
+         additional expenses incurred in the delivery of the patient products including:
+      3.1.2.1.1    Applicable expenses generated by third parties but not held in the general ledger.
+      3.1.2.1.2    Any relevant offsets and recoveries.
+3.1.3    The healthcare facility must use accrual accounting for reporting and maintaining the expenses in
+         the general ledger. If a healthcare facility is using cash accounting or modified cash accounting,
+         certain adjustments must be made to convert general ledger to accrual-based accounting.
+3.1.4    All expenses used for costing shall be mapped to the Cost Types as represented in Appendix 1 of
+         this document.
+3.1.5    Please refer to section 3.1 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+         explanation of this stage
+
+3.2        Stage: 2 CREATE THE COST LEDGER
+
+3.2.1      Move all applicable expenses (in line with stage 1) into cost ledger. The cost ledger must reflect the
+           link between the expenses in the general ledger and patient products.
+3.2.2      The cost ledger must classify final cost centers as direct or overhead.
+3.2.3      Final direct cost centers must be aligned to the direct patient facing functions as per Appendix 2.
+3.2.4      Please refer to section 3.2 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+           explanation of this stage.
+3.3        Stage 3: ALLOCATE OVERHEADS
+
+3.3.1      All expense items collected in overhead cost centers must be allocated to final cost centers by
+           means of cost allocation statistics.
+3.3.2      The method of allocating expenses aggregated in overhead final cost centers must consider
+           consumption of this expense by other overhead final cost centers. This allocation must follow the
+           reciprocal approach to reflect the resources consumed by an overhead final cost center before
+           these expenses are allocated to final direct cost centers.
+3.3.3      Where the overhead cost center does not consume expenses from other overhead cost centers,
+           clause 3.3.2 does not apply.
+3.3.4      Where health facilities are unable to allocate overhead costs in a reciprocal manner, a step-down
+           approach must be applied.
+3.3.5      The allocation statistics used to allocate expenses to final cost centers and between overhead cost
+           centers must emphasise causality between the expense to be allocated and the final cost center
+           that will absorb this cost. The healthcare facilities must use suggested allocation statistics and
+           mechanism provided in Appendix 3 of this document.
+3.3.6      All allocation decisions must be documented in detail and available for review and audit in line with
+           Stage 3.6.1 Data Quality Framework.
+
+
+                                                                                                                    4
+3.3.7    Please refer to section 3.3 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+         explanation of this stage.
+
+3.4      Stage 4: CREATE PATIENT PRODUCTS
+
+3.4.1    All products created by facilities must be grouped into product categories that sufficiently
+         differentiate between patient products and non-patient products.
+3.4.2    This Stage also requires aligning products with final direct cost centers and patient encounters
+         (where patient related).
+3.4.3    The healthcare providers must identify all products that it is responsible for producing in the
+         reporting period. For this stage, individual products are defined as the organisation’s final cost
+         objects.
+3.4.4    The healthcare providers must classify products into categories as required for decision making and
+         reporting purposes. As applicable, healthcare providers must classify products as per Appendix 4.
+3.4.5    Please refer to section 3.4 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+         explanation of this stage.
+
+3.5      Stage 5: ALLOCATE COST TO FINAL PRODUCTS AND PATIENTS
+
+ 3.5.1   All expense collected in final cost centers must be matched to the final products of the healthcare
+         facility.
+ 3.5.2   Final products must reflect all products for a healthcare facility that are:
+3.5.2.1      Completed in the reporting period; or
+3.5.2.2      Partially completed in the reporting period (work in progress).
+ 3.5.3   All cost allocation decisions must be documented in detail and available for review and audit in
+         line with Stage 3.6.2 Reconciliation to Source Data.
+3.5.4   Healthcare facilities must adopt linking rules to ensure maximum linking of patient products to
+        patient encounters.
+3.5.5   Please refer to section 3.5 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+        explanation of this stage
+
+3.6      Stage 6: DATA REVIEW AND RECONCILIATION
+
+3.6.1    Data Quality Framework
+3.6.1.1       The Healthcare facilities must conform to the DOH Data Quality Standard
+              (DoH/ST/DHS/DQ/V1/25) published in October 2025. There are seven guiding principles that
+              healthcare facilities must comply to ensure a consistent and efficient approach to cost data
+              quality:
+      3.6.1.1.1     Governance: Ensure that proper governance mechanisms, including roles, tools, and
+                    processes, are in place to oversee and maintain Clinical Costing Processes and Healthcare
+                    Ecosystem data quality, enabling a governed data environment.
+      3.6.1.1.2     Criticality: Prioritize critical Clinical Costing Data for improvement based on the potential
+                    risks and business impacts of low-quality data, to optimize performance, mitigate risks,
+                    and effectively achieve the DoH’s strategic objectives and regulatory requirements.
+      3.6.1.1.3     Lifecycle Management: Data quality should be a priority in all stages of the data lifecycle,
+                    including during data creation, collection, and transfer between Healthcare Ecosystems.
+      3.6.1.1.4     Fit for the Purpose: Define data quality requirements based on healthcare business
+                    objectives and DOH requirements to minimize the effort needed to deliver the right
+                    quality data and evolve accordingly if the business objective or DOH requirements
+                    expand or changes.
+
+
+                                                                                                                    5
+        3.6.1.1.5  Prevention: Establish a proactive data quality culture by implementing robust data
+                   quality prevention measures, such as validation rules, cleansing processes, and
+                   monitoring ongoing data quality.
+      3.6.1.1.6    Continuous Improvement: Establish a continuous improvement cycle that transforms
+                   data error discoveries into automated quality guidelines to proactively detect and
+                   prevent the recurrence of similar problems.
+      3.6.1.1.7    Root Cause Remediation: Address data quality issues by identifying and rectifying the
+                   root causes related to process and system design
+3.6.1.2       Please refer to section 3.6 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+              explanation of this stage.
+
+3.6.2      Reconciliation To Source Data
+
+3.6.2.1       Healthcare facilities must review and confirm:
+      3.6.2.1.1    The total cost reported is in line with the total applicable expense defined in Stage 1
+                   (section 3.1) and reconciles to the healthcare facilities’ (audited) financial statements.
+      3.6.2.1.2    All costs related to delivery of the reportable products for the reporting period have
+                   been included in the costed results. This will include appropriate treatment of costs for
+                   reportable work in progress products in line with the reconciliation report.
+      3.6.2.1.3    All patient encounters related to the reporting period have been included in the costed
+                   results.
+      3.6.2.1.4    The products reported are in line with the total applicable products defined in the Stage
+                   4 (section 3.4) and reconcile to applicable mandatory data submissions.
+      3.6.2.1.5    For every cost data submission, healthcare facilities must submit a reconciliation report
+                   to the DoH that reconciles the cost, encounter and product volumes to expense and
+                   activity information captured in the source data. This report will contain inclusions,
+                   exclusions, work-in-progress patients, overhead allocation statistics and confirmation of
+                   data quality checks. This reconciliation report will accompany the submission of annual
+                   cost data to the Department. The reconciliation report must be signed off by appropriate
+                   authority within the healthcare facility.
+3.6.2.2       The DoH will undertake an annual audit of the healthcare facilities to assess the compliance
+              with Abu Dhabi Clinical Costing Standards and Guidelines.
+3.6.2.3       Please refer to section 3.6 of Abu Dhabi Clinical Costing Guidelines for detailed guidance and
+              explanation of this stage.
+
+
+
+
+   4.Key stakeholder Roles and Responsibilities
+
+4.1 Duties for Healthcare Providers
+
+        4.1.1       The standard applies to all DoH licensed healthcare facilities who provide clinical care in the
+                    Emirate of Abu Dhabi, including but not limited to:
+                                4.1.1.1 Hospitals
+                                4.1.1.2 Specialist day case and day surgery centers
+                                4.1.1.3 Long term care and rehabilitation (LTC and Home Care)
+                                4.1.1.4 Stand-alone specialist services (e.g., Dialysis, IVF, Dental etc.)
+                                4.1.1.5 Primary care centers
+                                4.1.1.6 Clinics Alternative Medicine Centers and Others
+
+
+
+                                                                                                                      6
+     4.1.2    Relevant healthcare facilities described in 4.1.1 must comply with the Abu Dhabi Clinical
+              Costing Standard outlined in this document when submitting cost data to the Department.
+     4.1.3    Relevant healthcare facilities (4.1.1) must report and submit cost data to the DoH in
+              accordance with the published Abu Dhabi Clinical Costing Guidelines that are integral part of
+              Abu Dhabi Clinical Costing Standard.
+     4.1.4    Relevant facilities must comply with the DoH requests to inspect and audit cost models
+              against these standards and accompanied guidelines and appendices.
+
+4.2 Role of the DoH
+
+     4.2.1    The DoH will monitor relevant healthcare facilities regarding enforcement of these standards.
+     4.2.2    The DoH will provide feedback to assist facilities comply with the standards.
+     4.2.3    The DoH will financially sanction and penalize relevant facilities for non-compliance with the
+              standards and associated requirements to submit data in accordance with the Abu Dhabi
+              Clinical Costing Guidelines.
+
+
+
+   5.Monitoring and Evaluation
+
+5.1 DoH will remain the relevant authority to provide regulatory oversight. Abu Dhabi Clinical Costing
+    Standards, Abu Dhabi Costing Guidelines and associated appendices & templates outline the
+    importance of reconciliation of financial and patient data to ensure generation of robust cost data. The
+    DoH or designated third party will inspect and audit the cost data, submission process and cost models
+    against these standards and guidelines to ensure adherence to published costing standards and
+    guidelines.
+
+
+
+
+   6.Enforcement and Sanctions
+
+6.1 Healthcare facilities licensed by the DoH must comply with the terms and requirements of this Standard
+    and other related regulatory requirements.
+6.2 The DoH may impose sanctions in relation to any breach of requirements under this standard in
+    accordance with the Disciplinary regulation of the Healthcare Sector.
+
+
+
+   7.Exempted from Scope
+
+This standard does not apply to:
+
+7.1 Stand-alone Outpatient Pharmacies
+7.2 Stand-alone Diagnostic Centers (e.g. laboratory and imaging)
+7.3 Stand-alone orthotics and prosthetics Supplies Center
+7.4 School clinics
+7.5 Offshore Clinic
+
+
+
+
+                                                                                                               7
+      8. Relevant Reference Documents
+
+
+        Reference
+No.                   Reference Name               Relation Explanation / Coding / Publication Links
+        Date
+
+                                                   The content of this Standard is adapted from The
+                                                   Australian Hospital Patient Costing Standards & were
+                                                   referenced in the production of this document The
+                                                   Australian Independent Hospital and Aged Care Pricing
+                                                   Authority material. It was used as supplied under
+                                                   Creative Commons License 3.0, which in clause 3A,
+                      The Australian Hospital      allows for worldwide, royalty, free, non-exclusive,
+1       2023
+                      Patient Costing Standards    perpetual license to create and reproduce one or more
+                                                   derivative works. Please refer to below link for details
+                                                   on Creative Commons License
+
+
+                                                   https://www.ihacpa.gov.au/resources/australian-
+                                                   hospital-patient-costing-standards-version-42
+
+
+
+                      Abu Dhabi Clinical Costing
+                                                   https://www.doh.gov.ae/-
+2       2024          Standard V1
+                                                   /media/8F049E6D5E5A4BF4BD3C582BCC206329.ashx
+
+
+
+
+                      Abu Dhabi Clinical Costing
+                                                   https://www.doh.gov.ae/-
+3       2024          Guideline V1
+                                                   /media/98F805EF90DD481BA467796B7639AA66.ashx
+
+
+
+
+                      Abu Dhabi Clinical Costing
+4       2025                                       https://www.doh.gov.ae/en/Shafafiya/Clinical-Costing
+                      Road Map 2025
+
+
+
+                                                   https://www.doh.gov.ae/-
+                      DOH Data Quality Standard
+5       2025                                       /media/0FDBD6F306564E3FBB7807D51A7229E9.ashx
+                      2025
+
+
+
+
+                                                                                                              8
+       9. Appendices
+
+Appendix 1: COST TYPES
+This appendix defines the mapping of account codes to cost type categories to be used when reporting to the
+ADCCDC.
+
+Expenses will be grouped to represent the following categories:
+
+    Cost Type Code                       Cost Type Description
+    SWNurs                               Salaries and Wages Nursing
+    SWDoc                                Salaries and Wages Medical
+    SWAllied                             Salaries and Wages Allied Health professionals, including technicians (e.g.,
+                                         operating room)
+    SWNonClin                            Salaries and Wages Non-Clinical staff where their cost is recorded in direct
+                                         cost centers
+    Laboratory                           Laboratory Supplies
+    Imaging                              Imaging Supplies
+    Pharmacy                             Pharmacy Drugs and Services
+    Prostheses                           Implantable devices
+    MS                                   All other medical and surgical supplies
+    Hotel                                Cleaning, linen and laundry, patient food
+    GS                                   All other goods and services
+    Depreciation                         Building and Equipment depreciation and amortization recorded in direct
+                                         cost centers
+    OHF                                  Overhead cost of healthcare facility except for Depreciation
+    OH Depreciation                      Building and Equipment depreciation and amortization recorded in facility’s
+                                         overhead cost centers
+    OHC                                  Overheads cost from Corporate Office / Shared Services
+    NABM                                 Non-activity Based Mandate (funding by DOH) recorded at the cost center
+                                         level and reported as negative cost (applicable to select health
+                                         care providers)
+
+Cost of Labour:
+The cost of labour will identify salaries, wages and on-costs, where salaries and wages are further be broken
+down into categories which are sufficiently similar in role, functions and skill.
+The ADCCDC Labor type reporting categories are:
+•     Nursing Salaries and Wages, including:
+           •    Registered Nurses
+           •    Enrolled Nurses
+           •    Establishment Based Student Nurses
+           •    Trainee nurse
+•     Physician Salary and Wages, including:
+           •    Specialist Practice Medical Officers (e.g., Consultants)
+           •    Registrars
+           •    Medical Residents and Interns
+           •    Other Medical staff
+
+
+
+                                                                                                                 9
+•   Allied Health Salary and Wages, including:
+    •   Audiologists
+    •   Chiropractors
+    •   Dieticians/Nutritionists
+    •   Medical Scientists
+    •   Occupational Therapists
+    •   Optometrists
+    •   Orthoptists
+    •   Osteopaths
+    •   Physiotherapists
+    •   Podiatrists
+    •   Social Workers
+
+•   Non-Clinical staff, including:
+    •   Other Personal Care staff - Other Personal Care staffs are those staff that primarily provide personal
+        care to patients or residents. These staff, however, are not formally qualified or are undergoing
+        training in nursing or allied health professions. The function provided by these staff must also not be
+        an overhead in nature.
+
+
+              Examples of staff in this category include:
+              -   Attendants
+              -   Assistants or home assistants
+              -   Home companions
+              -   Ward helpers
+
+
+        •     Other Administrative, Maintenance and Clerical Staff - Other administrative, maintenance and
+              clerical staff are the staff engaged in administrative, maintenance and clerical duties. Staff in this
+              category do not carry out services that are carried out by Medical, nursing, diagnostic and health
+              professionals.
+
+
+              Examples of relevant staff include:
+              -   Management of the health service
+              -   Ward clerks
+              -   Health information managers
+              -   Other administrative staff
+
+
+Non-Labour Cost Type Categories:
+•   Laboratory
+        •     Laboratory costs are goods and services used in the provision of a Laboratory service and
+              consumables (including reagents, stains and calibration products, etc.) or the actual cost as billed
+              by a provider.
+
+
+•   Imaging
+        •     Imaging costs are goods and services used in the provision of an imaging service (including film,
+              contrast, etc.) or the actual cost as billed by a healthcare providers.
+
+                                                                                                                   10
+•   Pharmacy
+        •   Pharmacy costs are goods and services used in the provision of a pharmaceutical service and
+            consumables, or the actual cost as billed by a healthcare provider. They include the purchase,
+            production, distribution, supply and storage of drug products and clinical pharmacy services.
+
+
+•   Prostheses
+        •   Prostheses costs are goods and services used in the provision of services to implant prostheses,
+            human tissue item and other medical devices. These costs relate to specific prostheses accounts
+            in the General Ledger, which will also be mapped to the prostheses cost bucket.
+
+
+•   Medical and surgical supplies
+        •   Medical and surgical supplies costs are goods and services used in the provision of medical and
+            surgical services excluding those used for prostheses (as specified above).
+
+
+•   Hotel
+        •   Hotel includes cleaning products and services; linen and laundry services; food services
+            (patients); and general hotel services.
+
+
+•   All Other Goods and Services
+        •   Goods and Services not previously specified should be included in this category. Examples
+            included include but not limited to are rent of building, security contracts and utilities.
+
+
+•   Depreciation and Amortization
+        •   Map Depreciation expense recorded in facility’s direct cost center with Depreciation and
+            Amortisation cost type.
+
+•   Overhead Facility (OHF)
+        •   All the line-item expenses including salaries, wages and others recorded in overhead cost centers,
+            except for Depreciation, should be mapped to Overhead Facility Cost Type (OHF). Depreciation
+            recorded in overhead cost centers should be reported separately as OH Depreciation.
+
+•   Overhead Depreciation
+        •   Map Depreciation expense recorded in facility’s overhead cost center with Overhead
+            Depreciation.
+
+•   Overhead Corporate
+        •   Map all the expenses allocated by corporate office / shared services to overhead corporate cost
+            type.
+
+
+
+
+                                                                                                              11
+APPENDIX 2: MAPPING OF FINAL COST CENTERS TO COST BUCKETS
+This appendix defines the mapping of final cost centers to cost buckets, to be used when reporting to the
+ADCCDC. Cost buckets are aggregations of similar final cost center types.
+
+Cost Buckets will be grouped to represent the following broad categories:
+        Cost Bucket Code                Cost Bucket Description
+         Allied                           Allied Health services including technicians
+         Anaesthesia                      Anaesthesia services
+         Dental                           Dental Services
+         ED                               Emergency department
+         Home                             Home Healthcare Services
+         ICU                              Intensive care, critical care, coronary care, and high dependency
+                                          units
+         Imaging                          Imaging services
+         Laboratory                       Laboratory services
+         Physician                        Physician services
+         OP                               Outpatient clinics
+         OR                               Operating room
+         Other                            Other services
+         Pharmacy                         Pharmacy services
+         Prosthesis                       Patient implants
+         SPS                              Special procedure suites – e.g., Endoscopy, Cath lab
+         Ward                             Ward Services
+
+
+Allied Health:
+
+Allied health services refer to the range of services provided by professionals who are trained healthcare
+providers who are not doctors or nurses, but they are specialized technicians and support teams that work
+alongside physicians and nurses to provide comprehensive care or operates its own specialized department
+within a healthcare facility. However, these services' functions are often integrated throughout the healthcare
+facility to meet patients' specific needs
+
+
+Allied health services include but not limited to:
+
+
+         •     Audiology
+         •     Chiropractic services
+         •     Diabetes education
+         •     Dietetics/nutrition
+         •     Occupational therapy
+         •     Optometry
+         •     Orthoptic services
+         •     Osteopathy
+         •     Physiotherapy
+         •     Podiatry
+         •     Social work
+         •     Other and general allied health services
+
+
+                                                                                                              12
+Anesthesia:
+
+Anesthesia is a specialized service focusing on perioperative care that looks at administration of anesthesia for
+pain control and sedation and includes resources like registered nurse, anesthesiologist.
+
+
+The list of anesthesia services is listed below but not limited to:
+          • Post Anesthesia Care Unit (PACU)
+           •   Anesthesia
+           •   Pain Management
+
+
+Dental:
+
+This function provides a range of services such as diagnostic, preventative and surgical services for condition
+affecting mouth, teeth or jaw which are typically done by qualified dentists, dental hygienist, dental assistant
+and admin who generally looks to cater to outpatients and day case surgical procedures where patient require
+recovery but won't stay overnight.
+
+The list of dental services is listed below but not limited to:
+       •   Endodontics
+       •   Periodontics
+       •   Orthodontics
+       •   General Dentistry
+       •   Prosthodontics
+
+ED:
+
+This function is responsible for delivering initial, urgent and emergent medical care to patients with a wide
+range of illnesses and injuries. Some of these conditions may be life-threatening and necessitate immediate
+medical intervention. The function is equipped to handle urgent care and trauma situations and provide
+immediate action as needed.
+
+The list of urgent and emergency services is listed below but not limited to:
+       •   Emergency department
+       •   Trauma
+       •   Urgent care
+
+HOME:
+
+Home healthcare services provide skilled medical care, therapy and support to patients in their home or
+healthcare facility by facilitating recovery. These are post-acute patients that are treated by registered nurses.
+
+ICU:
+
+A critical care unit is a specialized area within a hospital designed to provide intensive medical care to patients
+with severe and life-threatening conditions. These units are staffed by highly trained nurses who possess
+expertise in managing high-acuity patients. The care provided often involves intensive treatment, invasive
+monitoring, and life support.
+
+
+                                                                                                                  13
+The list of intensive care services is listed below but not limited to:
+
+
+    •      Coronary Care Units
+    •      General Critical Care
+    •      High Dependency Unit
+    •      Neonatal Intensive Care Units
+    •      Other Critical Care
+    •      Pediatric Intensive Care Units
+    •      Psychiatric Intensive Care
+    •      Special Care Nursery
+    •      Burn Care Intensive Care Unit
+
+
+Imaging:
+
+Imaging tests services employ various techniques to produce visual representations of the body's interior,
+aiding in clinical analysis and diagnosis. These include film, contrast or the actual cost as billed by healthcare
+provider. These methods are integral to modern medical diagnostics, providing critical insights for healthcare
+professionals. This includes the cost of imaging staff.
+
+
+Imaging services can be categorized into the following non-exhaustive list:
+
+
+    •      Angiography
+    •      Angioplasty
+    •      Computed Tomography (CT)
+    •      General Imaging
+    •      Echo Cardiogram
+    •      Mammography
+    •      Magnetic Resonance Imaging (MRI)
+    •      Nuclear Medicine
+    •      Positron Emission Tomography (PET)
+    •      Plain X ray (including films and contrast)
+    •      Ultrasound
+
+Laboratory:
+
+Laboratory tests and services are essential for conducting laboratory functions. These include consumables
+such as reagents, stains, and calibration products, or the actual cost as billed by service providers. This includes
+the cost of laboratory staff.
+
+
+Laboratory functions are typically categorized into the following areas:
+
+
+    •      Biochemistry
+    •      Blood Bank
+    •      Cytogenetic
+    •      Cytology
+    •      Flowcytometry
+
+                                                                                                                     14
+      •   General Laboratory
+      •   Hematology
+      •   Histology
+      •   Histopathology
+      •   Immunology
+      •   Lab test services
+      •   Microbiology
+      •   Molecular Biology
+      •   Other Laboratory Services
+      •   Other Pathology
+      •   Pathology Surgical
+      •   Serology
+      •   Stem cells Lab
+      •   Phlebotomy
+
+Physician:
+
+Physician services encompass a range of functions, including medical, surgical, diagnostic, and advisory
+services. These services are delivered by licensed medical physicians.
+
+
+The following captures the types of physicians but not limited to:
+
+
+      •   Gastroenterologist
+      •   Internist
+      •   Bariatric Surgeons
+      •   General Surgeons
+      •   Cardiologist
+      •   Nephrologist
+      •   Neurologist
+      •   Neurosurgeon
+      •   Oncologist
+      •   Ophthalmologist
+      •   Plastic Surgeon
+      •   Psychiatrist
+      •   Rheumatologist
+      •   Thoracic Surgeon
+      •   Trauma Surgeon
+      •   Urologist
+
+OP:
+
+Outpatients are medical services that treat patients in clinics; these are patients that are not in a hospital bed
+– this should include the cost of nurses, equipment and consumables.
+
+
+The list of outpatient services includes, but is not limited to the following:
+      •   Gastroenterology
+      •   General Medicine
+      •   Bariatric Surgery
+
+                                                                                                                     15
+      •   General Surgery
+      •   Infectious Disease
+      •   Cardiology
+      •   Nephrology
+      •   Neurology
+      •   Neurosurgery
+      •   ObsGyn
+      •   Occupational Health
+      •   Oncology
+      •   Ophthalmology
+      •   Plastic Surgery
+      •   Psychiatry
+      •   Pulmonary
+      •   Rheumatology
+      •   Thoracic Surgery
+      •   Trauma Surgery
+      •   Urology
+
+OR:
+
+Operating room services are specialized areas within hospitals where surgical procedures are conducted under
+controlled surgical conditions. These procedures are performed under the supervision of licensed physicians.
+These services are confined to designated areas within the hospital premises.
+
+
+The list of operating room services includes, but is not limited to the following:
+
+
+      •   General Day Surgery Suite
+      •   General Operating Rooms
+      •   Operating Theatre Suite
+      •   Other Operating Rooms
+
+Other:
+
+The categories in question are not explicitly identified as cost buckets. Some examples of these categories
+include:
+
+
+      •   Other Services (e.g. business & commercial)
+      •   Organ Retrieval
+      •   Research
+      •   Training
+
+Pharmacy:
+
+Pharmacy costs are drugs and services used in the provision of a pharmaceutical service and consumables, or
+the actual cost as billed by a provider.
+
+
+
+
+                                                                                                              16
+Pharmacy services can be categorized into the following non-exhaustive list:
+
+
+       •   Pharmacy Ambulatory/Clinic Services
+       •   Pharmacy Inpatient Services
+       •   Pharmacy Main Store
+       •   Pharmacy Retail/Prescription Services
+       •   Pharmacy Services
+
+Prostheses:
+
+Prostheses capture a variety of surgically implanted devices, human tissues, and other medical apparatuses.
+
+
+The following list of prostheses services includes, but is not limited to the following:
+
+
+       •   Prothetics
+       •   Implants
+
+SPS:
+
+Specialist procedure suite services are designated areas specifically designed for conducting various medical
+procedures. These suites are equipped to handle both invasive and non-invasive procedures.
+
+It is important to note that there are several areas where procedures are performed, which should not be
+included as Operating Rooms but classified as Specialist Procedure Suites for clinical costing purposes.
+
+
+The following list of SPS services includes, but is not limited to the following:
+
+       •   Cardiac Catheter Suites
+       •   Endoscopic Suites
+       •   General Procedure Suites
+       •   Hyperbaric Chamber
+       •   Lithotripsy Suites
+       •   Lung function laboratories
+       •   Non–invasive Cardiac Laboratories (e.g. Echo Labs)
+       •   Physiology Laboratories
+       •   Radiotherapy Suites
+       •   Respiratory Laboratories
+       •   Sleep Laboratories
+
+Ward:
+A ward is a designated area within a facility that provides special Sed medical care for a patient or condition. It
+looks after inpatient care where patients will stay overnight treated and monition red by nurses and
+physicians.
+The following list of ward services includes, but is not limited to the following:
+
+
+       •   Day surgery ward
+       •   General ward
+       •   Specialty ward
+
+
+                                                                                                                  17
+   APPENDIX 3: OVERHEAD ALLOCATION STATISTICS
+   This appendix has two reference tables. The first includes suggested overhead allocation statistics that may be
+   applied. The second table provides suggestions as to where to use these statistics.
+
+   Suggested overhead allocation statistics
+Statistic Code          Statistic Description
+ActualPatsCost          Actual cost of service directly allocated to a patient either externally or
+                        internally billed e.g., patient meals, transport cost.
+ActualCcCost            Actual cost of service directly allocated to a cost center either externally or internally billed e.g.
+                        biomedical service, payroll services, CSSD.
+ActualPatUnits          Actual units of service directly allocated to a patient either externally or internally billed e.g.,
+                        patient meals, transport, interpreter services.
+ActualCcUnits           Actual units of service directly allocated to a cost center either externally or internally billed e.g.
+                        patient meals.
+Allpats                 Count of all patient encounters
+ExpG&S                  Goods and services expenses from general ledger for total hospital or specific service e.g., surgical.
+ExpSalwageAll           Salary and wages per cost area for all staff applied to the total hospital or a specific service.
+ExpSalwageMed           Salary and wages per cost area for medical staff applied to the total hospital or a specific service.
+ExpSalwageNurs          Salary and wages per cost area for nursing staff applied to the total hospital or a specific service.
+ExpSalwageAH            Salary and wages per cost area for allied health staff applied to the total hospital or a specific
+                        service.
+Floor                   Floor space (sq. metres).
+Floorfrq                Floor space * frequency of cleaning.
+AllFTE                  Full time equivalents for all staff applied across the total hospital or a specific service.
+MedFTE                  Full time equivalents for medical staff applied across the total hospital or a specific service.
+NurseFTE                Full time equivalents for nursing staff applied across the total hospital or a specific service.
+AlliedFTE               Full time equivalents for allied health staff applied across the total hospital or a specific service.
+HeadCountAll            Total staff head count applied across the total hospital or a specific service.
+HeadCountMed            Medical staff head count applied across the total hospital or a specific service.
+HeadCountNurse          Nursing staff head count applied across the total hospital or a specific service.
+HeadCountAH             Allied Health staff head count applied across the total hospital or a specific service.
+InpatAll                Number of inpatient discharges or admissions.
+MedAss                  Medical assets (by count or value)
+Medrec                  Time taken to code medical record (admitted and non-admitted).
+Computers               Number of computers
+OBD                     Occupied bed days (admitted patients)
+OutpatOcc               Outpatient occasions of service
+Phones                  Number of telephone lines connected.
+Roster                  Roster of cleaning and other services
+Stores                  Stores issued
+TotAss                  Total assets by (count or value)
+TotExp                  General ledger total expenses for total hospital or specific service e.g. medical.
+WardAdm                 Ward admissions
+
+
+
+                                                                                                                       18
+Suggested overhead allocation mechanisms:
+
+ Overhead Cost Center                   Applicable statistics
+                                        1st                     2nd             3rd
+ Allied Health Administration           ActualPatUnits          AlliedFTE       ExpSalwageAH
+ Biomedical Engineering                 MedAss                  TotAss          TotExp
+ Cleaning                               Floorfrq                Roster          Floor
+ Computing                              Computers               AllFTE          HeadcountAll
+ CSSD                                   InpatAll                TotExp          AllPats
+ Executive Services (Management)        TotExp                  AllFTE          HeadcountAll
+ Finance                                TotExp                  AllFTE          HeadcountAll
+ Landscaping                            ExpSalwageAll           HeadCountAll    TotExp
+ Health Information Management          AllPats                 InpatAll        TotExp
+ Human Resources                        HeadcountAll            AllFTE          ExpSalwageAll
+ Infection Control                      MedFTE                  NurseFTE        OBD
+ Insurance - Property                   TotAss                  TotExp          ExpSalwageAll
+ Legal                                  ActualPatUnits          HeadCountAll    AllFTE
+ Linen & Laundry Services               OBD                     AllPats         TotExp
+ Maintenance, Engineering & Repairs     TotAss                  MedAss          Floor
+ Meals                                  ActualPatUnits          ActualCcUnits   InpatAll
+ Medical Administration                 HeadcountMed            MedFTE          ExpSalwageMed
+ Medical Indemnity Insurance            MedFTE                  ExpSalwageMed   TotExp
+ Medical Records                        AllPats                 InpatAll        OBD
+ Nursing Administration                 HeadcountNurse          NurseFTE        ExpSalwageNurs
+ Patient Administration                 AllPats                 InpatAll        OBD
+ Patient Transport                      ActualPatUnits          AllPats         TotExp
+ Public Relations & Marketing           TotExp                  AllPats         OBD
+ Security                               AllFTE                  AllPats         Floor
+ Housing Administration                 HeadCountAll            AllFTE          ExpSalwageAll
+ Staff Development                      HeadCountAll            AllFTE          ExpSalwageAll
+ Staff Transport                        AllFTE                  HeadcountAll    ExpSalwageAll
+ Telecommunications                     Phones                  AllFTE          HeadcountAll
+ Utilities                              Floor                   TotExp          AllFTE
+
+
+
+
+                                                                                                 19
+APPENDIX 4: LIST OF PATIENT PRODUCTS
+Healthcare providers must generate the patient products including but limited to:
+
+ Category     Type            Description     Source        Data Items                Product Example(s)
+                                              Dataset
+ Physician    Patient         Activity        Encounter,    Responsible Physician     DocAdmission_Orthopae
+ Products     Admission       surrounding     Ward          Specialty, Encounter      dics_WardA
+                              patient                       Start Date/Time, Ward
+                              admission                     Code
+                              and
+                              treatment
+                              plan
+ Physician    Patient         Activity        Encounter,    Responsible Physician     DocDischarge_Orthopaed
+ Products     Discharge       surrounding     Ward          Specialty, Encounter      ics_WardA
+                              patient                       End Date/Time, Ward
+                              discharge                     Code
+ Physician    Ward Round      Bedside         Encounter,    Responsible Physician     DocWardRound_Orthopa
+ Products                     attendance      Ward          Specialty, Ward Code,     edics_WardA
+                              / round with                  Ward Start Date/Time,
+                              patients to                   Ward End Date/Time
+                              check
+                              progress
+                              against
+                              treatment
+                              plan
+ Physician    Procedure       Operating       Encounter,    Responsible Physician     Doc_Orthopaedics_Proc
+ Products                     on patients     Procedure     Specialty, Operating      Mins;
+                              in the                        Room Code, (Procedure
+                              operating                     Start/Date time,          Med_Anaesthesia_ProcM
+                              room or                       Procedure End/Date        ins
+                              other                         time (for surgeons)),
+                              procedure                     (Anesthesia Start/Date
+                              suites, such                  time, Anesthesia
+                              as the                        End/Date time (for
+                              cardiac                       Anesthetists))
+                              catheterizati
+                              on
+                              laboratory,
+                              or the
+                              endoscopy
+                              suite
+ Physician    Outpatient      Attending to    Encounter     Responsible Physician     Doc_Orthopaedics_Clinic
+ Products     Clinic          patients in                   Specialty, Patient        _First;
+              Attendances     outpatient                    Classification (clinic
+                              or other                      code), Encounter Start    Med_Orthopaedics_Clinic
+                              non-                          Date/Time, Outpatient     _FollowUp;
+                              admitted                      Appointment Type,
+                              clinics                       Outpatient Attendance
+                                                            Code
+ Physician    Internal        Attending to    Encounter,    Responsible Physician     Doc_Orthopaedics_IntCo
+ Products     Consultations   patients        Other         Specialty, Intervention   nsult
+                              under the       (Inpatient    Date/Time, Internal
+                              care of         consult       Consult Code
+                              physicians      Orders)
+                              from
+                              another
+                              specialty
+ Ward         Patient         Nursing         Ward          Ward Code, Ward Start     WardA_Admit
+ Products     Admission       activity                      Date/Time
+                              surrounding
+                              patient
+                              admission
+                              and
+                              treatment
+                              plan
+ Ward         Patient         Nursing         Ward          Ward Code, Ward End       WardA_Disc
+ Products     Discharge       activity                      Date/Time
+                              surrounding
+                              patient
+
+
+                                                                                                           20
+Category     Type            Description      Source       Data Items              Product Example(s)
+                                              Dataset
+                             discharge
+                             summary
+Ward         Ward            Patient          Ward         Ward Code, Ward Start   WardA_Bedday
+Products     Duration        length of                     Date/Time, Ward End
+                             stay on the                   Date/Time
+                             ward
+Ward         Ward            Patient is       Ward         Ward Code, Ward End     WardA_Transfer
+Products     Transfer        moved to                      Date/Time (used to
+                             procedure                     calculate movement to
+                             suite or                      new setting)
+                             another
+                             ward
+Procedure    Procedure       Activity         Procedure    Procedure Room Code,    Proc_Setup
+Suite        Suite Setup     associated                    Procedure Start
+Products                     with                          Date/Time
+                             preparing
+                             the
+                             procedure
+                             suite for the
+                             procedure
+             Procedure       Duration (in     Procedure    Procedure Room Code,    Proc_Minutes
+             Suite Minutes   minutes)                      Procedure Start
+                             patient is                    Date/Time, Procedure
+                             undergoing                    End Date/Time
+                             procedure
+                             (usually
+                             measured
+                             from time of
+                             knife to skin
+                             to leaving
+                             the
+                             procedure
+                             suite)
+             Recovery        Duration (in     Procedure    Procedure Room Code,    Recovery_Minutes
+             Minutes         minutes)                      Recovery Start
+                             patient                       Date/Time, Recovery
+                             spends in                     End Date/Time
+                             the recovery
+                             room before
+                             being
+                             transferred
+                             to another
+                             ward or
+                             discharged
+Prosthese    Prostheses      Prostheses       Prostheses   Item code, Date/Time    Prostheses_Pacemaker,
+s And        and high-cost   and other        /HCPCS       of implant, Price       HCPCS_Catheter
+Other        consumables     high-cost
+High-Cost    (e.g., HCPCS)   consumable
+Consuma                      items count
+bles
+Laborator    Laboratory      Microbiolog      Laboratory   Test code, Date/Time    Microbiology_TestX,
+y Products   Tests           y,               Orders       test received, Price
+                             biochemistr                                           Biochemistry_TestY
+                             y,
+                             histopatholo
+                             gy (etc) tests
+                             (modality)
+Imaging      Imaging Tests   X-Ray, MRI,      Imaging      Test code, Date/Time    MRI_TestA,
+Products                     CT,              Orders       test received, Price    Ultrasound_TestB,
+                             Ultrasound,                                           X-Ray_TestC
+                             PET (etc)
+                             tests
+                             (modality)
+Pharmacy     Dispensed       Drugs            Pharmacy     Drug code, Date/Time    Pharmacy_DrugA,
+Products     Drugs           dispensed        Orders       drug dispensed, Drug
+                             by the                        Price                   Pharmacy_DrugB
+                             pharmacy
+
+
+
+                                                                                                         21
+ Category      Type              Description     Source        Data Items                  Product Example(s)
+                                                 Dataset
+                                 department
+                                 to patients
+ Other         Allied Health     Allied health   Allied        Allied Health               Physio_knee,
+ Products      Intervention      intervention    Health        Department code (e.g.,
+                                 s provided                    Physio), Date/Time          Diet_EnteralNutrition
+                                 to patients                   intervention,
+                                 in different                  intervention type
+                                 settings
+                                 such as
+                                 inpatient/ou
+                                 tpatient/ho
+                                 me
+ Other         Diagnostic        Diagnostic      Encounter,    Clinical Department         Cardio_ECG,
+ Products      Tests             tests carried   Departmen     code (e.g., Neurology),     Neuro_EEG,
+                                 out by          t module      Date/Time test, test        Respiratory_SleepStudy
+                                 various                       type
+                                 clinical
+                                 department
+                                 s
+ Other         Radiotherapy      Activities      Encounter,    Activity code (e.g.,        RadOnc_Planning,
+ Products                        related to      Departmen     Planning, Dosimetry,        RadOnc_Dosimetry,
+                                 the             t module      Mould Room,                 RadOnc_MouldRoom,
+                                 provision of                  Treatment), Date/Time       RadOnc_TreatmentX,
+                                 radiotherap                   activity, activity type     RadOnc_TreatmentY
+                                 y to patients
+
+
+APPENDIX 5: CHANGE LOG
+
+ Change     Section Name       Old Section       New Section    Description of           Change           Reason
+ ID         / Number           Number            Number         Change                   Type             for
+                                                                                                          Change
+ 1          Guideline          1.1               1.1            Updated list of          Amendment        Update
+            Purpose and                                         healthcare facility
+            Brief                                               groups to who it
+                                                                applies to
+ 2          Guideline          1.2               1.2            Defined list of          Addition         New
+            Purpose and                                         healthcare facility
+            Brief                                               groups to who it
+                                                                does not apply to
+ 3          Identify           3.1.2.1.1         3.1.2.1.1      Minor guideline          Amendment        Update
+            Expenses For                                        change
+            Costing
+ 4          Identify           3.1.2.1.2         3.1.2.1.2      Minor guideline          Amendment        Update
+            Expenses For                                        change
+            Costing
+ 5          Identify           N/A               3.1.3          Scope guidance           Addition         New
+            Expenses For                                        included
+            Costing
+ 6          Work in            3.2.3             N/A            Removed sentence         Removal          Update
+            Progress                                            to avoid repetition
+
+ 7          Create The         3.2.5             3.2.4          Minor guideline          Amendment        Update
+            Cost Ledger                                         change
+ 8          Data Quality       3.6.1.1           3.6.1.1        Minor guideline          Amendment        Update
+            Framework                                           change
+ 9          Reconciliation     3.6.2.1.2         3.6.2.1.2      Minor guideline          Amendment        Update
+            To Source                                           change
+            Data
+ 10         Reconciliation     3.6.2.1.5         3.6.2.1.5      Minor guideline          Amendment        Update
+            To Source                                           change
+            Data
+
+
+
+
+                                                                                                                   22
+11   Duties for       4.1.1          4.1.1          Minor guideline   Amendment   Update
+     Healthcare                                     change
+     Providers
+12   Monitoring       5.1            5.1            Minor guideline   Amendment   Update
+     and Evaluation                                 change
+13   Relevant         7              8              Minor guideline   Amendment   Update
+     Reference                                      change
+     Documents
+14   Appendix 1       Cost Types     Cost Types     Minor guideline   Amendment   Update
+                                                    change
+15   Appendix 1       Cost of        Cost of        Minor guideline   Amendment   Update
+                      Labour         Labour         change
+16   Appendix 1       Non-Labour     Non-Labour     Minor guideline   Amendment   Update
+                      Cost Type      Cost Type      change
+                      Categories:    Categories:
+17   Appendix 2       Mapping of     N/A            Removed table     Removal     Update
+                      Final Cost
+                      Centers to
+                      Cost Buckets
+18   Appendix 2       Mapping of     Mapping of     Scope guidance    Addition    Update
+                      Final Cost     Final Cost     included
+                      Centers to     Centers to
+                      Cost Buckets   Cost Buckets
+19   Appendix 3       Suggested      Suggested      Major guideline   Amendment   Update
+                      overhead       overhead       change
+                      allocation     allocation
+                      statistics     statistics
+20   Appendix 3       Suggested      Suggested      Major guideline   Amendment   Update
+                      overhead       overhead       change
+                      allocation     allocation
+                      mechanisms     mechanisms
+
+
+
+
+                                                                                           23
+

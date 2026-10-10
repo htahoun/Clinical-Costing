@@ -78,12 +78,14 @@ Rejections follow `docs/REJECTION_PLAYBOOK.md`. Engines live in `scripts/`.
 - Type/StartType/EndType = 1; SubSpecialty, DRGCode, ServiceCode,
   OPAttendanceType empty; **Principal diagnosis only**; Procedure empty
   (Duration 0) unless `TheatreAttendanceFlag = 1`; triage/critical-care/
-  ventilation 0; `CostBucketOverheads` all 0.000; overheads live in
-  `CostTypeDetails`.
-- **Supplies is parked in the `Other` bucket** (Gen2 removed Supplies).
-  Open DOH question whether dental clinics should use `Dental` instead —
-  MySmyle uses `Dental`; the amounts mirror-match. `--supplies-bucket Dental`
-  if DOH rules so.
+  ventilation 0; `CostBucketOverheads` carries each bucket's overhead share
+  (= OHF + OHDepreciation + OHC).
+- **Supplies is reported in the `Dental` bucket** (ruling 10 Oct 2026).
+- **Two complete views (DOH Cost Bucket / Cost Type Match):** on every claim
+  Σ CostBucketDirect + Σ CostBucketOverheads = Σ CostTypeDetails = claim cost;
+  overhead cost types sit in `CostBucketOverheads/Dental`. The generator
+  re-expresses by nature; `scripts/rebalance_two_view.py` calibrates the
+  cost-type view to the ledger by cost type.
 - Zero-total claims are blocked by DOH: exclude and log them.
 - `DispositionFlag`: `PTE_SUBMIT` for the test environment, `PRODUCTION`
   for live. Transport: SOAP `UploadTransaction`, base64;

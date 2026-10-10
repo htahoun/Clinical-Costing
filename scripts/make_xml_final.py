@@ -7,8 +7,10 @@ Generation-2 Shafafiya Cost.Submission XML generator + inline validation.
       [--xsd docs/shafafiya/CostSubmission_repaired.xsd] [--zip]
 
 One <Claim> per claim ID per month, costs summed across the claim's lines in
-integer fils. Conventions: docs/CLINICAL_COSTING.md §4–§5. Zero-total claims
-are excluded and logged; negative claims abort the month. Prints the
+integer fils, then re-expressed so cost buckets and cost types each carry the
+full claim cost (DOH Cost Bucket / Cost Type Match). Conventions:
+docs/CLINICAL_COSTING.md §4–§5. Zero-total claims are excluded and logged;
+negative claims abort the month. Prints the
 verification table (month, claims, size, total, ledger tie, XSD result).
 """
 from __future__ import annotations
@@ -26,7 +28,8 @@ from lxml import etree  # noqa: E402
 
 from build2_lib import to_fils  # noqa: E402
 from costsub_reader import xsd_validate  # noqa: E402
-from costsub_schema import (DATE_FMT, DIAGNOSIS_ORDER, DISPOSITIONS, ENCOUNTER_ORDER, FACILITY_ID,  # noqa: E402
+from fix_crossfoot import reexpress  # noqa: E402
+from costsub_schema import (BUCKETS, COST_TYPES, DATE_FMT, DIAGNOSIS_ORDER, DISPOSITIONS, ENCOUNTER_ORDER, FACILITY_ID,  # noqa: E402
                             HEADER_ORDER, MAX_FILE_BYTES, MONEY_ELEMENTS, MONEY_GROUPS, PRINCIPAL,
                             PROCEDURE_ORDER, RECEIVER_ID, ROOT, TZ_OFFSET_HOURS, bucket_map, fmt_money_fils)
 from gl_new import gl_fils  # noqa: E402
@@ -84,6 +87,17 @@ def build_claims(lines: list[dict], bmap: dict, log: list[str]) -> OrderedDict:
     for cid, c in list(claims.items()):
         total = sum(c["money"].values())
         c["total"] = total
+        # DOH Cost Bucket / Cost Type Match (SY02 rejection): both views must carry the full claim cost.
+        # Re-express by nature (scripts/fix_crossfoot.py); the ledger-calibrated fit
+        # (scripts/rebalance_two_view.py) can then refine the cost-type view.
+        d = {b: c["money"][f"CostBucketDirect{b}"] for b in BUCKETS}
+        o = {b: c["money"][f"CostBucketOverheads{b}"] for b in BUCKETS}
+        t = {k: c["money"][f"CostTypeDetails{k}"] for k in COST_TYPES}
+        nd, no, nt = reexpress(d, o, t, "separated", log, cid)
+        c["money"] = {**{f"CostBucketDirect{b}": v for b, v in nd.items()},
+                      **{f"CostBucketOverheads{b}": v for b, v in no.items()},
+                      **{f"CostTypeDetails{k}": v for k, v in nt.items()}}
+        c["total"] = sum(nt.values())
         if total == 0:
             log.append(f"claim {cid}: zero total — EXCLUDED (DOH blocks zero-total encounters)")
             del claims[cid]

@@ -38,7 +38,7 @@ Unknown message types are listed as such; once understood, add them to
 
 | # | Hypothesis | Test | Fix if confirmed |
 |---|---|---|---|
-| H1 | DOH validates TotalCost = Σ direct buckets = Σ cost types. Our locked 17-column split gives buckets + types = total, so each view is roughly half the total. | `scripts/validate_xml.py --strict-totals` on a sent file reports "buckets==types in 0/n". Message would mention total/sum/cost type/bucket. | Finance Director ruling. Mechanically: express the split as two 100 % views (direct 7 columns rescaled to 100 % for buckets; all 17 columns' *cost-type nature* mapped to the 16 types at 100 %) so both views equal the total. The scale-only method and ledger tie are unchanged; only the presentation doubles. |
+| H1 **CONFIRMED 9 Oct 2026** | DOH validates Σ direct + overhead buckets = Σ cost types per claim and overall. Our locked 17-column split gives buckets + types = total, so each view is roughly half the total. | `scripts/validate_xml.py --strict-totals` on a sent file reports "buckets==types in 0/n". Message would mention total/sum/cost type/bucket. | Finance Director ruling. Mechanically: express the split as two 100 % views (direct 7 columns rescaled to 100 % for buckets; all 17 columns' *cost-type nature* mapped to the 16 types at 100 %) so both views equal the total. The scale-only method and ledger tie are unchanged; only the presentation doubles. |
 | H2 | Files sent to production carried `PTE_SUBMIT`. | Header of the sent files. | `--disposition PRODUCTION`, resend. |
 | H3 | Supplies must sit in `Dental` (or must not sit in `Other`). | Message names `Other`/`Dental`; DOH email reply. | `--supplies-bucket Dental`. |
 | H4 | Element names/order differ from the current XSD. | Drop the official XSD in `docs/shafafiya/`, run `validate_xml.py`; message says "element … not expected". | Align `ENCOUNTER_ORDER`/names in `costsub_schema.py`. |
@@ -67,4 +67,4 @@ Unknown message types are listed as such; once understood, add them to
 
 | Date | Set | Messages (summary) | Root cause | Fix | Resubmitted |
 |---|---|---|---|---|---|
-| 2026 (to be filled) | FY2025, 12 files | awaiting the rejection files | | | |
+| 9 Oct 2026 | SY02 (FY2025), 12 MySmyle PRODUCTION files sent 29 Aug 2026 | Cost Bucket / Cost Type Match: No (Reject, −5); Overhead Cost Ratio below 20% (Warning) | 17-column split placed each dirham once, in a bucket or a cost type; DOH needs both views complete (Standard v2.1 App. 1–2) | Ledger-calibrated two-margin fit (`scripts/rebalance_two_view.py`), overheads in CostBucketOverheads/Dental; overhead ratio not re-engineered for SY02 | pending Arjun's ledger map |

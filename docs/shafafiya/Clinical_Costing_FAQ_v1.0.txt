@@ -1,0 +1,439 @@
+ABU DHABI CLINICAL
+COSTING
+Frequently Asked Questions (FAQ)
+
+Document Version 1.0
+
+
+
+
+           Refer to the primary document:
+        Abu Dhabi Clinical Costing Standard v2;
+        Abu Dhabi Clinical Costing Guideline v2
+               Submission Year 2 (SY2)
+DOCUMENT NAME                    VERSION         DATE OF ISSUE          DETAILS
+                                                                        Reviewed by Clinical Costing
+Clinical Costing FAQ             v1.0            31st May, 2026         02/04/2026
+
+
+
+
+Important Notice
+
+Abu Dhabi Department of Health (AD DOH) reserves the right to make changes to the Abu Dhabi Clinical
+Costing – Frequently Asked Questions as it sees fit, to ensure this Clinical Costing Submission is fit-for-
+purpose for the Abu Dhabi healthcare market.
+
+AD DOH looks forward to notifying you of any changes or any updates to version(s) of the Abu Dhabi Clinical
+Costing Frequently Asked Questions and providing further training in its implementation.
+Contents
+Important Notice ............................................................................................................................ 2
+About This Document ..................................................................................................................... 3
+Frequently Asked Questions ........................................................................................................... 4
+Category 1: Eligibility and Applicability........................................................................................... 4
+Category 2: Registration, Access and Communications ................................................................. 5
+Category 3: Training and Support ................................................................................................... 6
+Category 4: The 6-Stage Costing Process........................................................................................ 7
+Category 5: Submission Timeline and Process ............................................................................... 9
+Category 6: Special Scenarios ....................................................................................................... 10
+Category 7: Reconciliation, Validation and Compliance ............................................................... 11
+
+
+Abbreviations
+ ABBREVIATION                   FULL FORM / RELATED DETAIL
+ ABC                            Activity-Based Costing
+ AD DOH                         Abu Dhabi Department of Health
+ ADHICS                         Abu Dhabi Healthcare Information and Cyber Security
+ CFO                            Chief Financial Officer
+ DHA                            Dubai Health Authority
+ DOH                            Department of Health
+ ED                             Emergency Department
+ EMR                            Electronic Medical Record
+ FTE                            Full-Time Equivalent
+ IP                             Inpatient
+ MOHAP                          Ministry of Health and Prevention
+ OP                             Outpatient
+ RVU                            Relative Value Unit
+ WIP                            Work in Progress
+
+
+
+About This Document
+This FAQ document has been developed by the AD DOH Clinical Costing Team - to address the most
+common questions received from healthcare providers regarding the AD DOH Clinical Costing program.
+
+Questions are organised into categories so you can quickly find what you are looking for. Use the
+‘Contents’ table (above) to find what you need or simply browse by section.
+Frequently Asked Questions
+
+
+Category 1: Eligibility and Applicability
+
+These questions relate to who must comply with the Abu Dhabi Clinical Costing Standards and whether
+specific facility types are included or excluded.
+
+Q1.1: Which healthcare facilities are required to comply with the Clinical Costing Standards?
+
+Healthcare facilities that provide direct patient care and operate in the Emirate of Abu Dhabi under a
+DOH licence. This includes:
+
+-   Hospitals,
+-   Medical centers,
+-   Polyclinics,
+-   Outpatient clinics,
+-   Dental clinics,
+-   Day surgery centers,
+-   Specialist centers,
+-   Homecare providers, and
+-   Long-term care facilities
+
+regardless of size.
+
+Q1.2: Which facilities are excluded from the Clinical Costing Standard?
+
+Healthcare facilities that DO NOT provide direct patient care, such as:
+
+-   Stand-alone pharmacies: that do not provide direct patient care (e.g.: retail pharmacies)
+-   Stand-alone diagnostic and supply centres: (e.g., laboratory-only facilities) that provide services
+    only to other healthcare facilities and not directly to patients. Similarly, orthotics and prosthetic
+    supply centers that do not offer direct healthcare services are excluded; their costs are captured as
+    purchased services in the general ledger of the facilities that use their services.
+
+(see question 1.5 for further clarification)
+
+Q1.3: Does this apply to all branches across the UAE or only Abu Dhabi?
+The Abu Dhabi Clinical Costing Standards applies only to facilities operating in the Emirate of Abu Dhabi
+under an AD DOH licence. Branches located in Dubai or other emirates under different regulatory
+authorities (DHA, MOHAP) are not currently covered by this mandate.
+
+Q1.4: We are a small clinic. Does this still apply to us?
+Yes. The mandate applies to all AD DOH-licensed facilities providing direct patient care, regardless of
+size. Whether you are a large hospital or a single-specialty clinic, compliance is required.
+Q1.5: We primarily sell hearing aids / medical devices to hospitals and patients. Are we required to
+submit Clinical Costing data?
+If your facility holds an AD DOH licence and provides direct patient care (e.g. consultations, fittings,
+assessments) you are required to comply. If you only supply products without providing direct clinical
+services, you may fall under the exclusion for supply-only centers. Kindly submit your facility licence
+details and scope of practice via the Clinical Costing Questionnaire Form for determination by the
+Clinical Costing Team.
+
+Q1.6: Our facility is a school-based clinic providing physiotherapy and nursing services to students.
+Does the standard apply to us?
+The applicability depends on your AD DOH licence and the nature of the services provided. If your
+facility holds an AD DOH healthcare licence and provides direct clinical services, the Standards may
+apply. If your services are bundled into academic fees and you do not generate individual patient
+encounters or medical claims, you may have a basis for exemption. Please contact the Clinical Costing
+Team with your licence details and scope of practice for formal determination.
+
+Q1.7: We have a self-pay-only facility with no insurance cases. Do we still need to submit?
+Yes. A Clinical Costing submission is required for all AD DOH-licensed facilities providing direct patient
+care, regardless of the payment model. Self-pay-only facilities are not exempt. All patient encounters,
+including self-paid patients, must be included in your costing data.
+
+Q1.8: We operate a consortium arrangement where two facilities share one AD DOH licence and one
+eMR. How do we submit?
+If both facilities operate under one AD DOH licence, your submission should cover all patient encounters
+and costs under that licence. If the facilities maintain separate financial statements, you should submit
+based on the financial records of the AD DOH-licensed entity. Contact the Clinical Costing Team to
+discuss your specific arrangement and receive guidance on the most appropriate approach.
+
+
+Category 2: Registration, Access and Communications
+
+These questions relate to getting set up, accessing materials and receiving communications from the
+Clinical Costing Team.
+
+Q2.1: How do I register my facility’s Clinical Costing contact person?
+Kindly complete the Key Contact Registration Form and provide your facility name, licence number and
+the name and email address of your designated Clinical Costing contact person. The Clinical Costing
+team will review your submission, register your details and ensure you receive all relevant
+communication.
+
+Q2.2: We are registered but are not receiving any emails or notifications from the Clinical Costing
+Team. What should we do?
+Kindly submit your facility licence details and scope of practice via the Key Contact Registration Form.
+The team will verify your registration details and ensure your email address is correctly recorded in the
+distribution list. Also check your spam/junk folder.
+Q2.3: How do I access the AD DOH Clinical Costing documents (Standard, Guidelines and Technical
+Document)?
+All official documents are available on the AD DOH website. Go to:
+https://www.DOH.gov.ae/en/Shafafiya/Clinical-Costing.
+
+You can also request the OneDrive links to the documents and training session recordings by submitting
+your questions via the Questionnaire Form.
+
+Q2.4: Where can I access recorded training sessions?
+Recorded training sessions are shared via the Clinical Costing shared folder. If you have not received the
+link, please check you have registered as a key contact provider. If not, then kindly submit your
+questions via the Questionnaire Form and the team will share the OneDrive link containing both the
+Clinical Costing documents and the training session recordings.
+
+Q2.5: We are new management for this facility. How do we get started with Clinical Costing?
+Register your facility name, AD DOH licence number and the details of your new management team
+through our Key Contact Registration Form. The team will register your contact person, share all
+relevant documents and training recordings and arrange an introductory session if needed.
+
+
+
+Category 3: Training and Support
+
+These questions relate to training availability, meeting requests and additional guidance.
+
+Q3.1: Can I request a one-to-one meeting with the Clinical Costing Team?
+Yes. One-to-one meetings are available for providers who need tailored guidance. However, we do
+request that you read all of our standards and guidelines and training documentation, before reaching
+out.
+
+Again, if you need ‘tailored’ guidance to the specifics of your site, which are not made clear in our
+documentation, then kindly submit your facility license details via the Questionnaire Form with your
+facility name, with (importantly) the tailored specific topics you would like to discuss and your preferred
+dates and times. The team will arrange a meeting (virtual or in-person) at the earliest available slot.
+
+Q3.2: I cannot attend the webinar/training sessions because my clinic operates at that time. What
+alternatives are available?
+All training sessions are recorded and shared via the OneDrive folder. You can watch them at your
+convenience.
+
+Q3.3: We need training specifically for our type of facility (e.g. dental clinic, homecare Center). Is this
+available?
+The Clinical Costing Team is developing facility-type-specific guidance. In the meantime, you can request
+a one-to-one meeting where the team can provide tailored advice relevant to your facility type. Kindly
+submit your facility licence details via the Questionnaire Form specifying your facility type and the areas
+where you need guidance.
+Q3.4: Is there an Arabic version of the guidelines or templates?
+The official documents are currently published in English. The Clinical Costing Team is aware of the need
+for Arabic-language resources and is working on making materials available. Kindly submit your
+questions via the Questionnaire Form.
+
+Q3.5: Can you provide a completed sample Clinical Costing report for our facility type?
+The Clinical Costing Team provides templates and worked examples as part of the training program.
+Facility-specific samples may be discussed in one-to-one meetings. Kindly submit your questions via the
+Questionnaire Form to request guidance materials relevant to your facility type.
+
+Q3.6: Can you provide a list of clinical costing experts or approved software vendors we can hire?
+The AD DOH does not endorse or recommend specific vendors or consultants. However, there are
+several Clinical Costing software providers and consulting firms operating in the Abu Dhabi market. You
+are free to engage any service provider that can help you meet the requirements of the Clinical Costing
+Standards. The AD DOH’s role is to provide guidance on the Standard itself.
+
+Q3.7: Can you provide a ready-made excel template we can fill in?
+The AD DOH provides reconciliation templates and data specification files as part of the Clinical Costing
+Road Map. These are available in the OneDrive folder and on the AD DOH website. However, the actual
+costing model (cost ledger, overhead allocation, patient-level allocation) must be built by each facility
+based on their own financial and operational data.
+
+
+
+Category 4: The 6-Stage Costing Process
+
+These questions relate to how to apply the six stages of Clinical Costing, including expense classification,
+cost centers, overhead allocation and patient-level costing.
+
+Q4.1: Can we add corporate tax as an overhead cost?
+No. Corporate tax is not an applicable expense for Clinical Costing purposes. Please read the Clinical
+Costing Standards regarding what operating expenses are related to delivering patient care. As noted in
+these standards, taxes, fines and penalties are excluded from the cost model, but please see the
+standards for more specific details
+
+Q4.2: Should we include cash/self-pay patients or only insured patients?
+You must include all patients, including self-pay (cash), insured and any other payment type. Clinical
+Costing covers all patient encounters at your facility regardless of how the patient pays. Excluding self-
+pay patients would result in an incomplete and non-compliant Clinical Costing data submission
+
+Q4.3: We are a small dental clinic. Can we group all admin departments (HR, Finance, IT, etc.) into one
+single overhead cost center?
+Yes, for small facilities where each administrative function has very few staff, it is acceptable to
+consolidate these into a single ‘Administration’ overhead cost center. The key requirement is that the
+overhead costs are still allocated to your direct (patient-facing) cost centers using logical allocation
+statistic. Refer to Appendix 2 and 3 of the Standard for guidance.
+
+Q4.4: Can we create our own product types (e.g. dental products), or must we follow the AD DOH
+product list?
+You should follow the standardised product provided by AD DOH as outlined in Appendix 4 of the
+Clinical Costing Standards. This ensures consistency and comparability across all providers. If your facility
+offers services that do not clearly map to the existing product list, contact the Clinical Costing Team for
+guidance on the correct classification.
+
+Q4.5: I have finished creating the cost ledger from the general ledger, but I am stuck on overhead
+allocation. What allocation statistics should I use?
+Appendix 3 of the Clinical Costing Standards provides a list of suggested allocation statistics and
+guidance on where to use them. The key principle is to choose a statistic that has a genuine causal
+relationship with the overhead cost being distributed. For example, allocate IT costs based on number of
+devices or IT support tickets, cleaning costs based on floor space and administration costs based on
+headcount or FTE. If you are unsure, request a one-to-one meeting with the Clinical Costing team, where
+they can review your specific cost structure.
+
+Q4.6: How do I handle equipment consumables where usage varies per patient (e.g., laser bulb
+replacement costs based on number of shots)?
+Where the actual consumption per patient varies and is not recorded at the encounter level, you have
+two options: (a) If you have aggregate usage data (e.g. total laser shots in a period), calculate a per-unit
+cost and allocate based on the number of treatments per patient. (b) If no usage data exists, allocate the
+total cost equally across all relevant patient encounters as a reasonable approximation.
+
+Q4.7: I have completed the allocation of costs to final products and mapped direct and overhead costs
+to encounter IDs. Can I show my work to the Clinical Costing Team before proceeding?
+Yes, absolutely. The Clinical Costing Team encourages providers to seek validation of their work. Request
+a one-to-one meeting via the Questionnaire Form and bring your cost model (Excel or other working
+files) for review. The team can confirm whether you are on the right track and advise on any
+adjustments needed.
+
+Q4.8: How do I create the cost ledger? Is there a specific format?
+The cost ledger is created by extracting applicable expenses from your general ledger and restructuring
+them to link expenses to patient products and cost centers. It is not a specific DOH template - it is a
+working document your finance team builds. Stage 2 of the Clinical Costing Guidelines provides step-by-
+step instructions on how to do this. The critical requirement is that every dirham in your cost ledger can
+be traced back to your general ledger.
+
+Q4.9: How do I align my internal accounting expense codes with the DOH cost type codes?
+Appendix 1 of the Clinical Costing Standard defines the standardised cost type categories (e.g., salaries,
+supplies, depreciation). You need to create a mapping table that links each of your internal expense
+codes to the corresponding DOH cost type. This is a one-time exercise. If you need help with specific line
+items, contact the Clinical Costing Team.
+Q4.10: We don’t have a proper chart of accounts by cost centers; how can we do costing?
+Please note that cost center accounting is fundamental to undertaking Clinical Costing. You need to
+create the cost centers and map the line level expenses to relevant cost centers. Please reach out to
+DOH Clinical Costing team via Questionnaire Form for further guidance on this important step in clinical
+costing process.
+
+Q4.11: We don’t follow accrual accounting and maintain our financials on cash accounting basis; how
+can we do costing?
+Technically the costing can still be done if you are following cash accounting and have your cash
+payments recorded by cost centers. It is, however, highly recommended to follow accrual accounting so
+to see the proper and fair view of year-on-year costing output trends.
+
+Q4.12: We have successfully submitted cost data in Shafafiya, does this mean that we have complied
+with Abu Dhabi Clinical Costing Standards and Guidelines?
+The facility / group must ensure it submits accurate and verifiable cost data in Shafafiya. After successful
+submission of cost data, the facility / group must submit the Reconciliation report to AD DOH. Failure to
+submit the reconciliation report will still render the site non-compliant and may make you liable for fines
+and other regulatory action – as seen as-required by the AD DOH. Please ensure that you are fully
+compliant with our reporting requirements.
+
+
+
+Category 5: Submission Timeline and Process
+
+These questions relate to deadlines, submission windows and process requirements.
+
+Q5.1: When is the submission deadline?
+Cost data must be submitted annually during the designated submission window. The submission covers
+the previous calendar year (1 January to 31 December). The Clinical Costing Team communicates the
+exact dates for each submission cycle. It is strongly advised that you begin submitting early in the
+window to allow time for error correction.
+
+Q5.2: We feel the deadline is too tight given this is a new requirement. Can it be extended?
+The submission timeline has been established to align with the broader Clinical Costing Road Map. The
+AD DOH understands that this is a significant new requirement and is providing extensive support
+through training sessions, one-to-one meetings and documentation. We strongly encourage providers to
+start preparing well in advance and to reach out for help early. Contact the Clinical Costing Team to
+discuss your specific readiness concerns.
+
+Q5.3: We are still busy with our 2024 financial audit and corporate tax filing. Can we start after those
+are completed?
+We understand the pressures of year-end financial processes. However, Clinical Costing preparation can
+often proceed in parallel since much of the data comes from the same general ledger. We recommend
+starting with the data extraction and cost center mapping while your audit is being finalised.
+Q5.4: Does the CFO need to sign off on submission?
+Yes. The Chief Financial Officer (or equivalent senior financial officer) of the submitting facility must
+formally confirm the accuracy and completeness of the Clinical Costing data. Engage your CFO early in
+the process so they are aware of the requirement and can review the data before the submission
+deadline.
+
+Q5.5: What happens if there are no patient encounters for the year? Do we still need to submit?
+If your facility is licensed by AD DOH but has zero patient encounters during the reporting period, you
+should still notify the Clinical Costing Team. Kindly submit your questions via the Questionnaire Form to
+confirm your status and receive guidance on whether a nil submission is required.
+
+Q5.5: What is the Submission Year?
+The submission year is your last financial year, typically starting on 1st of January and ending on 31st of
+December. For healthcare facilities, who follow April to March or July to June financial year, they are still
+required to submit the cost data for the January to December period. Their reconciliation report will also
+be reconciled with financial numbers for this period.
+
+
+
+Category 6: Special Scenarios
+
+These questions relate to unique facility circumstances such as new operations, unaudited data, partial-
+year data and change of ownership.
+
+Q6.1: We are new owners of this facility and do not have a financial audit report for the full year. Can
+we still submit?
+As per AD DOH Legal opinion, the new management is responsible for complying with AD DOH
+requirements hence must ensure they submit Clinical Costing data. The old site management must
+ensure they provide appropriate data to the new site management to ensure incoming management can
+be the compliant with AD DOH reporting requirements.
+
+Q6.2: We started operations partway through the year (e.g. April or September). Do we still need to
+submit for the full year?
+You should submit Clinical Costing data for the period during which your facility was operational. If you
+started in April, submit data from April to December. Contact the Clinical Costing Team to confirm the
+approach for partial-year submissions.
+
+Q6.3: Do we need to get our financial statements audited although not required by prevailing laws?
+Although AD DOH would prefer you to get your financial statements audited, nevertheless, if you are
+not required to get your financial statements audited as per other applicable prevailing laws, then you
+can report the unaudited financial numbers in your reconciliation report to us. We, however, may like to
+validate these numbers with your Federal Tax Authority submission – so please be accurate in your
+reporting or you may be liable to regulatory action – as the AD DOH see fit
+Q6.4: We have a second facility that only opened recently and handles only self-pay patients. Does it
+also need to submit?
+Yes. If the facility is licensed by AD DOH and provides direct patient care, it is required to submit Clinical
+Costing data regardless of when it started operations or its payment model. For new facilities, submit
+data for the period they were operational. Contact the Clinical Costing Team for guidance on partial-year
+submissions.
+
+Q6.5: We lack the manpower and resources to complete this project. What should we do?
+The AD DOH recognises that Clinical Costing is a significant undertaking, especially for smaller facilities.
+Options are available to you for: attending the AD DOH training sessions or using the AD DOH recorded
+training materials, requesting one-to-one guidance from the Clinical Costing Team, engaging external
+consultants or software providers to support your implementation. AD DOH recommend starting with
+the foundational steps (general ledger extraction, cost center setup) and building capacity gradually.
+Kindly submit your questions via the Questionnaire Form to discuss a practical path forward.
+
+Q6.6: Our facility has been granted exemptions from other AD DOH programs (e.g. ADHICS, Patient
+Authentication). Does this mean we are also exempt from Clinical Costing?
+No. Exemptions from other AD DOH programs do not automatically apply to the Clinical Costing
+Standards. Each program has its own applicability criteria. If you believe your facility may have grounds
+for exemption from Clinical Costing based on your scope of practice, kindly contact us via the
+Questionnaire Form with your licence details and a description of your services for formal
+determination.
+
+Q6.7: I have noticed a discrepancy between the submission file (Claim ID level) and the Reconciliation
+Report (which asks for Activity records). Can you clarify?
+The data submission to Shafafiya is at Claim ID level. The Reconciliation Report template may reference
+Activity records for internal quality checking and data completeness purposes. You are not required to
+submit activity-level data via Shafafiya at this stage. If the Reconciliation Report is causing confusion,
+contact the Clinical Costing Team for clarification on which fields are mandatory vs. optional for the
+current submission cycle.
+
+
+
+Category 7: Reconciliation, Validation and Compliance
+
+These questions relate to data quality, error handling and meeting AD DOH compliance requirements.
+
+Q7.1: What are the consequences of not submitting or submitting inaccurate data?
+Non-compliance with the Clinical Costing Standard may result in financial penalties, data rejection
+requiring reprocessing and resubmission, increased AD DOH audit activity and regulatory scrutiny and
+potential impact on site licensing status. The AD DOH is committed to supporting providers through
+training and engagement, but compliance is ultimately mandatory.
+
+Q7.2: How do I complete the Reconciliation Report?
+The Reconciliation Report template can be found in the Clinical Costing shared folder. It requires you to
+reconcile: (a) your general ledger expenses with your cost ledger (Stage 1–2 reconciliation) and (b) your
+patient data inputs with your patient data outputs (Stage 5–6 reconciliation). The objective is to
+demonstrate that every dirham and every patient encounter is accounted for. Your CFO must sign off on
+this report.
+
+Q7.3: Will the AD DOH audit our Clinical Costing data?
+Yes. The AD DOH will inspect and audit cost data, submission processes and cost models to ensure
+adherence to the published standards and guidelines. Following submission, providers may receive
+feedback from the AD DOH identifying records flagged for review. Providers are expected to address any
+discrepancies promptly and maintain documentation that supports an audit trail.
+
+
+
+
+                                        [END OF DOCUMENT]
+

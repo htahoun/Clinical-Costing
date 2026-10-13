@@ -552,6 +552,31 @@ and `output/xml_resubmission_PROPOSED/` are superseded by this set. Still
 pending before resubmission: the Finance Director's edited 16×16 tuning grid
 (bucket shares), the CFO reconciliation report, and the transport step.
 
+**Which buckets apply to this clinic (advice, 13 Oct 2026; Appendix 2 and
+the SY2 technical document).** Buckets are aggregations of final direct cost
+centres (Appendix 2), so a bucket exists only where the clinic has that
+department: Dental (clinics 01–06 and CSSD), Imaging (OPG room 08),
+Prosthesis (in-house lab 09, implants and external prostheses) and
+Anaesthesia (the Finance Director's ruling: anaesthetic drugs and gases plus
+2 % of dentists' and 1 % of nurses' pay). Not applicable: Pharmacy bucket
+(a dispensing department — the drugs are the Pharmacy cost type inside the
+Anaesthesia bucket), OP (hospital medical outpatient clinics — Appendix 2
+places outpatient dental work in Dental: "generally looks to cater to
+outpatients and day case"), Allied (audiology, physiotherapy, dietetics … —
+CSSD and dental technicians are the SWAllied cost type, not an allied-health
+department), Physician (medical physicians), Laboratory (pathology), ED, ICU,
+OR, SPS, Ward, Home, Other. The SY2 technical document's internal quality
+checks for non-admitted encounters flag ICU, OR, SPS and ED as unexpected
+buckets for clinic encounters and Ward/ICU/OR/SPS/ED/PROS/ANAES for imaging,
+laboratory and pharmacy encounters; Anaesthesia and Prosthesis are expected on
+dental clinic encounters. `validate_xml.py` now reports these checks
+(unexpected bucket; claims < 50 or > 3,000 AED; day procedures > 25,000;
+MS = 0). FY2025 corrected files: 1,152 claims under 50 AED and 360 over
+3,000 (23 over 25,000) — directional flags that come from the allocation
+table's prices, an SY03 table item, not a block. The DOH reference set is
+in `docs/shafafiya/` (Standard, Guidelines v2, SY2 technical document, FAQ,
+Quick Start Guide).
+
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:
 `input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).

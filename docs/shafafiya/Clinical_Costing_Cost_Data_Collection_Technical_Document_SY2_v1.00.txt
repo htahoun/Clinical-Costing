@@ -1,0 +1,1226 @@
+Cost Data Collection
+Technical Document
+Abu Dhabi Clinical Costing Road
+Map Implementation Project
+Submission Year 2 (SY2)
+Document Version 1.00
+
+
+
+
+                                  1
+Contents
+Purpose of this document.............................................................................................. 3
+Project Background ....................................................................................................... 3
+Technical scope............................................................................................................ 3
+The key stakeholders..................................................................................................... 4
+System and Business Requirements .............................................................................. 5
+   XML Schema for cost data submission (sample with dummy values) ............................ 7
+   Description, data type and validation for each field of schema: .................................. 11
+Shafafiya Submission Portal Validations: ...................................................................... 20
+Submission end-to-end process flow ........................................................................... 21
+Internal validations and quality checks: ........................................................................ 22
+Document Version History ........................................................................................... 26
+
+
+
+
+                                                                                                                           2
+Purpose of this document
+This document outlines the technical requirements for implementing the cost data
+collection process from healthcare providers in Abu Dhabi. This covers information on the
+submission schema, submission platform submission validations and data quality and
+other internal validations. This cost data collection aligns with DOH’s goal of establishing a
+value-based funding model, where healthcare providers are reimbursed based on service
+quality, efficiency, and cost of care. This initiative supports the transformation of
+healthcare funding by providing accurate cost data for informed pricing and policy making.
+Providers should refer to the documents ABU DHABI CLINICAL COSTING STANDARD
+(Document Ref. Number:DoH/ST/FPS/ADCC/V2/2025 Version:V2) and Abu Dhabi Clinical
+Costing Guidelines (Document Ref. Number:DoH/GD/HCPFA/ADCC/V2/2025 Version:V2).
+
+
+
+Project Background
+DOH as the healthcare regulator in Abu Dhabi, aims to improve care quality and
+operational efficiency within the Emirate by utilising patient-level clinical costing data to
+enhance the Value-Based HealthCare lifecycle via the creation of funding and pricing
+policies that utilise annual Clinical Costing results.
+
+Shafafiya serves as Abu Dhabi’s transaction exchange platform, processing healthcare
+claims data between providers, payers, and government entities and is used as the data
+collection platform for healthcare costing data submissions.
+
+
+
+Technical scope
+The technical scope of this implementation is to continue the Clinical Costing transaction
+type in Shafafiya for the submission, validation, and analysis of healthcare patient – level
+costing data from providers for the Financial Year 2025. Cost data will be submitted by
+providers or their representatives, and reviewed for compliance with Department of
+Health's data standards, and validations.
+
+
+
+
+                                                                                                3
+The key stakeholders
+The following list comprises of the project stakeholders.
+  Sr.   Stakeholder                       Internal /
+                         Dept/Sec                         Responsibility (for cost data submission)
+   #       Name                            External
+                       Clinical Costing                Act as primary contact between provider and DOH
+        Department
+   1                    / Healthcare      Internal     technical teams to ensure successful data
+        Of Health
+                        Payer Sector                   submission
+                        Digital Health    Internal     Ensures the platform operates smoothly, manages
+        Department      and Shafafiya                  data transactions, and supports the integration of
+   2
+        Of Health           Teams                      new functionalities. Authenticated via internal
+                                                       Shafafiya system
+                        All providers     External     Responsible for submitting accurate costing data
+        Healthcare
+   3                     with direct                   through Shafafiya as per DOH standards and
+        providers
+                        patient care                   specifications
+
+
+
+
+                                                                                                4
+System and Business
+Requirements
+Requirement ID          SHF-COST-001
+Title                   Costing Data Submission via Shafafiya
+                        Healthcare providers will submit costing data through Shafafiya using a
+                        unique transaction ID specifically for this data type. Cost data will be
+Description/Purpose
+                        collected annually, in line with DOH’s guidelines, during a specified
+                        submission window
+Ref. Use Case ID        UC-SHF-COST-001
+                        As a healthcare provider, I want to submit my organization’s costing data
+User Story              annually via Shafafiya to comply with DOH’s requirements for value-based
+                        funding and reimbursement.
+Actors                  Healthcare Providers
+Systems/Applications
+                     Shafafiya Portal, Costing Data Module
+involved
+                     Providers have received the costing data template and are aware of the
+Pre-Condition
+                     annual submission requirements.
+                     Costing data is successfully submitted in the Shafafiya system, ready for
+Post-Condition
+                     validation and analysis.
+                         1. Costing Submission:/ Resubmission:
+                             Providers prepare costing data files following DOH structure.
+                             Requests are submitted through provider integration with Shafafiya.
+                         2. Transaction ID:
+                             A unique transaction ID is assigned for tracking.
+                         3. Data Entry and File Upload:
+                             Providers upload the costing data files, following the DOH-defined
+                             template and specifications. Transaction size must not exceed 5 MB
+                         4. PTE Submit: Providers are to submit their costing data ASAP via PTE
+                             prior to the go-live date within the specified annual submission
+                             window
+Main workflow            5.  Production Submit:
+                             Providers submit their final costing data within the specified annual
+                             submission window (1 May to 31 May 2026).
+                             NB: Reconciliation Report is to be submitted concurrently to
+                             dohclinicalcosting@doh.gov.ae
+                         6. Acknowledgment:
+                             The system acknowledges successful submission and initiates the
+                             validation process.
+                         7. Resubmission:
+                             Providers can only re-submit their patient level cost data as
+                             corrections. Resubmissions occur if the providers receive any
+                             communications from DOH to do so.
+
+
+                                                                                             5
+                        Communication is via the DOH Clinical Costing Team
+                        DoHclinicalcosting@doh.gov.ae not directly through Shafafiya
+
+Wireframes    N/A
+                    •   Providers are aware of the submission requirements and deadlines.
+                    •   Providers follow the DOH-issued template and specifications for
+                        request format and data content.
+                    •   Providers are adhering to the validation rules published by the
+                        Department of Health (DOH) in their clinical costing systems before
+                        submitting their costing results to the DOH.
+                    •   Providers must conduct their clinical costing processes in their own
+                        clinical costing systems, following the clinical costing standards and
+Assumptions             guidelines published and the fields definition and schema provided by
+                        DOH team.
+                            o ClaimID: Data must be submitted as a unique ClaimID. Where
+                                a ClaimID does not already exist (such as Self-Pay services),
+                                the Provider is responsible for creating unique IDs
+                            o Encounter Information: Accurate, relevant information to be
+                                completed and submitted by the provider.
+                            o Cost Aggregation: Costs will be aggregated to a cost bucket
+                                level and cost type level per ClaimID.
+
+
+
+
+                                                                                       6
+XML Schema for cost data submission
+(sample with dummy values)
+<Cost.Submission>
+
+       <!--Header is required as we have common logic to validate the data-->
+
+       <Header>
+
+               <SenderID>MF118</SenderID>
+
+               <ReceiverID>HAAD</ReceiverID>
+
+               <TransactionDate>20/11/2024 10:31</TransactionDate>
+
+               <RecordCount>1</RecordCount>
+
+               <DispositionFlag>PTE_SUBMIT</DispositionFlag>
+
+       </Header>
+
+       <Claim>
+
+               <ID>1468-146802-65036</ID>
+
+               <ProviderID>MF118</ProviderID>
+
+               <Encounter>
+
+                       <FacilityID>MF118</FacilityID>
+
+                       <ID>49253687</ID>
+
+                       <ActivityClinicianID>GD83792</ActivityClinicianID>
+
+
+
+                       <PatientID>3779253</PatientID>
+
+                       <Type>1</Type>
+
+                       <Start>04/01/2023 14:30</Start>
+
+                       <End>04/01/2023 14:30</End>
+
+                       <StartType>1</StartType>
+
+                       <Specialty>General Practitioner</Specialty>
+
+                       <SubSpecialty>General Practitioner</SubSpecialty>
+
+                       <DRGCode>E01B</DRGCode>
+
+
+                                                                                7
+<ServiceCode>E01B</ ServiceCode >
+
+<EndType>1</EndType>
+
+<Diagnosis>
+
+       <Type>Principal</Type>
+
+       <Code>R80.9</Code>
+
+</Diagnosis>
+
+<Procedure>
+
+       <Type>Principal</Type>
+
+       <Code>111-11</Code>
+
+       <Duration>15</Duration>
+
+</Procedure>
+
+<EDTriageLevel>0</EDTriageLevel>
+
+<OPAttendanceType>Followup Attendance</OPAttendanceType>
+
+<TheatreAttendanceFlag>0</TheatreAttendanceFlag>
+
+<CriticalCareTime>0</CriticalCareTime>
+
+<VentilationTime>0</VentilationTime>
+
+<CostBucketDirect>
+
+       <Allied>0.000</Allied>
+
+       <Anaesthesia>0.000</Anaesthesia>
+
+       <Dental>0.000</ Dental>
+
+       <ED>0.000</ED>
+
+       <Home>0.000</ Home>
+
+       <ICU>0.000</ICU>
+
+       <Imaging>0.000</Imaging>
+
+       <Laboratory>0.000</Laboratory>
+
+       <Physician>25.294</Physician>
+
+       <OP>18.145</OP>
+
+       <OR>0.000</OR>
+
+       <Other>0.000</Other>
+
+
+                                                           8
+       <Pharmacy>0.000</Pharmacy>
+
+       <Prosthesis>0.000</Prosthesis>
+
+       <SPS>0.000</SPS>
+
+       <Ward>0.000</Ward>
+
+</CostBucketDirect>
+
+<CostBucketOverheads>
+
+       <Allied>0.000</Allied>
+
+       <Anaesthesia>0.000</Anaesthesia>
+
+       <Dental>0.000</ Dental>
+
+       <ED>0.000</ED>
+
+       <Home>0.000</ Home>
+
+       <ICU>0.000</ICU>
+
+       <Imaging>0.000</Imaging>
+
+       <Laboratory>0.000</Laboratory>
+
+       <Physician>25.294</Physician>
+
+       <OP>18.145</OP>
+
+       <OR>0.000</OR>
+
+       <Other>0.000</Other>
+
+       <Pharmacy>0.000</Pharmacy>
+
+       <Prosthesis>0.000</Prosthesis>
+
+       <SPS>0.000</SPS>
+
+       <Ward>0.000</Ward>
+
+</CostBucketOverheads>
+
+<CostTypeDetails>
+
+       <SWNurs>0.000</SWNurs>
+
+       <SWDoc>0.000</SWDoc>
+
+       <SWAllied>0.000</SWAllied>
+
+       <SWNonClin>0.000</SWNonClin>
+
+       <Laboratory>0.000</Laboratory>
+
+
+                                          9
+                        <Imaging>0.000</Imaging>
+
+                        <Pharmacy>0.000</Pharmacy>
+
+                        <Prostheses>0.000</Prostheses>
+
+                        <MS>0.000</MS>
+
+                        <Hotel>0.000</Hotel>
+
+                        <GS>0.000</GS>
+
+                        <Depreciation>0.000</Depreciation>
+
+                        <OHF>0.000</OHF>
+
+                        <OH Depreciation>0.000</ OH Depreciation>
+
+                        <OHC>0.000</OHC>
+
+                        <NABMs>0.000</NABMs>
+
+              </CostTypeDetails>
+
+       </Encounter>
+
+       <Resubmission>
+
+              <Type> </Type>
+
+              <Comment> </Comment>
+
+       </Resubmission>
+
+</Claim>
+
+
+
+
+                                                                    10
+     Description, data type and validation for each
+     field of schema:
+     The existing schema is published on the DOH website, where applicable specific links are
+     provided in the Data Definition field below. The general link to these references is
+     www.doh.gov.ae/shafafiya/dictionary
+
+
+
+Field Name                Description    Validation          Data Format / Definition
+<Header>
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+                          Transaction
+SenderID                                 Required            y/CommonTypes_xsd~s~HeaderSenderID.ht
+                          Sender ID
+                                                             ml
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+                          Transaction    Required. Must be
+ReceiverID                                                   y/CommonTypes_xsd~s~HeaderReceiverID.
+                          Receiver ID    'HAAD'
+                                                             html
+                          Cost                               https://shafafiyaportal.doh.gov.ae/dictionar
+TransactionDate           Transaction    Required            y/CommonTypes_xsd~s~HeaderTransaction
+                          Date                               Date.html
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+RecordCount               Claims Count   Required            y/CommonTypes_xsd~s~HeaderRecordCou
+                                                             nt.html
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+                          Submission
+DispositionFlag                          Required            y/CommonTypes_xsd~s~HeaderDisposition
+                          Environment
+                                                             Flag.html
+</Header>
+<Claim>
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+ID                        Claim ID       Required
+                                                             y/CommonTypes_xsd~s~ClaimID.html
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+                          Claim
+ProviderID                               Required            y/CommonTypes_xsd~s~ClaimProviderID.ht
+                          ProviderID
+                                                             ml
+<Encounter>
+                                                             https://shafafiyaportal.doh.gov.ae/dictionar
+                          Encounter
+FacilityID                               Required            y/CommonTypes_xsd~s~EncounterFacilityI
+                          Facility ID
+                                                             D.html
+                                                             Unique identifier of Encounter, as
+ID                        Encounter ID   Required
+                                                             reported to Malaffi
+
+                                                                                                   11
+Field Name            Description       Validation            Data Format / Definition
+                                                              https://shafafiyaportal.doh.gov.ae/dictionar
+                      ActivityClinici
+ActivityClinicianID                     Required              y/CommonTypes_xsd~s~ActivityClinician.ht
+                      an
+                                                              ml
+                                                              https://shafafiyaportal.doh.gov.ae/dictionar
+                      Encounter
+PatientID                               Required              y/CommonTypes_xsd~s~EncounterPatientI
+                      Patient ID
+                                                              D.html
+                                                              https://shafafiyaportal.doh.gov.ae/dictionar
+                      Encounter
+Type                                    Required              y/CommonTypes_xsd~s~EncounterType.ht
+                      Type
+                                                              ml
+                                                              https://shafafiyaportal.doh.gov.ae/dictionar
+                      Encounter
+Start                                   Required              y/CommonTypes_xsd~s~EncounterStart.ht
+                      Start Date
+                                                              ml
+                                        Required. If Value
+                                        does not exist, use
+                      Encounter                             https://shafafiyaportal.doh.gov.ae/dictionar
+End                                     placeholder value
+                      End Date                              y/CommonTypes_xsd~s~EncounterEnd.html
+                                        "31/12/2099
+                                        00:00:00"
+                                                              https://shafafiyaportal.doh.gov.ae/dictionar
+                      Encounter         Required. Enter '0'
+StartType                                                     y/CommonTypes_xsd~s~EncounterStartTyp
+                      Start Type        if no value.
+                                                              e.html
+                      Encounter                               https://shafafiyaportal.doh.gov.ae/dictionar
+Specialty             Physician         Required              y/CommonTypes_xsd~s~EncounterSpecialit
+                      Specialty                               y.html
+                      Encounter
+SubSpecialty          Physician         Can be empty          Text
+                      Sub-Specialty
+
+
+                                        Required when
+                                        ActivityType=9,
+                                                              https://shafafiyaportal.doh.gov.ae/dictionar
+DRGCode               IRDRG             can be empty.
+                                                              y/CommonTypes_xsd~s~ActivityCode.html
+                                        Provide one code
+                                        only.
+
+
+
+                                        Required when
+                      Service Code
+                                        ActivityType=8.
+                      For Bundles                             https://shafafiyaportal.doh.gov.ae/dictionar
+ServiceCode                             Can be empty.
+                      Such As Long                            y/CommonTypes_xsd~s~ActivityCode.html
+                                        Provide one code
+                      Term Care
+                                        only.
+
+
+
+
+                                                                                                    12
+Field Name     Description    Validation            Data Format / Definition
+                                                    https://shafafiyaportal.doh.gov.ae/dictionar
+               Encounter      Required. Enter '0'
+EndType                                             y/CommonTypes_xsd~s~EncounterEndType
+               End Type       if no value.
+                                                    .html
+<Diagnosis>
+                                                    https://shafafiyaportal.doh.gov.ae/dictionar
+               Diagnosis
+Type                          Principal Only        y/CommonTypes_xsd~s~DiagnosisType.htm
+               Type
+                                                    l
+                              Principal
+                                                    https://shafafiyaportal.doh.gov.ae/dictionar
+               Diagnosis      Diagnosis Code.
+Code                                                y/CommonTypes_xsd~s~DiagnosisCode.ht
+               Code           Provide one code
+                                                    ml
+                              only
+</Diagnosis>
+<Procedure>
+
+                              Required when
+                              ActivityType=3
+               Principal or   and
+Type                                                Text. Either Principal or Secondary.
+               Secondary      TheatreAttendanc
+                              eFlag=1 , can be
+                              empty
+
+
+                              Required when
+                              ActivityType=3
+                              and                   https://shafafiyaportal.doh.gov.ae/dictionar
+Code           CPT Code
+                              TheatreAttendanc      y/CommonTypes_xsd~s~ActivityID.html
+                              eFlag=1 , can be
+                              empty
+
+
+
+                              Required when
+                              ActivityType=3
+               Activity
+                              and
+Duration       Duration In                          Integer. 0 or greater.
+                              TheatreAttendanc
+               Minutes
+                              eFlag=1. Enter '0'
+                              if no value.
+
+
+</Procedure>
+
+
+
+
+                                                                                          13
+Field Name              Description      Validation             Data Format / Definition
+
+                                         Required if
+                                         Encounter Type =
+                        Triage Levels    2, 41 or 42. (ED
+EDTriageLevel                                              Integer. Between 0 and 5 only.
+                        (1-5)            Room,
+                                         Ambulance). Enter
+                                         '0' if no value.
+
+
+                                         Required if
+                        Type of                                 Text. Characterise the Encounter: e.g.
+OPAttendanceType                         Encounter Type
+                        Attendance                              First visit, Follow-up visit
+                                         =1, can be empty
+
+
+                        Theatre          Required. Enter '0'
+TheatreAttendanceFlag                                           Binary Flag. 1=True, 0=False
+                        Attendance       if no value.
+
+                        HDU/ICU/CC
+                                         Required. Enter '0'
+CriticalCareTime        U etc. in                               Integer. 0 or greater.
+                                         if no value.
+                        minutes.
+                        Duration Of
+                                         Required. Enter '0'
+VentilationTime         Ventilation In                          Integer. 0 or greater.
+                                         if no value.
+                        Minutes.
+<CostBucketDirect>
+                        Allied Health
+                                                                Number. A value in Dhs as determined
+                        Services         Required. Enter
+Allied                                                          by Abu Dhabi Clinical Cost Data
+                        Including        '0.000' if no value.
+                                                                Collection (ADCCDC)
+                        Technicians
+                                                                Number. A value in Dhs as determined
+                        Anaesthesia      Required. Enter
+Anaesthesia                                                     by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                Collection (ADCCDC)
+                                                                Number. A value in Dhs as determined
+                        Dental           Required. Enter
+Dental                                                          by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                Collection (ADCCDC)
+                                                                Number. A value in Dhs as determined
+                        Emergency        Required. Enter
+ED                                                              by Abu Dhabi Clinical Cost Data
+                        Department       '0.000' if no value.
+                                                                Collection (ADCCDC)
+                                                                Number. A value in Dhs as determined
+                        Homecare         Required. Enter
+Home                                                            by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                Collection (ADCCDC)
+
+
+
+
+                                                                                                   14
+Field Name            Description      Validation             Data Format / Definition
+                      Intensive
+                      Care, Critical
+                      Care,
+                                                               Number. A value in Dhs as determined
+                      Coronary         Required. Enter
+ICU                                                            by Abu Dhabi Clinical Cost Data
+                      Care, And        '0.000' if no value.
+                                                               Collection (ADCCDC)
+                      High
+                      Dependency
+                      Units
+                                                               Number. A value in Dhs as determined
+                      Imaging          Required. Enter
+Imaging                                                        by Abu Dhabi Clinical Cost Data
+                      Services         '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Laboratory       Required. Enter
+Laboratory                                                     by Abu Dhabi Clinical Cost Data
+                      Services         '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Physician        Required. Enter
+Physician                                                      by Abu Dhabi Clinical Cost Data
+                      Services         '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Outpatient       Required. Enter
+OP                                                             by Abu Dhabi Clinical Cost Data
+                      Clinics          '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Operating        Required. Enter
+OR                                                             by Abu Dhabi Clinical Cost Data
+                      Room             '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Other            Required. Enter
+Other                                                          by Abu Dhabi Clinical Cost Data
+                      Services         '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Pharmacy         Required. Enter
+Pharmacy                                                       by Abu Dhabi Clinical Cost Data
+                      Services         '0.000' if no value.
+                                                               Collection (ADCCDC)
+                                                               Number. A value in Dhs as determined
+                      Patient          Required. Enter
+Prosthesis                                                     by Abu Dhabi Clinical Cost Data
+                      Implants         '0.000' if no value.
+                                                               Collection (ADCCDC)
+                      Special
+                      Procedure                                Number. A value in Dhs as determined
+                                       Required. Enter
+SPS                   Suites e.g.                              by Abu Dhabi Clinical Cost Data
+                                       '0.000' if no value.
+                      Endoscopy;                               Collection (ADCCDC)
+                      Cath Lab
+                                                               Number. A value in Dhs as determined
+                      Ward             Required. Enter
+Ward                                                           by Abu Dhabi Clinical Cost Data
+                      Services         '0.000' if no value.
+                                                               Collection (ADCCDC)
+</CostBucketDirect>
+
+
+                                                                                              15
+Field Name              Description      Validation             Data Format / Definition
+<CostBucketOverheads>
+                        Allied Health
+                                                                 Number. A value in Dhs as determined
+                        Services         Required. Enter
+Allied                                                           by Abu Dhabi Clinical Cost Data
+                        Including        '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                        Technicians
+                                                                 Number. A value in Dhs as determined
+                        Anaesthesia      Required. Enter
+Anaesthesia                                                      by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Dental           Required. Enter
+Dental                                                           by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Emergency        Required. Enter
+ED                                                               by Abu Dhabi Clinical Cost Data
+                        Department       '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Homecare         Required. Enter
+Home                                                             by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                        Intensive
+                        Care, Critical
+                        Care,
+                                                                 Number. A value in Dhs as determined
+                        Coronary         Required. Enter
+ICU                                                              by Abu Dhabi Clinical Cost Data
+                        Care, And        '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                        High
+                        Dependency
+                        Units
+                                                                 Number. A value in Dhs as determined
+                        Imaging          Required. Enter
+Imaging                                                          by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Laboratory       Required. Enter
+Laboratory                                                       by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Physician        Required. Enter
+Physician                                                        by Abu Dhabi Clinical Cost Data
+                        Services         '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Outpatient       Required. Enter
+OP                                                               by Abu Dhabi Clinical Cost Data
+                        Clinics          '0.000' if no value.
+                                                                 Collection (ADCCDC)
+                                                                 Number. A value in Dhs as determined
+                        Operating        Required. Enter
+OR                                                               by Abu Dhabi Clinical Cost Data
+                        Room             '0.000' if no value.
+                                                                 Collection (ADCCDC)
+
+
+
+                                                                                                16
+Field Name               Description      Validation             Data Format / Definition
+                                                                  Number. A value in Dhs as determined
+                         Other            Required. Enter
+Other                                                             by Abu Dhabi Clinical Cost Data
+                         Services         '0.000' if no value.
+                                                                  Collection (ADCCDC)
+                                                                  Number. A value in Dhs as determined
+                         Pharmacy         Required. Enter
+Pharmacy                                                          by Abu Dhabi Clinical Cost Data
+                         Services         '0.000' if no value.
+                                                                  Collection (ADCCDC)
+                                                                  Number. A value in Dhs as determined
+                         Patient          Required. Enter
+Prosthesis                                                        by Abu Dhabi Clinical Cost Data
+                         Implants         '0.000' if no value.
+                                                                  Collection (ADCCDC)
+                         Special
+                         Procedure                                Number. A value in Dhs as determined
+                                          Required. Enter
+SPS                      Suites e.g.                              by Abu Dhabi Clinical Cost Data
+                                          '0.000' if no value.
+                         Endoscopy;                               Collection (ADCCDC)
+                         Cath Lab
+                                                                  Number. A value in Dhs as determined
+                         Ward             Required. Enter
+Ward                                                              by Abu Dhabi Clinical Cost Data
+                         Services         '0.000' if no value.
+                                                                  Collection (ADCCDC)
+</CostBucketOverheads>
+<CostTypeDetails>
+                         Salaries and                             Number. A value in Dhs as determined
+                                          Required. Enter
+SWNurs                   Wages                                    by Abu Dhabi Clinical Cost Data
+                                          '0.000' if no value.
+                         Nursing                                  Collection (ADCCDC)
+                         Salaries and                             Number. A value in Dhs as determined
+                                          Required. Enter
+SWDoc                    Wages                                    by Abu Dhabi Clinical Cost Data
+                                          '0.000' if no value.
+                         Medical                                  Collection (ADCCDC)
+                         Salaries and
+                         Wages Allied
+                         Health
+                         Professionals                            Number. A value in Dhs as determined
+                                          Required. Enter
+SWAllied                 Including                                by Abu Dhabi Clinical Cost Data
+                                          '0.000' if no value.
+                         Technicians                              Collection (ADCCDC)
+                         (e.g.
+                         Operating
+                         Room)
+                         Salaries and                             Number. A value in Dhs as determined
+                                          Required. Enter
+SWNonClin                Wages Non-                               by Abu Dhabi Clinical Cost Data
+                                          '0.000' if no value.
+                         Clinical staff                           Collection (ADCCDC)
+                                                                  Number. A value in Dhs as determined
+                         Laboratory       Required. Enter
+Laboratory                                                        by Abu Dhabi Clinical Cost Data
+                         Supplies         '0.000' if no value.
+                                                                  Collection (ADCCDC)
+
+
+
+
+                                                                                                 17
+Field Name        Description    Validation             Data Format / Definition
+                                                         Number. A value in Dhs as determined
+                  Imaging        Required. Enter
+Imaging                                                  by Abu Dhabi Clinical Cost Data
+                  Supplies       '0.000' if no value.
+                                                         Collection (ADCCDC)
+                  Pharmacy                               Number. A value in Dhs as determined
+                                 Required. Enter
+Pharmacy          Drugs and                              by Abu Dhabi Clinical Cost Data
+                                 '0.000' if no value.
+                  Services                               Collection (ADCCDC)
+                                                         Number. A value in Dhs as determined
+                  Implantable    Required. Enter
+Prostheses                                               by Abu Dhabi Clinical Cost Data
+                  Devices        '0.000' if no value.
+                                                         Collection (ADCCDC)
+                  All Other
+                                                         Number. A value in Dhs as determined
+                  Medical And    Required. Enter
+MS                                                       by Abu Dhabi Clinical Cost Data
+                  Surgical       '0.000' if no value.
+                                                         Collection (ADCCDC)
+                  Supplies
+                  Cleaning,
+                                                         Number. A value in Dhs as determined
+                  Linen And      Required. Enter
+Hotel                                                    by Abu Dhabi Clinical Cost Data
+                  Laundry,       '0.000' if no value.
+                                                         Collection (ADCCDC)
+                  Patient Food
+                  All Other                              Number. A value in Dhs as determined
+                                 Required. Enter
+GS                Goods And                              by Abu Dhabi Clinical Cost Data
+                                 '0.000' if no value.
+                  Services                               Collection (ADCCDC)
+                  Building And
+                  Equipment                              Number. A value in Dhs as determined
+                                 Required. Enter
+Depreciation      Depreciation                           by Abu Dhabi Clinical Cost Data
+                                 '0.000' if no value.
+                  And                                    Collection (ADCCDC)
+                  Amortization
+                  Overhead
+                                                         Number. A value in Dhs as determined
+                  Cost Of        Required. Enter
+OHF                                                      by Abu Dhabi Clinical Cost Data
+                  Healthcare     '0.000' if no value.
+                                                         Collection (ADCCDC)
+                  Facility
+                  Building And
+                  Equipment
+                  Depreciation
+                  And                                    Number. A value in Dhs as determined
+                                 Required. Enter
+OH Depreciation   Amortization                           by Abu Dhabi Clinical Cost Data
+                                 '0.000' if no value.
+                  Recorded In                            Collection (ADCCDC)
+                  Facility
+                  Overhead
+                  Cost Centers
+                  Overheads
+                  Cost From
+                                                         Number. A value in Dhs as determined
+                  Corporate      Required. Enter
+OHC                                                      by Abu Dhabi Clinical Cost Data
+                  Office /       '0.000' if no value.
+                                                         Collection (ADCCDC)
+                  Shared
+                  Services
+
+                                                                                        18
+Field Name           Description     Validation             Data Format / Definition
+                     Funded
+                     Mandates                                Number. A value in Dhs as determined
+                                     Required. Enter
+NABMs                Reported As                             by Abu Dhabi Clinical Cost Data
+                                     '0.000' if no value.
+                     Negative Cost                           Collection (ADCCDC)
+                     Type
+</CostTypeDetails>
+</Encounter>
+<Resubmission>
+
+
+                                     Required If Valid       https://shafafiyaportal.doh.gov.ae/diction
+                     Resubmissio
+Type                                 Resubmission. Can       ary/CommonTypes_xsd~s~ResubmissionT
+                     n Type
+                                     Be Empty                ype.html
+
+
+                                     If Valid
+                                     Resubmission,           https://shafafiyaportal.doh.gov.ae/diction
+                     Resubmissio
+Comment                              Must Say                ary/CommonTypes_xsd~s~ResubmissionC
+                     n Comment
+                                     'Correction'. Can Be    omment.html
+                                     Empty.
+
+</Resubmission>
+</Claim>
+
+
+
+
+                                                                                                 19
+Shafafiya Submission Portal
+Validations:
+Since this is the first year of cost data submission for the healthcare providers, the
+validations are kept at the minimum. In future, more validations will be added to the
+submission process to enhance the accuracy of received cost data. Please note that the
+below validations would be in addition to the submission validations mentioned in table
+above.
+
+   Patient               Title               Description                Tolerance               Flag
+    Type
+ All Encounter   Duplicate Cost types     Duplicate Cost Types                              Block
+ Types                                    in one patient
+                                          encounter
+                 Duplicate Cost           Duplicate Cost                                    Block
+                 buckets                  Buckets in one
+                                          patient encounter
+                 Zero Total Cost at the   Zero Total cost at the                            Block, unless
+                 encounter level          encounter level for                               <Resubmission>
+                                          any encounter (sum                                element is
+                                          of all cost buckets and                           present
+                                          cost types) can only
+                                          be used to cancel
+                                          previous incorrect
+                                          submission
+                 Negative Cost at the     Negative cost at the                              Block
+                 encounter level          encounter level for
+                                          any encounter (sum
+                                          of all cost buckets and
+                                          cost types)
+                 NABM Cost Type           If SEHA Group then        Warning for SEHA if     Warning
+                 (Refer to output tab)    value allowed ; error     zero value or value >
+                 - applicable to SEHA     for other entities        zero;
+                 Group only
+
+
+
+
+                                                                                                      20
+Submission end-to-end process flow
+
+
+
+
+ 1.   Submitted files are validated for schema, content, and DOH rules.
+ 2.   Critical errors result in file rejection; providers are notified to correct and resubmit.
+ 3.   Warning errors are flagged but do not block acceptance.
+ 4.   Providers receive error notifications with detailed feedback.
+ 5.   Resubmitted files follow the same workflow until validation passes.
+
+
+
+
+                                                                                                  21
+Internal validations and quality
+checks:
+Healthcare facilities must run minimum of below internal validations and quality
+checks before submitting the cost data in Shafafiya. These internal validations and
+quality checks are directional and non-exhaustive and will expand over time. The cost
+practitioners should also use their experience, judgement and analytical skills to
+validate the costing output before submission.
+
+DOH Clinical Costing team reserves the right to reject the cost data file and request for
+resubmission if it is not validated against these validation rules and quality checks.
+
+    Patient
+                         Title                   Description                  Tolerance
+     Type
+                                                                          Where triage
+                                         Identify encounters in low       category is 3, 4, or 5
+ Emergency       High Cost Low Triage    triage codes (3,4,5) with high   and total cost of the
+                                         costs                            encounter is
+                                                                          >10,000 Dhs
+                                                                          Where triage
+                                                                          category is 1 or 2
+                                         Identify encounters in triage
+ Emergency       Low Cost High Triage                                     and the total cost of
+                                         codes 1 and 2 with low costs
+                                                                          the encounter is
+                                                                          <500 Dhs
+                                                                          Where triage
+                                                                          category is 1 or 2
+                                         Identify encounters in triage
+ Emergency       High Cost High Triage                                    and the total cost of
+                                         codes 1 and 2 with high costs
+                                                                          the encounter is
+                                                                          >20,000 Dhs
+                                         Missing triage data at the       Identify encounters
+ Emergency       No Triage
+                                         encounter level                  with no triage data
+                                         Identify emergency
+ Emergency       No Physician Cost       encounters without physician
+                                         costs
+                                         Identify emergency
+ Emergency       No ED Cost              department encounters with
+                                         no associated costs
+                                         Identify the missing triage
+ Emergency       No Triage Data
+                                         data at the encounter level
+                                         Identify patients with > 10
+ Emergency       Frequent User           emergency encounters in the
+                                         year
+
+
+
+
+                                                                                            22
+   Patient
+                    Title                  Description                 Tolerance
+    Type
+                                                                   Where LOS = Same
+                                                                   day and total
+                                   Identify all same day
+Inpatient    Low LOS Costs                                         encounter costs
+                                   encounters that are low cost
+                                                                   less than or equal to
+                                                                   100 Dhs by DRG
+                                                                   Where LOS =
+                                                                   Multiday and total
+                                   Identify all multiday or one
+                                                                   encounter cost per
+Inpatient    Low Multi-Day Costs   day encounters that have a
+                                                                   day is less than or
+                                   low per day cost
+                                                                   equal to 500 Dhs by
+                                                                   DRG
+                                   Identify total high-cost        Total encounter
+Inpatient    High Costs            encounters (excluded LTC        cost is > 500,000
+                                   type)                           Dhs by DRG
+                                   Identify encounters where ICU   Where ICU Hours is
+Inpatient    ICU Hours No Cost     hours have been reported but    > 0 and total cost
+                                   no corresponding ICU cost       for ICU = 0 by DRG
+                                   Identify encounters where ICU   Where ICU cost is >
+Inpatient    ICU Hours No Cost     costs have been reported but    0 and ICU hours = 0
+                                   no corresponding ICU hours      by DRG
+                                                                   Where encounters
+                                   Identify encounters with        are grouped to
+             Surgical DRG No OR    surgical DRGs with no           surgical DRGs but
+Inpatient
+             Cost                  Operating Room or Special       OR and SPS cost
+                                   Procedure Suites cost           buckets have zero
+                                                                   cost
+                                                                   Where encounters
+                                                                   are grouped to
+                                   Identify encounters in DRGs     DRGs with expected
+             Prostheses DRG No     with expected prostheses        prosthesis
+Inpatient
+             Cost                  consumption but no              consumption, but
+                                   prosthesis cost                 the prosthesis cost
+                                                                   bucket has zero
+                                                                   cost
+                                                                   Encounter IP with
+                                   Identify inpatient encounters
+Inpatient    No Ward / HDU Cost                                    ward / HDU cost = 0
+                                   without Ward / HDU costs
+                                                                   Dhs
+                                   Identify the top 10 IP
+Inpatient    Longest LOS           encounter with the longest
+                                   LOS for the facility
+                                   Identify inpatient encounters
+Inpatient    No Physician Cost     where physician costs are
+                                   missing
+                                   Identify inpatient encounters
+Inpatient    No Pharmacy Cost
+                                   with no pharmacy costs
+                                   Identify inpatient encounters
+Inpatient    No Laboratory Cost
+                                   without laboratory costs
+
+                                                                                    23
+   Patient
+                     Title                  Description                 Tolerance
+    Type
+             OR Cost But No         Identify encounters with OR
+Inpatient
+             Anaesthesia Cost       cost but no Anaesthesia cost
+             Identify High Cost     Identify encounters with
+Inpatient
+             Other Services         >10,000 Dhs in Other Services
+                                    Identify inpatient encounters
+             Encounter Los > 3
+Inpatient                           with a length of stay greater
+             Months
+                                    than 3 months
+                                    Identify inpatient encounters
+Inpatient    No Nursing Cost type
+                                    missing nursing costs
+             Duplicate Encounter    Identify duplicate IDs across
+Inpatient
+             Ids                    inpatient encounters
+                                    Identify non admitted
+                                                                    Total encounter
+Outpatient   High Clinic Costs      encounters with high total
+                                                                    cost is > 3,000 Dhs
+                                    costs for clinic attendances
+                                    Identify non admitted
+                                                                    Total encounter
+Outpatient   Low Clinic Costs       encounters with low total
+                                                                    cost is < 50 Dhs
+                                    costs for clinic attendances
+                                                                    Identify where ICU,
+                                    Identify non admitted clinic    OR, SPS, ED cost
+             Unexpected Clinic
+Outpatient                          encounters with unexpected      buckets have cost
+             Costs
+                                    costs                           against these
+                                                                    encounters
+                                    Identify non admitted           Total encounter
+             High Day Procedure
+Outpatient                          procedure encounters with       costs is > 25,000
+             Costs
+                                    high costs                      Dhs
+                                    Identify non admitted
+             Low Day Procedure                                      Total encounter
+Outpatient                          procedure encounters with
+             Costs                                                  costs is <500 Dhs
+                                    low costs
+                                    Identify non admitted
+             High Laboratory                                        Total encounter
+Outpatient                          laboratory encounters with
+             Costs                                                  cost is > 1,000 Dhs
+                                    high costs
+                                    Identify non admitted
+                                                                    Total encounter
+Outpatient   Low Laboratory Costs   laboratory encounters with
+                                                                    cost is < 10 Dhs
+                                    low costs
+                                    Identify non admitted imaging   Total encounter
+Outpatient   High Imaging Costs
+                                    encounters with high costs      cost is > 5,000 Dhs
+                                    Identify non admitted imaging   Total encounter
+Outpatient   Low Imaging Costs
+                                    encounters with low costs       cost is < 50 Dhs
+                                    Identify non admitted
+                                                                    Total encounter
+Outpatient   High Pharmacy Costs    pharmacy encounters with
+                                                                    cost is > 1,000 Dhs
+                                    high costs
+                                    Identify non admitted
+                                                                    Total encounter
+Outpatient   Low Pharmacy Costs     pharmacy encounters with
+                                                                    cost is < 10 Dhs
+                                    low costs
+
+
+                                                                                       24
+  Patient
+                     Title                Description                 Tolerance
+   Type
+                                                                   Identify Imaging,
+                                                                   Laboratory,
+                                                                   Pharmacy
+                                  Identify non admitted            encounter costs
+             Other Unexpected
+Outpatient                        encounters with unexpected       with costs in
+             Costs
+                                  cost buckets                     unexpected cost
+                                                                   buckets: Ward, ICU,
+                                                                   OR, SPS, ED, PROS,
+                                                                   ANAES
+                                  Identify outpatient encounters
+Outpatient   No Supplies Cost
+                                  without any supplies costs
+             Identify High Cost   Identify encounters with         <10,000 Dhs in
+Outpatient
+             Other Services       >10,000 Dhs in Other Services    Other Services
+             Unexpected Cost      Identify encounters with
+Outpatient
+             Buckets              unexpected cost buckets
+
+
+
+
+                                                                                    25
+Document Version History
+          Publish
+           Date
+Version                                      Overview of Changes
+          (Month
+           Year)
+                     Updated from Submission Year 1 Document (v1.12)
+                     Split FAQ into separate document.
+                     Fields Added
+                     ActivityClinicianID    (Encounter)
+                     ServiceCode            (Encounter)
+          February   Dental                 (CostBucketDirect, CostBucketOverhead)
+ v1.00
+            2026     Home                   (CostBucketDirect, CostBucketOverhead)
+                     OH Depreciation        (Cost Type)
+                     Fields Removed
+                     Supplies               (CostBucketDirect, CostBucketOverhead)
+
+                     Updated Validation Requirements in Schema Table (pp11-19)
+
+
+
+
+                                                                                     26
+

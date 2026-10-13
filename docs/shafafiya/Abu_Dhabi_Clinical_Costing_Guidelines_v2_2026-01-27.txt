@@ -1,0 +1,942 @@
+Abu Dhabi Clinical Costing
+Guidelines
+Document Title:         Abu Dhabi Clinical Costing Guidelines
+
+
+
+                                                                Version:
+Document Ref. Number:   DoH/GD/HCPFA/ADCC/V2/2025                               V2
+
+
+
+New / Revised:          Revised
+
+
+
+Publication Date:       January, 2026
+
+
+
+
+Effective Date:         February, 2026
+
+
+
+
+Document Control:       DoH Strategy Sector
+
+
+
+                          -   DoH licensed Healthcare Providers
+                          -   DoH licensed Healthcare Providers of dental services.
+Applies To:
+                          -   DoH authorized Health Payers.
+                          -   All Health Insurance products and schemes, as applicable.
+
+
+
+
+Owner:                  Healthcare Payers & Finance Affairs
+
+
+
+
+Revision Date:          November, 2026
+
+
+
+Revision Period:        One year
+
+
+
+Contact:                dohclinicalcosting@doh.gov.ae
+
+
+
+
+                                                                                          1
+      1.Guideline Purpose and Brief
+
+        1.1. The current version of the guideline is the Abu Dhabi Clinical Costing Guideline Version 2.0
+        1.2. This document outlines the step-by-step guidance and explanation on how to interpret and
+             comply with six main stages of clinical costing as laid down in Abu Dhabi Clinical Costing Standard.
+        1.3. This guideline applies to the healthcare providers, providing direct patient care and operating in
+             the Emirate of Abu Dhabi, under the license provided by the Department of Health such as:
+            1.3.1. Hospitals
+            1.3.2. Specialist day case and day surgery centers
+            1.3.3. Long term care and rehabilitation (LTC and Home Care)
+            1.3.4. Stand-alone specialist services (e.g., Dialysis, IVF, Dental etc.)
+            1.3.5. Primary care centers
+            1.3.6. Clinics Alternative Medicine Centers and Others
+
+       1.4. This guideline does not apply to:
+           1.4.1. Stand-alone Outpatient Pharmacies
+           1.4.2. Stand-alone Diagnostic Centers (e.g. laboratory and imaging)
+           1.4.3. Stand-alone Orthotics and Prosthetics Supplies Center
+           1.4.4. School Clinics
+           1.4.5. Offshore Clinic
+
+
+
+      2. Definitions and Abbreviations
+
+No.        Term / Abbreviation                   Definition
+
+                                                 This is an accounting method that recognizes expenses when
+2.1        Accrual Accounting
+                                                 expense is incurred regardless of when the cash is paid
+
+                                                 Abu Dhabi Clinical Cost Data Collection: The ADCCDC is a
+2.2        ADCCDC                                critical component of Abu Dhabi’s value-based funding
+                                                 framework.
+
+                                                 This is an accounting method that recognizes expenses when
+2.3        Cash Accounting
+                                                 cash is paid
+
+                                                 The process of measuring the cost and mix of resources used
+                                                 to deliver patient care. Costing plays a vital role in the
+2.4        Clinical Costing                      development of activity-based funding policies, can inform
+                                                 the development of patient classification systems, and
+                                                 provides valuable information for pricing purposes.
+
+                                                 Services related to the observation or treatment of a patient
+2.5        Clinical Service
+                                                 within a healthcare setting
+
+                                                 From a reporting perspective, it would be impractical to
+                                                 report cost data by every final direct cost center as there
+                                                 may be over 100 such cost centers for any health service.
+2.6        Cost Buckets                          For reporting cost data, it is therefore useful to aggregate
+                                                 final direct cost centers to a higher level, called ‘cost
+                                                 buckets’ (also referred to as ‘cost pools’). For example, a
+                                                 health service may have many final direct ward related cost
+
+
+                                                                                                                 2
+                                        centers (e.g., medical / surgical / pediatric / obstetric), but
+                                        for the purpose of reporting, these final direct cost centers
+                                        may be aggregated to a ‘ward’ cost bucket.
+
+                                        The cost center is group of financial transactions that reflect
+2.7    Cost Center                      management responsibilities, point of cost control and
+                                        accounts that reflect categories of expense.
+
+                                        Cost Types are aggregations of expense accounts for cost
+2.8    Cost Types
+                                        reporting purposes.
+
+2.9    CT                               Computed Tomography
+
+                                        Expenses incurred directly in the delivery of a patient care
+                                        product and/or service allocated to a patient using evidence
+2.10   Direct Cost
+                                        of resource utilization e.g. Operating Room, Physician,
+                                        Nursing costs etc.
+
+       Department of Health Abu Dhabi   The regulative body of the Healthcare Sector in the Emirate
+2.11
+       (DoH)                            of Abu Dhabi, Established based on law No. (10) of 2018.
+
+                                        Final direct cost centers in healthcare facilities are expenses
+                                        that result from patient care interventions and are
+2.12   Final Direct Cost Center         connected to the provision of services to patients. Final
+                                        direct cost centers may also be associated with non-patient
+                                        activities including teaching, training, and research.
+
+                                        Cost centers that provide support to direct cost centers in
+                                        the healthcare facility. For example, the Information
+                                        Technology Department does not provide patient care, but it
+2.13   Final Overhead Cost Centers      supports Final Direct Cost Centers by providing the
+                                        equipment and technology needed to support patient care.
+                                        The payroll department does not provide patient care but
+                                        compensates staff who provide patient care.
+
+                                        Related activities are grouped under a specific department.
+                                        For example, payroll, accounts receivable, accounts payable
+2.14   Function
+                                        are grouped under Finance as a function. All final cost
+                                        centers must be treated as functions.
+
+                                        Special funds received from governmental entity e.g. non-
+2.15   Funded Mandates
+                                        activity-based mandates.
+
+                                        The general ledger is a set of financial accounts that
+2.16   General ledger                   summarizes all financial transactions occurring within an
+                                        organization and is used to create its financial statement.
+
+2.17   HCPCS                            Healthcare Common Procedure Coding System
+
+2.18   ICU                              Intensive Care Unit
+
+2.19   IVF                              In Vitro Fertilization
+
+2.20   MRI                              Magnetic Resonance Imaging
+
+
+                                                                                                          3
+                                                 Overhead cost refers to expenses within the hospital that
+                                                 generally relate to administrative and support functions.
+2.21       Overhead Cost                         They do not relate to patient care and include finance,
+                                                 human resources, general maintenance, and information
+                                                 technology etc.
+
+                                                 Health services provided to the patients for assessing,
+2.22       Patient Products                      recording, maintaining, or improving health, or
+                                                 diagnosing/treating conditions.
+
+
+
+
+    3.Guideline Content
+
+3      Guideline Requirements and Specifications
+
+This document outlines the step-by-step guidance and explanation on how to interpret and comply with six
+main stages of clinical costing as laid down in Abu Dhabi Clinical Costing Standard.
+
+3.1        Stage 1: IDENTIFY EXPENSES FOR COSTING
+Healthcare facilities must capture and accurately record all relevant expenditures linked to clinical activities
+to facilitate comprehensive and accurate cost allocation.
+
+3.1.1   Third Party Expenses
+3.1.1.1     Allocate additional expenses incurred by third parties, such as a central corporate office /
+            shared services hub providing Human Resources, IT, and Finance etc. services across multiple
+            healthcare facilities.
+3.1.1.2     Ensure that these third-party expenses are apportioned proportionally across the group and
+            incorporated into each healthcare provider’s cost model for accurate costing purposes.
+3.1.1.3     Include these expenses in the cost model without omission.
+3.1.1.4     Distribute these expenses appropriately across the group without exception.
+3.1.1.5     Healthcare facilities must record expenses for outsourced laboratory and other clinical
+            services like imaging services in their general ledger.
+
+3.1.2   Offsets and Recoveries
+3.1.2.1     Offset refunds or credits, such as those received for billing errors or supplier corrections,
+            against the cost of the purchased goods in the general ledger.
+3.1.2.2     Apply funded mandates (non-activity-based mandates) as offsets against relevant expenses.
+3.1.2.3     Apply credit notes received, for facility staff seconded to other facilities, as an offsets against
+            relevant expenses.
+3.1.2.4     Offset prior year adjustments against similar expenses in the current financial year.
+
+3.1.3      Cash Accounting
+3.1.3.1       Cash accounting must not be used for clinical costing as it does not accurately match costs
+              with patient care. Clinical costing requires a clear link between specific patient treatments and
+              costs which cash accounting does not facilitate as in cash accounting costs is recorded only
+              when it is paid.
+3.1.3.2       For example, if a healthcare facility uses a health information system for the period of 1st
+              October – 31st December and the payment is made and recorded in February the following
+              year.
+
+
+
+
+                                                                                                                   4
+3.1.4   Transition to Accrual Accounting
+3.1.4.1     If a healthcare facility is using cash accounting or modified cash accounting, adjustments must
+            be made to transform general ledger to accrual-based accounting. These adjustments need to
+            be made at the end of each period to account for unrecorded costs.
+3.1.4.2     Transitioning from cash accounting to accrual accounting typically involves several steps. The
+            following examples outline a potential process, though the applicability may vary across
+            healthcare facilities currently using cash accounting.
+
+      3.1.4.2.1    For tracking costs: - review all outstanding purchase orders, contracts and invoices from
+                   suppliers and other vendors to identify expenses incurred but not yet paid to get a true
+                   picture of resource consumed for the period. Record these in spreadsheet as a bespoke
+                   inventory log.
+      3.1.4.2.2    For unpaid expenses: - review all outstanding purchase orders, contracts and invoices for
+                   services already received. That is, if an invoice is received for locum resource in March
+                   but not paid till April this should be manually recorded as an expense in March.
+      3.1.4.2.3    At end of year or period, adjust and journal the value of direct costs accrued but not yet
+                   paid for.
+
+
+3.1.5   Cost of Capital
+3.1.5.1     Exclude the cost of capital from the costing process, as capital investments are treated as
+            balance sheet items.
+3.1.5.2     Include capital depreciation / amortization and related interest expenditures as relevant
+            expenses for costing purposes.
+
+3.1.6    Items To Exclude
+3.1.6.1       Exclude balance sheet account items from the costing process, even though they are part of
+              the general ledger.
+3.1.6.2       Do not include revenue not received, such as rejected claims, volume discounts, or bad debts,
+              in the costing process as they do not represent actual expenses incurred in patient treatment.
+3.1.6.3       Revenue generated from sales of services must not be offset against expenses. Specifically,
+              exclude revenue from:
+      3.1.6.3.1     Patient charges, including diagnostic tests performed for other healthcare providers.
+      3.1.6.3.2     Grants or subsidies other than funded mandates.
+      3.1.6.3.3     Commercial leasing of space (e.g., florists, cafeterias).
+      3.1.6.3.4     Other revenue from sales of services.
+      3.1.6.3.5     Interest revenue.
+
+3.1.7   Cost Types
+3.1.7.1     Aggregate expense accounts into Cost Types for cost reporting purposes. For example,
+            combine Nursing Salaries, Nursing Overtime, Nursing Housing, Nursing Allowances, and Other
+            Benefits into a single Cost Type: Nursing Salaries. Report full cost of an employee to the
+            organization.
+3.1.7.2     Use the Cost Types specified in Appendix 1 of Abu Dhabi Clinical Costing Standard when
+            submitting cost data to the Department of Health in Abu Dhabi.
+3.1.7.3     Healthcare facilities who receive funded mandates, are required to report this as a cost type at
+            the final product level in the cost data submission.
+
+3.2      Stage: 2 CREATE THE COST LEDGER
+
+
+
+                                                                                                                5
+3.2.1     Creating a Costing Ledger
+
+3.2.1.1       The healthcare facility’s general ledger must be transformed into cost ledger to systematically
+              structure the financial information thereby, enabling accurate product costing.
+3.2.1.2       Healthcare facility must obtain their general ledger for the specific reporting period.
+3.2.1.3       If the healthcare facility general ledger captures expenses grouped across multiple facilities,
+              the facility group must identify and segment these expenses at the individual facility level. The
+              segmentation must be completed utilizing the cost centers to accurately track and attribute
+              expenses to the appropriate patients and services within each distinct facility.
+3.2.1.4       The general ledger items must be reconciled to the total expenditure against the facility's
+              financial statements. Where there are discrepancies, these must be investigated and resolved.
+
+3.2.2    Matching Expenses to Patient Products
+3.2.2.1       Matching a health service’s expenses to its patient products as accurately as possible. General
+              ledgers are typically not designated with this outcome in mind. Adjust the general ledger to
+              map expenses and cost centers to a financial structure that aligns with patient products. This
+              new financial structure is called the ‘Cost Ledger.’
+3.2.2.2       The key principle is to match expenses to patient products, emphasizing the relationship
+              between the expense and the patient product.
+3.2.2.3       Work closely with health information system and clinical departments to ensure that data
+              supports the costing process, and this alignment allows for accurate matching of patient
+              products (derived from data items) to final direct cost center in the cost ledger.
+3.2.2.4       Example: In a health service’s general ledger, high-cost prosthesis expenses may be mapped to
+              the Operating Room cost Center. This health service may have a health information system
+              that captures patient level data for prostheses, with data items recorded such as:
+      3.2.2.4.1     The patient’s unique record number.
+      3.2.2.4.2     The patient’s encounter number.
+      3.2.2.4.3     The date the prosthesis was implanted.
+      3.2.2.4.4     The code and description of the prosthesis.
+      3.2.2.4.5     The purchase cost of the prosthesis item.
+3.2.2.5       Map the prosthesis expenses to a new cost center in the Cost Ledger called ‘Operating Room
+              Prosthesis’. This will ensure accurate linking of prosthesis costs to prosthesis items.
+3.2.2.6       While the salary components of the Operating Room cost center might be allocated
+              proportionally to duration of a patient’s procedure, it does not make sense to allocate
+              prosthesis costs in the same way, as not all patients receive prosthesis.
+
+
+
+
+                                         Figure 1: Map expenses to the Cost Ledger
+
+3.2.3     Final Direct and Overhead Cost Centers
+
+
+                                                                                                                  6
+3.2.3.1       All expenses must be categorised into two groups; direct expenses, which are directly
+              attributable to patients or a service and overhead expenses, which are general facility support
+              costs that require allocation. Every expense item, regardless of its type must be mapped to a
+              specific functional cost center that identifies the department/service responsible for incurring
+              that cost.
+3.2.3.2       Capture supplementary data such as payroll to accurately allocate employee costs or asset
+              register to allocate depreciation costs to the appropriate final cost centers.
+3.2.3.3       Link General Ledger expenses in the Cost Ledger to Final Direct and Overhead cost centers.
+              Allocate total expenses of Final Direct and Overhead departments to direct department
+              costing products. In the Cost Ledger, General Ledger expenses will be linked to Final Direct and
+              Overhead cost centers. Total expenses of final Direct and Overhead departments will be
+              allocated to direct department costing products. The full list of Final Cost centers and their
+              mapping to Cost Buckets is located at Appendix 2 of Abu Dhabi Clinical Costing Standard.
+
+3.2.4   Final Direct Cost Centers
+3.2.4.1     Final direct cost centers in health facilities are primarily related to the delivery of services to
+            patients and are costs that arise because of individual patient care encounters. Final direct
+            cost centers can also relate to non-patient activities, such as research and teaching and
+            training.
+
+3.2.5   Final Overhead Cost Centers
+3.2.5.1     Final Overhead Cost Centers are cost centers that provide support to Direct Cost Centers in the
+            health care facility. For example, the Information Technology Department does not provide
+            patient care, but it supports Final Direct Cost Centers by providing the equipment and
+            technology needed support patient care. The payroll department does not provide patient
+            care but compensates staff who provide patient care.
+
+3.2.6   Ambiguous Cost Centers
+3.2.6.1    Identify cost centers that could be classified as either direct or overhead. Base this decision on
+           the availability of patient data to allocate these costs.
+3.2.6.2    Consider for example the patient food department. This could be considered neither direct nor
+           overhead, but an indirect form of patient care, as good nutrition will be important to recovery
+           while in the hospital.
+3.2.6.3    If the hospital has a patient food ordering system, that is integrated with the Patient
+           Management System and able to report patient level meal consumption data, these costs shall
+           be allocated directly to the patient based on meal type and quantity. In this case, the patient
+           food department could be considered a direct final cost Center. If this type of information is
+           not available, it permissible to allocate these costs as an overhead allocation, using, for
+           example, total ward bed days as an overhead allocation statistic as provided in Appendix 3 of
+           Abu Dhabi Clinical Costing Standard.
+
+3.2.7   Match Final Cost Centers to Cost Buckets
+3.2.7.1    Avoid reporting cost data for each final direct cost center individually, especially when there
+           may be over 100 such centers in a health service. Aggregate final direct cost centers into
+           higher-level “Cost buckets” (also known as “cost pools”), for example, group all ward-related
+           cost centers (e.g., medical, surgical, paediatric, obstetric).
+3.2.7.2    For the purposes of submitting cost data to the Department of Health, healthcare facilities
+           must map their final direct cost centers according to the mapping table located at Appendix 2
+           of Abu Dhabi Clinical Costing Standard.
+
+
+
+                                                                                                                  7
+                 Table 2: Cost Bucket Mapping Example
+
+                  Final Direct Cost Center        Function                        Cost Bucket
+
+                  Obstetric Ward                  Obstetrics                      Ward
+
+                  Surgical Ward                   Surgery                         Ward
+
+                  Medical – Orthopaedics          Orthopaedics                    Physician
+
+                  Medical – Rheumatology          Rheumatology                    Physician
+
+                  Operating Room                  Operating Room                  OR
+
+                  Pharmacy – Dispensed            Pharmacy                        Pharmacy
+
+                  MRI                             Imaging                         Imaging
+
+                  Ultrasound                      Imaging                         Imaging
+
+
+3.3       Stage 3: ALLOCATE OVERHEADS
+
+3.3.1     Identifying Overheads
+
+3.3.1.1       Overhead expenses are those not directly incurred by or readily identifiable with a specific
+              patient, clinical service line, or outpatient patient-facing department. These typically include,
+              Finance, IT, Human Resource.
+3.3.1.2       Healthcare facilities must allocate their final overhead costs to patient facing departments and
+              overhead departments using appropriate statistics.
+
+
+3.3.2   Selecting Overhead Allocation Statistics
+3.3.2.1     Healthcare facilities must select allocation statistics based on data availability, the casual
+            relationship of the statistic to the overhead cost center, and the application of common sense.
+3.3.2.2     For example, allocate the costs of the IT department to other final cost departments in
+            proportion to the number of IT assets they hold (e.g., laptops/computers). If this data was not
+            available, this cost might be allocated in proportion to the number of staff (e.g., headcount or
+            FTE). These are examples of causal relationships. It would not make sense however to allocate
+            those costs in proportion to the floor space of those departments.
+3.3.2.3     Refer to Appendix 3 of Abu Dhabi Clinical Costing Standard for a table of overhead cost centers
+            and recommended allocation statistics. Use these statistics depending on the availability of
+            relevant data.
+
+3.3.3   The Overhead Allocation Process
+3.3.3.1     Allocate overhead costs to direct final cost centers in proportion to the selected statistics.
+            Below is a simple illustration using the step-down overhead allocation approach:
+
+
+
+
+                                                                                                                  8
+                                         Figure 2: Step Down allocation of IT costs
+
+3.3.4   Step Down Versus Reciprocal Overhead Allocations
+3.3.4.1     A step-down method will see overhead final cost center costs directly allocated (using the
+            relevant allocation statistic) to final direct cost centers. This is shown in Figure 2 above.
+3.3.4.2     A Reciprocal approach allocates overheads to other overhead final cost centers as well direct
+            final cost centers before finally being allocated to direct final cost centers. Costing systems
+            usually achieve this via the use of simultaneous equations. This approach is pictorially
+            represented in Figure 3 below.
+3.3.4.3     The Reciprocal approach is superior to Step Down as it acknowledges that overhead final cost
+            centers will serve other overhead final cost centers, so these allocations take place first,
+            before costs are fully allocated to direct final cost centers. For example, the Finance
+            department provides services to the Human Resources department and vice versa, so costs
+            will flow to each other according to the statistics used, before being finally allocated to final
+            direct cost centers. A visual representation of this process is shown below:
+
+
+                                                        Finance
+                                                 HR
+
+
+                                                      Admin
+
+
+
+
+                                             Ward Medical
+                                         Figure 3: Reciprocal Overhead Allocation
+
+3.3.5   Selecting Final Direct Cost Centers to Allocate Overheads To
+3.3.5.1     Allocate overhead costs only to final direct cost centers that are relevant.
+3.3.5.2     Take the Medical Administration department for example. This department may provide
+            administrative support to all medical (physicians) staff in the hospital. So, these costs should
+            only be allocated to final cost centers with medical (physician) salary costs within them.
+            Costing practitioners should therefore take care to discern which final direct cost centers to
+            allocate overhead costs to.
+
+3.4      Stage 4: CREATE PATIENT PRODUCTS
+
+3.4.1   Clinical Patient Products
+3.4.1.1      Identify various components / interventions that contribute to patient care to accurately
+             assess clinical patient products. This process can be compared to a manufacturing setting
+             where materials, labor, and overheads are combined to produce a final product. In healthcare,
+
+
+                                                                                                                9
+             the final product is the treated patient who exits the health service. This product is the result
+             of integrating multiple healthcare services and resources, which include laboratory and
+             imaging tests, medications and medical supplies, physician services, nursing care, allied health
+             interventions, and operating room procedures. Additionally, administrative, and financial
+             overheads must also be considered as part of the overall cost.
+3.4.1.2      To effectively create products for costing, practitioners must develop a comprehensive
+             understanding of the patient-level data available within the health service. It is essential for
+             costing practitioners to collaborate closely with the Health Information and Information
+             Technology departments to ensure that the full range of relevant data is accessible and
+             appropriately utilized in product creation.
+3.4.1.3      Next, differentiate between patient-related products and non-patient-related products.
+             Patient-related products represent most healthcare costs and are directly associated with the
+             treatment provided to patients. On the other hand, non-patient-related products are costs
+             that, while essential for the overall operation of the health service, do not directly correlate to
+             individual patient care. It is crucial to ensure that both categories of products are accurately
+             identified and recorded in the clinical costing process. Please refer to Appendix 4 of Abu Dhabi
+             Clinical Costing Standards for minimum list of patient products. An example is provided below
+             for quick reference:
+             Table 3: Example of clinical patient products
+          Final Direct Cost Centers                   Products
+
+          Wards and ICU                               Patient time on the ward
+                                                      Admissions to the ward
+                                                      Discharges from the ward
+                                                      Patient transfers (e.g., to/from another wards/Operating
+                                                      Room)
+                                                      Nurse activities
+                                                      Ventilation support
+          Physician                                   Outpatient Clinic Attendances (First and Follow up)
+                                                      Operating Room and Other Procedure Suite Procedures
+                                                      Ward Rounds
+                                                      Admissions
+                                                      Discharges
+                                                      Internal Consultations
+          Operating Room and Other                    Procedures (measured in minutes)
+          Procedure Suites
+          Anesthetics                                 Procedures (measured in minutes)
+          Medical Supplies                            Prostheses, Implants, other high-cost consumables (e.g.,
+                                                      HCPCS)
+          Laboratories                                Tests by laboratory type (e.g., biochemistry,
+                                                      microbiology etc.)
+          Imaging                                     Tests by imaging type (e.g., x-ray, CT, MRI, PET,
+                                                      Ultrasound etc.)
+          Pharmacy                                    Drugs dispensed to patients
+          Allied Health                               Procedures or interventions
+          Outpatient Clinics                          Attendances (F2F, Tele) (First and Follow up)
+          Emergency Departments                       Triage Category (1 to 5)
+          Other Diagnostic                            EEG, ECG, Sleep labs etc.
+          Other                                       E.g., Other procedures such as Radiotherapy
+
+
+                                                                                                                   10
+3.4.2    Non-Patient Products
+3.4.2.1       Examples of non-patient products include expenses associated with the following:
+      3.4.2.1.1     Teaching, Training and Research.
+      3.4.2.1.2     Some funded mandates (e.g., blood bank).
+      3.4.2.1.3     Car parking.
+      3.4.2.1.4     Cafeteria/other areas leased for retail purposes.
+      3.4.2.1.5     Other non-patient related business units.
+3.4.2.2       To accurately allocate costs in the clinical costing process, non-patient products must be
+              included as they are essential for reconciling costed outputs with general ledger financial
+              inputs. Overheads should be allocated where necessary to reflect the total cost of the related
+              non-patient products. For instance, if security staff are assigned to patrol the car park, the
+              associated overhead costs should be distributed to the car park non-patient product.
+3.4.2.3       Before overheads are allocated to non-patient products, costing practitioners must consult
+              with their Finance department to identify any organizational services that support these non-
+              patient products. In practice, non-patient products are typically referred to as 'dummy'
+              products because they do not involve actual activity. The product name, such as 'Car Park' or
+              'Cafeteria,' reflects the total direct and overhead costs allocated to it.
+
+3.4.3   Map Products to Direct Final Cost Centers
+3.4.3.1    When patient products have been created, they need to be correctly mapped to the final
+           direct cost centers that they are associated with. In some cases, this will be relatively
+           straightforward. For example, dispensed drugs will be related to the pharmacy department. In
+           other cases, additional information may be required. For example, in the general ledger, there
+           may be a ward called ‘5 West’. In the ward clinical activity dataset however, there may be no
+           ‘5 West’ or ‘5W’ - it may instead be called ‘Sunset Ward’. Costing practitioners need to work
+           closely with their information or concerned departments to understand how to correctly link
+           the ward products to the correct ward final cost centers.
+3.4.3.2    Costing practitioners shall also have a mechanism to alert them if any new data items are
+           available, as these items will need to be mapped to a patient product and final cost center. For
+           example, there may be a new drug dispensed, creating a new pharmacy product. This new
+           product will need to be mapped to the pharmacy final direct cost center. See below example:
+
+
+
+
+                                           Pharmacy Cost Center
+
+
+                           Drug A                   Drug B                   Drug C
+
+             Figure 4: mapping of pharmacy products to the pharmacy final direct cost center
+
+
+3.5      Stage 5: ALLOCATE COST TO FINAL PRODUCTS AND PATIENTS
+
+3.5.1   Primary Cost Drivers
+3.5.1.1     Duration is typically the primary cost driver used to allocate activity, ward or procedural costs.
+            For example, it makes sense to allocate the costs of wards to patients in proportion to the
+            length of time they spend on the ward. A patient who spends six days on a ward will consume
+            more nursing resources than a patient who spent three days on the same ward. Similarly, a
+
+
+
+                                                                                                                 11
+             patient who spends an hour in an operating room procedure will consume more medical,
+             nursing and technician resources than a patient who spends 40 minutes in an operating room
+             for the same procedure.
+3.5.1.2      The second primary cost driver is a count of products consumed. This may be a count of drugs
+             dispensed, prosthesis (or HCPCS items), imaging, laboratory, and other diagnostic tests. A
+             count of products can also be applied for patient admissions and discharges, ward transfers.
+             The principle in this instance is that a patient who consumes more products, such as imaging
+             tests, should be attributed more cost than a patient who consumes less.
+3.5.1.3      The third primary cost driver is actual cost. For example, if the actual cost of each prosthesis or
+             drug is available in the related datasets provided, this information can be used to distribute
+             the total costs of the final direct cost center to its related products.
+3.5.1.4      In the example below, the general ledger shows total prosthesis expense to be 34,000, which
+             is the expense to be distributed. The actual cost of the prosthesis consumption comes to
+             32,000, with the difference being due to stock on hand. In this case, the percentage of the
+             actual cost of each prosthesis is calculated to distribute the 34,000 of prosthesis costs in the
+             general ledger.
+
+
+
+
+                                         Figure 5: Actual cost primary cost driver
+3.5.2   Secondary Cost Drivers
+3.5.2.1     At the point where all products have been mapped to a final direct cost center, by simple
+            mathematics, we can obtain an average cost for each product: Avg Product Cost = Total final
+            direct department cost / Volume of products. The problem with this is: not every product
+            should cost the same. Consider for example an Operating Room, where the primary cost driver
+            may be the duration of the procedure (as recorded in minutes). Using the primary cost driver
+            of duration will provide an average cost of a minute in the Operating Room across the costing
+            period. This approach however does not account for the fact that some procedures may
+            require a higher staffing profile than others. In this case, if data surrounding the staffing profile
+            of different procedures is available, it can be used to weight the average cost of a minute in
+            the Operating Room.
+3.5.2.2     Similarly, using a count of MRI tests to allocate MRI costs will provide an average cost for each
+            test, however some tests will take longer to complete than others and require a different
+            staffing profile, and the data related to the duration of the test may not be available. In this
+            case, a study of the duration of MRI tests and the associated staffing requirements could be
+            undertaken to appropriately weight the cost of those tests.
+3.5.2.3     Some secondary cost drivers can be derived from discussions with clinical staff, and this is
+            particularly important when allocating medical costs, which will account for a significant
+            proportion of any health service’s costs. Most clinicians will not document the time they spend
+            on patient related activities, so costing practitioners need to understand the average time they
+            take to complete these activities.
+3.5.2.4     These weightings are known in the costing process as relative value units, or ‘RVU’s.’
+
+
+
+                                                                                                                   12
+3.5.2.5      In the example below, product RVUs have been derived from discussions with the orthopaedic
+             surgery department. These RVUs reflect the average minutes taken to complete each product
+             related activity and are used in combination with the primary cost driver volumes to derive an
+             average cost of each product:
+
+
+
+
+                                          Figure 6: Use of RVUs in cost allocation
+3.5.3    Approach To Allocating Cost
+3.5.3.1       The approach to using primary and secondary cost drivers is dependent on the availability of
+              data and the effort the health service has taken to measure secondary cost drivers. The
+              following hierarchy of primary cost drivers is appropriate:
+      3.5.3.1.1     Actual Cost (no need for secondary cost drivers)
+      3.5.3.1.2     Duration (may be used with secondary cost drivers where these are available)
+      3.5.3.1.3     Count of activities (these should be accompanied by secondary cost drivers)
+
+3.5.4   Work In Progress
+3.5.4.1    For Work in Progress, Bundled or Homecare please refer to the appropriate tabs within the
+           reconciliation report annexure 1 for further clarification.
+
+3.5.5   Linking Products to Patients
+3.5.5.1      Some healthcare facilities will have a central health information system with various modules
+             that capture the breadth of patient information across the health service. Other health
+             facilities will have a patient administration system that captures some patient datasets, but
+             not others. For example, patient master, patient episode, ward, and procedure data may be
+             captured in the patient administration system, but separate systems exist for pharmacy,
+             laboratory, and imaging.
+3.5.5.2      Clinical Costing systems typically include linking rules to ensure products can be linked to the
+             correct patient encounter from the encounter dataset.
+3.5.5.3      Ideally all patient data systems used in a health service will use the same patient encounter
+             number and can therefore link data directly via the encounter number. Sometimes, stand-
+             alone patient data systems (e.g., pharmacy) may have their own standalone unique patient
+             record number (URN), but not the patient encounter number. This requires linking rules to be
+             established to look for the correct episode using date ranges for emergency department,
+             inpatient, and outpatient encounters.
+3.5.5.4      Where separate standalone patient data systems are used by health providers, below are
+             some common rules for matching patient encounters with resources. Costing practitioners
+             shall consult with each service department to ensure the rules are appropriately applied to
+             ensure the most accurate match.
+3.5.5.5      Products such as imaging tests, laboratory tests and dispensed drugs from pharmacy should be
+             linked to the encounter where the product was ordered and/or delivered. The location where
+             the product was ordered should take precedence over where the product was delivered.
+3.5.5.6      If dates are used to link products to encounters, the matching rules should generally follow the
+             following preference:
+
+
+
+                                                                                                              13
+     3.5.5.6.1    identify an emergency encounter with the date/time of the product. If no match, then
+     3.5.5.6.2    identify an admitted encounter encompassing the date/time of the product. If no match,
+                  then
+      3.5.5.6.3   identify a non-admitted consultation matching the date of the product. If no match, then
+      3.5.5.6.4   identify a non-admitted consultation up to 30 days prior to the product date. If no
+                  match, then
+      3.5.5.6.5   identify a non-admitted consultation up to 30 days after the product date. If no match,
+                  then record the product and related cost as an unlinked product.
+3.5.5.7       Matching of other products to the relevant encounter should consider the type of product. For
+              example:
+      3.5.5.7.1   Chemotherapy drugs dispensed prior to admission/treatment will be linked to a relevant
+                  chemotherapy encounter and not to an unrelated non-admitted presentation.
+      3.5.5.7.2   Radiotherapy treatments provided while admitted will be linked to admitted encounters.
+                  All other radiotherapy treatments are to be linked to non-admitted radiotherapy
+                  encounters.
+
+3.6     Stage 6: DATA REVIEW AND RECONCILIATION
+3.6.1   Data Quality Framework
+3.6.1.1     Recognize that large datasets of financial and patient-level data may contain errors.
+3.6.1.2     Ensure that appropriate data quality checks are in place to identify and correct data errors at
+            the source in a timely manner. Please refer to Annexure 1 of this document for list of quality
+            checks (non-exhaustive).
+
+3.6.2   Reconciliation of Financial and Patient-Level Information
+3.6.2.1     Reconcile financial and patient-level information to source systems to avoid errors and
+            maintain integrity and transparency in the results.
+3.6.2.2     Reconcile general ledger inputs with costing outputs.
+3.6.2.3     Ensure patient data inputs align with patient data outputs. Include all patient encounters, such
+            as self-paid patients, in the reporting during the costing period.
+3.6.2.4     Please refer to Annexure 1 of this document.
+
+
+3.6.3   Impact of Excluding Patient Encounters
+3.6.3.1    Understand that eliminating patient encounters from the costing process can artificially inflate
+           the costs of remaining encounters, leading to a higher average cost. Healthcare facilities will
+           ensure that they report all patient encounters for the costing period.
+
+3.6.4   Compliance with Audits
+3.6.4.1    Healthcare facilities participating in the costing process must ensure to comply with financial
+           and patient data reconciliation audits.
+3.6.4.2    Submit reconciliation templates along with the annual submission of cost data to the
+           Department of Health.
+3.6.4.3    Ensure to provide all the required information to complete the audit.
+
+3.6.5    ADCCDC Process
+3.6.5.1       Phase 1: Receipt of Submission
+      3.6.5.1.1    Data should be submitted annually between 1–31 May. The submitted data must reflect
+                   complete financial and patient encounter data for the previous financial year, which
+                   aligns with the official UAE financial year (1 January to 31 December). Healthcare
+
+
+
+                                                                                                               14
+                    facilities who do not follow January – December financial closing period are expected to
+                    submit January – December cost data regardless of their closing period.
+      3.6.5.1.2     A minimum of two annual files must be submitted, including all completed encounters,
+                    regardless of funding source, for the financial period. These files should include the
+                    encounter file and the cost file. The files must follow the Department of Health costing
+                    file data specifications. Healthcare providers have the option to submit more than two
+                    annual files to facilitate ease of submission (e.g., monthly submissions). The submission
+                    must include the total cost for each patient encounter, including those costs allocated in
+                    prior years. Refer to reconciliation report for details on the treatment of Work in
+                    Progress (WIP), Bundled or Homecare patient encounters. Healthcare facilities are
+                    required to conduct validation, reconciliation, and quality assurance reviews of the data
+                    before submission.
+      3.6.5.1.3     File submission should be completed via DoH’s Secure Data Exchange (SDE) portal using
+                    the File Submission section. The technical details for SDE including transmission channel,
+                    costing file specifications, integrations protocols and other technical matters will be
+                    shared with healthcare providers after the publication of this Abu Dhabi Clinical Costing
+                    Standard and Guidelines.
+      3.6.5.1.4     The facility submitting costing data must confirm that a submission has been uploaded to
+                    the SDE via email to [dohclinicalcosting@doh.gov.ae]. An acknowledgment email will be
+                    provided to the facility by the ADCCDC program team. It is recommended that healthcare
+                    facility retain a copy of all submitted files for auditing purposes.
+
+3.6.5.2       Phase 2: Submission Validations
+      3.6.5.2.1    After data submission, the ADCCDC program team will generate file summaries for each
+                   health facility. These summaries will include a detailed breakdown of direct, overhead,
+                   and total costs, as well as the number of encounters categorized by patient type (e.g.,
+                   Inpatient, Outpatient, Emergency) and healthcare facility ID.
+      3.6.5.2.2    Healthcare facilities must review these summaries to ensure the accuracy and
+                   completeness of the data received by the ADCCDC program team. This step is essential
+                   for reconciling submitted data and identifying any discrepancies related to patient types,
+                   encounters, and costs.
+
+3.6.5.3       Initial File Submission Validations
+      3.6.5.3.1      Submitted files must comply with the data request specifications issued by the
+                     Department of Health. These specifications will guide the submission and validation
+                     process, which is designed to detect any critical errors or warnings.
+      3.6.5.3.2      The validations identify records that have been submitted which do not contain the
+                     values required. Healthcare facilities must fix all critical errors so the file and its contents
+                     can be used by the Department of Health.
+      3.6.5.3.3      The Department of Health will validate the files upon submission for file format,
+                     structure, and value ranges.
+      3.6.5.3.4      Where an error occurs on the file, healthcare facilities will be notified of the error type,
+                     including the encounter and file to which the error is related to.
+      3.6.5.3.5      The two error types in the file validation process are illustrated below. The finalised
+                     validation rules will be published by the Department of Health later as part of data
+                     specifications.
+3.6.5.3.5.1        Critical Errors: Where there are critical errors identified in the validation process, the file
+                   submission will be rejected. Examples of critical errors include incorrect: file formats,
+
+
+
+
+                                                                                                                        15
+                  naming conventions, data types and empty fields. Any files with critical errors will need to
+                  be resubmitted with errors fixed.
+3.6.5.3.5.2       Warning Errors: These are errors that are acceptable in the file submission but will be
+                  flagged with a warning.
+
+3.6.5.4       Phase 3: Resubmissions as Necessary
+      3.6.5.4.1     Resubmissions will be required where critical errors have been identified in the file
+                   validation process or where facilities wish to address any issues identified in the quality
+                   assurance checking process. All resubmissions will go through the process from the
+                   beginning. DOH to communicate whether a resubmission is required and provide the
+                   appropriate timeline for that submission.
+
+3.6.5.5       Phase 4: Functional Validations
+      3.6.5.5.1    Functional validations include data quality assurance checks (QA), which will be
+                   performed on final submissions once the file format, structure and value ranges are
+                   validated to be correct and the matching levels are deemed valid.
+      3.6.5.5.2    Functional validations, for instance, include data quality assurance (QA) checks that
+                   provide a level of understanding of the usefulness of the patient level costed data for
+                   development of funding models and interpretation for analysis and reporting. Measuring
+                   data quality levels can help facilities identify data errors that need to be resolved and
+                   assess whether the data in their service systems and general ledger is fit to serve its
+                   intended purpose.
+      3.6.5.5.3    The Department of Health will provide with records that have been flagged for review.
+      3.6.5.5.4    Healthcare facilities should review and assess if the records flagged are valid or invalid to
+                   assist with their own internal data quality improvement processes.
+
+3.6.5.6       Phase 5: Receipt of Reconciliation Report
+      3.6.5.6.1    The Department of Health expects the reporting of correct, audited, and reconciled cost
+                   data from facilities. Healthcare facilities are required to attest that their cost data
+                   submitted has been reconciled and completed in accordance with the Abu Dhabi Clinical
+                   Costing Standard and Guidelines.
+      3.6.5.6.2    Healthcare facilities are required to complete and submit the reconciliation report as per
+                   Annexure 1 of this document.
+      3.6.5.6.3    This reconciliation report is to be submitted to the Department of Health no later than
+                   31 May each year and is to be accompanied by a signed attestation of the costing data by
+                   the Chief Financial Officer of the healthcare facility submitting the data.
+
+3.6.5.7       Phase 6: Consolidation of Cost Data
+      3.6.5.7.1    Healthcare facilities must submit their clinical costing output and reconciliation report
+                   during a 1 month period from 1st May – 30th May 2026.
+      3.6.5.7.2    During the 1 month period healthcare facilities must submit their final clinical costing
+                   outputs and costing reconciliation.
+      3.6.5.7.3    Once data is received and validated, the Department of Health will consolidate the data
+                   for internal analysis and reporting.
+      3.6.5.7.4    The Department of Health shall provide feedback to healthcare facilities where further
+                   clarification or corrective action is mandated.
+
+
+
+
+                                                                                                                   16
+4. Relevant Reference Documents
+
+No.    Reference Date Reference Name                    Relation Explanation / Coding / Publication Links
+                                                         The content of this Standard is adapted from The
+                                                         Australian Hospital Patient Costing Standards &
+                                                         were referenced in the production of this
+                                                         document The Australian Independent Hospital
+                                                         and Aged Care Pricing Authority material. It was
+                                                         used as supplied under Creative Commons License
+                                                         3.0, which in clause 3A, allows for worldwide,
+1      2023           Australian Costing Guidelines, v.2 royalty, free, non-exclusive, perpetual license to
+                                                         create and reproduce one or more derivative
+                                                         works. Please refer to below link for details on
+                                                         Creative Commons License
+
+                                                        https://www.ihacpa.gov.au/resources/australian-
+                                                        hospital-patient-costing-standards-version-42
+
+                      Abu Dhabi Clinical Costing     https://www.doh.gov.ae/-
+2      2024           Standard V1                    /media/8F049E6D5E5A4BF4BD3C582BCC206329.a
+                      (DOH/ST/HPS/CC/V1/2024)        shx
+                      Abu Dhabi Clinical Costing     https://www.doh.gov.ae/-
+3      2024           Guideline V1                   /media/98F805EF90DD481BA467796B7639AA66.a
+                      (DOH/GD/HPS/CC/V1/2024)        shx
+4      2025           Abu Dhabi Clinical Costing Roadhttps://www.doh.gov.ae/en/Shafafiya/Clinical-
+                      Map 2025                       Costing
+                                                     https://www.doh.gov.ae/-
+5      2025           DOH Data Quality Standard 2025 /media/0FDBD6F306564E3FBB7807D51A7229E9.a
+                      (DoH/ST/DHS/DQ/V1/25)          shx
+
+
+
+
+                                                                                                          17
+APPENDIX 1: CHANGE LOG
+ Change Section Name /           Old         New         Description of Change        Change      Reason for
+ ID      Number                  Section     Section                                  Type        Change
+                                 Number      Number
+ 1       Guideline Purpose       1.1         1.1         Updated list of healthcare   Amendment   Update
+         and Brief                                       facility groups to who it
+                                                         applies to
+ 2       Guideline Purpose       1.2         1.2         Defined list of healthcare   Addition    New
+         and Brief                                       facility groups to whom it
+                                                         does not apply to
+ 3       Definitions and         2           2           Addition of definitions      Addition    New
+         Abbreviations
+ 4       Third Party Expenses    3.1.1.5     3.1.1.5     Scope guidance included      Addition    New
+ 5       Offsets and             3.1.2.2     3.1.2.2     Minor guideline change       Amendment   Update
+         Recoveries
+ 6       Offsets and             3.1.2.3     3.1.2.3     Minor guideline change       Amendment   Update
+         Recoveries
+ 7       Offsets and             3.1.2.4     3.1.2.4     Minor guideline change       Amendment   Update
+         Recoveries
+ 8       Cash Accounting         N/A         3.1.3       Scope guidance included      Addition    New
+ 9       Transition to Accrual   N/A         3.1.4       Scope guidance included      Addition    New
+         Accounting
+ 10      Items to Exclude        3.1.5       3.1.6       Name convention change       Amendment   Update
+ 11      Cost Types              3.1.6.1     3.1.7.1     Minor guideline change       Amendment   Update
+ 12      Cost Types              3.1.6.3     3.1.7.3     Minor guideline change       Amendment   Update
+ 13      Creating a Costing      N/A         3.2.1       Scope guidance included      Addition    New
+         Ledger
+ 14      Matching Expenses       3.2.1.6     3.2.2.6     Minor guideline change       Amendment   Update
+         to Costing Products
+ 15      Final Direct and        N/A         3.2.3.1     Minor guideline change       Addition    New
+         Overhead Cost
+         Centers
+ 16      Final Direct and        N/A         3.2.3.2     Scope guidance included      Addition    New
+         Overhead Cost
+         Centers
+ 17      Match Final Cost        3.2.6.2     3.2.7.2     Table expansion              Amendment   Update
+         Centers to Cost
+         Buckets (Table 2:
+         Cost Bucket Mapping
+         Example)
+ 18      Identifying             N/A         3.3.1       Scope guidance included      Addition    New
+         overheads
+ 19      Selecting Overhead      3.3.1.1     3.3.2.1     Minor guideline change       Amendment   Update
+         Allocation Statistics
+ 20      Work in Progress        3.5.4.1     3.5.4.1     Major guideline change       Amendment   Update
+ 21      Work in Progress        3.5.4.2     N/A         Removed as guideline         Removal     Update
+                                                         added to reconciliation
+                                                         report
+ 22      Phase 6:                N/A         3.6.5.7.1   Minor guideline change       Amendment   Update
+         Consolidation of Cost
+         Data
+ 23      Phase 6:                N/A         3.6.5.7.2   Scope guidance included      Addition    New
+         Consolidation of Cost
+         Data
+ 24      Phase 6:                3.6.5.7.1   3.6.5.7.3   Minor guideline change       Amendment   Update
+         Consolidation of Cost
+         Data
+ 25      Phase 6:                N/A         3.6.5.7.4   Scope guidance included      Addition    New
+         Consolidation of Cost
+         Data
+ 26      Relevant Reference      4           4           Table expansion              Amendment   Update
+         Documents
+
+
+                                                                                                    18
+

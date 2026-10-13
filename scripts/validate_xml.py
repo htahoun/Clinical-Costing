@@ -17,6 +17,7 @@ under 50%); file ≤ 5 MB; month total vs ledger. Exit 1 on any FAIL.
 from __future__ import annotations
 
 import argparse
+from collections import defaultdict
 import re
 import sys
 from collections import Counter
@@ -66,6 +67,7 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None) -> 
     months = Counter()
     enc_ids = Counter()
     zero, neg = [], []
+    qc = defaultdict(int)
     bucket_eq_type = oh_eq = oh_total = 0
     crossfoot_bad: list = []
     for cid, c in sub["claims"].items():
@@ -124,6 +126,17 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None) -> 
             oht = sum(e["money"].get(f"CostTypeDetails{k}", 0) for k in OVERHEAD_COST_TYPES)
             oh_eq += (ohb == oht)
             oh_total += oht
+            # DOH SY2 technical document, internal quality checks for non-admitted encounters (pp. 22-25)
+            if any(e["money"].get(k, 0) for k in UNEXPECTED_OP_BUCKETS):
+                qc["unexpected bucket (Ward/ICU/OR/SPS/ED/Home)"] += 1
+            if t < 50_000:
+                qc["Low Clinic Costs (< 50 AED)"] += 1
+            if t > 3_000_000:
+                qc["High Clinic Costs (> 3,000 AED)"] += 1
+            if t > 25_000_000:
+                qc["High Day Procedure Costs (> 25,000 AED)"] += 1
+            if e["money"].get("CostTypeDetailsMS", 0) == 0:
+                qc["No Supplies Cost (MS = 0)"] += 1
     for cid in zero:
         F(f"{cid}: zero-total claim (DOH blocks these; exclude)")
     for cid in neg:
@@ -139,6 +152,8 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None) -> 
     if len(crossfoot_bad) > 3:
         F(f"... {len(crossfoot_bad) - 3} more claims fail the Cost Bucket / Cost Type Match")
     I(f"cross-foot: buckets==types in {bucket_eq_type}/{n} claims; CostBucketOverheads==overhead cost types in {oh_eq}/{n}")
+    for k, v in qc.items():
+        (W if k.startswith("unexpected") else I)(f"DOH quality check {k}: {v} claims (directional, not a block)")
     total = file_total(sub)
     if total:
         ratio = oh_total / (total / 2) * 100 if bucket_eq_type == n else oh_total / total * 100
@@ -155,6 +170,9 @@ def validate(path: str, xsd: str | None, year: int, expect_disp: str | None) -> 
                                     f"{'ties to the fils' if diff == 0 else f'{diff/1000:+.3f}'}; buckets {buckets_total/1000:,.3f}, types {types_total/1000:,.3f}")
     I(f"{n} claims, {sub['size']:,} bytes, total {total/1000:,.3f}, disposition {h.get('DispositionFlag')}")
     return out
+
+
+UNEXPECTED_OP_BUCKETS = [f"CostBucket{c}{b}" for c in ("Direct", "Overheads") for b in ("Ward", "ICU", "OR", "SPS", "ED", "Home")]
 
 
 def main(argv=None):

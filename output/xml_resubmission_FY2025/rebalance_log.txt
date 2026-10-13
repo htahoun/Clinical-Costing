@@ -1,0 +1,262 @@
+CostSubmission_MF4159_2025_M01_PROD.xml: claim totals +0.068 AED vs ledger absorbed by claim 1740MF4159-d7a251
+CostSubmission_MF4159_2025_M01_PROD.xml: Prostheses pools bone_graft 13,985.00, fixtures 31,199.00, abutments 7,612.00, lab 17,278.94; coded claims in activity: 132
+CostSubmission_MF4159_2025_M01_PROD.xml: bone_graft pool 13,985.000 AED placed on 9 claims by units (27 units; 517.963 AED per unit)
+CostSubmission_MF4159_2025_M01_PROD.xml: fixtures pool 31,199.000 AED placed on 7 claims by units (13 units; 2,399.923 AED per unit)
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2209MF4159-fa59f1 share 281.926 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2180MF4159-2f6011 share 281.926 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2224MF4159-3c483f share 281.926 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2156MF4159-53564a share 281.926 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2210MF4159-e60915 share 281.926 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2243MF4159-37c990 share 563.852 capped at its Dental amount 530.367
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments: claim 2252MF4159-582382 share 281.926 capped at its Dental amount 265.183
+CostSubmission_MF4159_2025_M01_PROD.xml: abutments pool 7,612.000 AED placed on 14 claims by units (27 units; 281.926 AED per unit)
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2209MF4159-fa59f1 share 67.496 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2180MF4159-2f6011 share 67.496 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2224MF4159-3c483f share 67.496 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2156MF4159-53564a share 67.496 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2210MF4159-e60915 share 67.496 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2243MF4159-37c990 share 134.991 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab: claim 2252MF4159-582382 share 67.496 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: lab pool 17,278.940 AED placed on 125 claims by units (256 units; 67.496 AED per unit)
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2209MF4159-fa59f1 share 40.790 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2180MF4159-2f6011 share 40.790 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2224MF4159-3c483f share 40.789 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2156MF4159-53564a share 40.789 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2210MF4159-e60915 share 40.789 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2243MF4159-37c990 share 81.579 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians: claim 2252MF4159-582382 share 40.789 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M01_PROD.xml: dental technicians pool 10,442.133 AED placed on 125 claims by units (256 units; 40.790 AED per unit)
+CostSubmission_MF4159_2025_M01_PROD.xml: fils residuals {SWNurs:-6, SWDoc:-28, SWAllied:+42, Pharmacy:-22, MS:-29, GS:+17, Depreciation:+69, OHF:-26, OHDepreciation:-11, OHC:-6} absorbed by claim index 307
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Prosthesis profile SWAllied 13.0%, Prostheses 87.0%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Dental profile SWNurs 8.2%, SWDoc 47.0%, SWAllied 2.4%, MS 7.5%, GS 0.2%, Depreciation 2.4%, OHF 29.7%, OHDepreciation 0.6%, OHC 2.0%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Anaesthesia profile SWNurs 6.5%, SWDoc 71.5%, Pharmacy 22.1%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Imaging profile SWNurs 77.7%, Depreciation 22.3%
+CostSubmission_MF4159_2025_M01_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M02_PROD.xml: claim totals -0.015 AED vs ledger absorbed by claim 760MF4159-03a04e
+CostSubmission_MF4159_2025_M02_PROD.xml: Prostheses pools abutments 4,275.00, bone_graft 9,150.00, fixtures 29,846.00, lab 15,958.44; coded claims in activity: 127
+CostSubmission_MF4159_2025_M02_PROD.xml: abutments pool 4,275.000 AED placed on 15 claims by units (36 units; 118.750 AED per unit)
+CostSubmission_MF4159_2025_M02_PROD.xml: bone_graft pool 9,150.000 AED placed on 20 claims by units (70 units; 130.714 AED per unit)
+CostSubmission_MF4159_2025_M02_PROD.xml: fixtures pool 29,846.000 AED placed on 15 claims by units (32 units; 932.688 AED per unit)
+CostSubmission_MF4159_2025_M02_PROD.xml: lab pool 15,958.440 AED placed on 127 claims by units (330 units; 48.359 AED per unit)
+CostSubmission_MF4159_2025_M02_PROD.xml: dental technicians pool 6,666.308 AED placed on 127 claims by units (330 units; 20.201 AED per unit)
+CostSubmission_MF4159_2025_M02_PROD.xml: fils residuals {SWNurs:-19, SWDoc:+4, SWAllied:+17, Pharmacy:+36, MS:-64, GS:-23, Depreciation:+46, OHF:+17, OHDepreciation:+32, OHC:-46} absorbed by claim index 815
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Prosthesis profile SWAllied 10.1%, Prostheses 89.9%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Dental profile SWNurs 6.2%, SWDoc 51.5%, SWAllied 1.8%, MS 6.2%, GS 0.5%, Depreciation 2.2%, OHF 22.9%, OHDepreciation 0.6%, OHC 8.1%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Anaesthesia profile SWNurs 4.8%, SWDoc 77.5%, Pharmacy 17.7%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Imaging profile SWNurs 74.0%, Depreciation 26.0%
+CostSubmission_MF4159_2025_M02_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M03_PROD.xml: claim totals -0.047 AED vs ledger absorbed by claim 1776MF4159-ea919c
+CostSubmission_MF4159_2025_M03_PROD.xml: Prostheses pools bone_graft 7,850.00, fixtures 22,483.00, abutments 9,790.00, lab 48,028.42; coded claims in activity: 116
+CostSubmission_MF4159_2025_M03_PROD.xml: bone_graft pool 7,850.000 AED placed on 11 claims by units (32 units; 245.312 AED per unit)
+CostSubmission_MF4159_2025_M03_PROD.xml: fixtures pool 22,483.000 AED placed on 12 claims by units (17 units; 1,322.529 AED per unit)
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 781MF4159-26d379 share 391.600 capped at its Dental amount 302.499
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 2661MF4159-d5af2d share 391.600 capped at its Dental amount 302.499
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 1337MF4159-ecf85b share 391.600 capped at its Dental amount 302.499
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 2669MF4159-56bb2c share 391.600 capped at its Dental amount 302.499
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 2436MF4159-aa32a4 share 391.600 capped at its Dental amount 302.499
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 1792MF4159-adecc5 share 783.200 capped at its Dental amount 635.553
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 1941MF4159-15afa4 share 391.600 capped at its Dental amount 164.999
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 2346MF4159-af3dfb share 1,566.400 capped at its Dental amount 1,209.995
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments: claim 1790MF4159-305d29 share 391.600 capped at its Dental amount 302.499
+CostSubmission_MF4159_2025_M03_PROD.xml: abutments pool 9,790.000 AED placed on 18 claims by units (25 units; 391.600 AED per unit)
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 697MF4159-2ac13e share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 781MF4159-26d379 share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 2646MF4159-7976bf share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 615MF4159-c15e63 share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 2661MF4159-d5af2d share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1337MF4159-ecf85b share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 2669MF4159-56bb2c share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1900MF4159-6f3eb9 share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 2436MF4159-aa32a4 share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1736MF4159-c8f10a share 1,292.245 capped at its Dental amount 1,209.995
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1792MF4159-adecc5 share 430.748 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1941MF4159-15afa4 share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 2346MF4159-af3dfb share 861.497 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1635MF4159-e561c4 share 1,507.619 capped at its Dental amount 1,411.661
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1978MF4159-7c60ba share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1790MF4159-305d29 share 215.374 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1886MF4159-cb3d3f share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1981MF4159-97470b share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1971MF4159-abc46a share 430.748 capped at its Dental amount 403.332
+CostSubmission_MF4159_2025_M03_PROD.xml: lab: claim 1992MF4159-7be120 share 215.374 capped at its Dental amount 201.666
+CostSubmission_MF4159_2025_M03_PROD.xml: lab pool 48,028.420 AED placed on 107 claims by units (223 units; 215.374 AED per unit)
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 697MF4159-2ac13e share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 781MF4159-26d379 share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 2646MF4159-7976bf share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 615MF4159-c15e63 share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 2661MF4159-d5af2d share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1337MF4159-ecf85b share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 2669MF4159-56bb2c share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1900MF4159-6f3eb9 share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 2436MF4159-aa32a4 share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1736MF4159-c8f10a share 197.248 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1792MF4159-adecc5 share 65.749 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1941MF4159-15afa4 share 32.875 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 2346MF4159-af3dfb share 131.498 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1635MF4159-e561c4 share 230.122 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1978MF4159-7c60ba share 32.874 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1790MF4159-305d29 share 32.874 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1886MF4159-cb3d3f share 32.874 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1981MF4159-97470b share 32.874 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1971MF4159-abc46a share 65.749 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians: claim 1992MF4159-7be120 share 32.874 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M03_PROD.xml: dental technicians pool 7,331.045 AED placed on 96 claims by units (223 units; 32.875 AED per unit)
+CostSubmission_MF4159_2025_M03_PROD.xml: fils residuals {SWNurs:-67, SWDoc:+2, SWAllied:+57, Pharmacy:+34, MS:-31, Depreciation:-25, OHF:+47, OHDepreciation:+1, OHC:-18} absorbed by claim index 180
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Prosthesis profile SWAllied 7.7%, Prostheses 92.3%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Dental profile SWNurs 6.2%, SWDoc 47.0%, SWAllied 1.8%, MS 6.2%, Depreciation 2.0%, OHF 24.0%, OHDepreciation 0.5%, OHC 12.4%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Anaesthesia profile SWNurs 5.2%, SWDoc 77.7%, Pharmacy 17.1%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Imaging profile SWNurs 75.5%, Depreciation 24.5%
+CostSubmission_MF4159_2025_M03_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M04_PROD.xml: claim totals -0.004 AED vs ledger absorbed by claim 1689MF4159-a7a492
+CostSubmission_MF4159_2025_M04_PROD.xml: Prostheses pools abutments 9,790.00, bone_graft 7,850.00, fixtures 22,483.00, lab 30,336.42; coded claims in activity: 138
+CostSubmission_MF4159_2025_M04_PROD.xml: abutments: claim 1474MF4159-6abc84 share 287.941 capped at its Dental amount 256.783
+CostSubmission_MF4159_2025_M04_PROD.xml: abutments: claim 1580MF4159-b18ada share 287.941 capped at its Dental amount 233.225
+CostSubmission_MF4159_2025_M04_PROD.xml: abutments: claim 2026MF4159-47d5d0 share 575.883 capped at its Dental amount 466.449
+CostSubmission_MF4159_2025_M04_PROD.xml: abutments: claim 388MF4159-b700c3 share 287.941 capped at its Dental amount 233.225
+CostSubmission_MF4159_2025_M04_PROD.xml: abutments pool 9,790.000 AED placed on 17 claims by units (34 units; 287.941 AED per unit)
+CostSubmission_MF4159_2025_M04_PROD.xml: bone_graft pool 7,850.000 AED placed on 10 claims by units (66 units; 118.939 AED per unit)
+CostSubmission_MF4159_2025_M04_PROD.xml: fixtures pool 22,483.000 AED placed on 10 claims by units (33 units; 681.303 AED per unit)
+CostSubmission_MF4159_2025_M04_PROD.xml: lab: claim 1474MF4159-6abc84 share 86.183 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: lab: claim 1580MF4159-b18ada share 86.183 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: lab: claim 2026MF4159-47d5d0 share 172.366 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: lab: claim 388MF4159-b700c3 share 86.183 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: lab pool 30,336.420 AED placed on 134 claims by units (352 units; 86.183 AED per unit)
+CostSubmission_MF4159_2025_M04_PROD.xml: dental technicians: claim 1474MF4159-6abc84 share 11.957 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: dental technicians: claim 1580MF4159-b18ada share 11.957 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: dental technicians: claim 2026MF4159-47d5d0 share 23.914 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: dental technicians: claim 388MF4159-b700c3 share 11.957 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M04_PROD.xml: dental technicians pool 4,208.914 AED placed on 134 claims by units (352 units; 11.957 AED per unit)
+CostSubmission_MF4159_2025_M04_PROD.xml: fils residuals {SWNurs:-32, SWDoc:-50, SWAllied:-21, Pharmacy:+2, MS:+32, GS:+27, Depreciation:-1, OHF:+47, OHDepreciation:+30, OHC:-34} absorbed by claim index 243
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Prosthesis profile SWAllied 5.6%, Prostheses 94.4%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Dental profile SWNurs 7.4%, SWDoc 36.7%, SWAllied 2.1%, MS 7.1%, GS 0.2%, Depreciation 2.3%, OHF 28.5%, OHDepreciation 0.6%, OHC 15.2%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Anaesthesia profile SWNurs 7.3%, SWDoc 70.0%, Pharmacy 22.7%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Imaging profile SWNurs 76.3%, Depreciation 23.7%
+CostSubmission_MF4159_2025_M04_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M05_PROD.xml: claim totals -0.037 AED vs ledger absorbed by claim 1351MF4159-60207a
+CostSubmission_MF4159_2025_M05_PROD.xml: Prostheses pools bone_graft 8,935.00, fixtures 32,196.97, abutments 1,340.00, lab 21,167.08; coded claims in activity: 140
+CostSubmission_MF4159_2025_M05_PROD.xml: bone_graft pool 8,935.000 AED placed on 20 claims by units (72 units; 124.097 AED per unit)
+CostSubmission_MF4159_2025_M05_PROD.xml: fixtures pool 32,196.970 AED placed on 19 claims by units (38 units; 847.289 AED per unit)
+CostSubmission_MF4159_2025_M05_PROD.xml: abutments pool 1,340.000 AED placed on 21 claims by units (35 units; 38.286 AED per unit)
+CostSubmission_MF4159_2025_M05_PROD.xml: lab pool 21,167.080 AED placed on 140 claims by units (319 units; 66.354 AED per unit)
+CostSubmission_MF4159_2025_M05_PROD.xml: dental technicians pool 7,160.511 AED placed on 140 claims by units (319 units; 22.447 AED per unit)
+CostSubmission_MF4159_2025_M05_PROD.xml: fils residuals {SWNurs:-42, SWDoc:+8, SWAllied:-65, Pharmacy:-67, MS:+29, Depreciation:-20, OHF:+137, OHDepreciation:+65, OHC:-45} absorbed by claim index 54
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Prosthesis profile SWAllied 10.1%, Prostheses 89.9%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Dental profile SWNurs 9.4%, SWDoc 45.7%, SWAllied 2.4%, MS 5.9%, Depreciation 2.5%, OHF 32.9%, OHDepreciation 0.6%, OHC 0.6%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Anaesthesia profile SWNurs 7.5%, SWDoc 71.1%, Pharmacy 21.4%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Imaging profile SWNurs 79.3%, Depreciation 20.7%
+CostSubmission_MF4159_2025_M05_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M06_PROD.xml: claim totals +0.022 AED vs ledger absorbed by claim 165MF4159-98360e
+CostSubmission_MF4159_2025_M06_PROD.xml: Prostheses pools fixtures 30,303.03, bone_graft 8,512.50, abutments 1,750.00, lab 12,441.50; coded claims in activity: 120
+CostSubmission_MF4159_2025_M06_PROD.xml: fixtures pool 30,303.030 AED placed on 15 claims by units (34 units; 891.266 AED per unit)
+CostSubmission_MF4159_2025_M06_PROD.xml: bone_graft pool 8,512.500 AED placed on 15 claims by units (66 units; 128.977 AED per unit)
+CostSubmission_MF4159_2025_M06_PROD.xml: abutments pool 1,750.000 AED placed on 23 claims by units (33 units; 53.030 AED per unit)
+CostSubmission_MF4159_2025_M06_PROD.xml: lab pool 12,441.500 AED placed on 120 claims by units (280 units; 44.434 AED per unit)
+CostSubmission_MF4159_2025_M06_PROD.xml: fils residuals {SWNurs:+67, SWDoc:-59, SWAllied:+15, Pharmacy:-48, MS:+17, Depreciation:+41, OHF:+16, OHDepreciation:-64, OHC:+15} absorbed by claim index 419
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Prosthesis profile Prostheses 100.0%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Dental profile SWNurs 10.1%, SWDoc 41.1%, SWAllied 2.7%, MS 4.2%, Depreciation 1.8%, OHF 32.9%, OHDepreciation 0.5%, OHC 6.7%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Anaesthesia profile SWNurs 9.5%, SWDoc 74.3%, Pharmacy 16.2%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Imaging profile SWNurs 84.9%, Depreciation 15.1%
+CostSubmission_MF4159_2025_M06_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M07_PROD.xml: claim totals -0.020 AED vs ledger absorbed by claim 2066MF4159-ff09af
+CostSubmission_MF4159_2025_M07_PROD.xml: Prostheses pools fixtures 14,810.61, abutments 6,350.00, bone_graft 5,800.00, lab 19,563.99; coded claims in activity: 122
+CostSubmission_MF4159_2025_M07_PROD.xml: fixtures pool 14,810.610 AED placed on 9 claims by units (19 units; 779.506 AED per unit)
+CostSubmission_MF4159_2025_M07_PROD.xml: abutments pool 6,350.000 AED placed on 16 claims by units (32 units; 198.438 AED per unit)
+CostSubmission_MF4159_2025_M07_PROD.xml: bone_graft pool 5,800.000 AED placed on 8 claims by units (35 units; 165.714 AED per unit)
+CostSubmission_MF4159_2025_M07_PROD.xml: lab: claim 1719MF4159-6bb02a share 223.163 capped at its Dental amount 130.282
+CostSubmission_MF4159_2025_M07_PROD.xml: lab: claim 1936MF4159-00e706 share 148.776 capped at its Dental amount 86.855
+CostSubmission_MF4159_2025_M07_PROD.xml: lab: claim 2158MF4159-35df2b share 74.388 capped at its Dental amount 43.428
+CostSubmission_MF4159_2025_M07_PROD.xml: lab pool 19,563.990 AED placed on 122 claims by units (263 units; 74.388 AED per unit)
+CostSubmission_MF4159_2025_M07_PROD.xml: dental technicians: claim 1719MF4159-6bb02a share 71.804 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M07_PROD.xml: dental technicians: claim 1936MF4159-00e706 share 47.869 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M07_PROD.xml: dental technicians: claim 2158MF4159-35df2b share 23.934 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M07_PROD.xml: dental technicians pool 6,294.796 AED placed on 119 claims by units (263 units; 23.935 AED per unit)
+CostSubmission_MF4159_2025_M07_PROD.xml: fils residuals {SWNurs:+56, SWDoc:-63, SWAllied:+71, Pharmacy:+9, MS:-61, Depreciation:-54, OHF:+39, OHDepreciation:-29, OHC:+32} absorbed by claim index 362
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Prosthesis profile SWAllied 11.9%, Prostheses 88.1%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Dental profile SWNurs 9.8%, SWDoc 38.6%, SWAllied 2.8%, MS 6.2%, Depreciation 2.4%, OHF 33.5%, OHDepreciation 0.6%, OHC 6.0%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Anaesthesia profile SWNurs 8.3%, SWDoc 63.0%, Pharmacy 28.7%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Imaging profile SWNurs 80.5%, Depreciation 19.5%
+CostSubmission_MF4159_2025_M07_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M08_PROD.xml: claim totals -0.040 AED vs ledger absorbed by claim 1749MF4159-288273
+CostSubmission_MF4159_2025_M08_PROD.xml: Prostheses pools fixtures 24,948.24, bone_graft 4,150.00, abutments 4,900.00, lab 35,990.74; coded claims in activity: 128
+CostSubmission_MF4159_2025_M08_PROD.xml: fixtures pool 24,948.240 AED placed on 11 claims by units (34 units; 733.772 AED per unit)
+CostSubmission_MF4159_2025_M08_PROD.xml: bone_graft pool 4,150.000 AED placed on 8 claims by units (45 units; 92.222 AED per unit)
+CostSubmission_MF4159_2025_M08_PROD.xml: abutments pool 4,900.000 AED placed on 24 claims by units (52 units; 94.231 AED per unit)
+CostSubmission_MF4159_2025_M08_PROD.xml: lab: claim 2024MF4159-87c40f share 92.521 capped at its Dental amount 27.225
+CostSubmission_MF4159_2025_M08_PROD.xml: lab pool 35,990.740 AED placed on 128 claims by units (389 units; 92.521 AED per unit)
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 2024MF4159-87c40f share 32.893 capped at its Dental amount 0.000
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 2145MF4159-7f25c0 share 32.892 capped at its Dental amount 22.873
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 2179MF4159-92f1be share 65.785 capped at its Dental amount 45.746
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 1789MF4159-5c32d1 share 32.892 capped at its Dental amount 22.873
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 1745MF4159-7deac0 share 98.677 capped at its Dental amount 68.619
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 389MF4159-ea32e5 share 32.892 capped at its Dental amount 22.873
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians: claim 391MF4159-5cbd8c share 32.892 capped at its Dental amount 22.874
+CostSubmission_MF4159_2025_M08_PROD.xml: dental technicians pool 12,795.132 AED placed on 127 claims by units (389 units; 32.892 AED per unit)
+CostSubmission_MF4159_2025_M08_PROD.xml: fils residuals {SWNurs:-84, SWDoc:-14, SWAllied:+57, Pharmacy:+44, MS:+11, Depreciation:+16, OHF:-17, OHDepreciation:+40, OHC:-53} absorbed by claim index 157
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Prosthesis profile SWAllied 15.5%, Prostheses 84.5%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Dental profile SWNurs 10.3%, SWDoc 35.0%, SWAllied 2.6%, MS 6.9%, Depreciation 2.3%, OHF 36.0%, OHDepreciation 0.6%, OHC 6.3%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Anaesthesia profile SWNurs 9.6%, SWDoc 62.9%, Pharmacy 27.4%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Imaging profile SWNurs 81.8%, Depreciation 18.2%
+CostSubmission_MF4159_2025_M08_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M09_PROD.xml: claim totals -0.038 AED vs ledger absorbed by claim 1478MF4159-4ccb54
+CostSubmission_MF4159_2025_M09_PROD.xml: Prostheses pools abutments 2,500.00, fixtures 29,426.15, bone_graft 9,400.00, lab 16,276.17; coded claims in activity: 110
+CostSubmission_MF4159_2025_M09_PROD.xml: abutments pool 2,500.000 AED placed on 21 claims by units (42 units; 59.524 AED per unit)
+CostSubmission_MF4159_2025_M09_PROD.xml: fixtures pool 29,426.150 AED placed on 13 claims by units (31 units; 949.231 AED per unit)
+CostSubmission_MF4159_2025_M09_PROD.xml: bone_graft pool 9,400.000 AED placed on 15 claims by units (67 units; 140.299 AED per unit)
+CostSubmission_MF4159_2025_M09_PROD.xml: lab pool 16,276.170 AED placed on 110 claims by units (327 units; 49.774 AED per unit)
+CostSubmission_MF4159_2025_M09_PROD.xml: dental technicians pool 10,676.482 AED placed on 110 claims by units (327 units; 32.650 AED per unit)
+CostSubmission_MF4159_2025_M09_PROD.xml: fils residuals {SWNurs:+9, SWDoc:-16, SWAllied:+25, Pharmacy:-3, MS:+13, Depreciation:+39, OHF:-39, OHDepreciation:-50, OHC:+22} absorbed by claim index 18
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Prosthesis profile SWAllied 15.6%, Prostheses 84.4%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Dental profile SWNurs 6.8%, SWDoc 38.9%, SWAllied 2.6%, MS 5.8%, Depreciation 2.3%, OHF 36.5%, OHDepreciation 0.6%, OHC 6.5%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Anaesthesia profile SWNurs 5.2%, SWDoc 57.4%, Pharmacy 37.4%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Imaging profile SWNurs 74.6%, Depreciation 25.4%
+CostSubmission_MF4159_2025_M09_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M10_PROD.xml: claim totals -0.084 AED vs ledger absorbed by claim 2140MF4159-5323ad
+CostSubmission_MF4159_2025_M10_PROD.xml: Prostheses pools abutments 3,755.00, fixtures 18,497.17, bone_graft 10,880.00, lab 16,393.19; coded claims in activity: 123
+CostSubmission_MF4159_2025_M10_PROD.xml: abutments pool 3,755.000 AED placed on 22 claims by units (36 units; 104.306 AED per unit)
+CostSubmission_MF4159_2025_M10_PROD.xml: fixtures pool 18,497.170 AED placed on 13 claims by units (29 units; 637.833 AED per unit)
+CostSubmission_MF4159_2025_M10_PROD.xml: bone_graft pool 10,880.000 AED placed on 11 claims by units (50 units; 217.600 AED per unit)
+CostSubmission_MF4159_2025_M10_PROD.xml: lab pool 16,393.190 AED placed on 123 claims by units (276 units; 59.396 AED per unit)
+CostSubmission_MF4159_2025_M10_PROD.xml: dental technicians pool 7,091.542 AED placed on 123 claims by units (276 units; 25.694 AED per unit)
+CostSubmission_MF4159_2025_M10_PROD.xml: fils residuals {SWNurs:+42, SWDoc:+4, SWAllied:-6, Pharmacy:-33, MS:+49, GS:-1, Depreciation:-25, OHF:+24, OHDepreciation:-43, OHC:-11} absorbed by claim index 492
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Prosthesis profile SWAllied 12.5%, Prostheses 87.5%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Dental profile SWNurs 8.2%, SWDoc 44.8%, SWAllied 2.3%, MS 5.2%, GS 0.3%, Depreciation 2.1%, OHF 31.4%, OHDepreciation 0.5%, OHC 5.3%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Anaesthesia profile SWNurs 7.0%, SWDoc 73.8%, Pharmacy 19.2%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Imaging profile SWNurs 79.7%, Depreciation 20.3%
+CostSubmission_MF4159_2025_M10_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M11_PROD.xml: claim totals -0.041 AED vs ledger absorbed by claim 1738MF4159-0b278e
+CostSubmission_MF4159_2025_M11_PROD.xml: Prostheses pools abutments 2,745.00, fixtures 9,022.73, bone_graft 6,225.00, lab 35,933.97; coded claims in activity: 107
+CostSubmission_MF4159_2025_M11_PROD.xml: abutments pool 2,745.000 AED placed on 20 claims by units (40 units; 68.625 AED per unit)
+CostSubmission_MF4159_2025_M11_PROD.xml: fixtures pool 9,022.730 AED placed on 10 claims by units (17 units; 530.749 AED per unit)
+CostSubmission_MF4159_2025_M11_PROD.xml: bone_graft pool 6,225.000 AED placed on 13 claims by units (30 units; 207.500 AED per unit)
+CostSubmission_MF4159_2025_M11_PROD.xml: lab pool 35,933.970 AED placed on 107 claims by units (249 units; 144.313 AED per unit)
+CostSubmission_MF4159_2025_M11_PROD.xml: dental technicians pool 10,339.683 AED placed on 107 claims by units (249 units; 41.525 AED per unit)
+CostSubmission_MF4159_2025_M11_PROD.xml: fils residuals {SWNurs:+28, SWDoc:+18, SWAllied:-8, Pharmacy:+23, MS:-10, Depreciation:-92, OHF:+46, OHDepreciation:+49, OHC:-54} absorbed by claim index 81
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Prosthesis profile SWAllied 16.1%, Prostheses 83.9%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Dental profile SWNurs 8.7%, SWDoc 36.8%, SWAllied 2.4%, MS 5.9%, Depreciation 2.4%, OHF 37.2%, OHDepreciation 0.6%, OHC 5.9%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Anaesthesia profile SWNurs 8.1%, SWDoc 66.6%, Pharmacy 25.2%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Imaging profile SWNurs 78.6%, Depreciation 21.4%
+CostSubmission_MF4159_2025_M11_PROD.xml: bucket Laboratory profile 
+CostSubmission_MF4159_2025_M12_PROD.xml: claim totals +0.061 AED vs ledger absorbed by claim 2043MF4159-174974
+CostSubmission_MF4159_2025_M12_PROD.xml: Prostheses pools abutments 1,850.00, fixtures 16,598.48, bone_graft 9,450.00, lab 41,042.50; coded claims in activity: 115
+CostSubmission_MF4159_2025_M12_PROD.xml: abutments pool 1,850.000 AED placed on 20 claims by units (37 units; 50.000 AED per unit)
+CostSubmission_MF4159_2025_M12_PROD.xml: fixtures pool 16,598.480 AED placed on 10 claims by units (15 units; 1,106.565 AED per unit)
+CostSubmission_MF4159_2025_M12_PROD.xml: bone_graft pool 9,450.000 AED placed on 8 claims by units (26 units; 363.462 AED per unit)
+CostSubmission_MF4159_2025_M12_PROD.xml: lab pool 41,042.500 AED placed on 115 claims by units (259 units; 158.465 AED per unit)
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2073MF4159-5b1531 share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2095MF4159-4d3bdb share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2123MF4159-237d2d share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2128MF4159-e95eeb share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2135MF4159-8747a5 share 150.696 capped at its Dental amount 113.557
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2175MF4159-57b801 share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2197MF4159-9b3fae share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2212MF4159-1be1ce share 904.174 capped at its Dental amount 788.968
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2245MF4159-c3ee38 share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2249MF4159-58a8a6 share 75.348 capped at its Dental amount 56.779
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians: claim 2264MF4159-5a1d74 share 150.695 capped at its Dental amount 113.557
+CostSubmission_MF4159_2025_M12_PROD.xml: dental technicians pool 19,515.095 AED placed on 115 claims by units (259 units; 75.348 AED per unit)
+CostSubmission_MF4159_2025_M12_PROD.xml: fils residuals {SWNurs:+34, SWDoc:+10, SWAllied:+16, Pharmacy:+51, MS:-66, GS:+52, Depreciation:-79, OHF:-1, OHDepreciation:+41, OHC:-58} absorbed by claim index 134
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Prosthesis profile SWAllied 22.1%, Prostheses 77.9%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Dental profile SWNurs 8.4%, SWDoc 46.0%, SWAllied 2.4%, MS 4.4%, GS 0.0%, Depreciation 1.9%, OHF 31.6%, OHDepreciation 0.5%, OHC 4.8%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Anaesthesia profile SWNurs 7.5%, SWDoc 79.8%, Pharmacy 12.7%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Imaging profile SWNurs 81.5%, Depreciation 18.5%
+CostSubmission_MF4159_2025_M12_PROD.xml: bucket Laboratory profile 

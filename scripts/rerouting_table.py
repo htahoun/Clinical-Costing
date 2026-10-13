@@ -116,13 +116,38 @@ LINE_AMOUNTS = {
     ("Staff Qualification And Education", "MySmyle staff"): 0.0,
     ("Insurance", "Malpractice"): 0.0,
 }
-# January 2025 cost of goods sold by stock line (Financial_Report_Jan_2025_1.xlsx, usage net of internal returns;
-# external lab from the Consumption sheet). Feb-Dec await the eleven monthly movement sheets.
-COGS_JAN = {
-    "02- Drugs / 01- Local": 682.00, "04- Dental Materials / 02-": 570.00, "02- Drugs / 03-": 2338.48,
-    "05- Implants": 52796.00, "06- Laboratory": 13538.94, "External LAB": 1870.00,
-    "04- Dental Materials (restorative": 17571.77, "03- Prevention": 6169.15, "01- Medical": 5583.33, "08- Facility": 1007.80,
-}
+MOVEMENT_BOOK = "input/source/Inventory_movement_2025.xlsx"   # twelve monthly sheets (rulings 13 Oct 2026)
+COGS_RESIDUAL_MS = 431.82                                      # August: stock sheet vs P&L difference placed on MS (ruling)
+
+
+def cogs_lines_fy() -> dict[str, float]:
+    """FY2025 cost of goods sold by rerouting line, from the twelve stock-movement sheets (usage net of returns on
+    each system's value basis) plus the Consumption sheet's External LAB line."""
+    from cogs_from_movement import iter_consumption
+    tot = defaultdict(float)
+    for m in range(1, 13):
+        for cat, sub, v in iter_consumption(MOVEMENT_BOOK, m):
+            c, s_ = cat.strip(), sub.strip().lower()
+            num = c[:2]
+            if "nitrous" in s_ or "oxygen" in s_:
+                key = "04- Dental Materials / 02-"
+            elif num == "02":
+                key = "02- Drugs / 01- Local" if (("ana" in s_ and "sthe" in s_) or "medic" in s_) else "02- Drugs / 03-"
+            elif num == "05":
+                key = "05- Implants"
+            elif num == "06":
+                key = "06- Laboratory"
+            elif num == "04":
+                key = "04- Dental Materials (restorative"
+            elif num == "03":
+                key = "03- Prevention"
+            elif num == "01":
+                key = "01- Medical"
+            else:
+                key = "08- Facility"
+            tot[key] += float(v)
+    return dict(tot)
+
 
 
 def head_totals():
@@ -170,6 +195,9 @@ def main(argv=None):
     ap.add_argument("--out", default="output/Rerouting_Internal_to_DOH.xlsx")
     args = ap.parse_args(argv)
     heads, sal, cash, cons = head_totals()
+    cogs_fy = cogs_lines_fy()
+    cogs_fy["External LAB"] = cons.get("External LAB", 0.0)
+    cogs_fy["04- Dental Materials (restorative"] = cogs_fy.get("04- Dental Materials (restorative", 0.0) + COGS_RESIDUAL_MS
     bold = Font(bold=True)
     fill = PatternFill("solid", fgColor="D9E1F2")
     wb = openpyxl.Workbook()
@@ -199,8 +227,12 @@ def main(argv=None):
         if head == "Salaries & Wages" and sub in sal_map:
             ind = sum(sal.get(k, 0.0) for k in sal_map[sub])
         elif head == "Cost of Goods Sold":
-            jan = next((v for k, v in COGS_JAN.items() if sub.startswith(k)), None)
-            ind = f"Jan 2025 from stock movement: {jan:,.2f}; Feb-Dec: awaiting the eleven monthly movement sheets" if jan is not None else ""
+            if sub.startswith("External LAB"):
+                ind = "Consumption sheet External LAB (cash in hand), twelve months"
+            else:
+                ind = "twelve stock-movement sheets, usage net of returns: Jan-Apr transaction value, May-Nov supplier price, Dec buying price"
+                if sub.startswith("04- Dental Materials (restorative"):
+                    ind += f"; includes the August residual {COGS_RESIDUAL_MS:,.2f} placed on MS (ruling)"
         elif head == "Depreciation Expense":
             ind = 126679.42 if "Machinery" in sub else 30297.55
         else:
@@ -222,6 +254,8 @@ def main(argv=None):
         if sub == "Indirect/LAB":
             bucket = "Prosthesis 100% (dental technicians' pool, pre-assigned on the prosthesis-coded claims)"
         line_amt = next((v for (h, pfx), v in LINE_AMOUNTS.items() if h == head and sub.startswith(pfx)), None)
+        if head == "Cost of Goods Sold":
+            line_amt = next((v for k, v in cogs_fy.items() if sub.startswith(k)), None)
         if head == "Salaries & Wages" and sub in sal_map:
             line_amt = ind
         ws.append([head, line_amt if line_amt is not None else heads.get(head, ""), sub, meaning, ct, cls, bucket, basis, conf, ind if ind != "" else ""])

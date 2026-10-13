@@ -175,11 +175,14 @@ def main(argv=None):
     ap.add_argument("--financials", default="input/source/Financial_2025_Arjun_Updated_2.xlsx")
     ap.add_argument("--template", default="input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx")
     ap.add_argument("--out", default="input/Ledger_by_Cost_Type_FY2025.xlsx")
+    ap.add_argument("--movement-book", help="full-year stock movement workbook (twelve 'Movement <Mon> 2025' sheets)")
     ap.add_argument("--movement", action="append", default=[], metavar="M=PATH",
                     help="month number = monthly Financial Report with a 'Movement' sheet; its stock usage replaces "
                          "the Consumption-sheet split of Cost of Goods Sold for that month (e.g. 1=input/source/Financial_Report_Jan_2025_1.xlsx)")
     args = ap.parse_args(argv)
     movement = {}
+    if args.movement_book:
+        movement = {m: args.movement_book for m in range(1, 13)}
     for spec in args.movement:
         m, path = spec.split("=", 1)
         movement[int(m)] = path
@@ -195,18 +198,22 @@ def main(argv=None):
     from cogs_from_movement import cogs_split
     mv_split: dict[int, dict] = {}
     mv_log: list[str] = []
+    checks: list[str] = []
     for m, path in movement.items():
-        ext = cons["External LAB"][m - 1]            # external lab invoices are not stock
-        split, log = cogs_split(path, ext)
+        ext = cons["External LAB"][m - 1]            # external lab invoices are not stock (cash in hand)
+        split, log = cogs_split(path, ext, m if args.movement_book else None)
         mv_split[m] = split
         mv_log += log
         tot = sum(split.values())
-        diff = monthly["Cost of Goods Sold"][m - 1] - tot
-        if abs(diff) > Decimal("0.10"):
-            raise SystemExit(f"movement file for month {m}: usage {tot} != Cost of Goods Sold {monthly['Cost of Goods Sold'][m - 1]}")
+        cogs_m = monthly["Cost of Goods Sold"][m - 1]
+        diff = cogs_m - tot
+        if abs(diff) > cogs_m * Decimal("0.05"):
+            raise SystemExit(f"movement for month {m}: usage {tot} != Cost of Goods Sold {cogs_m}")
         if diff:
             split["MS"] = split.get("MS", Decimal(0)) + diff
-            log.append(f"month {m}: {diff:+} fils rounding between stock lines and the P&L absorbed on MS")
+            note = "rounding" if abs(diff) <= Decimal("0.10") else "difference (ruling 13 Oct 2026: residual to MS)"
+            log.append(f"M{m:02d}: {float(diff):+,.2f} {note} between the stock sheet and the P&L Cost of Goods Sold placed on MS")
+            checks.append(f"month {m}: stock movement {float(tot):,.2f} vs Cost of Goods Sold {float(cogs_m):,.2f}: {float(diff):+,.2f} placed on MS")
     for prefix, ct, cls, basis in CONSUMPTION_MAP:
         vals = [Decimal(0) if (m + 1) in mv_split else cons[prefix][m] for m in range(12)]
         lines.append(("Consumption sheet", f"Cost of Goods Sold: {prefix.strip(' -(')}", ct, cls, basis, vals))
@@ -263,7 +270,6 @@ def main(argv=None):
             lines.append(("Monthly sheet", f"{head}: non-on-cost part", ct, cls, basis + " (facility licences, accreditation, trade licence, civil defence, tenancy)", rest))
 
     # --- check the split heads reproduce the Monthly sheet, and every month the ledger ---
-    checks = []
     for head, src_lines in (("Cost of Goods Sold", [l for l in lines if l[0] in ("Consumption sheet", "Stock movement")]),
                             ("Salaries & Wages", [l for l in lines if l[0] == "Salary sheet"]),
                             ("Depreciation Expense", [l for l in lines if l[0] == "TB depreciation"])):

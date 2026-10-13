@@ -153,10 +153,12 @@ def main(argv=None):
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--year", type=int, default=2025)
     ap.add_argument("--activity", help="activity master with treatment codes (monthly sheets)")
+    ap.add_argument("--movement-book", help="full-year stock movement workbook (twelve 'Movement <Mon> 2025' sheets)")
     ap.add_argument("--movement", action="append", default=[], metavar="M=PATH")
     ap.add_argument("--zip", action="store_true")
     args = ap.parse_args(argv)
-    movement = {int(s.split("=", 1)[0]): s.split("=", 1)[1] for s in args.movement}
+    movement = {m: args.movement_book for m in range(1, 13)} if args.movement_book else {}
+    movement.update({int(s.split("=", 1)[0]): s.split("=", 1)[1] for s in args.movement})
     from cogs_from_movement import implant_pools
     from rebalance_two_view import preassign_prostheses
 
@@ -219,7 +221,7 @@ def main(argv=None):
         staff: dict[int, int] = {}     # SWAllied fils per claim that go to the Prosthesis bucket
         if args.activity:
             units = read_activity_units(args.activity, month)
-            pools = implant_pools(movement[month]) if month in movement else {}
+            pools = implant_pools(movement[month], month if args.movement_book else None) if month in movement else {}
             implant_fils = sum(int((Decimal(v) * 1000).quantize(Decimal(1), rounding=ROUND_HALF_UP)) for v in pools.values())
             lab_fils = ledger_m.get("Prostheses", 0) - implant_fils
             if lab_fils < 0:

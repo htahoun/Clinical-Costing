@@ -1,0 +1,15 @@
+bucket,cost_type,aed
+Dental,SWAllied,14851.900
+Anaesthesia,SWNurs,591.994
+Imaging,SWNurs,2367.976
+Dental,SWNurs,56239.430
+Anaesthesia,SWDoc,4648.973
+Dental,SWDoc,227799.677
+Anaesthesia,Pharmacy,1014.000
+Prosthesis,Prostheses,53007.030
+Dental,MS,23064.380
+Imaging,Depreciation,422.264
+Dental,Depreciation,10134.346
+Dental,OHF,182451.590
+Dental,OHDepreciation,2524.800
+Dental,OHC,37375.730

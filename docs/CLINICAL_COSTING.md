@@ -213,7 +213,7 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/fix_crossfoot.py` | Nature re-expression (fallback without the ledger map; also used by the generator) |
 | `scripts/make_ledger_template.py` | Builds Arjun's ledger-by-cost-type template (+ "Current implied" reference sheet) |
 | `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping, Questions, Consumables detail sheets) — the governing map |
-| `scripts/cogs_from_movement.py` | Splits a month's consumables into cost types from the stock-movement sheet; implant pools by sub-category |
+| `scripts/cogs_from_movement.py` | Splits each month's cost of goods sold into cost types from the stock movement (one-month report or the full-year workbook; three value bases; keyword matching); implant pools |
 | `scripts/implant_codes.py` | Implant procedure codes by stock pool (fixtures, abutments, bone graft) |
 | `scripts/prosthesis_codes.py` | The 48 prosthesis codes (ruling 13 Oct 2026: no laboratory; every prosthesis code is Prostheses) |
 | `scripts/month_report.py` | One-month model report workbook (summary, tuning grid, cost types, buckets, prosthesis claims, claim examples, log) |
@@ -244,10 +244,10 @@ its result is the accepted master of §6 item 5.
 
 ## 9. Open items
 
-1. **SY02 resubmission** — waiting on Arjun's ledger mapped to the sixteen cost
-   types by month (`input/Ledger_by_Cost_Type_FY2025_TEMPLATE.xlsx`); then run
-   the engine, validate, audit, update the reconciliation report, resubmit
-   with `PRODUCTION` (§11).
+1. **SY02 resubmission** — the twelve corrected files are built and verified
+   (`output/xml_resubmission_FY2025/`, §11). Remaining: the Finance Director's
+   edited 16×16 tuning grid (bucket shares) if any, the re-issued
+   reconciliation report for CFO sign-off, then transport with `PRODUCTION`.
 2. **Overhead ratio 4.2 %** (DOH warning, accepted for SY02). The Finance
    Director ruled on 10 Oct 2026 not to re-engineer the allocation now. Arjun's
    ledger mapping will show the true ratio; if it lands in 20–50 % the
@@ -265,9 +265,9 @@ its result is the accepted master of §6 item 5.
    (hygiene only; DOH did not object).
 8. MySmyle: ask whether their generator can adopt the two-view layout for
    SY03, or keep generating from this repository.
-9. **Cost of Goods Sold 1,040,318.25 split by stock movement** — the eleven
-   monthly movement sheets (Feb–Dec) are awaited; run the fill script with
-   `--movement` for all twelve months, then the engine for all twelve.
+9. **Cost of Goods Sold 1,040,318.25 split by stock movement** — done 13 Oct
+   2026 from the full-year workbook (three rulings in §11: April copy of March
+   accepted, August residual 431.82 to MS, in-stock external lab separate).
 10. **Staff on-costs** — ruled 13 Oct 2026 (Option 3 by nature of the cost,
     employees only); one line in `ONCOST_GROUPS` if the external consultants
     are to carry on-costs.
@@ -496,6 +496,61 @@ totals SWDoc 574,362, SWNurs 157,045, SWAllied 76,717, OHF 311,232 =
 the DOH band). On-costs then follow their cost type's bucket rule. January
 model re-run: 831/831, both views 511,302.300, overhead 26.7 %, Prostheses
 70,074.94 on 132 claims.
+
+**Full-year stock movement — the twelve months (rulings, Finance Director,
+13 Oct 2026).** `input/source/Inventory_movement_2025.xlsx` (twelve sheets
+"Movement <Mon> 2025", three systems) and `input/source/Consumptions_2025_cited.xlsx`
+(Arjun's cost of goods sold by month, with the External LAB line paid from cash
+in hand). Value basis by system: Jan–Apr Transaction Value; May–Nov Supplier
+Price (= quantity × supplier net price); Dec Buying Price, where the sheet is
+the dispatch system ("Received" rows are usage, "Returned" rows are returns,
+the Unit column is the consuming room). Usage net of internal returns on that
+basis plus the month's External LAB equals Arjun's cost of goods sold to the
+fils in eleven months. Rulings: (1) April's sheet is an exact copy of March's
+680 usage lines and Arjun's April figure is March's — accepted as the locked
+ledger has it, April's split mirrors March; (2) August is 5,681.82 short on
+Supplier Price: the external-lab usage line without a supplier price is
+valued at its transaction value (5,250) and the remaining 431.82 goes to MS;
+(3) external-lab lines inside the movement (Feb 285, Mar 10,145, Aug 5,250,
+Dec 5,475) are separate purchases from the cash-in-hand External LAB line —
+both stay, both Prostheses. Mapping (`scripts/cogs_from_movement.py`, matched
+by category number and keywords because names and sub-category numbers differ
+between the systems): local anaesthetics, medicaments, nitrous and oxygen →
+Pharmacy; implants (fixtures + healing screws, abutments + impression tools,
+bone graft → the three pools; screwdrivers and drilling kits → MS) and the
+whole laboratory category → Prostheses; devices, infection control, dental
+materials, needles and vital-signs supplies → MS; pantry, stationery,
+computers, Management of Information → OHF. FY2025 cost of goods sold
+1,040,318.25 by line: local anaesthetics 7,163.17; nitrous and oxygen 7,718.82;
+needles / vital signs 26,103.95; implants 441,488.89; laboratory materials and
+in-stock external lab 189,441.87; External LAB (cash) 54,224.25; dental
+materials 205,910.04 (incl. the August 431.82); infection control 69,270.05;
+devices 21,981.95; facility 17,015.26. By cost type: Pharmacy 14,882,
+Prostheses 751,070 (FY, with implants every month), MS 324,096, OHF 17,015 of
+stock; overhead ratio FY 32.9 % (monthly 26.7–37.5 %).
+`scripts/fill_ledger_map_from_financials.py --movement-book` and
+`scripts/rebuild_two_view.py --movement-book` take the workbook; the
+single-month `--movement M=PATH` still works.
+
+**FY2025 corrected files (13 Oct 2026).** `output/xml_resubmission_FY2025/`
+(+ `.zip`, `rebalance_log.txt`, `matrix_Mxx.csv`), built by
+`python3 scripts/rebuild_two_view.py --indir input/source/mysmyle_zip --ledger
+input/Ledger_by_Cost_Type_FY2025.xlsx --outdir output/xml_resubmission_FY2025
+--activity input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx
+--movement-book input/source/Inventory_movement_2025.xlsx --zip`. All twelve
+months: validate PASS, buckets = cost types on every claim (9,738/9,738),
+overhead bucket = overhead cost types, both views tie to the locked ledger to
+the fils, claim sets identical to the sent files, 0 identity differences.
+Overhead ratio by month 26.7 / 27.2 / 30.6 / 37.3 / 28.7 / 36.1 / 35.0 / 35.5
+/ 37.0 / 32.8 / 37.5 / 31.1 %. Prostheses pools placed on the coded claims in
+every month (no amount left to the general fit); 107 capped-claim lines
+(abutment-stage claims whose costed amount is below the stock share,
+redistributed and logged). June has no dental technicians' pool (no lab
+salary that month). Month reports: `output/model_reports/Model_Report_2025_Mxx.xlsx`
+(January also as `output/January_Model_Report.xlsx`). `output/xml_JAN_MODEL/`
+and `output/xml_resubmission_PROPOSED/` are superseded by this set. Still
+pending before resubmission: the Finance Director's edited 16×16 tuning grid
+(bucket shares), the CFO reconciliation report, and the transport step.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

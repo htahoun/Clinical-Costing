@@ -434,7 +434,7 @@ clinic with no pathology reports a Laboratory bucket. Either way, FAQ Q4.4
 invites providers whose services do not map clearly to ask the DOH Clinical
 Costing Team; the question has been drafted for the Finance Director to send.
 Amounts at stake (Arjun's map, FY2025): Laboratory cost type 315,921
-(in-house materials 196,821 incl. January stock, external invoices 119,100),
+(in-house materials 194,951, external laboratory invoices 120,970),
 lab technicians' pay 69,820.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by

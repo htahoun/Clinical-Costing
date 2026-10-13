@@ -9,9 +9,10 @@ instead of from the allocation table's bucket columns:
   SWNurs                  -> 1 % Anaesthesia, 4 % Imaging, 95 % Dental
   Depreciation (direct)   -> 4 % Imaging (OPG / X-ray units), 96 % Dental
   Imaging supplies        -> Imaging
-  Laboratory              -> Laboratory
-  SWAllied                -> laboratory technicians' share -> Laboratory, rest (CSSD) -> Dental
-  Prostheses              -> Prosthesis
+  Laboratory              -> Laboratory (zero: ruling 13 Oct 2026, the clinic has no laboratory)
+  SWAllied                -> Dental (CSSD); the lab technicians' share is pre-assigned by the engine
+                             to the Prosthesis bucket on the prosthesis-coded claims
+  Prostheses              -> Prosthesis (implants AND all lab-fabricated prostheses)
   MS, GS, Hotel, SWNonClin, NABMs -> Dental
   OHF, OHDepreciation, OHC -> Dental, overhead component (CostBucketOverheads)
 
@@ -29,7 +30,7 @@ DIRECT, OVERHEAD = "direct", "overhead"
 RULES = {
     "SWDoc": [("Anaesthesia", Decimal("0.02"), DIRECT), ("Dental", Decimal("0.98"), DIRECT)],
     "SWNurs": [("Anaesthesia", Decimal("0.01"), DIRECT), ("Imaging", Decimal("0.04"), DIRECT), ("Dental", Decimal("0.95"), DIRECT)],
-    "SWAllied": [("Laboratory", "LAB_SHARE", DIRECT), ("Dental", "1-LAB_SHARE", DIRECT)],
+    "SWAllied": [("Dental", Decimal(1), DIRECT)],   # lab technicians' share pre-assigned to Prosthesis by the engine
     "SWNonClin": [("Dental", Decimal(1), DIRECT)],
     "Laboratory": [("Laboratory", Decimal(1), DIRECT)],
     "Imaging": [("Imaging", Decimal(1), DIRECT)],
@@ -44,7 +45,7 @@ RULES = {
     "OHC": [("Dental", Decimal(1), OVERHEAD)],
     "NABMs": [("Dental", Decimal(1), DIRECT)],
 }
-DEFAULT_LAB_SHARE = Decimal("0.45")   # lab technicians / (lab technicians + CSSD) when the month is unknown
+DEFAULT_LAB_SHARE = Decimal("0.45")   # lab technicians / (lab technicians + CSSD) when the month is unknown (engine pool)
 
 
 def rules_for_month(lab_share: Decimal | None) -> dict[str, list[tuple[str, Decimal, str]]]:

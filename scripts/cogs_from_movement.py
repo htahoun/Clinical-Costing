@@ -34,7 +34,8 @@ CATEGORY_MAP = [
     ("02- Drugs", None, "MS"),                                     # needles, syringes, vital-signs and emergency supplies
     ("05- Implants", None, "Prostheses"),                          # fixtures, healing/cover screws, abutments, impression
                                                                    # tools, bone-graft materials (implants and accessories)
-    ("06- Laboratory", None, "Laboratory"),                        # blocks, blanks, 3D inks, stone, stains, milling tools
+    ("06- Laboratory", None, "Prostheses"),                        # blocks, blanks, 3D inks, stone, stains, milling tools:
+                                                                   # in-house prosthesis materials (ruling 13 Oct 2026: no laboratory)
     ("04- Dental Materials", None, "MS"),                          # restorative, endodontic, burs, impression, bleaching…
     ("03- Prevention & Control of Infection", None, "MS"),         # PPE, disinfectants, wraps, sterilisation monitoring
     ("01- Medical & LAB Devices", None, "MS"),                     # hand instruments and small devices expensed on issue
@@ -81,8 +82,8 @@ def cogs_split(report_path: str | Path, external_lab: Decimal = Decimal(0)) -> t
     out = {ct: v.quantize(D2, rounding=ROUND_HALF_UP) for ct, v in out.items()}
     log = [f"{ws.title}: {ct:<11}{cat:<48}{sub:<48}{float(v):>12,.2f}" for (ct, cat, sub), v in sorted(detail.items())]
     if external_lab:
-        out["Laboratory"] += external_lab
-        log.append(f"{ws.title}: Laboratory  External LAB (P&L line, not stock){'':<40}{float(external_lab):>12,.2f}")
+        out["Prostheses"] = out.get("Prostheses", Decimal(0)) + external_lab
+        log.append(f"{ws.title}: Prostheses  External LAB invoices (P&L line, not stock){'':<36}{float(external_lab):>12,.2f}")
     return dict(out), log
 
 

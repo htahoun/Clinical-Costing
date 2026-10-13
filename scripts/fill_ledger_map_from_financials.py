@@ -63,7 +63,7 @@ HEAD_MAP = {
     "Marketing": ("OHF", "Overhead — administration", "Meta/WhatsApp API, Adobe, promotions"),
     "Dues & Subscriptions": ("OHF", "Overhead — IT / administration", "software subscriptions, memberships"),
     "Equipment Maintenanace": ("GS", "Direct — dental surgeries", "maintenance of dental chairs and clinical equipment"),
-    "External Lab": ("Laboratory", "Direct — laboratory", "outsourced dental laboratory invoices (expense head)"),
+    "External Lab": ("Prostheses", "Direct — prostheses", "outsourced dental laboratory invoices (expense head) — prostheses bought from external labs (ruling 13 Oct 2026)"),
     "Clinic Rent": ("OHF", "Overhead — facility", "lease of the clinic premises (unit 1302, 85,000/year), allocated to the Dental bucket by floor space"),
     "Fines": ("OHF", "Overhead — administration", "regulatory and traffic fines (kept: Standard 3.1.1 takes all GL expenses except balance-sheet items)"),
     "Claim Rejection": ("OHF", "Overhead — patient administration", "written-off rejected claims"),
@@ -74,7 +74,7 @@ SALARY_MAP = {   # Dir/Ind label in the Salary sheet -> cost type
     "Nurse/licensed": ("SWNurs", "Direct — dental surgeries", "licensed dental nurses"),
     "Nurse/No License": ("SWNurs", "Direct — dental surgeries", "dental assistants (unlicensed nurses)"),
     "Cssd": ("SWAllied", "Direct — CSSD (cost centre 07)", "sterilisation technicians"),
-    "Indirect/LAB": ("SWAllied", "Direct — laboratory (cost centre 09)", "in-house dental laboratory technicians"),
+    "Indirect/LAB": ("SWAllied", "Direct — prostheses (cost centre 09, in-house CAD/CAM)", "dental technicians making prostheses; routed to the Prosthesis bucket on prosthesis claims (ruling 13 Oct 2026)"),
     "Indirect/RAP": ("OHF", "Overhead — reception / patient administration", "reception and patient-administration staff"),
     "Indirect /INS": ("OHF", "Overhead — patient administration", "insurance claims staff"),
     "Indirect /Management": ("OHF", "Overhead — management", "clinic management"),
@@ -87,8 +87,8 @@ SALARY_MAP = {   # Dir/Ind label in the Salary sheet -> cost type
 CONSUMPTION_MAP = [   # row-label prefix in the Consumption sheet -> cost type
     ("Consumables -( Dr", "MS", "Direct — dental surgeries", "clinical consumables issued to the dental surgeries"),
     ("Consumables -  ( CSSD", "MS", "Direct — CSSD", "sterilisation and vital-signs consumables"),
-    ("Internal LAB", "Laboratory", "Direct — laboratory", "in-house dental laboratory materials"),
-    ("External LAB", "Laboratory", "Direct — laboratory", "outsourced laboratory invoices booked in cost of goods sold"),
+    ("Internal LAB", "Prostheses", "Direct — prostheses", "in-house CAD/CAM prosthesis materials (ruling 13 Oct 2026: no laboratory; prostheses)"),
+    ("External LAB", "Prostheses", "Direct — prostheses", "prostheses bought from external laboratories, booked in cost of goods sold"),
 ]
 DEP_DIRECT = {"Acc. Dep - Machinery & Equipment"}   # dental chairs, imaging units, autoclaves
 DEP_OVERHEAD = {"Acc. Dep - Furniture & Fittings", "Acc. Dep - Office Equipment", "Acc. Dep - Computer Accessories", "Acc. Dep - Software"}
@@ -96,7 +96,7 @@ DEP_OVERHEAD = {"Acc. Dep - Furniture & Fittings", "Acc. Dep - Office Equipment"
 QUESTIONS = [
     "Q1. Third Party & Professional Services (370,348.18) is mapped to OHC because it is MySmyle Company's EMR/management/IT recharge plus Calibrate and Platform Technologies. If you prefer OHF (no 'corporate office'), say so: one-line change, overhead ratio unchanged.",
     "Q2. Staff Qualification And Education (889,431.99) is mapped to OHF (HR administration and IT). If part of it is staff on-costs of the dentists and nurses (visas, licences, benefits), that part belongs with SWDoc/SWNurs and the overhead ratio falls (to roughly 34% if all of it were on-costs).",
-    "Q3. Prostheses, Pharmacy and Imaging cost types are 0: implants, anaesthetics and imaging sensors are bought inside 'Consumables' (MS). If the purchase ledger can separate them, they should move to those cost types.",
+    "Q3. Laboratory cost type is 0 by ruling (13 Oct 2026): the clinic has no laboratory; in-house CAD/CAM materials, external lab invoices and implants are Prostheses, and the dental technicians' pay (SWAllied) is routed to the Prosthesis bucket. Pharmacy and Imaging consumables are split from stock only for the months with a stock-movement sheet; the other months keep them inside MS until the sheets arrive.",
     "Q4. Fines (17,013.03), Claim Rejection (3,402.20) and Finance Charges (63,005.85) are kept in OHF because the locked ledger includes them. The Standard takes all GL expenses except balance-sheet items; confirm you want them in.",
     "Q5. Cost-centre classes follow the cash-ledger coding (clinics 01-06, CSSD 07, OPG 08, LAB 09 = direct; reception 10-11, back office 12, server room 13 = overhead).",
 ]
@@ -187,10 +187,10 @@ def main(argv=None):
     mv_types = sorted({ct for sp in mv_split.values() for ct in sp})
     for ct in mv_types:
         vals = [mv_split.get(m + 1, {}).get(ct, Decimal(0)) for m in range(12)]
-        cls = {"Prostheses": "Direct — implants", "Pharmacy": "Direct — dental surgeries", "Laboratory": "Direct — laboratory",
+        cls = {"Prostheses": "Direct — prostheses (implants + in-house lab + external lab)", "Pharmacy": "Direct — dental surgeries",
                "MS": "Direct — dental surgeries / CSSD", "OHF": "Overhead — back office"}.get(ct, "Direct")
-        basis = {"Prostheses": "implant fixtures (net of internal returns), healing/cover screws, abutments, implant impression tools, bone-graft materials",
-                 "Pharmacy": "local anaesthetic cartridges, nitrous oxide and oxygen", "Laboratory": "in-house lab materials (blocks, blanks, 3D inks, stone, milling tools) + external lab invoices",
+        basis = {"Prostheses": "implant fixtures (net of internal returns), healing/cover screws, abutments, implant impression tools, bone-graft materials; in-house CAD/CAM materials (blocks, blanks, 3D inks, stone, milling tools); external lab invoices",
+                 "Pharmacy": "local anaesthetic cartridges, nitrous oxide and oxygen",
                  "MS": "restorative, endodontic, burs, impression, bleaching, surgical, infection-control supplies, needles/syringes, hand instruments",
                  "OHF": "pantry and stationery issued from stock"}.get(ct, "")
         lines.append(("Stock movement", f"Cost of Goods Sold ({', '.join(f'M{m:02d}' for m in sorted(mv_split))}): {ct}", ct, cls, basis, vals))
@@ -240,8 +240,15 @@ def main(argv=None):
     # --- write the workbook ---
     wb = openpyxl.load_workbook(args.template)
     ws = wb["Cost types by month"]
+    DESCRIPTIONS = {   # ruling 13 Oct 2026 — overrides the template wording
+        "Laboratory": "Pathology laboratory supplies — none: the clinic has no laboratory (ruling 13 Oct 2026); dental lab work is Prostheses",
+        "Prostheses": "Implants, abutments, bone graft; crowns, bridges, veneers, onlays, dentures and every other lab-fabricated prosthesis (in-house CAD/CAM materials and external lab invoices)",
+        "SWAllied": "Salaries and wages — allied health incl. technicians (CSSD technicians; dental technicians, routed to the Prosthesis bucket)",
+    }
     for r in ws.iter_rows(min_row=2):
         if r[0].value in COST_TYPES:
+            if r[0].value in DESCRIPTIONS:
+                r[1].value = DESCRIPTIONS[r[0].value]
             for m in range(12):
                 r[2 + m].value = float(ct_month[r[0].value][m])   # columns C..N
     bold = Font(bold=True)
@@ -295,7 +302,7 @@ def main(argv=None):
     lab = salary.get("Indirect/LAB", [Decimal(0)] * 12)
     cssd = salary.get("Cssd", [Decimal(0)] * 12)
     bs.append(["SWAllied lab share", *[float((lab[m] / (lab[m] + cssd[m])) if (lab[m] + cssd[m]) else 0) for m in range(12)],
-               "laboratory technicians / (laboratory technicians + CSSD technicians), Salary sheet; drives the Laboratory bucket"])
+               "dental technicians / (dental technicians + CSSD technicians), Salary sheet; the engine pre-assigns this share of SWAllied to the Prosthesis bucket on the prosthesis-coded claims (ruling 13 Oct 2026)"])
     bs.append(["SWDoc to Anaesthesia", *[0.02] * 12, "ruling 10 Oct 2026"])
     bs.append(["SWNurs to Anaesthesia", *[0.01] * 12, "ruling 10 Oct 2026"])
     bs.append(["SWNurs to Imaging", *[0.04] * 12, "ruling 10 Oct 2026"])

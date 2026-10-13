@@ -36,8 +36,8 @@ ROWS = [
     ("Cost of Goods Sold", "04- Dental Materials / 02- Nitrous & Oxygen Sedation", "sedation gases", "Pharmacy", "Direct", "App.1 Pharmacy: drugs and services", "CONFIRMED (ruling)"),
     ("Cost of Goods Sold", "02- Drugs / 03- Vital Signs, 04- Needles & Syringes", "needles, syringes, emergency supplies", "MS", "Direct", "App.1 MS: all other medical and surgical supplies", "CONFIRMED"),
     ("Cost of Goods Sold", "05- Implants (fixtures, screws, abutments, impression tools, bone graft)", "implants and implant accessories", "Prostheses", "Direct", "App.1 Prostheses: implantable devices and human tissue", "CONFIRMED (ruling)"),
-    ("Cost of Goods Sold", "06- Laboratory (blocks, blanks, 3D inks, stone, stains, milling tools)", "in-house dental laboratory materials", "Laboratory", "Direct", "App.1 Laboratory: laboratory supplies", "CONFIRMED"),
-    ("Cost of Goods Sold", "External LAB (cost of goods sold line)", "outsourced laboratory invoices", "Laboratory", "Direct", "App.1 Laboratory: actual cost as billed by a provider", "CONFIRMED"),
+    ("Cost of Goods Sold", "06- Laboratory (blocks, blanks, 3D inks, stone, stains, milling tools)", "in-house CAD/CAM prosthesis materials", "Prostheses", "Direct", "Ruling 13 Oct 2026: the clinic has no laboratory; prostheses made in-house (App.2 Prosthesis bucket: prothetics, implants)", "CONFIRMED (ruling)"),
+    ("Cost of Goods Sold", "External LAB (cost of goods sold line)", "prostheses bought from external laboratories", "Prostheses", "Direct", "Ruling 13 Oct 2026: prostheses at invoiced cost (App.2 Prosthesis bucket)", "CONFIRMED (ruling)"),
     ("Cost of Goods Sold", "04- Dental Materials (restorative, endodontic, burs, impression, bleaching, scaling, surgical, orthodontic)", "dental consumables", "MS", "Direct", "App.1 MS", "CONFIRMED"),
     ("Cost of Goods Sold", "03- Prevention & Control of Infection (PPE, disinfectants, wraps, monitoring)", "infection-control supplies", "MS", "Direct", "App.1 MS", "CONFIRMED"),
     ("Cost of Goods Sold", "01- Medical & LAB Devices / hand instruments expensed on issue", "small instruments and devices", "MS", "Direct", "App.1 MS", "CONFIRMED"),
@@ -46,7 +46,7 @@ ROWS = [
     ("Salaries & Wages", "Direct Dr", "dentists, oral surgeon, orthodontist", "SWDoc", "Direct", "App.1 SWDoc: salaries and wages medical", "CONFIRMED"),
     ("Salaries & Wages", "Nurse/licensed, Nurse/No License", "dental nurses and assistants", "SWNurs", "Direct", "App.1 SWNurs", "CONFIRMED"),
     ("Salaries & Wages", "Cssd", "sterilisation technicians", "SWAllied", "Direct", "App.1 SWAllied incl. technicians (ruling: CSSD is direct)", "CONFIRMED (ruling)"),
-    ("Salaries & Wages", "Indirect/LAB", "dental laboratory technicians", "SWAllied", "Direct", "App.1 SWAllied incl. technicians; App.2 Laboratory includes lab staff", "CONFIRMED"),
+    ("Salaries & Wages", "Indirect/LAB", "dental technicians (in-house prostheses)", "SWAllied", "Direct", "App.1 SWAllied incl. technicians; bucket = Prosthesis on prosthesis-coded claims (ruling 13 Oct 2026)", "CONFIRMED (ruling)"),
     ("Salaries & Wages", "Indirect/RAP", "registrations and appointments (reception, patient administration)", "OHF", "Overhead", "App.3 Patient Administration is an overhead cost centre", "CONFIRMED (your definition)"),
     ("Salaries & Wages", "Indirect /INS", "insurance department management (claims)", "OHF", "Overhead", "App.3 Patient Administration / Finance overhead cost centres", "CONFIRMED (your definition)"),
     ("Salaries & Wages", "Indirect /Management", "clinic management", "OHF", "Overhead", "App.3 Executive Services (Management)", "CONFIRMED"),
@@ -79,7 +79,7 @@ ROWS = [
     ("Marketing", "09- Marketing and Advertisement: Meta, WhatsApp API, Adobe, promotions", "marketing", "OHF", "Overhead", "App.3 Public Relations & Marketing", "CONFIRMED"),
     ("Dues & Subscriptions", "software subscriptions (Dok32, Microsoft 365, hosting), memberships", "clinic software and memberships", "OHF", "Overhead", "App.3 Computing", "INFERRED (cash ledger)"),
     ("Equipment Maintenanace", "04- Equipments Maintenance", "dental chairs and clinical equipment service", "GS", "Direct", "App.1 GS: other goods and services in direct cost centres", "CONFIRMED"),
-    ("External Lab", "05/06- External Lab invoices (expense head)", "outsourced laboratory work", "Laboratory", "Direct", "App.1 Laboratory: actual cost as billed", "CONFIRMED"),
+    ("External Lab", "05/06- External Lab invoices (expense head)", "prostheses bought from external laboratories", "Prostheses", "Direct", "Ruling 13 Oct 2026: prostheses at invoiced cost (App.2 Prosthesis bucket)", "CONFIRMED (ruling)"),
     ("Clinic Rent", "06- Rent: unit 1302, 85,000 / year", "clinic premises lease", "OHF", "Overhead", "facility overhead allocated to Dental by floor space (App.3 Floor)", "CONFIRMED"),
     ("Fines", "regulatory, traffic and insurance fines", "fines", "OHF", "Overhead", "Standard 3.1.1: all GL expenses except balance-sheet items (kept; confirm)", "CONFIRMED (kept)"),
     ("Depreciation Expense", "Acc. Dep - Machinery & Equipment", "dental chairs, OPG / X-ray, autoclaves, lab equipment", "Depreciation", "Direct", "App.1 Depreciation in direct cost centres (4 % to Imaging bucket by ruling)", "CONFIRMED"),
@@ -97,6 +97,32 @@ MISSING = [
     "M6. For on-costs: the allocation key you want (headcount per category, or salary per category) — I propose salary per category.",
     "M7. The eleven monthly stock-movement sheets (February to December) to split Cost of Goods Sold as January was split.",
 ]
+
+
+# Account-level accrual amounts returned by the Finance Director on 13 Oct 2026
+# (input/source/Rerouting_Internal_to_DOH_2_FinanceDirector_2026-10-13.xlsx); every split ties to its head.
+LINE_AMOUNTS = {
+    ("Third Party & Professional Services", "08- Management of Information"): 351150.23,
+    ("Third Party & Professional Services", "07- 3rd Party Consultancy"): 19197.95,
+    ("Legal & Professional Expenses", "04- DOH: facility"): 34009.68,
+    ("Legal & Professional Expenses", "04- DOH: clinician"): 34349.57,
+    ("Legal & Professional Expenses", "02- Immigration"): 145165.32291666666,
+    ("Legal & Professional Expenses", "01- Trade licence"): 9133.03183333333,
+    ("Legal & Professional Expenses", "05- Jawda"): 30911.85,
+    ("Legal & Professional Expenses", "10- Transportation"): 0.0,
+    ("Staff Qualification And Education", "04- Staff Benefits"): 889431.99,
+    ("Staff Qualification And Education", "02- Immigration"): 0.0,
+    ("Staff Qualification And Education", "08- Management"): 0.0,
+    ("Staff Qualification And Education", "MySmyle staff"): 0.0,
+    ("Insurance", "Malpractice"): 0.0,
+}
+# January 2025 cost of goods sold by stock line (Financial_Report_Jan_2025_1.xlsx, usage net of internal returns;
+# external lab from the Consumption sheet). Feb-Dec await the eleven monthly movement sheets.
+COGS_JAN = {
+    "02- Drugs / 01- Local": 682.00, "04- Dental Materials / 02-": 570.00, "02- Drugs / 03-": 2338.48,
+    "05- Implants": 52796.00, "06- Laboratory": 13538.94, "External LAB": 1870.00,
+    "04- Dental Materials (restorative": 17571.77, "03- Prevention": 6169.15, "01- Medical": 5583.33, "08- Facility": 1007.80,
+}
 
 
 def head_totals():
@@ -149,8 +175,10 @@ def main(argv=None):
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "Rerouting table"
-    ws.append(["Internal ledger head (our language)", "Head FY2025 AED (accrual)", "Internal sub-category / line", "What it is",
-               "DOH cost type (Appendix 1)", "Cost-centre class (Stage 2)", "DOH bucket (bucket rules)", "Standard basis", "Confidence", "Indicative FY2025 AED of the line"])
+    ws.append(["Internal ledger head (our language)", "FY2025 AED (accrual): the line where Arjun split the head, else the head total",
+               "Internal sub-category / line", "What it is",
+               "DOH cost type (Appendix 1)", "Cost-centre class (Stage 2)", "DOH bucket (bucket rules)", "Standard basis", "Confidence",
+               "Line detail: cash-ledger indication, or Jan 2025 from the stock movement (Feb-Dec awaited)"])
     for c in ws[1]:
         c.font = bold
         c.fill = fill
@@ -171,16 +199,8 @@ def main(argv=None):
         if head == "Salaries & Wages" and sub in sal_map:
             ind = sum(sal.get(k, 0.0) for k in sal_map[sub])
         elif head == "Cost of Goods Sold":
-            cogs_ind = {"06- Laboratory": cons.get("Internal LAB", 0.0), "External LAB": cons.get("External LAB", 0.0),
-                        "04- Dental Materials (restorative": None, "03- Prevention": None}
-            for k, v in cogs_ind.items():
-                if sub.startswith(k) and v:
-                    ind = v
-            if sub.startswith(("04- Dental Materials (restorative", "03- Prevention", "02- Drugs / 03", "01- Medical", "05- Implants", "02- Drugs / 01", "04- Dental Materials / 02")):
-                ind = "see monthly stock movement (Jan: " + {
-                    "05- Implants": "52,796", "02- Drugs / 01": "682", "04- Dental Materials / 02": "570", "02- Drugs / 03": "2,338",
-                    "01- Medical": "5,583", "03- Prevention": "6,169", "04- Dental Materials (restorative": "17,572"}[next(k for k in (
-                    "05- Implants", "02- Drugs / 01", "04- Dental Materials / 02", "02- Drugs / 03", "01- Medical", "03- Prevention", "04- Dental Materials (restorative") if sub.startswith(k))] + ")"
+            jan = next((v for k, v in COGS_JAN.items() if sub.startswith(k)), None)
+            ind = f"Jan 2025 from stock movement: {jan:,.2f}; Feb-Dec: awaiting the eleven monthly movement sheets" if jan is not None else ""
         elif head == "Depreciation Expense":
             ind = 126679.42 if "Machinery" in sub else 30297.55
         else:
@@ -199,7 +219,12 @@ def main(argv=None):
                 if head in ("Legal & Professional Expenses", "Staff Qualification And Education") and "02-" in tags:
                     tot = sum(v for (cc, s3), v in cash.items() if cc == "04-" and s3 == "02-")
                 ind = tot if tot else ""
-        ws.append([head, heads.get(head, ""), sub, meaning, ct, cls, bucket, basis, conf, ind if ind != "" else ""])
+        if sub == "Indirect/LAB":
+            bucket = "Prosthesis 100% (dental technicians' pool, pre-assigned on the prosthesis-coded claims)"
+        line_amt = next((v for (h, pfx), v in LINE_AMOUNTS.items() if h == head and sub.startswith(pfx)), None)
+        if head == "Salaries & Wages" and sub in sal_map:
+            line_amt = ind
+        ws.append([head, line_amt if line_amt is not None else heads.get(head, ""), sub, meaning, ct, cls, bucket, basis, conf, ind if ind != "" else ""])
     for r in ws.iter_rows(min_row=2):
         for c in r:
             c.alignment = Alignment(wrap_text=True, vertical="top")

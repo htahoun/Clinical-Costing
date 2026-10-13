@@ -26,6 +26,7 @@ from costsub_reader import read_submission  # noqa: E402
 from costsub_schema import BUCKETS, COST_TYPES, OVERHEAD_COST_TYPES  # noqa: E402
 from gl_new import GL_2025  # noqa: E402
 from implant_codes import IMPLANT_CODES, IMPLANT_POOLS  # noqa: E402
+from prosthesis_codes import PROSTHESIS_CODES  # noqa: E402
 from rebalance_two_view import MONTH_SHEETS  # noqa: E402
 
 BOLD = Font(bold=True)
@@ -95,6 +96,7 @@ def main(argv=None):
     match_b = sum(1 for m in B.values() if view(m, "CostBucket") == view(m, "CostTypeDetails"))
     match_a = sum(1 for m in A.values() if view(m, "CostBucket") == view(m, "CostTypeDetails"))
     impl = [c for c in B if set(codes.get(c, [])) & IMPLANT_CODES]
+    pros = [c for c in B if set(codes.get(c, [])) & (IMPLANT_CODES | set(PROSTHESIS_CODES))]
     rows_ = [
         ["Month", MONTH_SHEETS[args.month] + " 2025"],
         ["Ledger (locked)", gl / 1000],
@@ -107,6 +109,7 @@ def main(argv=None):
         ["Ties to the ledger (cost-type view)", "no" if at != gl else "yes", "yes" if tt == gl else "no"],
         ["Overhead cost ratio", f"{sum(m.get(f'CostTypeDetails{t}', 0) for m in A.values() for t in OVERHEAD_COST_TYPES) / at * 100:.1f}%", f"{oh / tt * 100:.1f}%"],
         ["Claims with implant codes", "", len(impl)],
+        ["Claims with prosthesis codes (48-code list, incl. implants)", "", len(pros)],
         ["Claims carrying the Prostheses cost type", sum(1 for m in A.values() if m.get("CostTypeDetailsProstheses")), sum(1 for m in B.values() if m.get("CostTypeDetailsProstheses"))],
         ["Prostheses cost type total", sum(m.get("CostTypeDetailsProstheses", 0) for m in A.values()) / 1000, sum(m.get("CostTypeDetailsProstheses", 0) for m in B.values()) / 1000],
         ["Claim set and identity fields", "", "unchanged"],
@@ -220,25 +223,30 @@ def main(argv=None):
         for i in range(len(used_b) + 3):
             mx.column_dimensions[openpyxl.utils.get_column_letter(i + 2)].width = 14
 
-    ic = wb.create_sheet("Implant claims")
-    header(ic, ["Claim", "Implant codes billed", "Fixture units", "Abutment units", "Bone-graft units", "Claim cost",
+    ic = wb.create_sheet("Prosthesis claims")
+    header(ic, ["Claim", "Prosthesis / implant codes billed", "Fixture units", "Abutment units", "Bone-graft units",
+                "Prosthesis units (48-code list)", "Claim cost",
                 "Prostheses (corrected)", "Prosthesis bucket (corrected)", "Dental bucket sent", "Dental bucket corrected", "Note"])
-    caps = {ln.split("claim ")[1].split(" ")[0]: ln.split(": ", 2)[-1] for ln in log_lines if "capped" in ln}
-    for cid in sorted(impl, key=lambda c: -B[c].get("CostTypeDetailsProstheses", 0)):
-        cs = [c for c in codes[cid] if c in IMPLANT_CODES]
+    caps = {}
+    for ln in log_lines:
+        if "capped" in ln:
+            cid_ = ln.split("claim ")[1].split(" ")[0]
+            caps[cid_] = (caps.get(cid_, "") + "; " + ln.split(": ", 2)[-1]).strip("; ")
+    for cid in sorted(pros, key=lambda c: -B[c].get("CostTypeDetailsProstheses", 0)):
+        cs = [c for c in codes[cid] if c in IMPLANT_CODES or c in PROSTHESIS_CODES]
         u = {p: sum(1 for c in cs if c in IMPLANT_POOLS[p]) for p in IMPLANT_POOLS}
-        ic.append([cid, ", ".join(sorted(cs)), u["fixtures"], u["abutments"], u["bone_graft"],
+        ic.append([cid, ", ".join(sorted(cs)), u["fixtures"], u["abutments"], u["bone_graft"], sum(1 for c in cs if c in PROSTHESIS_CODES),
                    view(B[cid], "CostTypeDetails") / 1000, B[cid].get("CostTypeDetailsProstheses", 0) / 1000,
                    (B[cid].get("CostBucketDirectProsthesis", 0)) / 1000,
                    (A[cid].get("CostBucketDirectDental", 0) + A[cid].get("CostBucketOverheadsDental", 0) + view(A[cid], "CostTypeDetails")) / 1000,
                    (B[cid].get("CostBucketDirectDental", 0) + B[cid].get("CostBucketOverheadsDental", 0)) / 1000,
                    caps.get(cid, "")])
     for r in ic.iter_rows(min_row=2):
-        for c in r[5:10]:
+        for c in r[6:11]:
             c.number_format = "#,##0.000"
     ic.column_dimensions["A"].width = 22
     ic.column_dimensions["B"].width = 40
-    ic.column_dimensions["K"].width = 70
+    ic.column_dimensions["L"].width = 70
 
     ex = wb.create_sheet("Claim examples")
     fix = [c for c in impl if "79933" in codes.get(c, [])]

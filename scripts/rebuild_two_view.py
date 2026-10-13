@@ -11,8 +11,12 @@ Per month:
   1. Claim totals come from the sent file (scale-only costing, locked) and are
      tied to the ledger to the fils (largest claim absorbs the drift).
   2. Cost-type anchor: the ledger mapped to the sixteen cost types (Arjun).
-  3. Implant stock (Prostheses) is pre-assigned to the claims billing implant
-     codes, by billed units (scripts/implant_codes.py).
+  3. Prostheses are pre-assigned by billed units: implant stock on the implant
+     codes (scripts/implant_codes.py); the rest of the Prostheses cost type
+     (in-house CAD/CAM materials, external lab invoices) on the 48 prosthesis
+     codes (scripts/prosthesis_codes.py); the dental technicians' share of
+     SWAllied on the same claims, routed to the Prosthesis bucket. The clinic
+     has no laboratory (ruling 13 Oct 2026): Laboratory is zero.
   4. A claim x cost-type matrix is fitted to both margins (claim totals, ledger
      cost types), seeded by the allocation table's own cells for each claim
      (what the code is made of), so a lab-heavy claim stays lab-heavy.
@@ -46,10 +50,10 @@ from rebalance_two_view import MONTH_SHEETS, read_activity_units, read_ledger  #
 # reinterpreted by what they are made of; cost-type columns map to themselves.
 SEED_FROM_BUCKET = {
     "Dental": {"MS": 1},                                   # supplies column
-    "Laboratory": {"Laboratory": 1},
+    "Laboratory": {"Prostheses": 1},                       # the sent OtherLab column = lab-made prostheses (ruling 13 Oct 2026)
     "Anaesthesia": {"Pharmacy": 0.5, "SWDoc": 0.5},
     "Imaging": {"Imaging": 0.4, "SWNurs": 0.3, "Depreciation": 0.3},
-    "Prosthesis": {"Prostheses": 0.5, "Laboratory": 0.25, "MS": 0.25},
+    "Prosthesis": {"Prostheses": 1},
     "OP": {"GS": 1},
     "Physician": {"SWDoc": 1},
     "Pharmacy": {"Pharmacy": 1},
@@ -206,22 +210,40 @@ def main(argv=None):
             for t in open_types:
                 s[t] += EPS * e["total"]
             seeds.append({t: s[t] for t in open_types})
-        # 3. implant pre-assignment (by units, capped at the claim total)
-        pre: dict[int, int] = {}
-        if args.activity and month in movement:
+        # 3. pre-assignment by billed units (ruling 13 Oct 2026: the clinic has no laboratory; every prosthesis
+        #    code carries Prostheses). Pools: implant stock (fixtures, abutments, bone graft) on the implant codes;
+        #    the rest of the month's Prostheses cost type (in-house CAD/CAM materials + external lab invoices) on
+        #    the 48 prosthesis codes; the dental technicians' share of SWAllied on the same claims, routed to the
+        #    Prosthesis bucket. Each pool is capped at the claim's remaining amount.
+        pre: dict[int, int] = {}       # Prostheses fils per claim
+        staff: dict[int, int] = {}     # SWAllied fils per claim that go to the Prosthesis bucket
+        if args.activity:
             units = read_activity_units(args.activity, month)
-            pools = implant_pools(movement[month])
-            log.append(f"{f.name}: implant pools from stock " + ", ".join(f"{k} {float(v):,.2f}" for k, v in pools.items())
+            pools = implant_pools(movement[month]) if month in movement else {}
+            implant_fils = sum(int((Decimal(v) * 1000).quantize(Decimal(1), rounding=ROUND_HALF_UP)) for v in pools.values())
+            lab_fils = ledger_m.get("Prostheses", 0) - implant_fils
+            if lab_fils < 0:
+                raise SystemExit(f"{f.name}: implant stock {implant_fils/1000:,.2f} exceeds the Prostheses cost type {ledger_m.get('Prostheses', 0)/1000:,.2f}")
+            if lab_fils:
+                pools["lab"] = Decimal(lab_fils) / 1000
+            log.append(f"{f.name}: Prostheses pools " + ", ".join(f"{k} {float(v):,.2f}" for k, v in pools.items())
                        + f"; coded claims in activity: {len(units)}")
             bucket_amt = [{"Dental": e["total"], "Prosthesis": 0} for e in encs]   # headroom = the whole claim
             pre = preassign_prostheses(encs, bucket_amt, units, pools, log, f.name)
-        pre_total = sum(pre.values())
-        rows = [e["total"] - pre.get(i, 0) for i, e in enumerate(encs)]
+            share = lab_share.get(month)
+            if share and ledger_m.get("SWAllied", 0):
+                staff_fils = int((Decimal(ledger_m["SWAllied"]) * share).quantize(Decimal(1), rounding=ROUND_HALF_UP))
+                staff_units = {cid: {"dental technicians": u["lab"]} for cid, u in units.items() if u.get("lab")}
+                staff = preassign_prostheses(encs, bucket_amt, staff_units, {"dental technicians": Decimal(staff_fils) / 1000}, log, f.name)
+        pre_total, staff_total = sum(pre.values()), sum(staff.values())
+        rows = [e["total"] - pre.get(i, 0) - staff.get(i, 0) for i, e in enumerate(encs)]
         cols = dict(ledger_m)
-        if pre_total:
-            if cols.get("Prostheses", 0) < pre_total:
-                raise SystemExit(f"{f.name}: implant pools exceed the Prostheses cost type")
-            cols["Prostheses"] -= pre_total
+        if cols.get("Prostheses", 0) < pre_total:
+            raise SystemExit(f"{f.name}: prosthesis pools exceed the Prostheses cost type")
+        cols["Prostheses"] = cols.get("Prostheses", 0) - pre_total
+        if cols.get("SWAllied", 0) < staff_total:
+            raise SystemExit(f"{f.name}: dental technicians' pool exceeds the SWAllied cost type")
+        cols["SWAllied"] = cols.get("SWAllied", 0) - staff_total
         cols = {t: v for t, v in cols.items() if v > 0}
         for s in seeds:
             for t in list(s):
@@ -233,15 +255,21 @@ def main(argv=None):
         fix_columns(cells, cols, log, f.name)
         for i, p in pre.items():
             cells[i]["Prostheses"] = cells[i].get("Prostheses", 0) + p
+        for i, p in staff.items():
+            cells[i]["SWAllied"] = cells[i].get("SWAllied", 0) + p
         # 5. buckets from types; write
         B = T = OH = 0
         matrix: dict = defaultdict(lambda: defaultdict(Decimal))
-        for enc, c, e in zip(nodes, cells, encs):
+        for i, (enc, c, e) in enumerate(zip(nodes, cells, encs)):
             full = {t: c.get(t, 0) for t in COST_TYPES}
             assert sum(full.values()) == e["total"], (e["cid"], sum(full.values()), e["total"])
-            nd, no = buckets_from_types(full, rules)
+            rem = dict(full)
+            rem["SWAllied"] -= staff.get(i, 0)              # dental technicians' pay -> Prosthesis bucket, not the rule
+            nd, no = buckets_from_types(rem, rules)
+            nd["Prosthesis"] += staff.get(i, 0)
+            matrix["SWAllied"]["Prosthesis"] += Decimal(staff.get(i, 0))
             assert sum(nd.values()) + sum(no.values()) == sum(full.values())
-            for t, v in full.items():
+            for t, v in rem.items():
                 for b, share, comp in rules[t]:
                     matrix[t][b] += Decimal(v) * share
             for name, vals in (("CostBucketDirect", nd), ("CostBucketOverheads", no), ("CostTypeDetails", full)):

@@ -43,7 +43,8 @@ from costsub_reader import fils  # noqa: E402
 from costsub_schema import (BUCKETS, COST_TYPES, DATE_FMT, OVERHEAD_COST_TYPES,  # noqa: E402
                             TZ_OFFSET_HOURS, fmt_money_fils)
 from gl_new import GL  # noqa: E402
-from implant_codes import IMPLANT_POOLS  # noqa: E402
+from implant_codes import IMPLANT_POOLS
+from prosthesis_codes import PROSTHESIS_CODES  # noqa: E402
 
 MONTH_SHEETS = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July",
                 8: "August", 9: "September", 10: "October", 11: "November", 12: "December"}
@@ -67,10 +68,14 @@ def read_activity_units(workbook: str, month: int) -> dict[str, dict[str, int]]:
         empty = 0
         code = str(r[hi["ProcedureCode"]]).strip().removesuffix(".0")
         qty = int(float(r[hi["Qty"]] or 1))
+        cid = str(r[hi["ID"]]).strip()
         for pool, codes in IMPLANT_POOLS.items():
             if code in codes:
-                out.setdefault(str(r[hi["ID"]]).strip(), {})
-                out[str(r[hi["ID"]]).strip()][pool] = out[str(r[hi["ID"]]).strip()].get(pool, 0) + qty
+                out.setdefault(cid, {})
+                out[cid][pool] = out[cid].get(pool, 0) + qty
+        if code in PROSTHESIS_CODES:                       # lab-fabricated prostheses (ruling 13 Oct 2026)
+            out.setdefault(cid, {})
+            out[cid]["lab"] = out[cid].get("lab", 0) + qty
     return out
 
 
@@ -107,7 +112,7 @@ def preassign_prostheses(encs: list, bucket_amt: list, units: dict, pools: dict,
         while excess > 0:
             cands = [i for i in alloc if bucket_amt[i][HOME_BUCKET] - pre.get(i, 0) - alloc[i] > 0]
             if not cands:
-                log.append(f"{fname}: {pool}: {excess/1000:,.3f} AED could not be placed on implant claims — left to the general fit")
+                log.append(f"{fname}: {pool}: {excess/1000:,.3f} AED could not be placed on its coded claims — left to the general fit")
                 break
             room = {i: bucket_amt[i][HOME_BUCKET] - pre.get(i, 0) - alloc[i] for i in cands}
             share = min(excess, sum(room.values()))
@@ -124,7 +129,7 @@ def preassign_prostheses(encs: list, bucket_amt: list, units: dict, pools: dict,
     for i, v in pre.items():
         bucket_amt[i]["Prosthesis"] += v
         bucket_amt[i][HOME_BUCKET] -= v
-        encs[i]["pre_prostheses"] = v
+        encs[i]["pre_prostheses"] = encs[i].get("pre_prostheses", 0) + v
     return pre
 
 HOME_BUCKET = "Dental"

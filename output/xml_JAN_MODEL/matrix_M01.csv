@@ -1,14 +1,13 @@
 bucket,cost_type,aed
+Prosthesis,SWAllied,7150.000
+Dental,SWAllied,7000.000
 Anaesthesia,SWNurs,251.000
 Imaging,SWNurs,1004.000
 Dental,SWNurs,23845.000
 Anaesthesia,SWDoc,3437.400
 Dental,SWDoc,168432.600
-Laboratory,SWAllied,7150.000
-Dental,SWAllied,7000.000
-Laboratory,Laboratory,17278.940
 Anaesthesia,Pharmacy,1252.000
-Prosthesis,Prostheses,52796.000
+Prosthesis,Prostheses,70074.940
 Dental,MS,31662.750
 Dental,GS,1000.000
 Imaging,Depreciation,422.264

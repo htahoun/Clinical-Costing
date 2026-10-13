@@ -215,7 +215,8 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/fill_ledger_map_from_financials.py` | Fills the template from Arjun's financial workbook (Mapping, Questions, Consumables detail sheets) — the governing map |
 | `scripts/cogs_from_movement.py` | Splits a month's consumables into cost types from the stock-movement sheet; implant pools by sub-category |
 | `scripts/implant_codes.py` | Implant procedure codes by stock pool (fixtures, abutments, bone graft) |
-| `scripts/month_report.py` | One-month model report workbook (summary, cost types, buckets, profiles, implant claims, claim examples, log) |
+| `scripts/prosthesis_codes.py` | The 48 prosthesis codes (ruling 13 Oct 2026: no laboratory; every prosthesis code is Prostheses) |
+| `scripts/month_report.py` | One-month model report workbook (summary, tuning grid, cost types, buckets, prosthesis claims, claim examples, log) |
 | `input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx` | Accepted activity master with treatment codes, twelve monthly sheets |
 | `output/xml_JAN_MODEL/`, `output/January_Model_Report.xlsx` | The January model and its report |
 | `input/source/Financial_Report_Jan_2025_1.xlsx` | January 2025 monthly financial report (stock movement by item category) |
@@ -264,6 +265,15 @@ its result is the accepted master of §6 item 5.
    (hygiene only; DOH did not object).
 8. MySmyle: ask whether their generator can adopt the two-view layout for
    SY03, or keep generating from this repository.
+9. **Cost of Goods Sold 1,040,318.25 split by stock movement** — the eleven
+   monthly movement sheets (Feb–Dec) are awaited; run the fill script with
+   `--movement` for all twelve months, then the engine for all twelve.
+10. **External LAB possibly counted twice** (inside Cost of Goods Sold and as
+    the External Lab head) — Arjun to confirm before the ledger is re-locked.
+11. **Staff on-costs** (Staff Qualification And Education 889,431.99,
+    immigration and labour 145,165.32, clinician licences 34,349.57, staff
+    insurance 50,409.29) — allocation key by staff category to be ruled
+    (proposal: salary per category).
 
 ## 10. Working etiquette with the Finance Director
 
@@ -366,8 +376,9 @@ rational. Buckets are derived from the cost types by fixed shares
 (`scripts/bucket_rules.py`): Pharmacy → Anaesthesia; SWDoc 2 % Anaesthesia /
 98 % Dental; SWNurs 1 % Anaesthesia / 4 % Imaging / 95 % Dental; equipment
 Depreciation 4 % Imaging / 96 % Dental; Imaging supplies → Imaging;
-Laboratory and the laboratory technicians' share of SWAllied → Laboratory;
-Prostheses → Prosthesis; MS/GS/Hotel/SWNonClin → Dental; OHF/OHDepreciation/
+Prostheses → Prosthesis; the dental technicians' share of SWAllied is
+pre-assigned to the Prosthesis bucket on the prosthesis-coded claims (ruling
+13 Oct 2026: the clinic has no laboratory, Laboratory is zero); MS/GS/Hotel/SWNonClin → Dental; OHF/OHDepreciation/
 OHC → Dental overhead component; Physician stays 0 (Appendix 2: medical
 physicians; dentists are Dental Services). Per claim the cost types are
 fitted to the claim total (locked) and the ledger columns, seeded by the
@@ -401,41 +412,67 @@ Seven abutment-stage claims are capped (their costed Dental amount is below
 the abutment share), a sign that Cherie's table prices implant codes below the
 stock they consume — an SY03 table item.
 
-**Lab-fabricated prostheses — classification guidance (13 Oct 2026, awaiting
-the Finance Director's ruling).** Question: crowns, veneers, inlays/onlays,
-bridges (retainers, pontics), dentures, frameworks, stents — made in the
-in-house CAD/CAM laboratory or bought from external laboratories — are
-prostheses, but they are produced in a laboratory; Prostheses or Laboratory?
-Evidence: Standard v2.1 Appendix 1 defines the Prostheses cost type as
-"Implantable devices" and, in words copied from the Australian standard, as
-"goods and services used in the provision of services to implant prostheses,
-human tissue item and other medical devices"; the Laboratory cost type is
-"Laboratory Supplies"; Appendix 2 defines the Laboratory bucket as pathology
-(biochemistry, blood bank, cytogenetics, microbiology …) and the Prosthesis
-bucket as "surgically implanted devices, human tissues, and other medical
-apparatuses" with the service list "Prothetics; Implants"; the Dental bucket
-lists "Prosthodontics" as a service. The Australian Hospital Patient Costing
-Standards (IHACPA, the source of the DOH wording) define a prosthesis as "an
-artificial substitute or replacement for a part of the body" and cost
-prostheses at traceable actual cost; the Australian Prescribed List excludes
-external and custom-made devices, so under IHACPA a lab-made crown is a
-medical/surgical supply, while the DOH text, which adds "Prothetics" and
-"other medical apparatuses", is wider. Recommendation (Option A): definitive
-lab-fabricated prostheses → Prostheses cost type / Prosthesis bucket at
-traceable cost (external lab invoice; in-house lab materials and the lab
-technicians' pay via SWAllied to the Prosthesis bucket), placed on the claims
-billing the prosthesis codes by units, the same mechanism as implants;
-chairside provisional/temporary crowns → MS; Laboratory cost type and bucket
-then hold only pathology, i.e. zero for this clinic. Fallback (Option B): keep
-the present map (in-house lab = Laboratory cost type and bucket, external lab
-invoices = Laboratory); defensible because the DOH map is a self-declaration
-with no validation rule on Laboratory, but a reviewer may ask why a dental
-clinic with no pathology reports a Laboratory bucket. Either way, FAQ Q4.4
-invites providers whose services do not map clearly to ask the DOH Clinical
-Costing Team; the question has been drafted for the Finance Director to send.
-Amounts at stake (Arjun's map, FY2025): Laboratory cost type 315,921
-(in-house materials 194,951, external laboratory invoices 120,970),
-lab technicians' pay 69,820.
+**No laboratory — every prosthesis code is Prostheses (ruling, Finance
+Director, 13 Oct 2026).** The question "crowns, veneers, onlays, bridges,
+dentures, frameworks, stents are prostheses but are made in a laboratory:
+Prostheses or Laboratory?" was researched against Standard v2.1 (Appendix 1:
+Prostheses = implantable devices, Laboratory = laboratory supplies; Appendix 2:
+the Laboratory bucket is pathology, the Prosthesis bucket lists "Prothetics;
+Implants"), the DOH Costing Guidelines (prostheses at traceable actual cost),
+the DOH FAQ (Q4.4) and the Australian AHPCS (prosthesis = "an artificial
+substitute or replacement for a part of the body"). Ruling: the clinic has no
+laboratory; "prosthesis" in the clinic's language IS the dental lab. Every
+Laboratory cost is zero; every prosthesis code carries the Prostheses cost type
+and the Prosthesis bucket. Implementation: (1) the team's 48-code prosthesis
+list (`input/source/LAB_Prosthesis_Implants_Codes.xlsx`, sheet "Prosthesis
+codes") is `scripts/prosthesis_codes.py`; the 36 repair / removal / reline /
+guide codes the team kept out of Prosthesis stay Dental (the six it had marked
+"Laboratory" too, since Laboratory is zero). (2) Ledger map
+(`scripts/fill_ledger_map_from_financials.py`): Internal LAB and External LAB
+cost of goods sold, the External Lab expense head and the stock category
+"06- Laboratory" → Prostheses; dental technicians (Indirect/LAB) stay SWAllied
+with the Prosthesis bucket. FY2025 Prostheses = 368,716.89 (January 70,074.94
+incl. implants 52,796.00), Laboratory = 0. (3) Engine
+(`scripts/rebuild_two_view.py`): after the implant pools, the rest of the
+month's Prostheses cost type (in-house CAD/CAM materials + external lab
+invoices) is placed on the claims billing the 48 codes by billed units, and
+the dental technicians' share of SWAllied (Bucket shares sheet, lab ÷ (lab +
+CSSD)) on the same claims, routed to the Prosthesis bucket; both capped at the
+claim's remaining amount. (4) `scripts/bucket_rules.py`: SWAllied → Dental
+(CSSD); Laboratory rule kept but zero. January model re-run 13 Oct 2026:
+831/831 claims match, both views 511,302.300, overhead 36.3 %; Prostheses
+70,074.94 on 132 claims (25 implant claims + the crown / veneer / onlay /
+denture claims), Prosthesis bucket 77,224.94 (Prostheses 90.7 %, SWAllied
+9.3 %), Laboratory bucket 0, Anaesthesia 4,940.40, Imaging 1,426.21, Dental
+427,710.76. Seven abutment-stage claims (code 27155) are fully consumed by the
+abutment pool, so their lab and technician shares were redistributed over the
+other prosthesis claims (logged). Report `output/January_Model_Report.xlsx`
+("Prosthesis claims" sheet).
+
+**Rerouting table at account level (Finance Director's file, 13 Oct 2026,
+`input/source/Rerouting_Internal_to_DOH_2_FinanceDirector_2026-10-13.xlsx`).**
+The Finance Director returned `output/Rerouting_Internal_to_DOH.xlsx` with
+account-level accrual amounts in the head column: Salaries & Wages by role
+(dentists 1,817,738.67; nurses 324,695.93; CSSD 86,000; dental technicians
+69,820.26; RAP 182,733; INS 121,595.50; management 310,000; purchase /
+accounts / IT / HR 110,354.58; external consultants 142,881 = 3,165,818.94);
+Third Party & Professional Services = MySmyle recharge 351,150.23 + Calibrate /
+Platform Technologies 19,197.95; Legal & Professional = DOH facility licence
+34,009.68 + clinician licences 34,349.57 + immigration and labour 145,165.32 +
+trade licence / civil defence / tenancy 9,133.03 + accreditation 30,911.85;
+Staff Qualification And Education 889,431.99 kept whole as staff on-costs
+(benefits, bonus, final settlement, training; no IT and no MySmyle payroll
+inside). Every split ties to its head. The ten Cost of Goods Sold lines were
+highlighted: they still carry the head total 1,040,318.25 because only January
+has a stock-movement sheet; the twelve monthly sheets (same layout as
+`Financial_Report_Jan_2025_1.xlsx`, sheet "Movement <Mon> 2025") will split
+the head line by line. Control totals per month = Arjun's Consumption sheet
+(Consumables Dr + CSSD + Internal LAB + External LAB = the P&L Cost of Goods
+Sold). Audit finding to clear with Arjun: External LAB appears inside Cost of
+Goods Sold (54,224.25 FY) and again as the P&L head External Lab (66,745.25
+FY); six months are identical (Jan 1,870; Feb 200; May 7,425; Jun 0; Sep
+1,150; Oct 950) — if the same invoices are booked twice the locked ledger is
+overstated by up to 54,224.25 and both Prostheses and the FY total change.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

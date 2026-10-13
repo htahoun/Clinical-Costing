@@ -33,19 +33,19 @@ DIRECT, OVERHEAD = "direct", "overhead"
 # whichever bucket they land (CostBucketOverheads/<bucket>).
 GRID = {
     "SWNurs":         (5, 80, 5, 10),
-    "SWDoc":          (5, 75, 5, 15),
+    "SWDoc":          (3, 77, 5, 15),     # 13 Oct 2026 tuning: Anaesthesia 3 %
     "SWAllied":       (0, 80, 10, 10),    # applied to the CSSD remainder; the dental technicians' share is
                                           # pre-assigned to Prosthesis by the engine (ruling 13 Oct 2026)
     "SWNonClin":      (0, 100, 0, 0),
     "Laboratory":     (0, 100, 0, 0),     # zero cost type (no laboratory)
     "Imaging":        (0, 10, 90, 0),     # dentist's own time reading / taking X-rays counted in Dental
     "Pharmacy":       (100, 0, 0, 0),
-    "Prostheses":     (5, 10, 5, 80),     # Finance Director's grid as sent (advice given: 100 % Prosthesis)
-    "MS":             (5, 85, 5, 5),
+    "Prostheses":     (0, 0, 0, 100),     # 13 Oct 2026 tuning: implants and lab work stay in Prosthesis (App.1)
+    "MS":             (3, 87, 5, 5),      # 13 Oct 2026 tuning
     "Hotel":          (0, 100, 0, 0),
     "GS":             (0, 100, 0, 0),
     "Depreciation":   (5, 90, 5, 0),      # equipment; lab machines are not "prosthesis" (ruling)
-    "OHF":            (0, 95, 5, 0),
+    "OHF":            (0, 98, 2, 0),      # 13 Oct 2026 tuning: OPG room share of overheads by floor area
     "OHDepreciation": (0, 100, 0, 0),     # back office
     "OHC":            (0, 100, 0, 0),
     "NABMs":          (0, 100, 0, 0),

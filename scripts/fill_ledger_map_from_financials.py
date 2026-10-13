@@ -90,13 +90,19 @@ CONSUMPTION_MAP = [   # row-label prefix in the Consumption sheet -> cost type
     ("Internal LAB", "Prostheses", "Direct — prostheses", "in-house CAD/CAM prosthesis materials (ruling 13 Oct 2026: no laboratory; prostheses)"),
     ("External LAB", "Prostheses", "Direct — prostheses", "prostheses bought from external laboratories, booked in cost of goods sold"),
 ]
-# Staff on-costs (ruling 13 Oct 2026: salary share by staff category, employees only). Each head's on-cost
-# portion is split every month by that month's salary of the four groups; the rest of the head stays as mapped.
-ONCOST_SHARE = {
-    "Staff Qualification And Education": Decimal(1),                       # benefits, bonus, end-of-service, training
-    "Insurance": Decimal(1),                                                # staff medical insurance (Daman)
-    "Legal & Professional Expenses": (Decimal("34349.57") + Decimal("145165.32291666666")) / Decimal("253569.45475"),
-                                                                            # clinician licences + visas / labour; licences etc. stay OHF
+# Staff on-costs (ruling 13 Oct 2026, Option 3 "by the nature of each cost", employees only). Each head's
+# on-cost part is split every month across the four staff groups by that month's key:
+#   salary    - benefits, bonus, end-of-service, training (they are computed from pay)
+#   headcount - visas / work permits / labour cards and staff medical insurance (a fee per person)
+#   licensed  - DOH clinician licences, Dataflow, CME: dentists and licensed nurses only, by headcount
+# The rest of the head stays as mapped (facility licences, accreditation, trade licence, civil defence, tenancy -> OHF).
+ONCOST_PARTS = {
+    "Staff Qualification And Education": [("benefits, bonus, end-of-service, training", Decimal(1), "salary")],
+    "Insurance": [("staff medical insurance", Decimal(1), "headcount")],
+    "Legal & Professional Expenses": [
+        ("clinician licences (DOH, Dataflow, CME)", Decimal("34349.57") / Decimal("253569.45475"), "licensed"),
+        ("visas, work permits, labour cards", Decimal("145165.32291666666") / Decimal("253569.45475"), "headcount"),
+    ],
 }
 ONCOST_GROUPS = {   # cost type -> Salary sheet roles; the nine external consultants carry no on-costs
     "SWDoc": ["Direct Dr"],
@@ -104,6 +110,7 @@ ONCOST_GROUPS = {   # cost type -> Salary sheet roles; the nine external consult
     "SWAllied": ["Cssd", "Indirect/LAB"],
     "OHF": ["Indirect/RAP", "Indirect /INS", "Indirect /Management", "Indirect /Purchase", "Indirect/Accounts", "Indirect it", "Indirect/ Hr"],
 }
+LICENSED_ROLES = {"SWDoc": ["Direct Dr"], "SWNurs": ["Nurse/licensed"]}
 ONCOST_CLASS = {"SWDoc": "Direct — dental surgeries (dentists' on-costs)", "SWNurs": "Direct — dental surgeries (nurses' on-costs)",
                 "SWAllied": "Direct — CSSD / prostheses (technicians' on-costs)", "OHF": "Overhead — back-office staff on-costs"}
 
@@ -112,7 +119,7 @@ DEP_OVERHEAD = {"Acc. Dep - Furniture & Fittings", "Acc. Dep - Office Equipment"
 
 QUESTIONS = [
     "Q1. Third Party & Professional Services (370,348.18) is mapped to OHC because it is MySmyle Company's EMR/management/IT recharge plus Calibrate and Platform Technologies. If you prefer OHF (no 'corporate office'), say so: one-line change, overhead ratio unchanged.",
-    "Q2. Staff on-costs (Staff Qualification And Education 889,431.99 in full; Insurance 50,409.29 in full; clinician licences 34,349.57 and visas / labour 145,165.32 out of Legal & Professional) are split every month by the salary share of dentists / nurses / CSSD + technicians / back office, employees only (ruling 13 Oct 2026). The rest of Legal & Professional (facility licences, accreditation, trade licence, civil defence, tenancy) stays OHF.",
+    "Q2. Staff on-costs, employees only (ruling 13 Oct 2026, Option 3 by nature of the cost): benefits / bonus / end-of-service / training (889,431.99) by the month's salary share of dentists / nurses / CSSD + technicians / back office; visas / labour (145,165.32) and staff medical insurance (50,409.29) by the month's headcount; clinician licences (34,349.57) to dentists and licensed nurses by headcount. The rest of Legal & Professional (facility licences, accreditation, trade licence, civil defence, tenancy) stays OHF.",
     "Q3. Laboratory cost type is 0 by ruling (13 Oct 2026): the clinic has no laboratory; in-house CAD/CAM materials, external lab invoices and implants are Prostheses, and the dental technicians' pay (SWAllied) is routed to the Prosthesis bucket. Pharmacy and Imaging consumables are split from stock only for the months with a stock-movement sheet; the other months keep them inside MS until the sheets arrive.",
     "Q4. Fines (17,013.03), Claim Rejection (3,402.20) and Finance Charges (63,005.85) are kept in OHF because the locked ledger includes them. The Standard takes all GL expenses except balance-sheet items; confirm you want them in.",
     "Q5. Cost-centre classes follow the cash-ledger coding (clinics 01-06, CSSD 07, OPG 08, LAB 09 = direct; reception 10-11, back office 12, server room 13 = overhead).",
@@ -127,7 +134,8 @@ def read_monthly(ws) -> dict[str, list[Decimal]]:
     return out
 
 
-def read_salary(ws) -> dict[str, list[Decimal]]:
+def read_salary(ws, headcount: bool = False) -> dict[str, list[Decimal]]:
+    """{role: 12 monthly salary totals}; with headcount=True, {role: 12 monthly counts of persons paid}."""
     rows = list(ws.iter_rows(values_only=True))
     hdr_i = next(i for i, r in enumerate(rows) if r[0] == "Name")
     mon_col = {12 - k: 2 + k for k in range(12)}          # Dec2025 .. Jan 2025 in columns 2..13
@@ -137,7 +145,8 @@ def read_salary(ws) -> dict[str, list[Decimal]]:
             continue
         cat = str(r[1]).strip()
         for m, ci in mon_col.items():
-            out[cat][m - 1] += dec(r[ci])
+            v = dec(r[ci])
+            out[cat][m - 1] += (Decimal(1) if v else Decimal(0)) if headcount else v
     return out
 
 
@@ -220,28 +229,38 @@ def main(argv=None):
                   "dental chairs, imaging units, autoclaves (2025 charge 126,679.42)", [(v * dep_direct / tot_dep).quantize(D2) for v in dep_m]))
     lines.append(("TB depreciation", "Depreciation: furniture, office equipment, computers, software", "OHDepreciation", "Overhead — facility / IT",
                   "fit-out, office equipment, computers, software (2025 charge 30,297.55)", [(v * dep_oh / tot_dep).quantize(D2) for v in dep_m]))
-    group_sal = {g: [sum(salary.get(r, [Decimal(0)] * 12)[m] for r in roles) for m in range(12)] for g, roles in ONCOST_GROUPS.items()}
+    headcount = read_salary(fin["Salary"], headcount=True)
+    keys = {
+        "salary": {g: [sum(salary.get(r, [Decimal(0)] * 12)[m] for r in roles) for m in range(12)] for g, roles in ONCOST_GROUPS.items()},
+        "headcount": {g: [sum(headcount.get(r, [Decimal(0)] * 12)[m] for r in roles) for m in range(12)] for g, roles in ONCOST_GROUPS.items()},
+        "licensed": {g: [sum(headcount.get(r, [Decimal(0)] * 12)[m] for r in LICENSED_ROLES.get(g, [])) for m in range(12)] for g in ONCOST_GROUPS},
+    }
     for head, (ct, cls, basis) in HEAD_MAP.items():
         if head not in monthly:
             raise SystemExit(f"head {head!r} not found in the Monthly sheet")
-        share = ONCOST_SHARE.get(head)
-        if share is None:
+        parts = ONCOST_PARTS.get(head)
+        if not parts:
             lines.append(("Monthly sheet", head, ct, cls, basis, monthly[head]))
             continue
-        oncost = [(v * share).quantize(D2, rounding=ROUND_HALF_UP) for v in monthly[head]]
-        rest = [v - o for v, o in zip(monthly[head], oncost)]
-        if any(rest):
-            lines.append(("Monthly sheet", f"{head}: non-on-cost part", ct, cls, basis + " (facility licences, accreditation, trade licence)", rest))
-        split = {g: [Decimal(0)] * 12 for g in ONCOST_GROUPS}
-        for m in range(12):
-            base = sum(group_sal[g][m] for g in ONCOST_GROUPS)
-            alloc = {g: (oncost[m] * group_sal[g][m] / base).quantize(D2, rounding=ROUND_HALF_UP) for g in ONCOST_GROUPS}
-            alloc["SWDoc"] += oncost[m] - sum(alloc.values())        # rounding residual on the largest group
+        rest = list(monthly[head])
+        for label, share, key in parts:
+            part = [(v * share).quantize(D2, rounding=ROUND_HALF_UP) for v in monthly[head]]
+            rest = [r_ - p_ for r_, p_ in zip(rest, part)]
+            split = {g: [Decimal(0)] * 12 for g in ONCOST_GROUPS}
+            for m in range(12):
+                w = {g: keys[key][g][m] for g in ONCOST_GROUPS}
+                base = sum(w.values())
+                alloc = {g: (part[m] * w[g] / base).quantize(D2, rounding=ROUND_HALF_UP) for g in ONCOST_GROUPS}
+                big = max(ONCOST_GROUPS, key=lambda g: w[g])
+                alloc[big] += part[m] - sum(alloc.values())          # rounding residual on the largest group
+                for g in ONCOST_GROUPS:
+                    split[g][m] = alloc[g]
             for g in ONCOST_GROUPS:
-                split[g][m] = alloc[g]
-        for g in ONCOST_GROUPS:
-            lines.append(("Monthly sheet", f"{head}: on-cost → {g}", g, ONCOST_CLASS[g],
-                          f"{basis}; staff on-cost split by the month's salary share of {', '.join(ONCOST_GROUPS[g])} (ruling 13 Oct 2026)", split[g]))
+                if any(split[g]):
+                    lines.append(("Monthly sheet", f"{head}: {label} → {g}", g, ONCOST_CLASS[g],
+                                  f"staff on-cost; monthly {key} key ({', '.join(LICENSED_ROLES.get(g, []) if key == 'licensed' else ONCOST_GROUPS[g])}); ruling 13 Oct 2026, Option 3", split[g]))
+        if any(rest):
+            lines.append(("Monthly sheet", f"{head}: non-on-cost part", ct, cls, basis + " (facility licences, accreditation, trade licence, civil defence, tenancy)", rest))
 
     # --- check the split heads reproduce the Monthly sheet, and every month the ledger ---
     checks = []

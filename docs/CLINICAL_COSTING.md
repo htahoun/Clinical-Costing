@@ -577,6 +577,29 @@ table's prices, an SY03 table item, not a block. The DOH reference set is
 in `docs/shafafiya/` (Standard, Guidelines v2, SY2 technical document, FAQ,
 Quick Start Guide).
 
+**Tuning grid loaded (Finance Director, 13 Oct 2026; medical, finance,
+purchasing and accounts teams).** `scripts/bucket_rules.py` `GRID`, % of each
+cost type to (Anaesthesia, Dental, Imaging, Prosthesis): SWNurs 5/80/5/10;
+SWDoc 5/75/5/15; SWAllied 0/80/10/10 (CSSD remainder; technicians' pay
+pre-assigned to Prosthesis); SWNonClin, GS, Hotel, NABMs, Laboratory (zero)
+100 % Dental; Imaging 0/10/90/0 (the dentist's own time on X-rays counted in
+Dental); Pharmacy 100 % Anaesthesia; Prostheses 5/10/5/80 (the Finance
+Director's grid as sent; advice given that Appendix 1 maps the prostheses
+accounts to the Prosthesis bucket and that 100 % is the cleaner answer — his
+call); MS 5/85/5/5; Depreciation 5/90/5/0 (lab machines are not prosthesis);
+OHF 0/95/5/0 as overhead component (CostBucketOverheads/Imaging carries 5 %);
+OHDepreciation and OHC 100 % Dental (back office). Twelve months re-run:
+validate PASS ×12, buckets = types 9,738/9,738, claim sets identical, 0
+identity differences, overhead ratios unchanged (26.7–37.5 %, FY 32.9 %).
+FY2025 buckets before → after: Anaesthesia 67,541 → 218,666 (3.4 %); Dental
+5,507,932 → 4,792,176 (74.3 %); Imaging 24,337 → 302,987 (4.7 %); Prosthesis
+853,592 → 1,139,573 (17.7 %). Composition after: Prosthesis = Prostheses
+52.7 %, SWDoc 31.5 %, SWAllied 10.1 %, SWNurs 4.2 %; Imaging = SWDoc 39.5 %,
+OHF 28.5 %, Prostheses 12.4 %, SWNurs 7.9 %; Anaesthesia = SWDoc 54.7 %,
+Prostheses 17.2 %, SWNurs 11.0 %, Pharmacy 6.8 %. The Prostheses row sends
+37,554 of implant and lab cost to Anaesthesia and 37,554 to Imaging for the
+year — the consequence flagged to the Finance Director.
+
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:
 `input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).

@@ -1,8 +1,9 @@
 """
-Ledger-driven bucket rules (Finance Director's rulings, 10 Oct 2026).
+Ledger-driven bucket rules: the Finance Director's tuning grid of 13 Oct 2026
+(replaces the 10 Oct 2026 shares; see GRID below).
 
 Cost buckets (WHERE) are derived from the cost types (WHAT) by fixed shares,
-instead of from the allocation table's bucket columns:
+instead of from the allocation table's bucket columns. The 10 Oct 2026 shares were:
 
   Pharmacy                -> Anaesthesia
   SWDoc                   -> 2 % Anaesthesia, 98 % Dental
@@ -26,24 +27,37 @@ from decimal import Decimal
 
 DIRECT, OVERHEAD = "direct", "overhead"
 
-# cost type -> [(bucket, share, component)]; shares sum to 1. "LAB_SHARE" is replaced per month.
+# Finance Director's tuning grid, 13 Oct 2026 (medical, finance, purchasing and accounts teams):
+# cost type -> % to (Anaesthesia, Dental, Imaging, Prosthesis). Rows absent or all-zero in the grid
+# (Laboratory, Hotel, NABMs) default to Dental. Overhead cost types keep the OVERHEAD component in
+# whichever bucket they land (CostBucketOverheads/<bucket>).
+GRID = {
+    "SWNurs":         (5, 80, 5, 10),
+    "SWDoc":          (5, 75, 5, 15),
+    "SWAllied":       (0, 80, 10, 10),    # applied to the CSSD remainder; the dental technicians' share is
+                                          # pre-assigned to Prosthesis by the engine (ruling 13 Oct 2026)
+    "SWNonClin":      (0, 100, 0, 0),
+    "Laboratory":     (0, 100, 0, 0),     # zero cost type (no laboratory)
+    "Imaging":        (0, 10, 90, 0),     # dentist's own time reading / taking X-rays counted in Dental
+    "Pharmacy":       (100, 0, 0, 0),
+    "Prostheses":     (5, 10, 5, 80),     # Finance Director's grid as sent (advice given: 100 % Prosthesis)
+    "MS":             (5, 85, 5, 5),
+    "Hotel":          (0, 100, 0, 0),
+    "GS":             (0, 100, 0, 0),
+    "Depreciation":   (5, 90, 5, 0),      # equipment; lab machines are not "prosthesis" (ruling)
+    "OHF":            (0, 95, 5, 0),
+    "OHDepreciation": (0, 100, 0, 0),     # back office
+    "OHC":            (0, 100, 0, 0),
+    "NABMs":          (0, 100, 0, 0),
+}
+GRID_BUCKETS = ("Anaesthesia", "Dental", "Imaging", "Prosthesis")
+OVERHEAD_TYPES = {"OHF", "OHDepreciation", "OHC"}
+for _t, _row in GRID.items():
+    assert sum(_row) == 100, (_t, _row)
+
 RULES = {
-    "SWDoc": [("Anaesthesia", Decimal("0.02"), DIRECT), ("Dental", Decimal("0.98"), DIRECT)],
-    "SWNurs": [("Anaesthesia", Decimal("0.01"), DIRECT), ("Imaging", Decimal("0.04"), DIRECT), ("Dental", Decimal("0.95"), DIRECT)],
-    "SWAllied": [("Dental", Decimal(1), DIRECT)],   # lab technicians' share pre-assigned to Prosthesis by the engine
-    "SWNonClin": [("Dental", Decimal(1), DIRECT)],
-    "Laboratory": [("Laboratory", Decimal(1), DIRECT)],
-    "Imaging": [("Imaging", Decimal(1), DIRECT)],
-    "Pharmacy": [("Anaesthesia", Decimal(1), DIRECT)],
-    "Prostheses": [("Prosthesis", Decimal(1), DIRECT)],
-    "MS": [("Dental", Decimal(1), DIRECT)],
-    "Hotel": [("Dental", Decimal(1), DIRECT)],
-    "GS": [("Dental", Decimal(1), DIRECT)],
-    "Depreciation": [("Imaging", Decimal("0.04"), DIRECT), ("Dental", Decimal("0.96"), DIRECT)],
-    "OHF": [("Dental", Decimal(1), OVERHEAD)],
-    "OHDepreciation": [("Dental", Decimal(1), OVERHEAD)],
-    "OHC": [("Dental", Decimal(1), OVERHEAD)],
-    "NABMs": [("Dental", Decimal(1), DIRECT)],
+    t: [(b, Decimal(p) / Decimal(100), OVERHEAD if t in OVERHEAD_TYPES else DIRECT) for b, p in zip(GRID_BUCKETS, row) if p]
+    for t, row in GRID.items()
 }
 DEFAULT_LAB_SHARE = Decimal("0.45")   # lab technicians / (lab technicians + CSSD) when the month is unknown (engine pool)
 

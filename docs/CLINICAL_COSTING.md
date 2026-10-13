@@ -577,28 +577,35 @@ table's prices, an SY03 table item, not a block. The DOH reference set is
 in `docs/shafafiya/` (Standard, Guidelines v2, SY2 technical document, FAQ,
 Quick Start Guide).
 
-**Tuning grid loaded (Finance Director, 13 Oct 2026; medical, finance,
-purchasing and accounts teams).** `scripts/bucket_rules.py` `GRID`, % of each
-cost type to (Anaesthesia, Dental, Imaging, Prosthesis): SWNurs 5/80/5/10;
-SWDoc 5/75/5/15; SWAllied 0/80/10/10 (CSSD remainder; technicians' pay
-pre-assigned to Prosthesis); SWNonClin, GS, Hotel, NABMs, Laboratory (zero)
-100 % Dental; Imaging 0/10/90/0 (the dentist's own time on X-rays counted in
-Dental); Pharmacy 100 % Anaesthesia; Prostheses 5/10/5/80 (the Finance
-Director's grid as sent; advice given that Appendix 1 maps the prostheses
-accounts to the Prosthesis bucket and that 100 % is the cleaner answer — his
-call); MS 5/85/5/5; Depreciation 5/90/5/0 (lab machines are not prosthesis);
-OHF 0/95/5/0 as overhead component (CostBucketOverheads/Imaging carries 5 %);
-OHDepreciation and OHC 100 % Dental (back office). Twelve months re-run:
-validate PASS ×12, buckets = types 9,738/9,738, claim sets identical, 0
-identity differences, overhead ratios unchanged (26.7–37.5 %, FY 32.9 %).
-FY2025 buckets before → after: Anaesthesia 67,541 → 218,666 (3.4 %); Dental
-5,507,932 → 4,792,176 (74.3 %); Imaging 24,337 → 302,987 (4.7 %); Prosthesis
-853,592 → 1,139,573 (17.7 %). Composition after: Prosthesis = Prostheses
-52.7 %, SWDoc 31.5 %, SWAllied 10.1 %, SWNurs 4.2 %; Imaging = SWDoc 39.5 %,
-OHF 28.5 %, Prostheses 12.4 %, SWNurs 7.9 %; Anaesthesia = SWDoc 54.7 %,
-Prostheses 17.2 %, SWNurs 11.0 %, Pharmacy 6.8 %. The Prostheses row sends
-37,554 of implant and lab cost to Anaesthesia and 37,554 to Imaging for the
-year — the consequence flagged to the Finance Director.
+**Tuning grid — final (Finance Director, 13 Oct 2026; medical, finance,
+purchasing and accounts teams, tuned the same day).** `scripts/bucket_rules.py`
+`GRID`, % of each cost type to (Anaesthesia, Dental, Imaging, Prosthesis):
+SWNurs 5/80/5/10; SWDoc 3/77/5/15; SWAllied 0/80/10/10 (CSSD remainder; the
+dental technicians' share is pre-assigned to Prosthesis); SWNonClin, GS,
+Hotel, NABMs, Laboratory (zero) 100 % Dental; Imaging supplies 0/10/90/0 (the
+dentist's own time on X-rays is counted in Dental); Pharmacy 100 %
+Anaesthesia; Prostheses 0/0/0/100 (Appendix 1: prostheses accounts map to
+the Prosthesis bucket); MS 3/87/5/5; Depreciation 5/90/5/0 (lab machines are
+not "prosthesis"); OHF 0/98/2/0 as overhead component (the OPG room's share of
+overheads by floor area, in CostBucketOverheads/Imaging); OHDepreciation and
+OHC 100 % Dental (back office). The first version of the grid (SWDoc 5 %
+Anaesthesia, Prostheses 5/10/5/80, MS 5 %, OHF 5 % Imaging) gave Anaesthesia
+218,666 and Imaging overheads 28 %, which the Finance Director judged not
+common sense; the four cells above were tuned from the "1 % is worth" table
+(SWDoc 23,921; OHF 17,240; Prostheses 7,511; SWNurs 4,817; MS 3,241;
+Depreciation 1,267 per point). Twelve months re-run and verified: validate
+PASS ×12, buckets = cost types 9,738/9,738, claim sets identical, 0 identity
+differences, overhead ratios unchanged (26.7–37.5 %, FY 32.9 %), no DOH
+"unexpected bucket" flag. FY2025 buckets: Anaesthesia 126,789 (2.0 %), Dental
+4,823,113 (74.7 %), Imaging 213,713 (3.3 %), Prosthesis 1,289,787 (20.0 %).
+Composition: Anaesthesia = SWDoc 56.6 %, SWNurs 19.0 %, Pharmacy 11.7 %, MS
+7.7 %, Depreciation 5.0 %; Imaging = SWDoc 56.0 %, OHF 16.1 %, SWNurs 11.3 %,
+MS 7.6 %, SWAllied 6.1 %, Depreciation 3.0 %; Prosthesis = Prostheses 58.2 %,
+SWDoc 27.8 %, SWAllied 9.0 %, SWNurs 3.7 %, MS 1.3 %; Dental = SWDoc 38.2 %,
+OHF 35.0 %, SWNurs 8.0 %, OHC 7.7 %, MS 5.8 %. Monthly Anaesthesia 9,130 to
+12,167; Prosthesis 84,496 to 137,442. These are the files for resubmission
+(`output/xml_resubmission_FY2025/` + zip, reports in
+`output/model_reports/`), pending the CFO reconciliation report and transport.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

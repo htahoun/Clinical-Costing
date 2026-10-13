@@ -268,12 +268,11 @@ its result is the accepted master of §6 item 5.
 9. **Cost of Goods Sold 1,040,318.25 split by stock movement** — the eleven
    monthly movement sheets (Feb–Dec) are awaited; run the fill script with
    `--movement` for all twelve months, then the engine for all twelve.
-10. **External LAB possibly counted twice** (inside Cost of Goods Sold and as
-    the External Lab head) — Arjun to confirm before the ledger is re-locked.
-11. **Staff on-costs** (Staff Qualification And Education 889,431.99,
+10. **Staff on-costs** (Staff Qualification And Education 889,431.99,
     immigration and labour 145,165.32, clinician licences 34,349.57, staff
-    insurance 50,409.29) — allocation key by staff category to be ruled
-    (proposal: salary per category).
+    insurance 50,409.29) — allocation key by staff category to be ruled from
+    the three options in `output/Oncost_Allocation_Options.xlsx`
+    (recommended: Option 3, by nature of the cost).
 
 ## 10. Working etiquette with the Finance Director
 
@@ -468,11 +467,29 @@ has a stock-movement sheet; the twelve monthly sheets (same layout as
 `Financial_Report_Jan_2025_1.xlsx`, sheet "Movement <Mon> 2025") will split
 the head line by line. Control totals per month = Arjun's Consumption sheet
 (Consumables Dr + CSSD + Internal LAB + External LAB = the P&L Cost of Goods
-Sold). Audit finding to clear with Arjun: External LAB appears inside Cost of
-Goods Sold (54,224.25 FY) and again as the P&L head External Lab (66,745.25
-FY); six months are identical (Jan 1,870; Feb 200; May 7,425; Jun 0; Sep
-1,150; Oct 950) — if the same invoices are booked twice the locked ledger is
-overstated by up to 54,224.25 and both Prostheses and the FY total change.
+Sold). Audit query (External LAB inside Cost of Goods Sold 54,224.25 and the
+P&L head External Lab 66,745.25, six months identical) — ruled by the Finance
+Director, 13 Oct 2026: no duplication; the External Lab head is paid from cash
+in hand, the cost-of-goods-sold line comes from supplier invoices. Both stay,
+both are Prostheses.
+
+**Staff on-costs — allocation key (options issued 13 Oct 2026, ruling
+pending).** Four lines are labour on-costs that Appendix 1 (Cost of Labour =
+salaries, wages and on-costs) places with their staff category, but the
+clinic has no cost centre per person: staff benefits / bonus / end-of-service
+/ training 889,431.99; visas, work permits, labour cards 145,165.32; clinician
+licences 34,349.57; staff medical insurance 50,409.29 (total 1,119,356.17,
+all in OHF today). Keys from Arjun's Salary sheet, employees only (the nine
+external consultants, 142,881, carry no on-costs): salary share Doctors 60.1 %,
+Nurses 10.7 %, Allied 5.2 %, Back office 24.0 %; average-FTE share 22.8 / 21.3
+/ 16.0 / 39.9 %; licensed FTE Doctors 63.1 %, Nurses 36.9 %.
+`output/Oncost_Allocation_Options.xlsx`: Option 1 salary key for all four
+lines (direct 851,015; overhead ratio 45.2 % → 32.0 %); Option 2 FTE key for
+all four (direct 672,533; → 34.8 %); Option 3, recommended, by nature of the
+cost — benefits by salary, visas and insurance by FTE, licences to licensed
+clinicians by licensed FTE (direct 828,065; → 32.4 %). Once ruled, the key
+goes into `scripts/fill_ledger_map_from_financials.py` as a split of those
+heads by month into SWDoc / SWNurs / SWAllied / OHF.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

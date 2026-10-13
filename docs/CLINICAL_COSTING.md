@@ -268,11 +268,9 @@ its result is the accepted master of §6 item 5.
 9. **Cost of Goods Sold 1,040,318.25 split by stock movement** — the eleven
    monthly movement sheets (Feb–Dec) are awaited; run the fill script with
    `--movement` for all twelve months, then the engine for all twelve.
-10. **Staff on-costs** (Staff Qualification And Education 889,431.99,
-    immigration and labour 145,165.32, clinician licences 34,349.57, staff
-    insurance 50,409.29) — allocation key by staff category to be ruled from
-    the three options in `output/Oncost_Allocation_Options.xlsx`
-    (recommended: Option 3, by nature of the cost).
+10. **Staff on-costs** — ruled 13 Oct 2026 (salary share, employees only);
+    reverse with one line in `ONCOST_GROUPS` if the external consultants are
+    to carry on-costs.
 
 ## 10. Working etiquette with the Finance Director
 
@@ -473,23 +471,28 @@ Director, 13 Oct 2026: no duplication; the External Lab head is paid from cash
 in hand, the cost-of-goods-sold line comes from supplier invoices. Both stay,
 both are Prostheses.
 
-**Staff on-costs — allocation key (options issued 13 Oct 2026, ruling
-pending).** Four lines are labour on-costs that Appendix 1 (Cost of Labour =
-salaries, wages and on-costs) places with their staff category, but the
-clinic has no cost centre per person: staff benefits / bonus / end-of-service
-/ training 889,431.99; visas, work permits, labour cards 145,165.32; clinician
-licences 34,349.57; staff medical insurance 50,409.29 (total 1,119,356.17,
-all in OHF today). Keys from Arjun's Salary sheet, employees only (the nine
-external consultants, 142,881, carry no on-costs): salary share Doctors 60.1 %,
-Nurses 10.7 %, Allied 5.2 %, Back office 24.0 %; average-FTE share 22.8 / 21.3
-/ 16.0 / 39.9 %; licensed FTE Doctors 63.1 %, Nurses 36.9 %.
-`output/Oncost_Allocation_Options.xlsx`: Option 1 salary key for all four
-lines (direct 851,015; overhead ratio 45.2 % → 32.0 %); Option 2 FTE key for
-all four (direct 672,533; → 34.8 %); Option 3, recommended, by nature of the
-cost — benefits by salary, visas and insurance by FTE, licences to licensed
-clinicians by licensed FTE (direct 828,065; → 32.4 %). Once ruled, the key
-goes into `scripts/fill_ledger_map_from_financials.py` as a split of those
-heads by month into SWDoc / SWNurs / SWAllied / OHF.
+**Staff on-costs — salary share (ruling, Finance Director, 13 Oct 2026).**
+Four lines are labour on-costs that Appendix 1 (Cost of Labour = salaries,
+wages and on-costs) places with their staff category, but the clinic has no
+cost centre per person: staff benefits / bonus / end-of-service / training
+889,431.99; visas, work permits, labour cards 145,165.32; clinician licences
+34,349.57; staff medical insurance 50,409.29 (total 1,119,356.17, all OHF
+before). Three options were issued (`output/Oncost_Allocation_Options.xlsx`:
+salary key, FTE key, by nature of the cost). Ruling: salary share for all four
+lines — the most common key, the Standard prescribes none, and the per-head
+lines (visas, insurance) move only about 75,000 between readings. Implemented
+in `scripts/fill_ledger_map_from_financials.py` (`ONCOST_SHARE`,
+`ONCOST_GROUPS`): Staff Qualification And Education and Insurance in full, and
+179,514.89 / 253,569.45 of Legal & Professional (licences + visas; facility
+licences, accreditation, trade licence, civil defence, tenancy stay OHF), are
+split every month by that month's salary of dentists (SWDoc), nurses
+(SWNurs), CSSD + dental technicians (SWAllied) and back office (OHF),
+employees only — the nine external consultants (142,881) carry no on-costs.
+FY2025 result: on-costs → SWDoc 645,567.33, SWNurs 126,968.26, SWAllied
+58,571.24, OHF 288,249.32; overhead ratio 45.2 % → 32.3 % (monthly 25.7 % to
+36.9 %, inside the DOH band). On-costs then follow their cost type's bucket
+rule. January model re-run: 831/831, both views 511,302.300, overhead 25.7 %,
+Prostheses 70,074.94 on 132 claims.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

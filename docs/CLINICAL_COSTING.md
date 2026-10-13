@@ -378,22 +378,64 @@ Imaging 1,426, Laboratory 24,428, Prosthesis 52,796, Dental 427,709; 831/831
 match; both views 511,302.300.
 
 **Implants on implant claims only (10 Oct 2026, rulings: units weighting;
-code-less claims are non-implant).** With the activity master
-(`input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx`, codes per
-claim) and the implant code list (`scripts/implant_codes.py`), the engine
-pre-assigns the three implant stock pools — fixtures + healing screws (codes
-79933/79935/79936), abutments + impression tools (26101, 27155, 27205, 67115,
-67155, 69821, 69822, 79935, 79936), bone graft (42631, 42702, 72431, 72439,
-79511) — to the claims billing those codes, by billed units, moving the amount
-from the Dental to the Prosthesis bucket inside each claim (claim total
-unchanged; capped at the claim's Dental amount, excess redistributed and
-logged). The fit then runs on the remainder. January model
-(`output/xml_JAN_MODEL/`, report `output/January_Model_Report.xlsx`): 831/831
-claims match, both views 511,302.300, Prostheses 52,796.00 on 19 implant
-claims and on no other claim, overhead ratio 36.3 %, claim set and identity
-fields unchanged. Seven abutment-stage claims were capped (their costed
-Dental amount is below the abutment share), a sign that Cherie's table prices
-implant codes below the stock they consume — an SY03 table item.
+code-less claims are non-implant; code list corrected 13 Oct 2026).** With the
+activity master (`input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx`,
+codes per claim) and the implant code list (`scripts/implant_codes.py`), the
+engine pre-assigns the three implant stock pools — fixtures + healing screws
+(codes 79933/79935/79936), abutments + impression tools (26101, 27115, 27125,
+27155, 27205, 29341, 67115, 67145, 67155, 67205, 69821, 69822, 79935, 79936),
+bone graft (42631, 42702, 72431, 72439, 79353, 79356, 79511) — to the claims
+billing those codes, by billed units, moving the amount from the Dental to the
+Prosthesis bucket inside each claim (claim total unchanged; capped at the
+claim's Dental amount, excess redistributed and logged). Implant codes that
+consume no stock (29311, 29319, 42211, 79961, 79962) are reported as implant
+work but carry no pool; 73111/73121 (bone recontouring) are not implant codes
+and were removed on 13 Oct 2026 after the team's revised
+`input/source/LAB_Prosthesis_Implants_Codes.xlsx` (seven implant items were
+missing from the first list — 67205 alone has 95 lines in 2025). The fit then
+runs on the remainder. January model (`output/xml_JAN_MODEL/`, report
+`output/January_Model_Report.xlsx`, re-run 13 Oct 2026): 831/831 claims match,
+both views 511,302.300, Prostheses 52,796.00 on 23 implant claims and on no
+other claim, overhead ratio 36.3 %, claim set and identity fields unchanged.
+Seven abutment-stage claims are capped (their costed Dental amount is below
+the abutment share), a sign that Cherie's table prices implant codes below the
+stock they consume — an SY03 table item.
+
+**Lab-fabricated prostheses — classification guidance (13 Oct 2026, awaiting
+the Finance Director's ruling).** Question: crowns, veneers, inlays/onlays,
+bridges (retainers, pontics), dentures, frameworks, stents — made in the
+in-house CAD/CAM laboratory or bought from external laboratories — are
+prostheses, but they are produced in a laboratory; Prostheses or Laboratory?
+Evidence: Standard v2.1 Appendix 1 defines the Prostheses cost type as
+"Implantable devices" and, in words copied from the Australian standard, as
+"goods and services used in the provision of services to implant prostheses,
+human tissue item and other medical devices"; the Laboratory cost type is
+"Laboratory Supplies"; Appendix 2 defines the Laboratory bucket as pathology
+(biochemistry, blood bank, cytogenetics, microbiology …) and the Prosthesis
+bucket as "surgically implanted devices, human tissues, and other medical
+apparatuses" with the service list "Prothetics; Implants"; the Dental bucket
+lists "Prosthodontics" as a service. The Australian Hospital Patient Costing
+Standards (IHACPA, the source of the DOH wording) define a prosthesis as "an
+artificial substitute or replacement for a part of the body" and cost
+prostheses at traceable actual cost; the Australian Prescribed List excludes
+external and custom-made devices, so under IHACPA a lab-made crown is a
+medical/surgical supply, while the DOH text, which adds "Prothetics" and
+"other medical apparatuses", is wider. Recommendation (Option A): definitive
+lab-fabricated prostheses → Prostheses cost type / Prosthesis bucket at
+traceable cost (external lab invoice; in-house lab materials and the lab
+technicians' pay via SWAllied to the Prosthesis bucket), placed on the claims
+billing the prosthesis codes by units, the same mechanism as implants;
+chairside provisional/temporary crowns → MS; Laboratory cost type and bucket
+then hold only pathology, i.e. zero for this clinic. Fallback (Option B): keep
+the present map (in-house lab = Laboratory cost type and bucket, external lab
+invoices = Laboratory); defensible because the DOH map is a self-declaration
+with no validation rule on Laboratory, but a reviewer may ask why a dental
+clinic with no pathology reports a Laboratory bucket. Either way, FAQ Q4.4
+invites providers whose services do not map clearly to ask the DOH Clinical
+Costing Team; the question has been drafted for the Finance Director to send.
+Amounts at stake (Arjun's map, FY2025): Laboratory cost type 315,921
+(in-house materials 196,821 incl. January stock, external invoices 119,100),
+lab technicians' pay 69,820.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

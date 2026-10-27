@@ -652,6 +652,30 @@ master 9,717 claims / 23,982 lines; 21 claims without procedure lines), data
 quality checks by month, rulings register, submission files. Awaiting CFO
 signature; then transport.
 
+**DOH annexure filled (27 Oct 2026).** The DOH template
+`SY2_Annexure_Costing_Submission_Reconciliation_Report_V1.0A_MFXXXX.xlsm`
+(received from the Finance Director, filed as
+`input/source/SY2_Annexure_template_as_received_2026-10-27.xlsm`; tabs
+Sign-Off, Reconciliation - Main, Inclusions, Exclusions, EncountersData, WIP,
+DataValidations; hidden References tab holds the dropdown lists) is filled as
+`output/SY2 Annexure Costing Submission Reconciliation Report V1.0A MF4159.xlsm`
+(+ `.xlsx` export). Rulings: signatory CEO Heba Hamdy Abdel Rahman as in the
+first submission, dated 27 Oct 2026; AFS total = GL = 6,453,401.98, External
+Audit Completed; Costing Method "Hybrid Costing (ABC and Top-Down)" (direct
+cost per CPT activity and prostheses per claim, overheads and bucket shares by
+fixed percentages); Step-Down overheads; MySmyle Clinical Costing Module;
+Facility Level. Reconciliation - Main: Step 6 overhead 2,124,656.59 / direct
+4,328,745.39 = 6,453,401.98, no exclusions, no WIP, Step 8 = the Shafafiya
+total. EncountersData: 9,738 encounters of type 1-No Bed + No Emergency.
+DataValidations: zero/negative, bucket = type, high OP (218 claims > 5,000),
+low OP (1,152 < 50) and unexpected buckets (0) validated with no detrimental
+issues and commented; all emergency, inpatient, day-case and home-care rows
+"Does Not Apply". Preparer position entered as "Accountant" (to confirm).
+File name and email subject per the template's Instructions tab: "SY2
+Annexure Costing Submission Reconciliation Report V1.0A MF4159", emailed to
+dohclinicalcosting@doh.gov.ae after the Shafafiya submission succeeds. The
+detailed schedules remain in `output/CFO_Reconciliation_Report_FY2025.xlsx`.
+
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:
 `input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).

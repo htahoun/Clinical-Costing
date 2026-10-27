@@ -607,6 +607,27 @@ OHF 35.0 %, SWNurs 8.0 %, OHC 7.7 %, MS 5.8 %. Monthly Anaesthesia 9,130 to
 (`output/xml_resubmission_FY2025/` + zip, reports in
 `output/model_reports/`), pending the CFO reconciliation report and transport.
 
+**MySmyle's regenerated January file (received 27 Oct 2026, generated 24 Oct
+2026; `input/source/mysmyle_v2/`).** Audited against
+`output/xml_resubmission_FY2025/…M01…`: same 831 claims, 0 identity
+differences, both views 511,302.300 in both files, buckets = types 831/831,
+overhead component by bucket identical (Dental 133,926.628, Imaging
+2,511.952), every bucket and cost-type total equal to the fils or within
+1 fils. 174 cells on 41 claims differ by at most 0.004 AED (sum of all
+differences 0.188, net zero): MySmyle rounds each cell to 3 dp from the
+exact allocation, the engine rounds to integer fils and forces the residual
+of each column onto the largest claim (1740MF4159-d7a251 carries 12 of the
+174). Both approaches tie to the ledger; the figures are the same model.
+Two real differences: (1) MySmyle appends the `<Resubmission>` block
+(`<Type>correction</Type>` and a `<Comment>` beginning "Correction of the
+FY2025 SY-02 cost submission …") to every claim, which the SY2 technical
+document requires for a resubmission (Type "required if valid
+resubmission", Comment "must say 'Correction'"); the engine's files, built by
+re-expressing the sent files, carry no Resubmission block and must get one
+before transport (engine option to add, or transport MySmyle's files after
+this audit month by month). (2) MySmyle's file is pretty-printed (2.45 MB
+against 2.16 MB), still under the 5 MB limit for every month.
+
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:
 `input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).

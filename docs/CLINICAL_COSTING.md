@@ -216,6 +216,7 @@ MySmyle's are a few fils short (per-cell rounding without reconciliation).
 | `scripts/cogs_from_movement.py` | Splits each month's cost of goods sold into cost types from the stock movement (one-month report or the full-year workbook; three value bases; keyword matching); implant pools |
 | `scripts/implant_codes.py` | Implant procedure codes by stock pool (fixtures, abutments, bone graft) |
 | `scripts/prosthesis_codes.py` | The 48 prosthesis codes (ruling 13 Oct 2026: no laboratory; every prosthesis code is Prostheses) |
+| `scripts/cfo_reconciliation_report.py` | CFO reconciliation report (Standard 3.6.2.1.5): workbook of eleven schedules + Word memo from the FY build |
 | `scripts/month_report.py` | One-month model report workbook (summary, tuning grid, cost types, buckets, prosthesis claims, claim examples, log) |
 | `input/source/Clinical_2025_one_sheet_Claude_Updated_Cherie.xlsx` | Accepted activity master with treatment codes, twelve monthly sheets |
 | `output/xml_JAN_MODEL/`, `output/January_Model_Report.xlsx` | The January model and its report |
@@ -639,6 +640,17 @@ zero; rounding, as in January); Resubmission block on 810/810 claims
 ("correction"); 2.38 MB. Verdict: no discrepancy. Status: January and July
 cleared; ten months to come from MySmyle (`input/source/mysmyle_v2/`), then
 the CFO reconciliation report and transport.
+
+**CFO reconciliation report drafted (27 Oct 2026).**
+`output/CFO_Reconciliation_Report_FY2025.xlsx` (+ `.docx` memo), built by
+`scripts/cfo_reconciliation_report.py` from the FY build: report and sign-off,
+monthly reconciliation (ledger = cost-type view = bucket view, 12/12, 9,738
+claims, overhead 32.9 %), cost types vs ledger map, cost buckets, ledger map
+(inclusions; no exclusions; no WIP), stock movement by month, allocation
+statistics and the tuning grid, encounter volumes (9,738 claims; activity
+master 9,717 claims / 23,982 lines; 21 claims without procedure lines), data
+quality checks by month, rulings register, submission files. Awaiting CFO
+signature; then transport.
 
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:

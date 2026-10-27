@@ -628,6 +628,18 @@ before transport (engine option to add, or transport MySmyle's files after
 this audit month by month). (2) MySmyle's file is pretty-printed (2.45 MB
 against 2.16 MB), still under the 5 MB limit for every month.
 
+**Ruling 27 Oct 2026: MySmyle takes over generation (option 2).** MySmyle
+generates the twelve resubmission files, each audited here against the
+engine's file before transport. July audited the same day: 810 claims, 0
+identity differences, both views 480,166.820 in both files, buckets = types
+810/810, overhead components identical (Dental 165,465.067, Imaging
+2,815.083), every bucket and cost-type total equal to the fils or within
+1 fils; 62 cells on 14 claims differ by at most 0.011 AED (sum 0.100, net
+zero; rounding, as in January); Resubmission block on 810/810 claims
+("correction"); 2.38 MB. Verdict: no discrepancy. Status: January and July
+cleared; ten months to come from MySmyle (`input/source/mysmyle_v2/`), then
+the CFO reconciliation report and transport.
+
 **Proposed ledger map (10 Oct 2026, superseded by the evidence-based map above).** Built by
 `scripts/propose_ledger_map.py` without the expense lines:
 `input/Ledger_by_Cost_Type_FY2025_PROPOSED.xlsx` (Assumptions sheet inside).
